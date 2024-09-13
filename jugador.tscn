@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnl1k0w4e64he"]
+
+[ext_resource type="PackedScene" uid="uid://dy305jcet2qlq" path="res://GodotActionRPG-Assets/Models/Sword.dae" id="1_vkm6e"]
+
+[sub_resource type="GDScript" id="GDScript_cx7sy"]
+resource_name = "pj"
+script/source = "extends CharacterBody3D
+var direction : Vector3
+var gravity := 10
+
+func _physics_process(delta: float) -> void:
+	direction = $Camera3D.get_global_transform().basis.z
+	var moveSpeed := Vector3.ZERO
+	if (Input.is_action_pressed(\"MoveBackwards\")):
+		moveSpeed += direction
+	if (Input.is_action_pressed(\"MoveForwards\")):
+		moveSpeed -= direction
+	if (Input.is_action_pressed(\"MoveL\")):
+		moveSpeed += direction.cross($\".\".up_direction)
+	if (Input.is_action_pressed(\"MoveR\")):
+		moveSpeed += $\".\".up_direction.cross(direction)	
+	velocity = moveSpeed.normalized() * 10
+	velocity.y -= gravity
+	move_and_slide()
+"
+
+[sub_resource type="GDScript" id="GDScript_lemkd"]
+resource_name = "camarascript"
+script/source = "extends Camera3D
+
+var v = Vector3()
+
+func _ready():
+ Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+ 
+func _input(event):
+ if event is InputEventMouseMotion:
+  v.y -= (event.relative.x * 0.2)
+  v.x -= (event.relative.y * 0.2)
+  v.x = clamp(v.x,-80,90)
+func _physics_process(delta):
+ self.rotation_degrees.x = v.x
+ rotation_degrees.y = v.y
+"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pnppo"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xqvju"]
+
+[node name="Jugador" type="CharacterBody3D" groups=["Jugador"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10292, 0)
+script = SubResource("GDScript_cx7sy")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.768596, 0, -0.639734, 0, 1, 0, 0.639734, 0, 0.768596, 0, 1, 0)
+script = SubResource("GDScript_lemkd")
+
+[node name="trapero" parent="Camera3D" instance=ExtResource("1_vkm6e")]
+transform = Transform3D(-0.0276369, 0.0346844, -0.195021, 0.0922584, 0.176502, 0.0183167, 0.175284, -0.0874305, -0.0403895, 1.54878, -1.28759, -1.59314)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.999999, -0.00134197, 0.000845586, 0.00134066, 0.999998, 0.00154888, -0.000847652, -0.00154775, 0.999998, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_pnppo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_xqvju")
