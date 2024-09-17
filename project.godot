@@ -23,6 +23,7 @@ GlobalInfo="*res://global_info.gd"
 
 Jugador="Referencia al nodo jugador"
 NodosNavegacion=""
+Ambiente=""
 
 [input]
 
