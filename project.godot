@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GlobalInfo="*res://global_info.gd"
+GeometricToolbox="*res://geometric_toolbox.gd"
 
 [global_group]
 

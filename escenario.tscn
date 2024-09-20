@@ -16,6 +16,7 @@ data = PackedVector3Array(1.6031, 1.3175, -1.1135, 1.5503, 0, -1.1476, 1.8336, 0
 data = PackedVector3Array(0, 0, 0, 3, 0.3, 0, 3, 0, 0, 3, 0.3, 0, 0, 0, 0, 0, 0.3, 0, 0, 0.3, -3, 3, 0.3, 0, 0, 0.3, 0, 3, 0.3, 0, 0, 0.3, -3, 3, 0.3, -3, 3, 0, -3, 3, 0.3, 0, 3, 0.3, -3, 3, 0.3, 0, 3, 0, -3, 3, 0, 0, 3, 0, -3, 0, 0, 0, 3, 0, 0, 0, 0, 0, 3, 0, -3, 0, 0, -3, 0, 0.3, -3, 0, 0, 0, 0, 0, -3, 0, 0, 0, 0, 0.3, -3, 0, 0.3, 0, 3, 0, -3, 0, 0.3, -3, 0, 0, -3, 0, 0.3, -3, 3, 0, -3, 3, 0.3, -3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t688q"]
+size = Vector3(1, 0.202484, 1)
 
 [node name="Escenario" type="Node3D"]
 
@@ -53,41 +54,45 @@ shape = SubResource("ConcavePolygonShape3D_nog7x")
 
 [node name="Geometría" type="Node" parent="NavigationRegion3D"]
 
-[node name="NaturePack001" type="MeshInstance3D" parent="NavigationRegion3D/Geometría" groups=["Ambiente"]]
+[node name="NaturePack001" type="MeshInstance3D" parent="NavigationRegion3D/Geometría"]
 transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0.00555933, -0.290911, -0.00155234)
 mesh = ExtResource("1_0s11j")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Geometría/NaturePack001"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Geometría/NaturePack001" groups=["Ambiente"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Geometría/NaturePack001/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ptdvs")
 
 [node name="Rana" parent="." instance=ExtResource("3_im530")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5109, 0.0471512, -20.9198)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.511, -0.0168341, -20.92)
 
 [node name="NodosDeNavegacion" type="Node" parent="."]
 
 [node name="nodo1" type="Area3D" parent="NodosDeNavegacion" groups=["NodosNavegacion"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5438, 0.824329, -21.5952)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.037, 0, -28.654)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NodosDeNavegacion/nodo1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
 shape = SubResource("BoxShape3D_t688q")
 
 [node name="nodo2" type="Area3D" parent="NodosDeNavegacion" groups=["NodosNavegacion"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.2025, 0.836001, -8.70863)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.2464, 0, -28.9284)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NodosDeNavegacion/nodo2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
 shape = SubResource("BoxShape3D_t688q")
 
 [node name="nodo3" type="Area3D" parent="NodosDeNavegacion" groups=["NodosNavegacion"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5922, 0.834136, -25.2171)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.20424, 0, -15.5188)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NodosDeNavegacion/nodo3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
 shape = SubResource("BoxShape3D_t688q")
 
 [node name="nodo4" type="Area3D" parent="NodosDeNavegacion" groups=["NodosNavegacion"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.73714, 0.798353, -25.2171)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0136, 0, -18.8137)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NodosDeNavegacion/nodo4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
 shape = SubResource("BoxShape3D_t688q")
