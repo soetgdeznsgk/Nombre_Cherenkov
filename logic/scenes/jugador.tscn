@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
 	if (Input.is_action_pressed(\"MoveR\")):
 		moveSpeed += $\".\".up_direction.cross(direction)	
 	velocity = moveSpeed.normalized() * 10
-	velocity.y -= gravity
+	#velocity.y -= gravity
 	move_and_slide()
 "
 

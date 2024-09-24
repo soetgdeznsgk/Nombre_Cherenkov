@@ -11,20 +11,21 @@ config_version=5
 [application]
 
 config/name="Proyecto 3D"
-run/main_scene="res://escenario.tscn"
+run/main_scene="res://logic/scenes/escenario.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-GlobalInfo="*res://global_info.gd"
-GeometricToolbox="*res://geometric_toolbox.gd"
+GlobalInfo="*res://logic/global_scripts/global_info.gd"
+GeometricToolbox="*res://logic/global_scripts/geometric_toolbox.gd"
 
 [global_group]
 
 Jugador="Referencia al nodo jugador"
 NodosNavegacion=""
 Ambiente=""
+Charcos=""
 
 [input]
 

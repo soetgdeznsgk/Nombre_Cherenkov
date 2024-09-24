@@ -16,7 +16,7 @@ signal finished_jump
 
 func _ready() -> void:
 	change_target()
-	print("Rana : initial target position: ", navRef.target_position)
+	#print("Rana : initial target position: ", navRef.target_position)
 	
 
 func _physics_process(delta: float) -> void:
@@ -25,8 +25,6 @@ func _physics_process(delta: float) -> void:
 		time += delta
 		position = jump_bezier(time)
 		
-		
-	
 
 func jump_bezier(t : float) -> Vector3: # ésta curva describe el movimiento parabólico de la rana al saltar
 	var q0 = starting_position.lerp(jump_peak, t)
@@ -43,10 +41,12 @@ func _on_area_entered(area) -> void:
 func _on_body_entered(body: Node3D) -> void: # xq el escenario es un staticbody
 	if body.is_in_group("Ambiente"):
 		reset_jump()
+		GlobalInfo.on_aterrizaje_rana(position)
+		
 
 func change_target() -> void:
 	navRef.target_position = get_tree().get_nodes_in_group("NodosNavegacion").pick_random().position
-	print("Rana: cambio de objetivo")
+	#print("Rana: cambio de objetivo")
 
 func reset_jump():
 	is_jumping = false
@@ -54,10 +54,10 @@ func reset_jump():
 	timer.start()
 
 func restart_jump() -> void: # timer llama ésto cuando se agota
-	print("Rana: reinicia salto")
+	#print("Rana: reinicia salto")
 	is_jumping = true
 	starting_position = position
 	jump_peak = jump_direction + ((position + navRef.get_next_path_position()) / 2)
 	desired_position = GeometricToolbox.y_offset_vector_to_0(navRef.get_next_path_position())
-	print(desired_position)
+	#print("Rana va a: ",desired_position)
 	

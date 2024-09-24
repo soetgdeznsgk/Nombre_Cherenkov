@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://koqv2tici8g"]
+[gd_scene load_steps=10 format=3 uid="uid://koqv2tici8g"]
 
-[ext_resource type="ArrayMesh" uid="uid://ylflb3vcbrgg" path="res://GodotActionRPG-Assets/Models/Environment/naturePack_001.obj" id="1_0s11j"]
-[ext_resource type="ArrayMesh" uid="uid://7xulkk7l1eid" path="res://GodotActionRPG-Assets/Models/Environment/naturePack_066.obj" id="2_5bn71"]
-[ext_resource type="PackedScene" uid="uid://bnl1k0w4e64he" path="res://jugador.tscn" id="3_hwlwf"]
-[ext_resource type="PackedScene" uid="uid://bssh5jmisvkq6" path="res://rana.tscn" id="3_im530"]
+[ext_resource type="PackedScene" uid="uid://bnl1k0w4e64he" path="res://logic/scenes/jugador.tscn" id="1_2ygyh"]
+[ext_resource type="ArrayMesh" uid="uid://7xulkk7l1eid" path="res://GodotActionRPG-Assets/Models/Environment/naturePack_066.obj" id="2_p6qef"]
+[ext_resource type="ArrayMesh" uid="uid://ylflb3vcbrgg" path="res://GodotActionRPG-Assets/Models/Environment/naturePack_001.obj" id="3_hr8na"]
+[ext_resource type="Script" path="res://logic/ambient_scripts/floor.gd" id="4_wwktb"]
+[ext_resource type="PackedScene" uid="uid://bssh5jmisvkq6" path="res://logic/scenes/rana.tscn" id="5_kclw8"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_inggj"]
 vertices = PackedVector3Array(19.2556, 0.459089, -17.2516, 20.0056, 0.459089, -17.5016, 20.0056, 0.459089, -29.5016, 0.505559, 0.459089, -29.5016, 0.505559, 0.459089, -16.7516, 19.2556, 0.459089, -16.7516, 20.5056, 0.459089, -17.5016, 20.7556, 0.459089, -16.7516, 29.5056, 0.459089, -16.7516, 29.5056, 0.459089, -29.5016, 19.5056, 6.70909, -16.7516, 20.2556, 6.70909, -16.2516, 20.2556, 6.70909, -17.0016, 19.7556, 0.459089, -0.501553, 19.7556, 0.459089, -16.0016, 0.505559, 0.459089, -0.501553, 20.5056, 0.459089, -16.0016, 29.5056, 0.459089, -0.501553)
@@ -34,7 +35,10 @@ light_color = Color(0, 0, 1, 1)
 shadow_enabled = true
 shadow_bias = 0.0
 
-[node name="Jugador" parent="." instance=ExtResource("3_hwlwf")]
+[node name="Rana" parent="." instance=ExtResource("5_kclw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.83935, 0, -18.1291)
+
+[node name="Jugador" parent="." instance=ExtResource("1_2ygyh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.19956, 1.46529, -11.5975)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
@@ -44,7 +48,7 @@ navigation_mesh = SubResource("NavigationMesh_inggj")
 
 [node name="marmolito" type="MeshInstance3D" parent="NavigationRegion3D/arboles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.2967, -0.0118899, -15.6497)
-mesh = ExtResource("2_5bn71")
+mesh = ExtResource("2_p6qef")
 skeleton = NodePath("../../..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/arboles/marmolito"]
@@ -56,16 +60,16 @@ shape = SubResource("ConcavePolygonShape3D_nog7x")
 
 [node name="NaturePack001" type="MeshInstance3D" parent="NavigationRegion3D/Geometría"]
 transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0.00555933, -0.290911, -0.00155234)
-mesh = ExtResource("1_0s11j")
+rotation_edit_mode = 2
+mesh = ExtResource("3_hr8na")
 skeleton = NodePath("../../..")
+script = ExtResource("4_wwktb")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Geometría/NaturePack001" groups=["Ambiente"]]
+rotation_edit_mode = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Geometría/NaturePack001/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ptdvs")
-
-[node name="Rana" parent="." instance=ExtResource("3_im530")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.511, -0.0168341, -20.92)
 
 [node name="NodosDeNavegacion" type="Node" parent="."]
 
