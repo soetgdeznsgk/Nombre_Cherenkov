@@ -5,6 +5,7 @@ static var playerPosition : Vector3
 var timerPosPJ : Timer
 
 signal rana_impacta
+signal jugador_trapea
 
 func _init() -> void:
 	timerPosPJ = Timer.new()
@@ -21,4 +22,6 @@ func on_aterrizaje_rana(v : Vector3) -> Vector3:
 	v = GeometricToolbox.y_offset_vector_to_0(v)
 	rana_impacta.emit(v)
 	return v
-	
+
+func on_jugador_trapea(v : Vector3) -> void:
+	jugador_trapea.emit(v)
