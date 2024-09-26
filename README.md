@@ -1,3 +1,6 @@
 # Nombre_Cherenkov
 
-Proyecto de un juego de terror casual en primera persona, WIP en godot 4.3
+Prototipo de un juego de terror casual en primera persona, WIP en godot 4.3
+
+Para desarrollo, las cosas que tendrán que ser refactorizada son:
+  1). El sistema de limpieza del piso, de manera que utilice pintada sobre UV's del piso y así poder utilizarse para que los enemigos sólo puedan moverse sobre charcos, en lugar de los CSG's actuales
