@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvsuhho1i86dg"]
+[gd_scene load_steps=6 format=3 uid="uid://bvsuhho1i86dg"]
 
 [ext_resource type="Texture2D" uid="uid://dy0651v37mfxf" path="res://icon.svg" id="1_0756d"]
 [ext_resource type="Script" path="res://logic/scenes/splot.gd" id="1_nr8lu"]
-[ext_resource type="PackedScene" uid="uid://yyru1sxohr7" path="res://logic/scenes/splot_hole.tscn" id="3_kmca2"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_4toat"]
 
@@ -11,21 +10,23 @@ albedo_texture = ExtResource("1_0756d")
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_elab6"]
 height = 0.0292323
+radius = 0.470147
 
 [node name="splot" type="Node3D" groups=["Charcos"]]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-rotation_edit_mode = 1
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, 0.1, 0, -0.1, -4.37114e-09, 0, 0, 0)
 script = ExtResource("1_nr8lu")
 
 [node name="MeshInstance3D" type="CSGMesh3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.972647, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("QuadMesh_4toat")
 material = SubResource("StandardMaterial3D_5fmjb")
-
-[node name="CSGMesh3D" parent="MeshInstance3D" instance=ExtResource("3_kmca2")]
-visible = false
 
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CylinderShape3D_elab6")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true

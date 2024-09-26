@@ -2,8 +2,9 @@
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_nu155"]
 
-[node name="CSGMesh3D" type="CSGMesh3D"]
-transform = Transform3D(-0.105, 0, 0, 0, 4.5897e-09, 0.105, 0, -0.105, 4.5897e-09, 0, 0, 0)
+[node name="splot hole" type="CSGMesh3D"]
+transform = Transform3D(-0.225, 0, 0, 0, 9.83506e-09, 0.225, 0, -0.225, 9.83506e-09, 0, 0, 0)
 operation = 2
 snap = 1e-06
+calculate_tangents = false
 mesh = SubResource("PlaneMesh_nu155")

@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 GlobalInfo="*res://logic/global_scripts/global_info.gd"
 GeometricToolbox="*res://logic/global_scripts/geometric_toolbox.gd"
 
+[display]
+
+window/size/viewport_width=1728
+window/size/viewport_height=972
+
 [global_group]
 
 Jugador="Referencia al nodo jugador"

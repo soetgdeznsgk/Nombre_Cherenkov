@@ -40,22 +40,24 @@ func _input(event):
 		v.y -= (event.relative.x * 0.2)
 		v.x -= (event.relative.y * 0.2)
 		v.x = clamp(v.x,-80,90)
-	if event is InputEventMouseButton:
-		currSelection = $RayCast3D.get_collider()
-		if currSelection != null:			
-			if currSelection.get_parent().is_in_group(\"Charcos\"):
-				print($RayCast3D.get_collision_point())
-				currSelection.get_parent().spawn_hole($RayCast3D.get_collision_point())
+		
 
 func _physics_process(delta):
 	self.rotation_degrees.x = v.x
 	rotation_degrees.y = v.y
 	
+	if Input.is_mouse_button_pressed(1): #codigo horrible que necesita URGENTEMENTE refactorizar
+		currSelection = $RayCast3D.get_collider()
+		if currSelection != null:			
+			if currSelection.get_parent().is_in_group(\"Charcos\"):
+				#print(\"IMPACTO GLOBAL EN: \",$RayCast3D.get_collision_point(), \"---\")
+				currSelection.get_parent().spawn_hole($RayCast3D.get_collision_point())
+	
 func updateDetectionExceptions() -> void:
+	await get_tree().process_frame
 	$RayCast3D.add_exception($\"..\")
-	#await get_tree().physics_frame # TODO resolver que el raycast ignore los nodos irrelevantes
-	#for nodo in $NodosDeNavegacion.get_children():
-		#$RayCast3D.add_exception(nodo)
+	for node in get_tree().get_nodes_in_group(\"NodosNavegacion\"): # TODO averiguar qué otros nodos necesitan ignorarse
+		$RayCast3D.add_exception(node)
 "
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pnppo"]
@@ -71,14 +73,13 @@ transform = Transform3D(0.768596, 0, -0.639734, 0, 1, 0, 0.639734, 0, 0.768596, 
 script = SubResource("GDScript_lemkd")
 
 [node name="trapero" parent="Camera3D" instance=ExtResource("1_vkm6e")]
-transform = Transform3D(-0.0276369, 0.0346844, -0.195021, 0.0922584, 0.176502, 0.0183167, 0.175284, -0.0874305, -0.0403895, 1.54878, -1.28759, -1.59314)
+transform = Transform3D(0.0194896, -0.0573295, -0.0732017, 0.0928799, 0.0154613, 0.01262, 0.00429787, -0.0741571, 0.0592221, 0.711, -0.120475, -1.02)
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0.21, 0, -3)
 hit_back_faces = false
 collide_with_areas = true
 debug_shape_custom_color = Color(0.552941, 0.435294, 0.141176, 0)
-debug_shape_thickness = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.999999, -0.00134197, 0.000845586, 0.00134066, 0.999998, 0.00154888, -0.000847652, -0.00154775, 0.999998, 0, 0, 0)
