@@ -1,4 +1,4 @@
-extends MeshInstance3D
+extends CSGMesh3D
 # Éste script funciona para todos los elementos de geometría del escenario que sirvan como 
 # pisos válidos para charcos
 
@@ -18,7 +18,7 @@ func _ready() -> void:
 func spawn_splot(v : Vector3) -> void:
 	var nsplot : Node3D = splot_ref.instantiate()
 	nsplot._set_geometric_info(transform)
-	nsplot.position = v * adjustmentMatrix
+	nsplot.position = (v * adjustmentMatrix)
 	nsplot.position.y += 0.6 # para evitar montonera, hay que implementar una rutina de sobreposición en splot.tscn
 	add_child(nsplot)
 	

@@ -42,6 +42,7 @@ func _on_body_entered(body: Node3D) -> void: # xq el escenario es un staticbody
 	if body.is_in_group("Ambiente"):
 		reset_jump()
 		GlobalInfo.on_aterrizaje_rana(position)
+	
 		
 
 func change_target() -> void:
