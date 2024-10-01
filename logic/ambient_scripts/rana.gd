@@ -13,6 +13,11 @@ var is_jumping := false
 var time : float
 signal finished_jump
 
+var initial_target : Node3D
+
+func with_target(N : Node3D) -> Area3D: # Éste método sirve para inicializar las ranas con un nodo alcanzable
+	initial_target = N
+	return self
 
 func _ready() -> void:
 	change_target()
@@ -46,7 +51,10 @@ func _on_body_entered(body: Node3D) -> void: # xq el escenario es un staticbody
 		
 
 func change_target() -> void:
-	navRef.target_position = get_tree().get_nodes_in_group("NodosNavegacion").pick_random().position
+	if navRef.target_position == Vector3.ZERO: # (idealmente) cuando apenas acaba de spawnear
+		navRef.target_position = initial_target.position
+	else:
+		navRef.target_position = get_tree().get_nodes_in_group("NodosNavegacion").pick_random().position
 	#print("Rana: cambio de objetivo")
 
 func reset_jump():
