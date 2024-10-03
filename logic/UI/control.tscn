@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://cu30dahipapwi"]
+
+[ext_resource type="Script" path="res://logic/UI/control.gd" id="1_yfp7f"]
+[ext_resource type="StyleBox" uid="uid://crbcaxlixf3yw" path="res://logic/UI/styleboxes/blue_stylebox.tres" id="2_u2acb"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="." groups=["UI"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yfp7f")
+
+[node name="ProgressBar" type="ProgressBar" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -141.0
+offset_right = 476.0
+grow_vertical = 0
+theme_override_styles/fill = ExtResource("2_u2acb")
+step = 1.0
+value = 30.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="Control/ProgressBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "saturación del trapero"

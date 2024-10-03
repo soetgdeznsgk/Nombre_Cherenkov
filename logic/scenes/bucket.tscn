@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://di6fatgsdf124"]
+
+[ext_resource type="PackedScene" uid="uid://kxpq3vtmb66r" path="res://GodotActionRPG-Assets/Models/yellow_cleaning_bucket.glb" id="1_v2bs8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_32tyu"]
+size = Vector3(1.79858, 1.67798, 1)
+
+[node name="bucket" type="StaticBody3D" groups=["Baldes"]]
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_v2bs8")]
+transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0540771, 0.841549, 0)
+shape = SubResource("BoxShape3D_32tyu")

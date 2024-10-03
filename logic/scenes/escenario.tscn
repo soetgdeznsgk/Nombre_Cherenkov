@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://koqv2tici8g"]
+[gd_scene load_steps=9 format=3 uid="uid://koqv2tici8g"]
 
 [ext_resource type="PackedScene" uid="uid://bnl1k0w4e64he" path="res://logic/scenes/jugador.tscn" id="1_2ygyh"]
 [ext_resource type="ArrayMesh" uid="uid://ylflb3vcbrgg" path="res://GodotActionRPG-Assets/Models/Environment/naturePack_001.obj" id="3_hr8na"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/floor.gd" id="4_wwktb"]
+[ext_resource type="PackedScene" uid="uid://di6fatgsdf124" path="res://logic/scenes/bucket.tscn" id="5_3654a"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/pool_script.gd" id="5_y4rwr"]
+[ext_resource type="PackedScene" uid="uid://cu30dahipapwi" path="res://logic/UI/control.tscn" id="6_al0kl"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_inggj"]
 vertices = PackedVector3Array(4.86374e-05, 14.6883, -21.1558, 8.00005, 14.6883, -21.1558, 8.25005, 14.6883, -21.6558, 10.25, 14.6883, -30.1558, 4.86374e-05, 14.6883, -30.1558, 10.25, 14.6883, -21.6558, 29.25, 14.6883, -21.6558, 29.5, 14.6883, -19.4058, 31.5, 14.6883, -19.4058, 31.5, 14.6883, -30.1558, 1.25005, -6.56172, -28.9058, 1.25005, -6.56172, -1.4058, 28.5, -6.56172, -1.4058, 28.5, -6.56172, -28.9058, 28, 0.43828, -10.9058, 28.5, 0.43828, -1.4058, 28.5, 0.43828, -28.9058, 1.25005, 0.43828, -1.4058, 17.5, 0.43828, -1.4058, 17.75, 0.43828, -10.9058, 1.25005, 0.43828, -28.9058, 9.50005, 14.6883, 0.0942001, 9.75005, 14.6883, -4.1558, 8.00005, 14.6883, -4.4058, 4.86374e-05, 14.6883, 0.0942001, 29.5, 14.6883, -6.4058, 31.5, 14.6883, -6.4058, 29.25, 14.6883, -4.1558, 31.5, 14.6883, 0.0942001)
@@ -69,6 +71,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.944031, 0.93545, -0.089660
 operation = 2
 size = Vector3(28.4977, 20.6236, 28.7489)
 
+[node name="bucket" parent="NavigationRegion3D" instance=ExtResource("5_3654a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0659, 0.0200004, -27.982)
+
 [node name="NodosDeNavegacion" type="Node" parent="."]
 
 [node name="nodo1" type="Area3D" parent="NodosDeNavegacion" groups=["NodosNavegacion"]]
@@ -86,5 +91,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
 shape = SubResource("BoxShape3D_t688q")
 
 [node name="RanaManager" type="Node" parent="." groups=["RanaManager"]]
+
+[node name="CanvasLayer" parent="." instance=ExtResource("6_al0kl")]
 
 [connection signal="timeout" from="NavigationRegion3D/Geometría/Piso/PiscinaD/RanaSpawnerTimer" to="NavigationRegion3D/Geometría/Piso/PiscinaD" method="_on_rana_spawner_timer_timeout"]

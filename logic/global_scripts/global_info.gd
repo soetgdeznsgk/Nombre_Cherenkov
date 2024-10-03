@@ -2,6 +2,7 @@ extends Node
 class_name GlobalDB
 static var playerPosition : Vector3
 @onready var refPlayer : CharacterBody3D = get_tree().get_nodes_in_group("Jugador").front()
+@onready var refUI : UI = get_tree().get_nodes_in_group("UI").front()
 var timerPosPJ : Timer
 
 signal rana_impacta # emitido desde on_aterrizaje_rana
@@ -25,3 +26,6 @@ func on_aterrizaje_rana(v : Vector3) -> Vector3: #llamado desde rana.gd
 
 func on_jugador_trapea() -> void:
 	jugador_trapea.emit()
+
+func change_in_mop_saturation() -> void:
+	refUI.update_saturation_bar(InteraccionesJugador.mop_saturation)
