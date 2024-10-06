@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://koqv2tici8g"]
+[gd_scene load_steps=10 format=3 uid="uid://koqv2tici8g"]
 
 [ext_resource type="PackedScene" uid="uid://bnl1k0w4e64he" path="res://logic/scenes/jugador.tscn" id="1_2ygyh"]
 [ext_resource type="ArrayMesh" uid="uid://ylflb3vcbrgg" path="res://GodotActionRPG-Assets/Models/Environment/naturePack_001.obj" id="3_hr8na"]
@@ -6,10 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://di6fatgsdf124" path="res://logic/scenes/bucket.tscn" id="5_3654a"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/pool_script.gd" id="5_y4rwr"]
 [ext_resource type="PackedScene" uid="uid://cu30dahipapwi" path="res://logic/UI/control.tscn" id="6_al0kl"]
+[ext_resource type="PackedScene" uid="uid://d2hht52rap8m1" path="res://logic/scenes/squid.tscn" id="8_ad6oy"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_inggj"]
-vertices = PackedVector3Array(4.86374e-05, 14.6883, -21.1558, 8.00005, 14.6883, -21.1558, 8.25005, 14.6883, -21.6558, 10.25, 14.6883, -30.1558, 4.86374e-05, 14.6883, -30.1558, 10.25, 14.6883, -21.6558, 29.25, 14.6883, -21.6558, 29.5, 14.6883, -19.4058, 31.5, 14.6883, -19.4058, 31.5, 14.6883, -30.1558, 1.25005, -6.56172, -28.9058, 1.25005, -6.56172, -1.4058, 28.5, -6.56172, -1.4058, 28.5, -6.56172, -28.9058, 28, 0.43828, -10.9058, 28.5, 0.43828, -1.4058, 28.5, 0.43828, -28.9058, 1.25005, 0.43828, -1.4058, 17.5, 0.43828, -1.4058, 17.75, 0.43828, -10.9058, 1.25005, 0.43828, -28.9058, 9.50005, 14.6883, 0.0942001, 9.75005, 14.6883, -4.1558, 8.00005, 14.6883, -4.4058, 4.86374e-05, 14.6883, 0.0942001, 29.5, 14.6883, -6.4058, 31.5, 14.6883, -6.4058, 29.25, 14.6883, -4.1558, 31.5, 14.6883, 0.0942001)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(3, 5, 2), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(5, 3, 6), PackedInt32Array(6, 3, 9), PackedInt32Array(13, 12, 10), PackedInt32Array(10, 12, 11), PackedInt32Array(16, 15, 14), PackedInt32Array(19, 18, 17), PackedInt32Array(16, 14, 19), PackedInt32Array(17, 20, 19), PackedInt32Array(19, 20, 16), PackedInt32Array(22, 21, 23), PackedInt32Array(23, 21, 24), PackedInt32Array(1, 23, 0), PackedInt32Array(0, 23, 24), PackedInt32Array(7, 8, 25), PackedInt32Array(25, 8, 26), PackedInt32Array(25, 26, 27), PackedInt32Array(27, 26, 28), PackedInt32Array(22, 27, 21), PackedInt32Array(21, 27, 28)]
+vertices = PackedVector3Array(4.86374e-05, 14.6883, -21.1558, 8.00005, 14.6883, -21.1558, 8.25005, 14.6883, -21.6558, 10.25, 14.6883, -30.1558, 4.86374e-05, 14.6883, -30.1558, 10.25, 14.6883, -21.6558, 29.25, 14.6883, -21.6558, 29.5, 14.6883, -19.4058, 31.5, 14.6883, -19.4058, 31.5, 14.6883, -30.1558, 1.25005, -6.56174, -28.9058, 1.25005, -6.56174, -1.4058, 28.5, -6.56174, -1.4058, 28.5, -6.56174, -28.9058, 8.75005, 0.43826, -26.6558, 8.50005, 0.43826, -28.9058, 1.25005, 0.43826, -28.9058, 28.5, 0.43826, -28.9058, 11.5, 0.43826, -28.9058, 11.75, 0.43826, -27.4058, 11.25, 0.43826, -26.6558, 17.75, 0.43826, -10.9058, 28, 0.43826, -10.9058, 28.5, 0.43826, -1.4058, 1.25005, 0.43826, -1.4058, 17.5, 0.43826, -1.4058, 9.50005, 14.6883, 0.0942001, 9.75005, 14.6883, -4.1558, 8.00005, 14.6883, -4.4058, 4.86374e-05, 14.6883, 0.0942001, 29.5, 14.6883, -6.4058, 31.5, 14.6883, -6.4058, 29.25, 14.6883, -4.1558, 31.5, 14.6883, 0.0942001)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(3, 5, 2), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(5, 3, 6), PackedInt32Array(6, 3, 9), PackedInt32Array(13, 12, 10), PackedInt32Array(10, 12, 11), PackedInt32Array(16, 15, 14), PackedInt32Array(19, 18, 17), PackedInt32Array(19, 17, 20), PackedInt32Array(20, 17, 21), PackedInt32Array(21, 17, 22), PackedInt32Array(17, 23, 22), PackedInt32Array(25, 24, 21), PackedInt32Array(21, 24, 14), PackedInt32Array(14, 24, 16), PackedInt32Array(14, 20, 21), PackedInt32Array(27, 26, 28), PackedInt32Array(28, 26, 29), PackedInt32Array(1, 28, 0), PackedInt32Array(0, 28, 29), PackedInt32Array(7, 8, 30), PackedInt32Array(30, 8, 31), PackedInt32Array(30, 31, 32), PackedInt32Array(32, 31, 33), PackedInt32Array(27, 32, 26), PackedInt32Array(26, 32, 33)]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t688q"]
 size = Vector3(1, 0.202484, 1)
@@ -50,10 +51,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3, -1.97949, -0.563)
 operation = 2
 size = Vector3(1, 4.95898, 1)
 script = ExtResource("5_y4rwr")
-first_frog_target = NodePath("../../../../NodosDeNavegacion/nodo2")
+first_frog_target = NodePath("../../../../RanaManager/NodosDeNavegacionRana/nodo2")
 
 [node name="RanaSpawnerTimer" type="Timer" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
-wait_time = 10.0
+wait_time = 5.0
 autostart = true
 
 [node name="Caja_Habitación" type="CSGBox3D" parent="NavigationRegion3D/Geometría"]
@@ -74,24 +75,50 @@ size = Vector3(28.4977, 20.6236, 28.7489)
 [node name="bucket" parent="NavigationRegion3D" instance=ExtResource("5_3654a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0659, 0.0200004, -27.982)
 
-[node name="NodosDeNavegacion" type="Node" parent="."]
-
-[node name="nodo1" type="Area3D" parent="NodosDeNavegacion" groups=["NodosNavegacion"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.037, 0, -28.654)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NodosDeNavegacion/nodo1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
-shape = SubResource("BoxShape3D_t688q")
-
-[node name="nodo2" type="Area3D" parent="NodosDeNavegacion" groups=["NodosNavegacion"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1732, -4.76837e-07, -6.08532)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NodosDeNavegacion/nodo2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
-shape = SubResource("BoxShape3D_t688q")
-
 [node name="RanaManager" type="Node" parent="." groups=["RanaManager"]]
 
-[node name="CanvasLayer" parent="." instance=ExtResource("6_al0kl")]
+[node name="NodosDeNavegacionRana" type="Node" parent="RanaManager"]
+
+[node name="nodo1" type="Area3D" parent="RanaManager/NodosDeNavegacionRana" groups=["NodosNavegacion"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.037, 0, -28.654)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RanaManager/NodosDeNavegacionRana/nodo1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
+shape = SubResource("BoxShape3D_t688q")
+
+[node name="nodo2" type="Area3D" parent="RanaManager/NodosDeNavegacionRana" groups=["NodosNavegacion"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1732, -4.76837e-07, -6.08532)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RanaManager/NodosDeNavegacionRana/nodo2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
+shape = SubResource("BoxShape3D_t688q")
+
+[node name="nodo3" type="Area3D" parent="RanaManager/NodosDeNavegacionRana" groups=["NodosNavegacion"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9307, -4.76837e-07, -24.5184)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RanaManager/NodosDeNavegacionRana/nodo3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
+shape = SubResource("BoxShape3D_t688q")
+
+[node name="nodo4" type="Area3D" parent="RanaManager/NodosDeNavegacionRana" groups=["NodosNavegacion"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8726, -4.76837e-07, -14.9534)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RanaManager/NodosDeNavegacionRana/nodo4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
+shape = SubResource("BoxShape3D_t688q")
+
+[node name="nodo5" type="Area3D" parent="RanaManager/NodosDeNavegacionRana" groups=["NodosNavegacion"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.50141, -4.76837e-07, -5.93106)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RanaManager/NodosDeNavegacionRana/nodo5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
+shape = SubResource("BoxShape3D_t688q")
+
+[node name="PulpoManager" type="Node" parent="."]
+
+[node name="UI" parent="." instance=ExtResource("6_al0kl")]
+
+[node name="squid" parent="." instance=ExtResource("8_ad6oy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.333, 0.0199997, -23.552)
 
 [connection signal="timeout" from="NavigationRegion3D/Geometría/Piso/PiscinaD/RanaSpawnerTimer" to="NavigationRegion3D/Geometría/Piso/PiscinaD" method="_on_rana_spawner_timer_timeout"]

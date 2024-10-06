@@ -1,9 +1,13 @@
 extends Node
 class_name GlobalDB
+
+# info jugador
 static var playerPosition : Vector3
-@onready var refPlayer : CharacterBody3D = get_tree().get_nodes_in_group("Jugador").front()
-@onready var refUI : UI = get_tree().get_nodes_in_group("UI").front()
 var timerPosPJ : Timer
+@onready var refPlayer : CharacterBody3D = get_tree().get_nodes_in_group("Jugador").front()
+
+# info UI
+@onready var refUI : UI = get_tree().get_nodes_in_group("UI").front()
 
 signal rana_impacta # emitido desde on_aterrizaje_rana
 signal jugador_trapea
