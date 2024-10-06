@@ -10,4 +10,5 @@ Para desarrollo, las cosas que tendrán que ser refactorizada son:
 
 
 Assets usados:
-Yellow Cleaning Bucket de Kerry Zhang (https://sketchfab.com/3d-models/yellow-cleaning-bucket-f2c7767efe75472cabb5812cd6d84d3d)
+Yellow Cleaning Bucket de Kerry Zhang ( https://sketchfab.com/3d-models/yellow-cleaning-bucket-f2c7767efe75472cabb5812cd6d84d3d )
+Pulpo modelo 3d por omrfrkcndn54 ( https://www.turbosquid.com/es/3d-models/octopus-3d-model-1685008# )
