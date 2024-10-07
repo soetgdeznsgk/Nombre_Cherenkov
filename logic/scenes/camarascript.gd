@@ -30,7 +30,7 @@ func _input(event):
 		v.x = clamp(v.x,-80,90)
 		
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	self.rotation_degrees.x = v.x
 	rotation_degrees.y = v.y
 	
@@ -42,7 +42,6 @@ func _physics_process(delta):
 				if mop_saturation < 100:
 					#print("IMPACTO GLOBAL EN: ",$RayCast3D.get_collision_point(), "---")
 					currSelection.get_parent().spawn_hole($RayCast3D.get_collision_point())
-					#print("trapero trapea y le quedan :", (100 - mop_saturation) / mop_saturation_pace, " trapeadas")
 					GlobalInfo.change_in_mop_saturation()
 				else:
 					pass 

@@ -6,6 +6,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_clbxc"]
 
 [node name="Rana" type="Area3D"]
+collision_layer = 2
 script = ExtResource("1_q8mnp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

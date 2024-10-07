@@ -5,27 +5,30 @@ extends Node
 # de viajar, se ejecutará su contenido cuando haya un cambio en la cantidad de charcos del mapa
 
 var splot_list := PackedVector3Array()
-# TODO cambiar ésto por el minheap implementado de nueva manera ya que la actual implementación es On^2
-# mientras que el minheap es solo como O(t * n * log_2(n)), lo cual será necesario si se esperan tener más
-# de 30 splots cargados al tiempo
 
-# instrucciones:
-# inserción de un nuevo splot:
-# 1) splotlistMINHEAP.add(NSplot)
-# 2) splotlistMINHEAP.heapsort(bajo la operación splot.distancesquaredto(NSplot))
-# 3) for i < 6 :
-#		astar.add_point(splotlistMINHEAP[i])
-#		astar.connect_points(NSplot, splotlistMINHEAP[i])
-# eliminación:
-# 1) cri cri
-# 2) cri cri
-# 3) cri cri
+signal splot_map_updated # para que los pulpos esperen a que hayan charcos para moverse
 
-func add_splot_to_registry(p : Vector3) -> void:
-	splot_list.append(p)
+func add_splot_to_registry(s : Splot) -> void: # se añaden desde splot.gd
+	#splot_list.append(s.global_position)
+	var astar_index := randi_range(0, GlobalDB.splot_limit)
+	s.set_navigation_id(astar_index)
+	pathfinding_map.add_point(astar_index, s.global_position)
 	
-func rmv_splot_from_registry(p : Vector3) -> void:
-	var tmp := splot_list.find(p)
-	if tmp != -1:
-		splot_list.remove_at(tmp)
+	for point_id in pathfinding_map.get_point_ids():
+		if pathfinding_map.get_point_position(astar_index)\
+		.distance_squared_to(pathfinding_map.get_point_position(point_id)) > 6:
+			pathfinding_map.connect_points(astar_index, point_id)
+	splot_map_updated.emit()
 	
+func rmv_splot_from_registry(s : Splot) -> void: # se borran desde splot.gd
+	if pathfinding_map.has_point(s.navigation_id):
+		pathfinding_map.remove_point(s.navigation_id)
+	splot_map_updated.emit()
+	
+func get_pulpo_path_from_point(pulpo_pos : Vector3) -> PackedVector3Array:
+	var start_ref : int = pathfinding_map.get_closest_point(pulpo_pos)
+	var end_ref : int = pathfinding_map.get_closest_point(GlobalInfo.playerPosition)
+
+	if start_ref != -1 and end_ref != -1:
+		return pathfinding_map.get_point_path(start_ref, end_ref, true)
+	return PackedVector3Array()

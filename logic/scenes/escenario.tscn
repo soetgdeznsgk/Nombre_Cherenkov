@@ -43,6 +43,7 @@ navigation_mesh = SubResource("NavigationMesh_inggj")
 transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, -0.28, 0)
 rotation_edit_mode = 2
 use_collision = true
+collision_layer = 3
 mesh = ExtResource("3_hr8na")
 script = ExtResource("4_wwktb")
 

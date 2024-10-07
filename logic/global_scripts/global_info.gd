@@ -1,6 +1,9 @@
 extends Node
 class_name GlobalDB
 
+# parametros ambiente
+const splot_limit := 100
+
 # info jugador
 static var playerPosition : Vector3
 var timerPosPJ : Timer
@@ -33,3 +36,9 @@ func on_jugador_trapea() -> void:
 
 func change_in_mop_saturation() -> void:
 	refUI.update_saturation_bar(InteraccionesJugador.mop_saturation)
+	
+func squid_hugs_player() -> void:
+	refUI.show_entrapment_inflicted_sign()
+
+func squid_leaves_player() -> void:
+	refUI.reset_healty_status()

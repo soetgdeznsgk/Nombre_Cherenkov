@@ -1,4 +1,5 @@
 extends Node3D
+class_name Splot
 
 @onready var holes_ref := preload("res://logic/scenes/splot_hole.tscn")
 var fatherTransformation : Transform3D
@@ -6,12 +7,19 @@ var fatherTransformation : Transform3D
 @export var maxHuecos := 7
 @export var hueco_cooldown := 0.3
 
+var navigation_id : int
+
+
+func set_navigation_id(id : int) ->  void:
+	navigation_id = id
 
 func _set_geometric_info(t : Transform3D) -> void:
 	fatherTransformation = t
 	
 func _ready() -> void:
 	transform = transform.rotated_local(Vector3.FORWARD, randf() * 4)
+	position += Vector3(randf() * 0.01, 0, randf() * 0.01)
+	NavegacionPulpo.add_splot_to_registry(self)
 	#GlobalInfo.jugador_trapea.connect(spawn_hole) no tiene sentido ya que el método es llamado desde el trapero
 	
 func _physics_process(_delta: float) -> void:
@@ -33,4 +41,5 @@ func spawn_hole(v: Vector3) -> void:
 			pass
 	else:
 		queue_free()
+		NavegacionPulpo.rmv_splot_from_registry(self)
 	
