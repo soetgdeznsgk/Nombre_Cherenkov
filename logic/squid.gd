@@ -18,7 +18,7 @@ func _ready() -> void:
 	NavegacionPulpo.splot_map_updated.connect(assign_path)
 
 func _physics_process(delta: float) -> void:
-	if movement_permission:
+	if movement_permission and current_path.size() > 0:
 		if position.distance_squared_to(current_path[0]) < 0.6: # la transición al otro estado puede ser cuando
 																# esté más cerca al jugador que al charco?
 			current_path.remove_at(0)
@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 		if current_path.is_empty():
 			assign_path()
 		
-		position += (current_path[0] - position).normalized() * crawl_speed * delta
+		position += (current_path[0] - position).normalized() * crawl_speed * delta # BUG cuando no hay charcos
 		#print("semueve y objetivo es", current_path[0], " a distancia ", position.distance_to(current_path[0]))
 
 func assign_path() -> void:

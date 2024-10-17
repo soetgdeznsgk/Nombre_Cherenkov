@@ -28,11 +28,13 @@ func recuperar_posicion_jugador() -> void:
 
 func on_aterrizaje_rana(v : Vector3) -> Vector3: #llamado desde rana.gd
 	v = GeometricToolbox.y_offset_vector_to_0(v)
+	refUI.update_contamination_bar(3) #valor base de cada charco 
 	rana_impacta.emit(v)
 	return v
 
 func on_jugador_trapea() -> void:
 	jugador_trapea.emit()
+	refUI.update_contamination_bar(-0.8)
 
 func change_in_mop_saturation() -> void:
 	refUI.update_saturation_bar(InteraccionesJugador.mop_saturation)

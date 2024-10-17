@@ -9,9 +9,7 @@ var currSelection : Node
 static var mop_saturation := 0:
 	set(value):
 		if value > 100:
-			pass # para que no se pase de 100 y no haya riesgo de overflow
-			print("saturación máxima alcanzada")# añadir rutina para mostrar un mensaje ingame
-			GlobalDB
+			mop_saturation = 100 # para que no se pase de 100 y no haya riesgo de overflow
 		else:
 			mop_saturation = value
 
