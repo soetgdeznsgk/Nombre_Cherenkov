@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://cju206cf1ni5m"]
+
+[ext_resource type="PackedScene" uid="uid://bb3ipr4ad6jrh" path="res://modelos/psx_broom/scene.gltf" id="1_u2fux"]
+[ext_resource type="Script" path="res://logic/ambient_scripts/broom_glow.gd" id="2_0paim"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uarua"]
+load_path = "res://.godot/imported/Material_001_baseColor.png-461f84e53537be1a8a447ece2ad04068.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gcp7k"]
+albedo_texture = SubResource("CompressedTexture2D_uarua")
+emission_enabled = true
+emission = Color(0, 1, 1, 1)
+emission_energy_multiplier = 0.0
+emission_texture = SubResource("CompressedTexture2D_uarua")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0f5uk"]
+size = Vector3(0.456604, 0.416016, 0.184814)
+
+[node name="mop" type="Area3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+skeleton = NodePath("../compound mesh")
+
+[node name="compound mesh" parent="." instance=ExtResource("1_u2fux")]
+
+[node name="Object_6" parent="compound mesh/Sketchfab_model/root/GLTF_SceneRootNode/PSXBroom_0" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gcp7k")
+script = ExtResource("2_0paim")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0101624, -0.509766, 0.00671387)
+shape = SubResource("BoxShape3D_0f5uk")
+
+[editable path="compound mesh"]

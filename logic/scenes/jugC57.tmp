@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://bnl1k0w4e64he"]
+
+[ext_resource type="Script" path="res://logic/scenes/camarascript.gd" id="1_jh4ox"]
+[ext_resource type="PackedScene" uid="uid://dy305jcet2qlq" path="res://GodotActionRPG-Assets/Models/Sword.dae" id="1_vkm6e"]
+[ext_resource type="PackedScene" uid="uid://cju206cf1ni5m" path="res://logic/scenes/mop.tscn" id="3_atr1m"]
+
+[sub_resource type="GDScript" id="GDScript_cx7sy"]
+resource_name = "pj"
+script/source = "extends CharacterBody3D
+var direction : Vector3
+var gravity := 10
+
+func _physics_process(_delta: float) -> void:
+	direction = $Camera3D.get_global_transform().basis.z
+	var moveSpeed := Vector3.ZERO
+	if (Input.is_action_pressed(\"MoveBackwards\")):
+		moveSpeed += direction
+	if (Input.is_action_pressed(\"MoveForwards\")):
+		moveSpeed -= direction
+	if (Input.is_action_pressed(\"MoveL\")):
+		moveSpeed += direction.cross($\".\".up_direction)
+	if (Input.is_action_pressed(\"MoveR\")):
+		moveSpeed += $\".\".up_direction.cross(direction)	
+	velocity = moveSpeed.normalized() * 10
+	velocity.y -= gravity
+	move_and_slide()
+"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pnppo"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xqvju"]
+
+[node name="Jugador" type="CharacterBody3D" groups=["Jugador"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10292, 0)
+script = SubResource("GDScript_cx7sy")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.768596, 0, -0.639734, 0, 1, 0, 0.639734, 0, 0.768596, 0, 1, 0)
+script = ExtResource("1_jh4ox")
+mop_saturation_pace = 7
+
+[node name="trapero" parent="Camera3D" instance=ExtResource("1_vkm6e")]
+transform = Transform3D(0.0194896, -0.0573295, -0.0732017, 0.0928799, 0.0154613, 0.01262, 0.00429787, -0.0741571, 0.0592221, 0.711, -0.120475, -1.02)
+visible = false
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0.21, 0, -3)
+hit_back_faces = false
+collide_with_areas = true
+debug_shape_custom_color = Color(0.552941, 0.435294, 0.141176, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.999999, -0.00134197, 0.000845586, 0.00134066, 0.999998, 0.00154888, -0.000847652, -0.00154775, 0.999998, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_pnppo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CapsuleMesh_xqvju")
+
+[node name="mop" parent="." instance=ExtResource("3_atr1m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.04195, 0.806435, -2.05748)

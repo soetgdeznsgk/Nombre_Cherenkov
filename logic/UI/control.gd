@@ -8,6 +8,7 @@ class_name UI
 #region Styleboxes
 @onready var style_blue : StyleBoxFlat = preload("res://logic/UI/styleboxes/blue_stylebox.tres")
 @onready var style_red : StyleBoxFlat = preload("res://logic/UI/styleboxes/red_stylebox.tres")
+@onready var style_yellow : StyleBoxFlat = preload("res://logic/UI/styleboxes/yellow_stylebox.tres")
 #endregion
 
 func _ready() -> void:
@@ -24,7 +25,12 @@ func update_saturation_bar(val: int) -> void:
 
 func update_contamination_bar(delta: float) -> void:
 	contamination_bar.value += delta
-	
+	if contamination_bar.value < 30 and delta < 0:
+		contamination_bar.add_theme_stylebox_override("fill", style_blue)
+	elif contamination_bar.value > 33 and 40 > contamination_bar.value:
+		contamination_bar.add_theme_stylebox_override("fill", style_yellow)
+	elif contamination_bar.value > 66:
+		contamination_bar.add_theme_stylebox_override("fill", style_red)
 
 func reset_healty_status() -> void:
 	aviso_atrapamiento.visible = false
