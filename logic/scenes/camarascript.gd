@@ -4,22 +4,23 @@ class_name InteraccionesJugador
 var v = Vector3()
 var currSelection : Node
 
+@export var mop_reference : Mop
 
 # Parametros del trapero
-static var mop_saturation := 0:
-	set(value):
-		if value > 100:
-			mop_saturation = 100 # para que no se pase de 100 y no haya riesgo de overflow
-		else:
-			mop_saturation = value
-
-@export var mop_saturation_pace := 5
+#static var mop_saturation := 0:
+	#set(value):
+		#if value > 100:
+			#mop_saturation = 100 # para que no se pase de 100 y no haya riesgo de overflow
+		#else:
+			#mop_saturation = value
+#
+#@export var mop_saturation_pace := 5
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	updateDetectionExceptions()
 	
-	GlobalInfo.jugador_trapea.connect(func(): mop_saturation += mop_saturation_pace)
+	#GlobalInfo.jugador_trapea.connect(func(): mop_saturation += mop_saturation_pace)
  
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -34,20 +35,23 @@ func _physics_process(_delta):
 	
 	if Input.is_mouse_button_pressed(1): #codigo horrible que necesita URGENTEMENTE refactorizar
 		currSelection = $RayCast3D.get_collider()
-		if currSelection != null:			
-			#añadir shader de sombreado para la selección
-			if currSelection.get_parent().is_in_group("Charcos"): #si se selecciona un charco
-				if mop_saturation < 100:
-					#print("IMPACTO GLOBAL EN: ",$RayCast3D.get_collision_point(), "---")
-					currSelection.get_parent().spawn_hole($RayCast3D.get_collision_point())
-					GlobalInfo.change_in_mop_saturation()
-				else:
-					pass 
-					
-			if currSelection.is_in_group("Baldes"):
-				mop_saturation = 0
-				#print("trapero limpiado")
-				GlobalInfo.change_in_mop_saturation()
+		# llamada a lerpear el trapero
+		mop_reference.trapeo_lerp($RayCast3D.get_collision_point(), 0)
+		# todo lo siguiente será delegado al trapero
+		#if currSelection != null:			
+			##añadir shader de sombreado para la selección
+			#if currSelection.get_parent().is_in_group("Charcos"): #si se selecciona un charco
+				#if mop_saturation < 100:
+					##print("IMPACTO GLOBAL EN: ",$RayCast3D.get_collision_point(), "---")
+					#currSelection.get_parent().spawn_hole($RayCast3D.get_collision_point())
+					#GlobalInfo.change_in_mop_saturation()
+				#else:
+					#pass 
+					#
+			#if currSelection.is_in_group("Baldes"):
+				#mop_saturation = 0
+				##print("trapero limpiado")
+				#GlobalInfo.change_in_mop_saturation()
 					
 
 

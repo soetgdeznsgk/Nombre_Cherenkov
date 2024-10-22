@@ -37,7 +37,7 @@ func on_jugador_trapea() -> void:
 	refUI.update_contamination_bar(-0.8)
 
 func change_in_mop_saturation() -> void:
-	refUI.update_saturation_bar(InteraccionesJugador.mop_saturation)
+	refUI.update_saturation_bar(Mop.mop_saturation)
 	
 func squid_hugs_player() -> void:
 	refUI.show_entrapment_inflicted_sign()

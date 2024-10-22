@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cju206cf1ni5m"]
+[gd_scene load_steps=7 format=3 uid="uid://cju206cf1ni5m"]
 
+[ext_resource type="Script" path="res://logic/scenes/mop.gd" id="1_qd35y"]
 [ext_resource type="PackedScene" uid="uid://bb3ipr4ad6jrh" path="res://modelos/psx_broom/scene.gltf" id="1_u2fux"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/broom_glow.gd" id="2_0paim"]
 
@@ -17,6 +18,8 @@ emission_texture = SubResource("CompressedTexture2D_uarua")
 size = Vector3(0.456604, 0.416016, 0.184814)
 
 [node name="mop" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.741355, 0)
+script = ExtResource("1_qd35y")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 skeleton = NodePath("../compound mesh")
