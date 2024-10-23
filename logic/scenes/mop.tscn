@@ -17,7 +17,7 @@ emission_texture = SubResource("CompressedTexture2D_uarua")
 [sub_resource type="BoxShape3D" id="BoxShape3D_0f5uk"]
 size = Vector3(0.456604, 0.416016, 0.184814)
 
-[node name="mop" type="Area3D"]
+[node name="mop" type="Area3D" groups=["Trapero"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.741355, 0)
 script = ExtResource("1_qd35y")
 

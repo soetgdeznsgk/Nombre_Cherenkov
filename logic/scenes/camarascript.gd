@@ -24,6 +24,7 @@ func _ready():
  
 func _input(event):
 	if event is InputEventMouseMotion:
+		mop_reference.rotate_to_camera()
 		v.y -= (event.relative.x * 0.2)
 		v.x -= (event.relative.y * 0.2)
 		v.x = clamp(v.x,-80,90)
@@ -33,10 +34,10 @@ func _physics_process(_delta):
 	self.rotation_degrees.x = v.x
 	rotation_degrees.y = v.y
 	
-	if Input.is_mouse_button_pressed(1): #codigo horrible que necesita URGENTEMENTE refactorizar
+	if Input.is_mouse_button_pressed(1) and $RayCast3D.is_colliding(): #codigo horrible que necesita URGENTEMENTE refactorizar
 		currSelection = $RayCast3D.get_collider()
 		# llamada a lerpear el trapero
-		mop_reference.trapeo_lerp($RayCast3D.get_collision_point(), 0)
+		mop_reference.trapeo_lerp_to($RayCast3D.get_collision_point(), 0)
 		# todo lo siguiente será delegado al trapero
 		#if currSelection != null:			
 			##añadir shader de sombreado para la selección
@@ -52,7 +53,8 @@ func _physics_process(_delta):
 				#mop_saturation = 0
 				##print("trapero limpiado")
 				#GlobalInfo.change_in_mop_saturation()
-					
+	elif not Input.is_mouse_button_pressed(1):
+		mop_reference.trapeo_lerp_back(0)
 
 
 func updateDetectionExceptions() -> void:
@@ -60,3 +62,4 @@ func updateDetectionExceptions() -> void:
 	$RayCast3D.add_exception($"..")
 	for node in get_tree().get_nodes_in_group("NodosNavegacion"): # TODO averiguar qué otros nodos necesitan ignorarse
 		$RayCast3D.add_exception(node)
+	$RayCast3D.add_exception(get_tree().get_first_node_in_group("Trapero"))
