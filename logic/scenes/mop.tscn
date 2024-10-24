@@ -34,4 +34,7 @@ script = ExtResource("2_0paim")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0101624, -0.509766, 0.00671387)
 shape = SubResource("BoxShape3D_0f5uk")
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+
 [editable path="compound mesh"]

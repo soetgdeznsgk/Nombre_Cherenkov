@@ -35,13 +35,10 @@ func assign_path() -> void:
 		NavegacionPulpo.splot_map_updated.disconnect(assign_path)
 	movement_permission = true
 
-
 func _on_body_entered(body: Node3D) -> void: # DEBUG
 	if body.is_in_group("Jugador"):
 		GlobalInfo.squid_hugs_player()
 		
-
-
 
 func _on_body_exited(body: Node3D) -> void: # DEBUG
 	if body.is_in_group("Jugador"):

@@ -38,17 +38,6 @@ func _physics_process(_delta):
 		currSelection = $RayCast3D.get_collider()
 		# llamada a lerpear el trapero
 		mop_reference.trapeo_lerp_to($RayCast3D.get_collision_point(), 0)
-		# todo lo siguiente será delegado al trapero
-		#if currSelection != null:			
-			##añadir shader de sombreado para la selección
-			#if currSelection.get_parent().is_in_group("Charcos"): #si se selecciona un charco
-				#if mop_saturation < 100:
-					##print("IMPACTO GLOBAL EN: ",$RayCast3D.get_collision_point(), "---")
-					#currSelection.get_parent().spawn_hole($RayCast3D.get_collision_point())
-					#GlobalInfo.change_in_mop_saturation()
-				#else:
-					#pass 
-					#
 			#if currSelection.is_in_group("Baldes"):
 				#mop_saturation = 0
 				##print("trapero limpiado")

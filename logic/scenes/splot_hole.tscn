@@ -4,6 +4,7 @@
 
 [node name="splot hole" type="CSGMesh3D"]
 transform = Transform3D(-0.225, 0, 0, 0, 9.83506e-09, 0.225, 0, -0.225, 9.83506e-09, 0, 0, 0)
+ignore_occlusion_culling = true
 operation = 2
 snap = 1e-06
 calculate_tangents = false

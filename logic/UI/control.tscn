@@ -18,7 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yfp7f")
 
-[node name="ProgressBar" type="ProgressBar" parent="Control"]
+[node name="SaturationBar" type="ProgressBar" parent="Control"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -27,10 +27,10 @@ offset_top = -141.0
 offset_right = 476.0
 grow_vertical = 0
 theme_override_styles/fill = ExtResource("2_u2acb")
-step = 1.0
+max_value = 1.0
 show_percentage = false
 
-[node name="Label" type="Label" parent="Control/ProgressBar"]
+[node name="Label" type="Label" parent="Control/SaturationBar"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
