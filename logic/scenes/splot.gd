@@ -21,12 +21,11 @@ func _ready() -> void:
 	rotate(Vector3.UP, randf() * 4)
 	position += Vector3(randf() * 0.01, 0, randf() * 0.01)
 	NavegacionPulpo.add_splot_to_registry(self)
-	#GlobalInfo.jugador_trapea.connect(spawn_hole) no tiene sentido ya que el método es llamado desde el trapero
 
 func spawn_hole(v: Vector3, size:Vector3) -> void:
 	if $MeshInstance3D.get_child_count() < maxHuecos:
 		if $Timer.is_stopped():
-			GlobalInfo.on_jugador_trapea()
+			GlobalInfo.change_in_mop_saturation()
 			var hole : CSGMesh3D = holes_ref.instantiate()
 			#hole.position = (fatherTransformation * transform).affine_inverse() * v
 			

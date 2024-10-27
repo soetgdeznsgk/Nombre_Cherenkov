@@ -17,27 +17,24 @@ var current_point_of_intersection_with_floor : Vector3
 
 @onready var mop_height : float =  $"compound mesh/Sketchfab_model/root/GLTF_SceneRootNode/PSXBroom_0/Object_4".get_aabb().size.y
 @onready var mop_head_size : Vector3 = $"compound mesh/Sketchfab_model/root/GLTF_SceneRootNode/PSXBroom_0/Object_6".get_aabb().size
-@onready var debug_position_squid := preload("res://logic/scenes/squid.tscn")
 
 var state_cleaning : bool
 var current_splot_selected : Splot
 
 func _ready() -> void:
-	GlobalInfo.jugador_trapea.connect(func(): mop_saturation += mop_saturation_pace)
+	GlobalInfo.jugador_trapea.connect(func(_o): mop_saturation += mop_saturation_pace)
 	origin_point_in_HUD = remote_transform_ref.position
 	
 func _physics_process(delta: float) -> void:
 	if state_cleaning:
 		if mop_saturation < 1:
 			current_splot_selected.spawn_hole(current_point_of_intersection_with_floor, \
-			mop_head_size) 
-			GlobalInfo.change_in_mop_saturation()
+			mop_head_size) # servirá para adaptar la forma del hueco al área de intersección, no funciona
 
 	
 func trapeo_call(selected_node : Node) -> void:
 	if selected_node == null:
 		return
-	#if selected_node.get_parent().is_in_group("Charcos"):
 		
 func rotate_to_camera():
 	look_at(GlobalInfo.refPlayer.position)
@@ -67,3 +64,8 @@ func _on_area_exited(area: Area3D) -> void:
 	if area.is_in_group("Charcos"):
 		state_cleaning = false
 		current_splot_selected = null
+
+func _on_body_entered(body: Node3D) -> void:
+	if body.is_in_group("Baldes"):
+		mop_saturation = 0
+		GlobalInfo.reset_in_mop_saturation()
