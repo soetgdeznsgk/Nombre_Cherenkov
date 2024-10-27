@@ -10,7 +10,8 @@ var timerPosPJ : Timer
 @onready var refPlayer : CharacterBody3D = get_tree().get_nodes_in_group("Jugador").front()
 
 # info UI
-@onready var refUI : UI = get_tree().get_nodes_in_group("UI").front()
+@onready var refUI : UI = get_tree().get_first_node_in_group("UI")
+@onready var refContBar := get_tree().get_first_node_in_group("ContaminationBar")
 
 signal rana_impacta # emitido desde on_aterrizaje_rana
 signal jugador_trapea # utilizada para la señal visual del trapero
@@ -30,14 +31,16 @@ func recuperar_posicion_jugador() -> void:
 
 func on_aterrizaje_rana(v : Vector3) -> Vector3: #llamado desde rana.gd
 	v = GeometricToolbox.y_offset_vector_to_0(v)
-	refUI.update_contamination_bar(3) #valor base de cada charco 
+	#refUI.update_contamination_bar(3) #valor base de cada charco 
+	refContBar.update_contamination_bar(7)
 	rana_impacta.emit(v)
 	return v
 
 func change_in_mop_saturation() -> void:
 	jugador_trapea.emit(Mop.mop_saturation)
 	refUI.update_saturation_bar(Mop.mop_saturation)
-	refUI.update_contamination_bar(-0.8)
+	#refUI.update_contamination_bar(-0.8) deprecado xq ahora la barra se ve ingame
+	refContBar.update_contamination_bar(-0.8)
 
 func reset_in_mop_saturation() -> void:
 	trapero_limpiado.emit()

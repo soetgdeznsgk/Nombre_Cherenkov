@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://koqv2tici8g"]
+[gd_scene load_steps=13 format=3 uid="uid://koqv2tici8g"]
 
 [ext_resource type="PackedScene" uid="uid://bnl1k0w4e64he" path="res://logic/scenes/jugador.tscn" id="1_2ygyh"]
 [ext_resource type="ArrayMesh" uid="uid://ylflb3vcbrgg" path="res://GodotActionRPG-Assets/Models/Environment/naturePack_001.obj" id="3_hr8na"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://logic/ambient_scripts/pool_script.gd" id="5_y4rwr"]
 [ext_resource type="PackedScene" uid="uid://cu30dahipapwi" path="res://logic/UI/control.tscn" id="6_al0kl"]
 [ext_resource type="PackedScene" uid="uid://d2hht52rap8m1" path="res://logic/scenes/squid.tscn" id="8_ad6oy"]
+[ext_resource type="PackedScene" uid="uid://dmdd4q078nrgb" path="res://logic/UI/display_contamination_bar.tscn" id="8_tc3n6"]
 
 [sub_resource type="Environment" id="Environment_owekg"]
 glow_enabled = true
@@ -14,6 +15,8 @@ glow_enabled = true
 [sub_resource type="NavigationMesh" id="NavigationMesh_inggj"]
 vertices = PackedVector3Array(4.86374e-05, 14.6883, -30.1558, 4.86374e-05, 14.6883, 0.0942001, 31.5, 14.6883, 0.0942001, 31.5, 14.6883, -30.1558, 1.25005, -6.56174, -28.9058, 1.25005, -6.56174, -1.4058, 28.5, -6.56174, -1.4058, 28.5, -6.56174, -28.9058, 8.75005, 0.43826, -26.6558, 8.50005, 0.43826, -28.9058, 1.25005, 0.43826, -28.9058, 28.5, 0.43826, -28.9058, 11.5, 0.43826, -28.9058, 11.75, 0.43826, -27.4058, 11.25, 0.43826, -26.6558, 17.75, 0.43826, -10.9058, 28, 0.43826, -10.9058, 28.5, 0.43826, -1.4058, 1.25005, 0.43826, -1.4058, 17.5, 0.43826, -1.4058)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(10, 9, 8), PackedInt32Array(13, 12, 11), PackedInt32Array(13, 11, 14), PackedInt32Array(14, 11, 15), PackedInt32Array(15, 11, 16), PackedInt32Array(11, 17, 16), PackedInt32Array(19, 18, 15), PackedInt32Array(15, 18, 8), PackedInt32Array(8, 18, 10), PackedInt32Array(8, 14, 15)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_51aeb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t688q"]
 size = Vector3(1, 0.202484, 1)
@@ -66,6 +69,7 @@ size = Vector3(32.3911, 23.6394, 31.1558)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.944031, 0.93545, -0.0896606)
 operation = 2
 size = Vector3(28.4977, 20.6236, 28.7489)
+material = SubResource("StandardMaterial3D_51aeb")
 
 [node name="bucket" parent="NavigationRegion3D" instance=ExtResource("5_3654a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0659, 0.0200004, -27.982)
@@ -116,5 +120,8 @@ shape = SubResource("BoxShape3D_t688q")
 [node name="squid" parent="." instance=ExtResource("8_ad6oy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.333, 0.0199997, -23.552)
 visible = false
+
+[node name="Display Contamination Bar" parent="." instance=ExtResource("8_tc3n6")]
+transform = Transform3D(-0.10318, 0, 2.91818, 0, 2.92, 0, -2.91818, 0, -0.10318, 0.654193, 2.65701, -15.4314)
 
 [connection signal="timeout" from="NavigationRegion3D/Geometría/Piso/PiscinaD/RanaSpawnerTimer" to="NavigationRegion3D/Geometría/Piso/PiscinaD" method="_on_rana_spawner_timer_timeout"]
