@@ -9,6 +9,6 @@ func _ready() -> void:
 
 func alter_glow(s : float) -> void:
 	material_for_override = get_active_material(0)
-	material_for_override.emission_energy_multiplier = lerpf(0, glow_limit, s)
+	material_for_override.emission_energy_multiplier = lerpf(0, glow_limit, s**2)
 	set_surface_override_material(0, material_for_override)
 	

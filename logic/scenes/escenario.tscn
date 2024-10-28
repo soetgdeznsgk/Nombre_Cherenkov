@@ -50,7 +50,7 @@ script = ExtResource("5_y4rwr")
 first_frog_target = NodePath("../../../../RanaManager/NodosDeNavegacionRana/nodo2")
 
 [node name="RanaSpawnerTimer" type="Timer" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
-wait_time = 5.0
+wait_time = 3.0
 autostart = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
@@ -119,9 +119,8 @@ shape = SubResource("BoxShape3D_t688q")
 
 [node name="squid" parent="." instance=ExtResource("8_ad6oy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.333, 0.0199997, -23.552)
-visible = false
 
 [node name="Display Contamination Bar" parent="." instance=ExtResource("8_tc3n6")]
-transform = Transform3D(-0.10318, 0, 2.91818, 0, 2.92, 0, -2.91818, 0, -0.10318, 0.654193, 2.65701, -15.4314)
+transform = Transform3D(-2.12656e-07, 0, 4.865, 0, 4.865, 0, -4.865, 0, -2.12656e-07, 0.654193, 2.65701, -15.4314)
 
 [connection signal="timeout" from="NavigationRegion3D/Geometría/Piso/PiscinaD/RanaSpawnerTimer" to="NavigationRegion3D/Geometría/Piso/PiscinaD" method="_on_rana_spawner_timer_timeout"]

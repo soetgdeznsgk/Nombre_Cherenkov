@@ -29,6 +29,7 @@ skeleton = NodePath("../compound mesh")
 [node name="Object_6" parent="compound mesh/Sketchfab_model/root/GLTF_SceneRootNode/PSXBroom_0" index="2"]
 surface_material_override/0 = SubResource("StandardMaterial3D_gcp7k")
 script = ExtResource("2_0paim")
+glow_limit = 10.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0101624, -0.509766, 0.00671387)

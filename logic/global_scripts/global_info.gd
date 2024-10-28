@@ -19,15 +19,19 @@ signal trapero_limpiado
 #signal cambio_saturacion # notificacion para cambiar el brillo del trapero
 
 func _init() -> void:
-	timerPosPJ = Timer.new()
-	timerPosPJ.wait_time = 1
-	timerPosPJ.autostart = true
-	timerPosPJ.connect("timeout", recuperar_posicion_jugador)
-	add_child(timerPosPJ)
+	#timerPosPJ = Timer.new()
+	#timerPosPJ.wait_time = 1
+	#timerPosPJ.autostart = true
+	#timerPosPJ.connect("timeout", recuperar_posicion_jugador)
+	#add_child(timerPosPJ)
+	pass
 
-func recuperar_posicion_jugador() -> void:
+func _process(delta: float) -> void:
 	playerPosition = refPlayer.position
-	timerPosPJ.start()
+	
+#func recuperar_posicion_jugador() -> void:
+	#playerPosition = refPlayer.position
+	#timerPosPJ.start()
 
 func on_aterrizaje_rana(v : Vector3) -> Vector3: #llamado desde rana.gd
 	v = GeometricToolbox.y_offset_vector_to_0(v)

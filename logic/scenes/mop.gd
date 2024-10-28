@@ -25,7 +25,7 @@ func _ready() -> void:
 	GlobalInfo.jugador_trapea.connect(func(_o): mop_saturation += mop_saturation_pace)
 	origin_point_in_HUD = remote_transform_ref.position
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if state_cleaning:
 		if mop_saturation < 1:
 			current_splot_selected.spawn_hole(current_point_of_intersection_with_floor, \
@@ -39,7 +39,7 @@ func trapeo_call(selected_node : Node) -> void:
 func rotate_to_camera():
 	look_at(GlobalInfo.refPlayer.position)
 	
-func trapeo_lerp_to(p : Vector3, t : float) -> void:
+func trapeo_lerp_to(p : Vector3, _t : float) -> void:
 	#remote_transform_ref.global_position = remote_transform_ref.global_position.lerp(p, t)
 	#print(t, " -- distancia : ", remote_transform_ref.global_position.distance_to(p))
 	#if t < 1:
@@ -50,7 +50,8 @@ func trapeo_lerp_to(p : Vector3, t : float) -> void:
 	current_point_of_intersection_with_floor = p
 	remote_transform_ref.global_position = p + Vector3(0, mop_height / 3, 0) # arreglar
 	
-func trapeo_lerp_back(t : float) -> void:
+func trapeo_lerp_back(_t : float) -> void:
+	#TODO animar estavaina
 	remote_transform_ref.position = origin_point_in_HUD
 
 func _on_area_entered(area: Area3D) -> void:
