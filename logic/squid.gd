@@ -22,7 +22,7 @@ var current_path : PackedVector3Array
 
 # Variables de agarre
 #@export_category("Agarre")
-@onready var arm_span : Area3D = $arm_span
+@onready var arm_span : CollisionShape3D = $arm_span/CollisionShape3D
 
 @onready var anim_player : AnimationPlayer = $AnimationPlayer
 
@@ -31,6 +31,7 @@ func _ready() -> void:
 	enter_reaching_state()
 
 func _physics_process(delta: float) -> void:
+	look_at(GlobalInfo.playerPosition)
 	match current_state:
 		states.ReachingOut:
 			reaching_pp(delta)
@@ -73,7 +74,7 @@ func enter_reaching_state() -> void:
 	$"Reaching State Timer".start(reaching_state_duration) # timeout está conectado a enter_pursuing
 	anim_player.play("Reaching Out")
 	current_state = states.ReachingOut
-	arm_span.monitoring = true
+	arm_span.disabled = false
 	print("entra a reaching")
 
 # AGARRE DE JUGADOR
@@ -82,7 +83,7 @@ func grabbing_pp(_delta : float) -> void:
 	pass
 
 func enter_grabbing_state() -> void:
-	arm_span.monitoring = false
+	arm_span.disabled = true # godot pone problema por que dice que se debe hacer call_deferred para esto
 	current_state = states.Grabbing
 	anim_player.play("Grabbing")
 	print("entra a grabbing")
