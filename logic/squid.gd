@@ -31,7 +31,7 @@ func _ready() -> void:
 	enter_reaching_state()
 
 func _physics_process(delta: float) -> void:
-	look_at(GlobalInfo.playerPosition)
+	look_at(GeometricToolbox.y_offset_vector_to_0(GlobalInfo.playerPosition))
 	match current_state:
 		states.ReachingOut:
 			reaching_pp(delta)
@@ -74,7 +74,8 @@ func enter_reaching_state() -> void:
 	$"Reaching State Timer".start(reaching_state_duration) # timeout está conectado a enter_pursuing
 	anim_player.play("Reaching Out")
 	current_state = states.ReachingOut
-	arm_span.disabled = false
+	#arm_span.disabled = false
+	call_deferred("change_arm_monitoring_state", false)
 	print("entra a reaching")
 
 # AGARRE DE JUGADOR
@@ -83,7 +84,8 @@ func grabbing_pp(_delta : float) -> void:
 	pass
 
 func enter_grabbing_state() -> void:
-	arm_span.disabled = true # godot pone problema por que dice que se debe hacer call_deferred para esto
+	#arm_span.disabled = true # godot pone problema por que dice que se debe hacer call_deferred para esto
+	call_deferred("change_arm_monitoring_state", true)
 	current_state = states.Grabbing
 	anim_player.play("Grabbing")
 	print("entra a grabbing")
@@ -99,7 +101,7 @@ func assign_path() -> void: # estar seguro de que SIEMPRE haya por lo menos un c
 
 func _on_body_entered(body: Node3D) -> void: # DEBUG
 	if body.is_in_group("Jugador"):
-		GlobalInfo.squid_hugs_player()
+		GlobalInfo.squid_hugs_player(position)
 		
 
 func _on_body_exited(body: Node3D) -> void: # DEBUG
@@ -117,3 +119,6 @@ func _on_arm_span_body_entered(body: Node3D) -> void:
 func force_stop_state_timers() -> void:
 	for timer in get_tree().get_nodes_in_group("TimersPulpo"):
 		timer.stop()
+
+func change_arm_monitoring_state(b : bool) -> void:
+	arm_span.disabled = b

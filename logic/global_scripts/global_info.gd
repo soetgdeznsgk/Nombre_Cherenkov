@@ -16,6 +16,7 @@ var timerPosPJ : Timer
 signal rana_impacta # emitido desde on_aterrizaje_rana
 signal jugador_trapea # utilizada para la señal visual del trapero
 signal trapero_limpiado
+signal jugador_atrapado 
 #signal cambio_saturacion # notificacion para cambiar el brillo del trapero
 
 func _init() -> void:
@@ -50,8 +51,9 @@ func reset_in_mop_saturation() -> void:
 	trapero_limpiado.emit()
 	refUI.update_saturation_bar(Mop.mop_saturation)
 	
-func squid_hugs_player() -> void:
+func squid_hugs_player(squidPosition : Vector3) -> void:
 	refUI.show_entrapment_inflicted_sign()
+	jugador_atrapado.emit(squidPosition)
 
 func squid_leaves_player() -> void:
 	refUI.reset_healty_status()

@@ -19,6 +19,7 @@ var currSelection : Node
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	updateDetectionExceptions()
+	GlobalInfo.jugador_atrapado.connect(lock_camera)
 	
 	#GlobalInfo.jugador_trapea.connect(func(): mop_saturation += mop_saturation_pace)
  
@@ -52,3 +53,7 @@ func updateDetectionExceptions() -> void:
 	for node in get_tree().get_nodes_in_group("NodosNavegacion"): # TODO averiguar qué otros nodos necesitan ignorarse
 		$RayCast3D.add_exception(node)
 	$RayCast3D.add_exception(get_tree().get_first_node_in_group("Trapero"))
+	
+func lock_camera(p : Vector3) -> void:
+	#v = position - p TODO loquear la camara al pulpo
+	pass
