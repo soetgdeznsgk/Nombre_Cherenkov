@@ -21,8 +21,21 @@ var current_path : PackedVector3Array
 @export var reaching_state_duration : float
 
 # Variables de agarre
-#@export_category("Agarre")
+@export_category("Agarre")
 @onready var arm_span : CollisionShape3D = $arm_span/CollisionShape3D
+@export var health : int = 3:
+	set(v):
+		print(v)
+		if v == 0:
+			enter_idle_state()
+			health = 3
+		else:
+			health = v
+
+# Variables idle
+@export_category("Idle")
+@export var idle_state_duration : float
+
 
 @onready var anim_player : AnimationPlayer = $AnimationPlayer
 
@@ -74,7 +87,6 @@ func enter_reaching_state() -> void:
 	$"Reaching State Timer".start(reaching_state_duration) # timeout está conectado a enter_pursuing
 	anim_player.play("Reaching Out")
 	current_state = states.ReachingOut
-	#arm_span.disabled = false
 	call_deferred("change_arm_monitoring_state", false)
 	print("entra a reaching")
 
@@ -84,11 +96,23 @@ func grabbing_pp(_delta : float) -> void:
 	pass
 
 func enter_grabbing_state() -> void:
-	#arm_span.disabled = true # godot pone problema por que dice que se debe hacer call_deferred para esto
+	#$"Grabbing State Timer".start(grabbing_state_duration)
 	call_deferred("change_arm_monitoring_state", true)
 	current_state = states.Grabbing
 	anim_player.play("Grabbing")
 	print("entra a grabbing")
+	
+# IDLE
+
+func idle_pp(_delta: float) -> void:
+	pass
+
+func enter_idle_state() -> void:
+	$"Idle State Timer".start()
+	current_state = states.Idle
+	# anim
+	print("entra a idle")
+	GlobalInfo.squid_leaves_player()
 #endregion
 
 func assign_path() -> void: # estar seguro de que SIEMPRE haya por lo menos un charco 
@@ -99,20 +123,22 @@ func assign_path() -> void: # estar seguro de que SIEMPRE haya por lo menos un c
 
 #region Magia con los colliders
 
-func _on_body_entered(body: Node3D) -> void: # DEBUG
-	if body.is_in_group("Jugador"):
-		GlobalInfo.squid_hugs_player(position)
-		
 
-func _on_body_exited(body: Node3D) -> void: # DEBUG
-	if body.is_in_group("Jugador"):
-		GlobalInfo.squid_leaves_player()
+func _on_area_entered(area: Area3D) -> void:
+	if area.is_in_group("Trapero"):
+		health -= 1
+
+func _on_body_exited(_body: Node3D) -> void: # DEBUG
+	#if body.is_in_group("Jugador"):
+		#GlobalInfo.squid_leaves_player()
+	pass
 
 
 func _on_arm_span_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Jugador"):
 		force_stop_state_timers()
 		enter_grabbing_state()
+		GlobalInfo.squid_hugs_player(position)
 
 #endregion
 

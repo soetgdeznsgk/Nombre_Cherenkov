@@ -10,8 +10,41 @@ script/source = "extends CharacterBody3D
 var direction : Vector3
 var gravity := 10
 
+enum playerStates {
+	Free,
+	Trapped,
+	OnMainMenu
+}
+var currState : int:
+	set(v):
+		if v == playerStates.Trapped:
+			$Camera3D.lock_camera(center_of_gravity)
+			currState = v
+		elif v == playerStates.Free:
+			$Camera3D.free_camera()
+			currState = v
+
+# trapped state variable
+var center_of_gravity : Vector3
+
+func _ready() -> void:
+	currState = playerStates.Free
+	#GlobalInfo.jugador_atrapado.connect(func(p): set_center_of_gravity(p))
+	
+
 func _physics_process(_delta: float) -> void:
 	direction = $Camera3D.get_global_transform().basis.z
+	match currState:
+		playerStates.Free:
+			free_pp(_delta)
+		playerStates.Trapped:
+			trapped_pp(_delta)
+		playerStates.OnMainMenu:
+			on_menu_pp(_delta)
+	
+	
+#region physics_process
+func free_pp(_delta : float) -> void:
 	var moveSpeed := Vector3.ZERO
 	if (Input.is_action_pressed(\"MoveBackwards\")):
 		moveSpeed += direction
@@ -24,6 +57,32 @@ func _physics_process(_delta: float) -> void:
 	velocity = moveSpeed.normalized() * 10
 	velocity.y -= gravity
 	move_and_slide()
+	
+func trapped_pp(_delta: float) -> void:
+	var moveSpeed := Vector3.ZERO
+	if (Input.is_action_pressed(\"MoveBackwards\")):
+		moveSpeed += direction
+	if (Input.is_action_pressed(\"MoveForwards\")):
+		moveSpeed -= direction
+	if (Input.is_action_pressed(\"MoveL\")):
+		moveSpeed += direction.cross($\".\".up_direction)
+	if (Input.is_action_pressed(\"MoveR\")):
+		moveSpeed += $\".\".up_direction.cross(direction)
+	velocity = (-direction.normalized() + moveSpeed.normalized()) * 5 
+	velocity.y -= gravity
+	move_and_slide()
+	
+func on_menu_pp(_delta: float) -> void:
+	pass
+#endregion
+
+func set_center_of_gravity(p : Vector3) -> void:
+	center_of_gravity = p
+	currState = playerStates.Trapped
+	
+	
+func reset_player_movement_freedom() -> void:
+	currState = playerStates.Free
 "
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pnppo"]

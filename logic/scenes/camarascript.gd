@@ -6,20 +6,13 @@ var currSelection : Node
 
 @export var mop_reference : Mop
 
-# Parametros del trapero
-#static var mop_saturation := 0:
-	#set(value):
-		#if value > 100:
-			#mop_saturation = 100 # para que no se pase de 100 y no haya riesgo de overflow
-		#else:
-			#mop_saturation = value
-#
-#@export var mop_saturation_pace := 5
+var locked : bool = false
+var focus_point : Vector3
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	updateDetectionExceptions()
-	GlobalInfo.jugador_atrapado.connect(lock_camera)
+	call_deferred("updateDetectionExceptions")
+	#GlobalInfo.jugador_atrapado.connect(lock_camera)
 	
 	#GlobalInfo.jugador_trapea.connect(func(): mop_saturation += mop_saturation_pace)
  
@@ -32,10 +25,13 @@ func _input(event):
 		
 
 func _physics_process(_delta):
-	self.rotation_degrees.x = v.x
-	rotation_degrees.y = v.y
+	if not locked:
+		rotation_degrees.x = v.x
+		rotation_degrees.y = v.y
+	else:
+		look_at(focus_point)
 	
-	if Input.is_mouse_button_pressed(1) and $RayCast3D.is_colliding(): #codigo horrible que necesita URGENTEMENTE refactorizar
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and $RayCast3D.is_colliding(): #codigo horrible que necesita URGENTEMENTE refactorizar
 		currSelection = $RayCast3D.get_collider()
 		# llamada a lerpear el trapero
 		mop_reference.trapeo_lerp_to($RayCast3D.get_collision_point(), 0)
@@ -43,17 +39,21 @@ func _physics_process(_delta):
 				#mop_saturation = 0
 				##print("trapero limpiado")
 				#GlobalInfo.change_in_mop_saturation()
-	elif not Input.is_mouse_button_pressed(1):
+	elif not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		mop_reference.trapeo_lerp_back(0)
 
 
 func updateDetectionExceptions() -> void:
-	await get_tree().process_frame
+	#	wawait get_tree().process_frame
 	$RayCast3D.add_exception($"..")
 	for node in get_tree().get_nodes_in_group("NodosNavegacion"): # TODO averiguar qué otros nodos necesitan ignorarse
 		$RayCast3D.add_exception(node)
 	$RayCast3D.add_exception(get_tree().get_first_node_in_group("Trapero"))
 	
 func lock_camera(p : Vector3) -> void:
-	#v = position - p TODO loquear la camara al pulpo
-	pass
+	focus_point = p
+	look_at(focus_point)
+	locked = true
+	
+func free_camera() -> void:
+	locked = false

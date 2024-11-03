@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2hht52rap8m1"]
+[gd_scene load_steps=11 format=3 uid="uid://d2hht52rap8m1"]
 
 [ext_resource type="Script" path="res://logic/squid.gd" id="1_eg8wh"]
 [ext_resource type="PackedScene" uid="uid://53kuabjg8kix" path="res://modelos/low_poly_squid/ImageToStl.com_ahtapot.gltf" id="2_hoiuj"]
@@ -21,6 +21,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(1, 1, 1), Vector3(1.5, 1.5, 1.5), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7ra5f"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 3.14159), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_rupcl"]
@@ -53,6 +68,39 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(1, 1, 1)]
 }
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ImageToStl_com_ahtapot:rotation:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ImageToStl_com_ahtapot:rotation:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-1.5708, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ImageToStl_com_ahtapot:rotation:z")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_vjr45"]
 resource_name = "Reaching Out"
@@ -73,6 +121,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g0bgx"]
 _data = {
 "Grabbing": SubResource("Animation_3c2up"),
+"Idle": SubResource("Animation_7ra5f"),
 "Pursuing": SubResource("Animation_rupcl"),
 "RESET": SubResource("Animation_5yy0v"),
 "Reaching Out": SubResource("Animation_vjr45")
@@ -86,9 +135,10 @@ collision_layer = 2
 script = ExtResource("1_eg8wh")
 crawl_speed = 5.0
 reaching_state_duration = 5.0
+idle_state_duration = 3.0
 
 [node name="ImageToStl_com_ahtapot" parent="." instance=ExtResource("2_hoiuj")]
-transform = Transform3D(1.84836e-09, 0, -0.155, 0, 0.155, 0, 0.155, 0, 1.84836e-09, 0, 0.325946, 0)
+transform = Transform3D(-5.61098e-07, 0, -0.155, 0, 0.155, 0, 0.155, 0, -5.61098e-07, 0, 0.325946, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.273273, 0)
@@ -103,13 +153,21 @@ libraries = {
 wait_time = 5.0
 one_shot = true
 
+[node name="Idle State Timer" type="Timer" parent="." groups=["TimersPulpo"]]
+wait_time = 5.0
+one_shot = true
+
 [node name="arm_span" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="arm_span"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0198317, 1.46403, -2.56859)
 shape = SubResource("SphereShape3D_icjdd")
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="timeout" from="Reaching State Timer" to="." method="enter_pursuing_state"]
+[connection signal="timeout" from="Idle State Timer" to="." method="enter_pursuing_state"]
 [connection signal="body_entered" from="arm_span" to="." method="_on_arm_span_body_entered"]
+
+[editable path="ImageToStl_com_ahtapot"]
