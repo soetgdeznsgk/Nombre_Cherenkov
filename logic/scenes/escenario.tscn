@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://koqv2tici8g"]
+[gd_scene load_steps=12 format=3 uid="uid://koqv2tici8g"]
 
 [ext_resource type="PackedScene" uid="uid://bnl1k0w4e64he" path="res://logic/scenes/jugador.tscn" id="1_2ygyh"]
 [ext_resource type="ArrayMesh" uid="uid://ylflb3vcbrgg" path="res://GodotActionRPG-Assets/Models/Environment/naturePack_001.obj" id="3_hr8na"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://di6fatgsdf124" path="res://logic/scenes/bucket.tscn" id="5_3654a"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/pool_script.gd" id="5_y4rwr"]
 [ext_resource type="PackedScene" uid="uid://cu30dahipapwi" path="res://logic/UI/control.tscn" id="6_al0kl"]
-[ext_resource type="PackedScene" uid="uid://d2hht52rap8m1" path="res://logic/scenes/squid.tscn" id="8_ad6oy"]
 [ext_resource type="PackedScene" uid="uid://dmdd4q078nrgb" path="res://logic/UI/display_contamination_bar.tscn" id="8_tc3n6"]
 
 [sub_resource type="Environment" id="Environment_owekg"]
@@ -59,6 +58,10 @@ light_color = Color(0, 1, 1, 1)
 omni_range = 4096.0
 omni_attenuation = 0.414
 omni_shadow_mode = 0
+
+[node name="PulpoSpawnerTimer" type="Timer" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
+wait_time = 5.0
+autostart = true
 
 [node name="Caja_Habitación" type="CSGBox3D" parent="NavigationRegion3D/Geometría"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6956, 2.50796, -15.0779)
@@ -113,14 +116,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.50141, -4.76837e-07, -5.931
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
 shape = SubResource("BoxShape3D_t688q")
 
-[node name="PulpoManager" type="Node" parent="."]
+[node name="PulpoManager" type="Node" parent="." groups=["PulpoManager"]]
 
 [node name="UI" parent="." instance=ExtResource("6_al0kl")]
-
-[node name="squid" parent="." instance=ExtResource("8_ad6oy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.333, 0.0199997, -23.552)
 
 [node name="Display Contamination Bar" parent="." instance=ExtResource("8_tc3n6")]
 transform = Transform3D(-2.12656e-07, 0, 4.865, 0, 4.865, 0, -4.865, 0, -2.12656e-07, 0.654193, 2.65701, -15.4314)
 
 [connection signal="timeout" from="NavigationRegion3D/Geometría/Piso/PiscinaD/RanaSpawnerTimer" to="NavigationRegion3D/Geometría/Piso/PiscinaD" method="_on_rana_spawner_timer_timeout"]
+[connection signal="timeout" from="NavigationRegion3D/Geometría/Piso/PiscinaD/PulpoSpawnerTimer" to="NavigationRegion3D/Geometría/Piso/PiscinaD" method="_on_pulpo_spawner_timer_timeout"]

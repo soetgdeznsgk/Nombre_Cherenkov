@@ -18,6 +18,8 @@ signal jugador_trapea # utilizada para la señal visual del trapero
 signal trapero_limpiado
 #signal jugador_atrapado 
 #signal cambio_saturacion # notificacion para cambiar el brillo del trapero
+var cantidad_ranas : int
+var cantidad_pulpos : int
 
 func _init() -> void:
 	#timerPosPJ = Timer.new()

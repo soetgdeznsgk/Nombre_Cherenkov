@@ -1,9 +1,11 @@
 extends Area3D
-
+class_name Pulpo
 # Éste pulpo, a diferencia de la rana, no utilizará el nodo NavigationRegion, puesto que no toda la superficie
 # le está disponible, por el contrario, se moverá con fre
 
 var current_state : int
+var target_retriever : Callable
+var origin : Vector3
 enum states {
 	Idle, # ko
 	Pursuing, # pursuing será también utilizado para la rutina de escape al ser golpeados
@@ -15,6 +17,7 @@ enum states {
 var current_path : PackedVector3Array 
 @export_category("Persecución")
 @export var crawl_speed : float
+var escaping : bool = false
 
 # Variables de reaching
 @export_category("Reaching Out")
@@ -25,10 +28,13 @@ var current_path : PackedVector3Array
 @onready var arm_span : CollisionShape3D = $arm_span/CollisionShape3D
 @export var health : int = 3:
 	set(v):
-		print(v)
-		if v == 0:
+		#print(v)
+		if v <= 0:
 			enter_idle_state()
-			health = 3
+			target_retriever = NavegacionPulpo.get_escape_path.bind(self)
+			print("Pulpo escapa!")
+			escaping = true
+			health = 0
 		else:
 			health = v
 
@@ -39,8 +45,14 @@ var current_path : PackedVector3Array
 
 @onready var anim_player : AnimationPlayer = $AnimationPlayer
 
+func set_origin() -> void: # CONSTRUCTOR
+	origin = position
+	#return self
+
+
 func _ready() -> void:
 	#NavegacionPulpo.splot_map_updated.connect(assign_path)
+	target_retriever = NavegacionPulpo.get_pulpo_path_from_point.bind(position)
 	enter_reaching_state()
 
 func _physics_process(delta: float) -> void:
@@ -65,17 +77,18 @@ func pursuing_pp(delta: float) -> void:
 			# la transición al otro estado puede ser cuando esté más cerca al jugador que al charco?
 			current_path.remove_at(0)
 			if current_path.is_empty():
-				assign_path()
+				assign_path(target_retriever)
 		position += (current_path[0] - position).normalized() * crawl_speed * delta # BUG cuando no hay charcos
 		if position.distance_to(GlobalInfo.playerPosition) < position.distance_to(current_path[0]):
-			enter_reaching_state()
+			if not escaping:
+				enter_reaching_state()
 	else:
-		assign_path()
+		assign_path(target_retriever)
 
 func enter_pursuing_state() -> void:
 	current_state = states.Pursuing
 	anim_player.play("Pursuing")
-	assign_path()
+	assign_path(target_retriever)
 	print("entra a pursuing")
 
 # EXTENSIÓN DE BRAZOS
@@ -115,12 +128,6 @@ func enter_idle_state() -> void:
 	GlobalInfo.squid_leaves_player()
 #endregion
 
-func assign_path() -> void: # estar seguro de que SIEMPRE haya por lo menos un charco 
-	current_path = NavegacionPulpo.get_pulpo_path_from_point(position)
-	#if not movement_permission:
-		#NavegacionPulpo.splot_map_updated.disconnect(assign_path)
-	#movement_permission = true
-
 #region Magia con los colliders
 
 
@@ -141,6 +148,12 @@ func _on_arm_span_body_entered(body: Node3D) -> void:
 		GlobalInfo.squid_hugs_player(position)
 
 #endregion
+
+func assign_path(Origen : Callable) -> void: # estar seguro de que SIEMPRE haya por lo menos un charco 
+	current_path = Origen.call()
+	#if not movement_permission:
+		#NavegacionPulpo.splot_map_updated.disconnect(assign_path)
+	#movement_permission = true
 
 func force_stop_state_timers() -> void:
 	for timer in get_tree().get_nodes_in_group("TimersPulpo"):

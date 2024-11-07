@@ -15,7 +15,7 @@ signal finished_jump
 
 var initial_target : Node3D
 
-func with_target(N : Node3D) -> Area3D: # Éste método sirve para inicializar las ranas con un nodo alcanzable
+func with_target(N : Node3D) -> Area3D: # CONSTRUCTOR
 	initial_target = N
 	return self
 

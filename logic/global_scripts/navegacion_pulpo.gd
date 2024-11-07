@@ -32,3 +32,11 @@ func get_pulpo_path_from_point(pulpo_pos : Vector3) -> PackedVector3Array:
 	if start_ref != -1 and end_ref != -1:
 		return pathfinding_map.get_point_path(start_ref, end_ref, true)
 	return PackedVector3Array()
+	
+func get_escape_path(pulpo_ref : Pulpo) -> PackedVector3Array:
+	var start_ref : int = pathfinding_map.get_closest_point(pulpo_ref.position)
+	var end_ref : int = pathfinding_map.get_closest_point(pulpo_ref.origin)
+
+	if start_ref != -1 and end_ref != -1:
+		return pathfinding_map.get_point_path(start_ref, end_ref, true)
+	return PackedVector3Array()
