@@ -32,7 +32,7 @@ var escaping : bool = false
 		if v <= 0:
 			enter_idle_state()
 			target_retriever = NavegacionPulpo.get_escape_path.bind(self)
-			print("Pulpo escapa!")
+			#print("Pulpo escapa!")
 			escaping = true
 			health = 0
 		else:
@@ -89,7 +89,7 @@ func enter_pursuing_state() -> void:
 	current_state = states.Pursuing
 	anim_player.play("Pursuing")
 	assign_path(target_retriever)
-	print("entra a pursuing")
+	#print("entra a pursuing")
 
 # EXTENSIÓN DE BRAZOS
 
@@ -101,7 +101,7 @@ func enter_reaching_state() -> void:
 	anim_player.play("Reaching Out")
 	current_state = states.ReachingOut
 	call_deferred("change_arm_monitoring_state", false)
-	print("entra a reaching")
+	#print("entra a reaching")
 
 # AGARRE DE JUGADOR
 
@@ -113,7 +113,7 @@ func enter_grabbing_state() -> void:
 	call_deferred("change_arm_monitoring_state", true)
 	current_state = states.Grabbing
 	anim_player.play("Grabbing")
-	print("entra a grabbing")
+	#print("entra a grabbing")
 	
 # IDLE
 
@@ -124,7 +124,7 @@ func enter_idle_state() -> void:
 	$"Idle State Timer".start()
 	current_state = states.Idle
 	# anim
-	print("entra a idle")
+	#print("entra a idle")
 	GlobalInfo.squid_leaves_player()
 #endregion
 

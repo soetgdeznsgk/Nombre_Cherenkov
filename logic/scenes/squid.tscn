@@ -1,11 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://d2hht52rap8m1"]
+[gd_scene load_steps=12 format=3 uid="uid://d2hht52rap8m1"]
 
 [ext_resource type="Script" path="res://logic/squid.gd" id="1_eg8wh"]
 [ext_resource type="PackedScene" uid="uid://53kuabjg8kix" path="res://modelos/low_poly_squid/ImageToStl.com_ahtapot.gltf" id="2_hoiuj"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_7if0q"]
-height = 0.254533
-radius = 1.31238
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_unp2i"]
+albedo_color = Color(0, 1, 1, 1)
+emission_enabled = true
+emission = Color(0, 1, 1, 1)
+emission_energy_multiplier = 2.09
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_06jv0"]
+radius = 0.592809
 
 [sub_resource type="Animation" id="Animation_3c2up"]
 resource_name = "Grabbing"
@@ -131,7 +136,7 @@ _data = {
 radius = 1.76048
 
 [node name="squid" type="Area3D"]
-collision_layer = 2
+collision_layer = 3
 script = ExtResource("1_eg8wh")
 crawl_speed = 5.0
 reaching_state_duration = 5.0
@@ -140,9 +145,12 @@ idle_state_duration = 3.0
 [node name="ImageToStl_com_ahtapot" parent="." instance=ExtResource("2_hoiuj")]
 transform = Transform3D(-5.61098e-07, 0, -0.155, 0, 0.155, 0, 0.155, 0, -5.61098e-07, 0, 0.325946, 0)
 
+[node name="Node1" parent="ImageToStl_com_ahtapot/Node0" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_unp2i")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.273273, 0)
-shape = SubResource("CylinderShape3D_7if0q")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.008, -0.05)
+shape = SubResource("SphereShape3D_06jv0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

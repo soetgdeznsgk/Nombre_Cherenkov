@@ -8,6 +8,7 @@ var currSelection : Node
 
 var locked : bool = false
 var focus_point : Vector3
+var cache : String #DEBUG
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -31,14 +32,10 @@ func _physics_process(_delta):
 	else:
 		look_at(focus_point)
 	
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and $RayCast3D.is_colliding(): #codigo horrible que necesita URGENTEMENTE refactorizar
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and $RayCast3D.is_colliding(): 
 		currSelection = $RayCast3D.get_collider()
-		# llamada a lerpear el trapero
 		mop_reference.trapeo_lerp_to($RayCast3D.get_collision_point(), 0)
-			#if currSelection.is_in_group("Baldes"):
-				#mop_saturation = 0
-				##print("trapero limpiado")
-				#GlobalInfo.change_in_mop_saturation()
+		
 	elif not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		mop_reference.trapeo_lerp_back(0)
 
@@ -52,8 +49,9 @@ func updateDetectionExceptions() -> void:
 	
 func lock_camera(p : Vector3) -> void:
 	focus_point = p
-	look_at(focus_point)
+	#look_at(focus_point)
 	locked = true
+	v = Vector3.ZERO
 	
 func free_camera() -> void:
 	locked = false

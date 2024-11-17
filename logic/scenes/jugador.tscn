@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnl1k0w4e64he"]
+[gd_scene load_steps=6 format=3 uid="uid://bnl1k0w4e64he"]
 
 [ext_resource type="Script" path="res://logic/scenes/camarascript.gd" id="1_jh4ox"]
-[ext_resource type="PackedScene" uid="uid://dy305jcet2qlq" path="res://GodotActionRPG-Assets/Models/Sword.dae" id="1_vkm6e"]
 [ext_resource type="PackedScene" uid="uid://cju206cf1ni5m" path="res://logic/scenes/mop.tscn" id="3_atr1m"]
 
 [sub_resource type="GDScript" id="GDScript_cx7sy"]
@@ -98,15 +97,11 @@ transform = Transform3D(0.768596, 0, -0.639734, 0, 1, 0, 0.639734, 0, 0.768596, 
 script = ExtResource("1_jh4ox")
 mop_reference = NodePath("../mop")
 
-[node name="trapero" parent="Camera3D" instance=ExtResource("1_vkm6e")]
-transform = Transform3D(0.0194896, -0.0573295, -0.0732017, 0.0928799, 0.0154613, 0.01262, 0.00429787, -0.0741571, 0.0592221, 0.809023, -0.120475, -1.00912)
-visible = false
-
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0.21, 0, -3)
-hit_back_faces = false
+hit_from_inside = true
 collide_with_areas = true
-debug_shape_custom_color = Color(0.552941, 0.435294, 0.141176, 0)
+debug_shape_custom_color = Color(0.537255, 0.443137, 0.164706, 0)
 
 [node name="RemoteTransform3D_mop" type="RemoteTransform3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.275486, -0.406906, -0.86813)
