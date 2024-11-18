@@ -37,3 +37,8 @@ func reset_healty_status() -> void:
 	
 func show_entrapment_inflicted_sign() -> void:
 	aviso_atrapamiento.visible = true
+	
+func alternate_esc_enter() -> void: # PAUSA PARA LA BUILD DE ITCH
+	$"../aviso_esc".visible = not $"../aviso_esc".visible
+	$"../aviso_enter".visible = not 	$"../aviso_enter".visible
+	#print("esc: ", $"../aviso_esc".visible, "enter: ", $"../aviso_enter".visible)
