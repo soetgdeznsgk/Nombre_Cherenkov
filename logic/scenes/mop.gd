@@ -4,10 +4,11 @@ class_name Mop
 static var mop_saturation : float = 0.0:
 	set(value):
 		if value > 1:
-			mop_saturation = 1 
+			mop_saturation = 1
 		else:
+			print(value)
 			mop_saturation = value
-@export var mop_saturation_pace := 0.05
+@export var mop_saturation_pace := 0.01
 
 @export var remote_transform_ref : RemoteTransform3D
 @export var camera_ref : Camera3D
@@ -58,6 +59,7 @@ func _on_area_entered(area: Area3D) -> void:
 	if area.is_in_group("Charcos"):
 		state_cleaning = true
 		current_splot_selected = area
+		#print(area.name)
 		#area.spawn_hole(current_point_of_intersection_with_floor, \
 		#GeometricToolbox.y_offset_vector_to_0(mop_head_size))
 

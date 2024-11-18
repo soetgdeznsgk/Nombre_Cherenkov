@@ -30,3 +30,5 @@ material = SubResource("StandardMaterial3D_5fmjb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_elab6")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

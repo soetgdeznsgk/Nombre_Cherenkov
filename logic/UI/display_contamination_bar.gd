@@ -20,7 +20,10 @@ func update_contamination_bar(delta: float) -> void:
 		
 	elif contamination_bar.value > 66: #and 71 > contamination_bar.value:
 		color_change(style_red)
-		
+
+func get_contamination_value() -> float:
+	return contamination_bar.value
+	
 func color_change(s : StyleBox) -> void:
 	contamination_bar.add_theme_stylebox_override("fill", s)
 	#tmp = texture_sprite.get_active_material(0)

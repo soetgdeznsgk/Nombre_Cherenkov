@@ -11,7 +11,7 @@ var timerPosPJ : Timer
 
 # info UI
 @onready var refUI : UI = get_tree().get_first_node_in_group("UI")
-@onready var refContBar := get_tree().get_first_node_in_group("ContaminationBar")
+@onready var refContBar : Contamination_Ingame_Bar = get_tree().get_first_node_in_group("ContaminationBar")
 
 signal rana_impacta # emitido desde on_aterrizaje_rana
 signal jugador_trapea # utilizada para la señal visual del trapero
@@ -47,7 +47,8 @@ func change_in_mop_saturation() -> void:
 	jugador_trapea.emit(Mop.mop_saturation)
 	refUI.update_saturation_bar(Mop.mop_saturation)
 	#refUI.update_contamination_bar(-0.8) deprecado xq ahora la barra se ve ingame
-	refContBar.update_contamination_bar(-0.8)
+	refContBar.update_contamination_bar(-1)
+	print(refContBar.get_contamination_value())
 
 func reset_in_mop_saturation() -> void:
 	trapero_limpiado.emit()
