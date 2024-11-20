@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://logic/ambient_scripts/broom_glow.gd" id="2_0paim"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uarua"]
-load_path = "res://.godot/imported/Material_001_baseColor.png-461f84e53537be1a8a447ece2ad04068.s3tc.ctex"
+load_path = "res://.godot/imported/Material.001_baseColor_deprecated.png-0fd086400657c8718b4df913fb478757.s3tc.ctex"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gcp7k"]
 albedo_texture = SubResource("CompressedTexture2D_uarua")

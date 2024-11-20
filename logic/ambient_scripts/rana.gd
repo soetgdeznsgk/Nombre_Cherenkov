@@ -11,7 +11,7 @@ var jump_peak : Vector3
 var desired_position : Vector3
 var is_jumping := false
 var time : float
-signal finished_jump
+#signal finished_jump
 
 var initial_target : Node3D
 

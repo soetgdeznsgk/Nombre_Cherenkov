@@ -1,12 +1,21 @@
 extends Node
 
 @onready var refUI : UI = get_tree().get_first_node_in_group("UI")
-var paused : bool = false
+var paused : bool = true
 
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	Engine.time_scale = 0
 
-func _process(delta: float) -> void:
+
+func _input(event):
+	if event is InputEventMouseButton:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		Engine.time_scale = 1
+		refUI.disappear_main_sign()
+		paused = false
+		
+func _process(_delta: float) -> void:
 	if Input.is_key_label_pressed(KEY_ESCAPE) and not paused:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		Engine.time_scale = 0

@@ -29,7 +29,7 @@ func _init() -> void:
 	#add_child(timerPosPJ)
 	pass
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	playerPosition = refPlayer.position
 	
 #func recuperar_posicion_jugador() -> void:
