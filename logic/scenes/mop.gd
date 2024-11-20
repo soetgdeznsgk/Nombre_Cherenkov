@@ -6,7 +6,7 @@ static var mop_saturation : float = 0.0:
 		if value > 1:
 			mop_saturation = 1
 		else:
-			print(value)
+			#print(value)
 			mop_saturation = value
 @export var mop_saturation_pace := 0.01
 

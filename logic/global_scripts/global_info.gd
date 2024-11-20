@@ -3,7 +3,7 @@ class_name GlobalDB
 
 # parametros ambiente
 const splot_limit := 100
-
+var splot_count := 0
 # info jugador
 static var playerPosition : Vector3
 var timerPosPJ : Timer
@@ -41,6 +41,8 @@ func on_aterrizaje_rana(v : Vector3) -> Vector3: #llamado desde rana.gd
 	#refUI.update_contamination_bar(3) #valor base de cada charco 
 	refContBar.update_contamination_bar(7)
 	rana_impacta.emit(v)
+	splot_count += 1
+	print("Charco #", splot_count)
 	return v
 
 func change_in_mop_saturation() -> void:
@@ -48,7 +50,7 @@ func change_in_mop_saturation() -> void:
 	refUI.update_saturation_bar(Mop.mop_saturation)
 	#refUI.update_contamination_bar(-0.8) deprecado xq ahora la barra se ve ingame
 	refContBar.update_contamination_bar(-1)
-	print(refContBar.get_contamination_value())
+	#print(refContBar.get_contamination_value())
 
 func reset_in_mop_saturation() -> void:
 	trapero_limpiado.emit()
