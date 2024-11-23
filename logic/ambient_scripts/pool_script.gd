@@ -2,13 +2,14 @@ extends CSGBox3D
 class_name Pool
 # Éste script tendrá que spawnear a los enemigos, para el prototipo, sólo se tiene 
 
-@onready var rana_ref := preload("res://logic/scenes/rana.tscn")
-@onready var pulpo_ref := preload("res://logic/scenes/squid.tscn")
+@onready var rana_ref := preload("res://logic/scenes/critters/amphibean/rana.tscn")
+@onready var pulpo_ref := preload("res://logic/scenes/critters/octopod/squid.tscn")
 @export var first_frog_target : Node3D
 
 func _ready() -> void:
-	_on_rana_spawner_timer_timeout()
-	_on_pulpo_spawner_timer_timeout()
+	#_on_rana_spawner_timer_timeout()
+	#_on_pulpo_spawner_timer_timeout()
+	pass
 
 func _on_rana_spawner_timer_timeout() -> void:
 	if get_tree().get_first_node_in_group("RanaManager").get_child_count() < 4:

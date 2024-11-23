@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://i2ul0gdhus2r"
-valid=false
+path="res://.godot/imported/scene.gltf-13dbf99370c769581b3f91d52772ee63.scn"
 
 [deps]
 
 source_file="res://logic/UI/styleboxes/scene.gltf"
+dest_files=["res://.godot/imported/scene.gltf-13dbf99370c769581b3f91d52772ee63.scn"]
 
 [params]
 

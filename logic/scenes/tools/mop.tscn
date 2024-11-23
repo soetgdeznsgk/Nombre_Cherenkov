@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cju206cf1ni5m"]
 
-[ext_resource type="Script" path="res://logic/scenes/mop.gd" id="1_qd35y"]
+[ext_resource type="Script" path="res://logic/scenes/tools/mop.gd" id="1_qd35y"]
 [ext_resource type="PackedScene" uid="uid://bb3ipr4ad6jrh" path="res://modelos/psx_broom/scene.gltf" id="1_u2fux"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/broom_glow.gd" id="2_0paim"]
 

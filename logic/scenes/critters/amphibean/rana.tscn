@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bssh5jmisvkq6"]
 
 [ext_resource type="PackedScene" uid="uid://b6w8j16eimh6c" path="res://modelos/low_poly_frog/scene.gltf" id="1_fmd61"]
-[ext_resource type="Script" path="res://logic/ambient_scripts/rana.gd" id="1_q8mnp"]
+[ext_resource type="Script" path="res://logic/scenes/critters/amphibean/rana.gd" id="1_q8mnp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_clbxc"]
 

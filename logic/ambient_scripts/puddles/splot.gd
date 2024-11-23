@@ -1,7 +1,7 @@
 extends Area3D
 class_name Splot
 
-@onready var holes_ref := preload("res://logic/scenes/splot_hole.tscn")
+@onready var holes_ref := preload("res://logic/ambient_scripts/puddles/splot_hole.tscn")
 var overlapping_splots : Array[Splot]
 
 @export var maxHuecos := 10

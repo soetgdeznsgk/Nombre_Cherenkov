@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bvsuhho1i86dg"]
 
 [ext_resource type="Texture2D" uid="uid://dy0651v37mfxf" path="res://icon.svg" id="1_0756d"]
-[ext_resource type="Script" path="res://logic/scenes/splot.gd" id="1_nr8lu"]
+[ext_resource type="Script" path="res://logic/ambient_scripts/puddles/splot.gd" id="1_nr8lu"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_4toat"]
 

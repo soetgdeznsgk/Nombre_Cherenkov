@@ -42,7 +42,7 @@ func on_aterrizaje_rana(v : Vector3) -> Vector3: #llamado desde rana.gd
 	refContBar.update_contamination_bar(7)
 	rana_impacta.emit(v)
 	splot_count += 1
-	print("Charco #", splot_count)
+	#print("Charco #", splot_count)
 	return v
 
 func change_in_mop_saturation() -> void:

@@ -2,7 +2,7 @@ extends CSGMesh3D
 # Éste script funciona para todos los elementos de geometría del escenario que sirvan como 
 # pisos válidos para charcos
 
-@onready var splot_ref := preload("res://logic/scenes/splot.tscn")
+@onready var splot_ref := preload("res://logic/ambient_scripts/puddles/splot.tscn")
 
 # me costó intentar lo que hace esta función, pero aquí va:
 #	como el escenario es suceptible a ser escalado, para spawnear manchas como hijas del piso

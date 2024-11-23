@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://d2hht52rap8m1"]
 
-[ext_resource type="Script" path="res://logic/squid.gd" id="1_eg8wh"]
+[ext_resource type="Script" path="res://logic/scenes/critters/octopod/squid.gd" id="1_eg8wh"]
 [ext_resource type="PackedScene" uid="uid://53kuabjg8kix" path="res://modelos/low_poly_squid/ImageToStl.com_ahtapot.gltf" id="2_hoiuj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_unp2i"]

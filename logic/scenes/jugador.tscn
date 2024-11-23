@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bnl1k0w4e64he"]
 
 [ext_resource type="Script" path="res://logic/scenes/camarascript.gd" id="1_jh4ox"]
-[ext_resource type="PackedScene" uid="uid://cju206cf1ni5m" path="res://logic/scenes/mop.tscn" id="3_atr1m"]
+[ext_resource type="PackedScene" uid="uid://cju206cf1ni5m" path="res://logic/scenes/tools/mop.tscn" id="3_atr1m"]
 
 [sub_resource type="GDScript" id="GDScript_cx7sy"]
 resource_name = "pj"

@@ -1,0 +1,127 @@
+[gd_scene load_steps=12 format=3 uid="uid://koqv2tici8g"]
+
+[ext_resource type="PackedScene" uid="uid://bnl1k0w4e64he" path="res://logic/scenes/jugador.tscn" id="1_5xau3"]
+[ext_resource type="ArrayMesh" uid="uid://ylflb3vcbrgg" path="res://GodotActionRPG-Assets/Models/Environment/naturePack_001.obj" id="2_yj3f1"]
+[ext_resource type="Script" path="res://logic/ambient_scripts/floor.gd" id="3_e045v"]
+[ext_resource type="Script" path="res://logic/ambient_scripts/pool_script.gd" id="4_s5yiq"]
+[ext_resource type="PackedScene" uid="uid://di6fatgsdf124" path="res://logic/scenes/tools/bucket.tscn" id="5_ahg2q"]
+[ext_resource type="PackedScene" uid="uid://cu30dahipapwi" path="res://logic/UI/control.tscn" id="6_eyfdm"]
+[ext_resource type="PackedScene" uid="uid://dmdd4q078nrgb" path="res://logic/UI/display_contamination_bar.tscn" id="7_i1h8h"]
+
+[sub_resource type="Environment" id="Environment_owekg"]
+glow_enabled = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_inggj"]
+vertices = PackedVector3Array(4.86374e-05, 14.6883, -30.1558, 4.86374e-05, 14.6883, 0.0942001, 31.5, 14.6883, 0.0942001, 31.5, 14.6883, -30.1558, 1.25005, -6.56174, -28.9058, 1.25005, -6.56174, -1.4058, 28.5, -6.56174, -1.4058, 28.5, -6.56174, -28.9058, 8.75005, 0.43826, -26.6558, 8.50005, 0.43826, -28.9058, 1.25005, 0.43826, -28.9058, 28.5, 0.43826, -28.9058, 11.5, 0.43826, -28.9058, 11.75, 0.43826, -27.4058, 11.25, 0.43826, -26.6558, 17.75, 0.43826, -10.9058, 28, 0.43826, -10.9058, 28.5, 0.43826, -1.4058, 1.25005, 0.43826, -1.4058, 17.5, 0.43826, -1.4058)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(10, 9, 8), PackedInt32Array(13, 12, 11), PackedInt32Array(13, 11, 14), PackedInt32Array(14, 11, 15), PackedInt32Array(15, 11, 16), PackedInt32Array(11, 17, 16), PackedInt32Array(19, 18, 15), PackedInt32Array(15, 18, 8), PackedInt32Array(8, 18, 10), PackedInt32Array(8, 14, 15)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_51aeb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t688q"]
+size = Vector3(1, 0.202484, 1)
+
+[node name="Escenario" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_owekg")
+
+[node name="Jugador" parent="." instance=ExtResource("1_5xau3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.19956, 1.46529, -11.5975)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_inggj")
+
+[node name="Geometría" type="Node" parent="NavigationRegion3D"]
+
+[node name="Piso" type="CSGMesh3D" parent="NavigationRegion3D/Geometría" groups=["Ambiente"]]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, -0.28, 0)
+rotation_edit_mode = 2
+use_collision = true
+collision_layer = 3
+mesh = ExtResource("2_yj3f1")
+script = ExtResource("3_e045v")
+
+[node name="PiscinaD" type="CSGBox3D" parent="NavigationRegion3D/Geometría/Piso" node_paths=PackedStringArray("first_frog_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3, -1.97949, -0.563)
+operation = 2
+size = Vector3(1, 4.95898, 1)
+script = ExtResource("4_s5yiq")
+first_frog_target = NodePath("../../../../RanaManager/NodosDeNavegacionRana/nodo2")
+
+[node name="RanaSpawnerTimer" type="Timer" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
+wait_time = 3.0
+autostart = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
+transform = Transform3D(0.1, 0, 0, 0, 1, 0, 0, 0, 0.1, 0.462963, -4.46495, 0.300684)
+light_color = Color(0, 1, 1, 1)
+omni_range = 4096.0
+omni_attenuation = 0.414
+omni_shadow_mode = 0
+
+[node name="PulpoSpawnerTimer" type="Timer" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
+wait_time = 10.0
+autostart = true
+
+[node name="Caja_Habitación" type="CSGBox3D" parent="NavigationRegion3D/Geometría"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6956, 2.50796, -15.0779)
+use_collision = true
+size = Vector3(32.3911, 23.6394, 31.1558)
+
+[node name="Espacio_Habitación" type="CSGBox3D" parent="NavigationRegion3D/Geometría/Caja_Habitación"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.944031, 0.93545, -0.0896606)
+operation = 2
+size = Vector3(28.4977, 20.6236, 28.7489)
+material = SubResource("StandardMaterial3D_51aeb")
+
+[node name="bucket" parent="NavigationRegion3D" instance=ExtResource("5_ahg2q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0659, 0.0200004, -27.982)
+
+[node name="RanaManager" type="Node" parent="." groups=["RanaManager"]]
+
+[node name="NodosDeNavegacionRana" type="Node" parent="RanaManager"]
+
+[node name="nodo1" type="Area3D" parent="RanaManager/NodosDeNavegacionRana" groups=["NodosNavegacion"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.037, 0, -28.654)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RanaManager/NodosDeNavegacionRana/nodo1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
+shape = SubResource("BoxShape3D_t688q")
+
+[node name="nodo2" type="Area3D" parent="RanaManager/NodosDeNavegacionRana" groups=["NodosNavegacion"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1732, -0.0695873, -6.08532)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RanaManager/NodosDeNavegacionRana/nodo2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
+shape = SubResource("BoxShape3D_t688q")
+
+[node name="nodo3" type="Area3D" parent="RanaManager/NodosDeNavegacionRana" groups=["NodosNavegacion"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9307, -4.76837e-07, -24.5184)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RanaManager/NodosDeNavegacionRana/nodo3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
+shape = SubResource("BoxShape3D_t688q")
+
+[node name="nodo4" type="Area3D" parent="RanaManager/NodosDeNavegacionRana" groups=["NodosNavegacion"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8726, -4.76837e-07, -14.9534)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RanaManager/NodosDeNavegacionRana/nodo4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
+shape = SubResource("BoxShape3D_t688q")
+
+[node name="nodo5" type="Area3D" parent="RanaManager/NodosDeNavegacionRana" groups=["NodosNavegacion"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.50141, -4.76837e-07, -5.93106)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RanaManager/NodosDeNavegacionRana/nodo5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
+shape = SubResource("BoxShape3D_t688q")
+
+[node name="PulpoManager" type="Node" parent="." groups=["PulpoManager"]]
+
+[node name="UI" parent="." instance=ExtResource("6_eyfdm")]
+
+[node name="Display Contamination Bar" parent="." instance=ExtResource("7_i1h8h")]
+transform = Transform3D(-2.12656e-07, 0, 4.865, 0, 4.865, 0, -4.865, 0, -2.12656e-07, 0.654193, 2.65701, -15.4314)
+
+[connection signal="timeout" from="NavigationRegion3D/Geometría/Piso/PiscinaD/RanaSpawnerTimer" to="NavigationRegion3D/Geometría/Piso/PiscinaD" method="_on_rana_spawner_timer_timeout"]
+[connection signal="timeout" from="NavigationRegion3D/Geometría/Piso/PiscinaD/PulpoSpawnerTimer" to="NavigationRegion3D/Geometría/Piso/PiscinaD" method="_on_pulpo_spawner_timer_timeout"]
