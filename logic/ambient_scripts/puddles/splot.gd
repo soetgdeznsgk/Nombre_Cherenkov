@@ -13,12 +13,8 @@ var counter = 0 # DEBUG
 
 func set_navigation_id(id : int) ->  void:
 	navigation_id = id
-
-#func _set_geometric_info(t : Transform3D) -> void:
-	#fatherTransformation = t
 	
 func _ready() -> void:
-	#transform = transform.rotated_local(Vector3.FORWARD, randf() * 4)
 	rotate(Vector3.UP, randf() * 4)
 	position += Vector3(randf() * 0.01, 0, randf() * 0.01)
 	NavegacionPulpo.add_splot_to_registry(self)
@@ -34,24 +30,25 @@ func spawn_hole(v: Vector3, size:Vector3) -> void:
 			$MeshInstance3D.add_child(hole)
 			hole.global_position = v
 			hole.position.z = 0
+			print(v, " a distancia ", global_position.distance_to(v), " de ", global_position)
 			$Timer.start(hueco_cooldown)
-			propagate_holes(v, size)
+			#propagate_holes(v, size)
 		else:
 			pass
 	else:
-		eliminate_references_in_overlapping_splots()
+		#eliminate_references_in_overlapping_splots()
 		queue_free()
 		NavegacionPulpo.rmv_splot_from_registry(self)
 	
-func propagate_holes(v: Vector3, size: Vector3) -> void: # para que aparezca el mismo hueco en todos los charcos
-	for splot in overlapping_splots:
-		splot.spawn_hole(v, size) # probablemente requiera optimización
-
-func eliminate_references_in_overlapping_splots():
-	for splot in overlapping_splots:
-		splot.overlapping_splots.erase(self)
-
-func _on_area_entered(area: Area3D) -> void:
-	if area.is_in_group("Charcos"):
-		overlapping_splots.append(area)
-		
+#func propagate_holes(v: Vector3, size: Vector3) -> void: # para que aparezca el mismo hueco en todos los charcos
+	#for splot in overlapping_splots:
+		#splot.spawn_hole(v, size) # código radioactivo n^n
+#
+#func eliminate_references_in_overlapping_splots():
+	#for splot in overlapping_splots:
+		#splot.overlapping_splots.erase(self)
+#
+#func _on_area_entered(area: Area3D) -> void:
+	#if area.is_in_group("Charcos"):
+		#overlapping_splots.append(area)
+		#

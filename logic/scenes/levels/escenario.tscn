@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://koqv2tici8g"]
+[gd_scene load_steps=13 format=3 uid="uid://koqv2tici8g"]
 
 [ext_resource type="PackedScene" uid="uid://bnl1k0w4e64he" path="res://logic/scenes/jugador.tscn" id="1_5xau3"]
 [ext_resource type="ArrayMesh" uid="uid://ylflb3vcbrgg" path="res://GodotActionRPG-Assets/Models/Environment/naturePack_001.obj" id="2_yj3f1"]
@@ -14,6 +14,9 @@ glow_enabled = true
 [sub_resource type="NavigationMesh" id="NavigationMesh_inggj"]
 vertices = PackedVector3Array(4.86374e-05, 14.6883, -30.1558, 4.86374e-05, 14.6883, 0.0942001, 31.5, 14.6883, 0.0942001, 31.5, 14.6883, -30.1558, 1.25005, -6.56174, -28.9058, 1.25005, -6.56174, -1.4058, 28.5, -6.56174, -1.4058, 28.5, -6.56174, -28.9058, 1.25005, 0.43826, -18.1558, 11.25, 0.43826, -18.1558, 11.25, 0.43826, -18.9058, 12.5, 0.43826, -19.6558, 12.5, 0.43826, -28.9058, 1.25005, 0.43826, -28.9058, 14.25, 0.43826, -18.6558, 13.75, 0.43826, -16.6558, 18, 0.43826, -10.9058, 28, 0.43826, -10.9058, 28.5, 0.43826, -28.9058, 28.5, 0.43826, -1.4058, 17.5, 0.43826, -10.6558, 12, 0.43826, -16.9058, 1.25005, 0.43826, -1.4058, 17.5, 0.43826, -1.4058)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(10, 9, 8), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(13, 10, 8), PackedInt32Array(16, 15, 14), PackedInt32Array(14, 11, 12), PackedInt32Array(16, 14, 17), PackedInt32Array(17, 14, 12), PackedInt32Array(17, 12, 18), PackedInt32Array(18, 19, 17), PackedInt32Array(15, 16, 20), PackedInt32Array(15, 20, 21), PackedInt32Array(21, 20, 23), PackedInt32Array(21, 23, 8), PackedInt32Array(8, 23, 22), PackedInt32Array(8, 9, 21)]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e7ppt"]
+size = Vector3(0.95752, 1, 0.0341797)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_51aeb"]
 
@@ -62,6 +65,18 @@ omni_shadow_mode = 0
 [node name="PulpoSpawnerTimer" type="Timer" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
 wait_time = 10.0
 autostart = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.93587, 0)
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0255911, 0.422906, -0.497712)
+shape = SubResource("BoxShape3D_e7ppt")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.494665, 0.422906, -0.0154195)
+shape = SubResource("BoxShape3D_e7ppt")
 
 [node name="Caja_Habitación" type="CSGBox3D" parent="NavigationRegion3D/Geometría"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6956, 2.50796, -15.0779)

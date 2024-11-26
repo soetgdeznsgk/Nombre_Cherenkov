@@ -29,17 +29,22 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if state_cleaning:
 		if mop_saturation < 1:
-			current_splot_selected.spawn_hole(current_point_of_intersection_with_floor, \
-			mop_head_size) # servirá para adaptar la forma del hueco al área de intersección, no funciona
+			paint_holes_in_splots()
+			
+func paint_holes_in_splots() -> void:
+	for area in get_overlapping_areas():
+		if area.is_in_group("Charcos"):
+			area.spawn_hole(current_point_of_intersection_with_floor, \
+			mop_head_size)# servirá para adaptar la forma del hueco al área de intersección, no funciona
 
-	
+
 func trapeo_call(selected_node : Node) -> void:
 	if selected_node == null:
 		return
 		
 func rotate_to_camera():
 	look_at(GlobalInfo.refPlayer.position)
-	
+
 func trapeo_lerp_to(p : Vector3, _t : float) -> void:
 	#remote_transform_ref.global_position = remote_transform_ref.global_position.lerp(p, t)
 	#print(t, " -- distancia : ", remote_transform_ref.global_position.distance_to(p))

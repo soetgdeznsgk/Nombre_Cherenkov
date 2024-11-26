@@ -3,7 +3,7 @@
 [sub_resource type="PlaneMesh" id="PlaneMesh_nu155"]
 
 [node name="splot hole" type="CSGMesh3D"]
-transform = Transform3D(-0.225, 0, 0, 0, 9.83506e-09, 0.225, 0, -0.225, 9.83506e-09, 0, 0, 0)
+transform = Transform3D(-0.225, 0, 0, 0, 9.83506e-09, 0.225, 0, -0.225, 9.83506e-09, 0.0796103, -0.0506251, 0.00638056)
 ignore_occlusion_culling = true
 operation = 2
 snap = 1e-06

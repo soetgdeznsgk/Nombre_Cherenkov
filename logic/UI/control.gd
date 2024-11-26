@@ -40,9 +40,5 @@ func show_entrapment_inflicted_sign() -> void:
 	
 func alternate_esc_enter() -> void: # PAUSA PARA LA BUILD DE ITCH
 	$"../aviso_esc".visible = not $"../aviso_esc".visible
-	$"../aviso_enter".visible = not 	$"../aviso_enter".visible
+	$"../aviso_inicio".visible = not 	$"../aviso_inicio".visible
 	#print("esc: ", $"../aviso_esc".visible, "enter: ", $"../aviso_enter".visible)
-
-func disappear_main_sign() -> void:
-	$"../aviso_inicio".visible = false
-	$"../aviso_esc".visible = true

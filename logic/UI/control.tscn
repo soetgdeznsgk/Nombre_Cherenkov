@@ -108,10 +108,3 @@ offset_right = 470.0
 offset_bottom = 150.0
 text = "click para entrar al juego"
 label_settings = SubResource("LabelSettings_uhvfi")
-
-[node name="aviso_enter" type="Label" parent="."]
-visible = false
-offset_right = 470.0
-offset_bottom = 150.0
-text = "ENTER para entrar al juego"
-label_settings = SubResource("LabelSettings_uhvfi")
