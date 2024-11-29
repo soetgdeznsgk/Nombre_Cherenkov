@@ -30,7 +30,6 @@ func spawn_hole(v: Vector3, size:Vector3) -> void:
 			$MeshInstance3D.add_child(hole)
 			hole.global_position = v
 			hole.position.z = 0
-			print(v, " a distancia ", global_position.distance_to(v), " de ", global_position)
 			$Timer.start(hueco_cooldown)
 			#propagate_holes(v, size)
 		else:

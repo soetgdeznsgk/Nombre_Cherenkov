@@ -8,7 +8,7 @@ var currSelection : Node
 
 var locked : bool = false
 var focus_point : Vector3
-var cache : String #DEBUG
+var last_collision : Node
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -32,6 +32,15 @@ func _physics_process(_delta):
 	else:
 		look_at(focus_point)
 	
+	if $RayCast3D.is_colliding():
+		last_collision = $RayCast3D.get_collider()
+		if last_collision != null and last_collision.has_method("enter_player_focus"):
+			last_collision.enter_player_focus()
+	elif last_collision != null and last_collision.has_method("exit_player_focus"):
+		last_collision.exit_player_focus()
+		last_collision = null
+		
+		
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and $RayCast3D.is_colliding(): 
 		currSelection = $RayCast3D.get_collider()
 		mop_reference.trapeo_lerp_to($RayCast3D.get_collision_point(), 0)

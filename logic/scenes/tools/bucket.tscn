@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://di6fatgsdf124"]
+[gd_scene load_steps=5 format=3 uid="uid://di6fatgsdf124"]
 
 [ext_resource type="Script" path="res://logic/scenes/tools/bucket.gd" id="1_owtkk"]
 [ext_resource type="PackedScene" uid="uid://kxpq3vtmb66r" path="res://GodotActionRPG-Assets/Models/yellow_cleaning_bucket.glb" id="1_v2bs8"]
+[ext_resource type="Script" path="res://logic/ambient_scripts/postprocessing_items/outline_on_selection.gd" id="3_c0ipn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_32tyu"]
 size = Vector3(1.79858, 1.6876, 1)
@@ -13,6 +14,9 @@ script = ExtResource("1_owtkk")
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("1_v2bs8")]
 transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, 0, 0, 0)
+
+[node name="Object_2" parent="Sketchfab_Scene/Sketchfab_model/SM_kzhang3_bucket_obj_cleaner_materialmerger_gles" index="0"]
+script = ExtResource("3_c0ipn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0540771, 0.78917, 0)
@@ -37,3 +41,5 @@ use_as_steering = true
 transform = Transform3D(-1.28949e-08, 0, 0.295, 0, 0.295, 0, -0.295, 0, -1.28949e-08, 0.546718, 0.130073, -0.377461)
 use_as_traction = true
 use_as_steering = true
+
+[editable path="Sketchfab_Scene"]
