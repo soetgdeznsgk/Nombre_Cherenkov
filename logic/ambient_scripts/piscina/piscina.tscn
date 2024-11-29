@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7rqah6tpyog6"]
+
+[ext_resource type="Script" path="res://logic/ambient_scripts/piscina/pool_script.gd" id="1_lev4o"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e7ppt"]
+size = Vector3(0.95752, 1, 0.0341797)
+
+[node name="PiscinaD" type="CSGBox3D" node_paths=PackedStringArray("first_frog_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3, -1.97949, -0.563)
+operation = 2
+size = Vector3(1, 4.95898, 1)
+script = ExtResource("1_lev4o")
+first_frog_target = NodePath("")
+
+[node name="RanaSpawnerTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 1, 0, 0, 0, 0.1, 0.462963, -4.46495, 0.300684)
+light_color = Color(0, 1, 1, 1)
+omni_range = 4096.0
+omni_attenuation = 0.414
+omni_shadow_mode = 0
+
+[node name="PulpoSpawnerTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.93587, 0)
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0255911, 0.422906, -0.497712)
+shape = SubResource("BoxShape3D_e7ppt")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.494665, 0.422906, -0.0154195)
+shape = SubResource("BoxShape3D_e7ppt")
+
+[connection signal="timeout" from="RanaSpawnerTimer" to="." method="_on_rana_spawner_timer_timeout"]
+[connection signal="timeout" from="PulpoSpawnerTimer" to="." method="_on_pulpo_spawner_timer_timeout"]
