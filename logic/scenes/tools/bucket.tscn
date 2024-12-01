@@ -42,4 +42,7 @@ transform = Transform3D(-1.28949e-08, 0, 0.295, 0, 0.295, 0, -0.295, 0, -1.28949
 use_as_traction = true
 use_as_steering = true
 
+[node name="PosicionTrapero" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.541977, 2.72314, 0)
+
 [editable path="Sketchfab_Scene"]

@@ -4,10 +4,12 @@ class_name GlobalDB
 # parametros ambiente
 const splot_limit := 100
 var splot_count := 0
+
 # info jugador
 static var playerPosition : Vector3
 var timerPosPJ : Timer
 @onready var refPlayer : CharacterBody3D = get_tree().get_nodes_in_group("Jugador").front()
+@onready var refTrapero : Mop = get_tree().get_nodes_in_group("Trapero").front()
 
 # info UI
 @onready var refUI : UI = get_tree().get_first_node_in_group("UI")

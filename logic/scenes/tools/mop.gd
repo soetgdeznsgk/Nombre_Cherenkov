@@ -11,7 +11,8 @@ static var mop_saturation : float = 0.0:
 @export var mop_saturation_pace := 0.01
 
 @export var remote_transform_ref : RemoteTransform3D
-@export var camera_ref : Camera3D
+@export var camera_ref : InteraccionesJugador
+@onready var balde_ref : Balde = get_tree().get_first_node_in_group("Baldes")
 
 var origin_point_in_HUD : Vector3
 var current_point_of_intersection_with_floor : Vector3
@@ -19,12 +20,15 @@ var current_point_of_intersection_with_floor : Vector3
 @onready var mop_height : float =  $"compound mesh/Sketchfab_model/root/GLTF_SceneRootNode/PSXBroom_0/Object_4".get_aabb().size.y
 @onready var mop_head_size : Vector3 = $"compound mesh/Sketchfab_model/root/GLTF_SceneRootNode/PSXBroom_0/Object_6".get_aabb().size
 
+var state_stowed : bool = true # xq aparezce guardado
 var state_cleaning : bool
 var current_splot_selected : Splot
+
 
 func _ready() -> void:
 	GlobalInfo.jugador_trapea.connect(func(_o): mop_saturation += mop_saturation_pace)
 	origin_point_in_HUD = remote_transform_ref.position
+	state_stowed = false # DEBUG hasta que se haga para poderse "recoger" en el inicio
 	
 func _physics_process(_delta: float) -> void:
 	if state_cleaning:
@@ -43,7 +47,8 @@ func trapeo_call(selected_node : Node) -> void:
 		return
 		
 func rotate_to_camera():
-	look_at(GlobalInfo.refPlayer.position)
+	if not state_stowed:
+		look_at(GlobalInfo.refPlayer.position)
 
 func trapeo_lerp_to(p : Vector3, _t : float) -> void:
 	#remote_transform_ref.global_position = remote_transform_ref.global_position.lerp(p, t)
@@ -73,7 +78,33 @@ func _on_area_exited(area: Area3D) -> void:
 		state_cleaning = false
 		current_splot_selected = null
 
-func _on_body_entered(body: Node3D) -> void:
-	if body.is_in_group("Baldes"):
+func _on_body_entered(_body: Node3D) -> void:
+	#if body.is_in_group("Baldes"): DEPRECADO: ahora se reinicia con una llamada desde el balde a exprimir()
+		#mop_saturation = 0
+		#GlobalInfo.reset_in_mop_saturation()
+	pass
+	
+func exprimir() -> void:
 		mop_saturation = 0
 		GlobalInfo.reset_in_mop_saturation()
+
+func reparent_action(nodo : Node):
+	reparent(nodo, false)
+	camera_ref.alterMopException(self)
+	match nodo.get_groups().front():
+		"Jugador":
+			remote_transform_ref.remote_path = get_path()
+			state_stowed = false
+			balde_ref.retrieve_mop()
+		"Baldes":
+			remote_transform_ref.remote_path = ""
+			state_stowed = true
+		
+func enter_player_focus() -> void:
+	if state_stowed:
+		# mostrar highlight
+		pass	
+
+func player_interaction() -> void: # metodo "interfaz"
+	if state_stowed:
+		reparent_action(get_tree().get_first_node_in_group("Jugador"))
