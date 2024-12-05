@@ -13,6 +13,7 @@ static var mop_saturation : float = 0.0:
 @export var remote_transform_ref : RemoteTransform3D
 @export var camera_ref : InteraccionesJugador
 @onready var balde_ref : Balde = get_tree().get_first_node_in_group("Baldes")
+@onready var mesh_parent_ref : Node3D = $"compound mesh/Sketchfab_model/root/GLTF_SceneRootNode/PSXBroom_0"
 
 var origin_point_in_HUD : Vector3
 var current_point_of_intersection_with_floor : Vector3
@@ -102,8 +103,11 @@ func reparent_action(nodo : Node):
 		
 func enter_player_focus() -> void:
 	if state_stowed:
-		# mostrar highlight
+		mesh_parent_ref.activate_outline()
 		pass	
+
+func exit_player_focus() -> void:
+	mesh_parent_ref.deactivate_outline()
 
 func player_interaction() -> void: # metodo "interfaz"
 	if state_stowed:
