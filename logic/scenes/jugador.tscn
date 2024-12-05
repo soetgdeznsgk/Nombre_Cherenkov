@@ -94,7 +94,7 @@ collision_mask = 5
 script = SubResource("GDScript_cx7sy")
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("mop_reference")]
-transform = Transform3D(0.768596, 0, -0.639734, 0, 1, 0, 0.639734, 0, 0.768596, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_jh4ox")
 mop_reference = NodePath("../mop")
 
@@ -119,6 +119,6 @@ visible = false
 mesh = SubResource("CapsuleMesh_xqvju")
 
 [node name="mop" parent="." node_paths=PackedStringArray("remote_transform_ref", "camera_ref") instance=ExtResource("3_atr1m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.76711, 0.593094, -0.491004)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.275486, 0.593094, -0.86813)
 remote_transform_ref = NodePath("../Camera3D/RemoteTransform3D_mop")
 camera_ref = NodePath("../Camera3D")

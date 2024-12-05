@@ -8,7 +8,16 @@ var currSelection : Node
 var ignoringMop := false 
 
 var locked : bool = false
+var time_locked : float = 0: #para el lerp de la camara cunado se atrapa
+	set(v):
+		if v >= 1:
+			time_locked = 1
+		else:
+			time_locked = v
+
+var pre_grab_camera_direction : Vector3
 var focus_point : Vector3
+
 var last_collision : Node
 
 func _ready():
@@ -27,12 +36,13 @@ func _input(event):
 		v.x = clamp(v.x,-80,90)
 		
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	if not locked:
 		rotation_degrees.x = v.x
 		rotation_degrees.y = v.y
 	else:
-		look_at(focus_point)
+		time_locked += delta
+		look_at((pre_grab_camera_direction + global_position).lerp(focus_point, time_locked)) # TODO arreglar
 	
 	#region Codigo para los outlines para los interactuables
 	if $RayCast3D.is_colliding():	
@@ -70,6 +80,7 @@ func alterMopException(n : Mop) -> void:
 		ignoringMop = true
 
 func lock_camera(p : Vector3) -> void:
+	pre_grab_camera_direction = global_basis.z
 	focus_point = p
 	#look_at(focus_point)
 	locked = true
