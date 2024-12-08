@@ -33,8 +33,9 @@ func lerp_towards_player(time) -> void:
 	rotate(Vector3.UP, lerpf(0, steering, time))
 
 func enter_player_focus() -> void:
-	mesh_reference.activate_outline()
-	player_on_range = true
+	if not mop_stored:
+		mesh_reference.activate_outline()
+		player_on_range = true
 
 func exit_player_focus() -> void:
 	mesh_reference.deactivate_outline()
@@ -53,6 +54,7 @@ func place_mop_on_bucket() -> void:
 	$mop.transform = Transform3D.IDENTITY
 	$mop.position = $PosicionTrapero.position
 	$mop.rotate(Vector3.UP, PI/2)
+	exit_player_focus()
 
 func retrieve_mop() -> void:
 	mop_stored = false

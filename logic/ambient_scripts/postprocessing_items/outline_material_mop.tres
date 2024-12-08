@@ -5,5 +5,7 @@ blend_mode = 4
 cull_mode = 1
 shading_mode = 0
 albedo_color = Color(0, 1, 1, 1)
+billboard_mode = 2
+billboard_keep_scale = true
 grow = true
 grow_amount = -1.5

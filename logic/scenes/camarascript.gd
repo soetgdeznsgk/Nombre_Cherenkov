@@ -42,7 +42,8 @@ func _physics_process(delta):
 		rotation_degrees.y = v.y
 	else:
 		time_locked += delta
-		look_at((pre_grab_camera_direction + global_position).lerp(focus_point, time_locked)) # TODO arreglar
+		look_at((global_position - pre_grab_camera_direction).lerp(focus_point, time_locked))
+		mop_reference.rotate_to_camera()
 	
 	#region Codigo para los outlines para los interactuables
 	if $RayCast3D.is_colliding():	
@@ -69,7 +70,7 @@ func updateDetectionExceptions() -> void:
 	$RayCast3D.add_exception($"..")
 	for node in get_tree().get_nodes_in_group("NodosNavegacion"): # TODO averiguar qué otros nodos necesitan ignorarse
 		$RayCast3D.add_exception(node)
-	$RayCast3D.add_exception(get_tree().get_first_node_in_group("Trapero")) # con la secuencia de inicio, esto se tendrá que tratar con alterMopException
+	$RayCast3D.add_exception(get_tree().get_first_node_in_group("Trapero")) # con la secuencia de inicio, esto se trata con alterMopException
 
 func alterMopException(n : Mop) -> void:
 	if ignoringMop:
