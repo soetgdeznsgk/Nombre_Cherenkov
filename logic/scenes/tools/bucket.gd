@@ -77,13 +77,28 @@ func retrieve_mop() -> void:
 #region estabilidad
 
 func check_bucket_orientation() -> void:
-	if not bucket_ko and transform.basis.y.dot(Vector3.UP) < tumbled_over_trigger:
-		bucket_ko = true
-		print("e cayó")
+	if transform.basis.y.dot(Vector3.UP) < tumbled_over_trigger:
+		if not bucket_ko:
+			bucket_ko = true
+			
+	else:
+		if bucket_ko:
+			bucket_ko = false
+	#if not bucket_ko and transform.basis.y.dot(Vector3.UP) < tumbled_over_trigger:
+		#bucket_ko = true
 		
 func reset_bucket_orientation() -> void:
 	bucket_ko = false
-	transform.basis = Basis()
+	transform.basis = Basis() 
+	
+func fall_from_collision_in(collider_pos: Vector3) -> void:
+	if not bucket_ko:
+		var eje = (collider_pos - global_position).cross(Vector3.UP).normalized()
+		rotate(eje, 1) # volver una corutina
+		bucket_ko = true
+		# spawnear un charco
+	
+	
 
 #endregion
 

@@ -135,6 +135,10 @@ func _on_area_entered(area: Area3D) -> void:
 	if area.is_in_group("Trapero"):
 		health -= 1
 
+func _on_body_entered(body: Node3D) -> void:
+	if body.is_in_group("Baldes"):
+		tumble_bucket(body)
+
 func _on_body_exited(_body: Node3D) -> void: # DEBUG
 	#if body.is_in_group("Jugador"):
 		#GlobalInfo.squid_leaves_player()
@@ -146,6 +150,8 @@ func _on_arm_span_body_entered(body: Node3D) -> void:
 		force_stop_state_timers()
 		enter_grabbing_state()
 		GlobalInfo.squid_hugs_player(position)
+	elif body.is_in_group("Baldes"):
+		tumble_bucket(body)
 
 #endregion
 
@@ -161,3 +167,6 @@ func force_stop_state_timers() -> void:
 
 func change_arm_monitoring_state(b : bool) -> void:
 	arm_span.disabled = b
+	
+func tumble_bucket(balde: Balde) -> void:
+	balde.fall_from_collision_in(global_position)

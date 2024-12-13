@@ -17,7 +17,7 @@ vertices = PackedVector3Array(4.86374e-05, 14.6883, -30.1558, 4.86374e-05, 14.68
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(10, 9, 8), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(13, 10, 8), PackedInt32Array(16, 15, 14), PackedInt32Array(14, 11, 12), PackedInt32Array(16, 14, 17), PackedInt32Array(17, 14, 12), PackedInt32Array(17, 12, 18), PackedInt32Array(18, 19, 17), PackedInt32Array(15, 16, 20), PackedInt32Array(15, 20, 21), PackedInt32Array(21, 20, 23), PackedInt32Array(21, 23, 8), PackedInt32Array(8, 23, 22), PackedInt32Array(8, 9, 21)]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e7ppt"]
-size = Vector3(0.95752, 1, 0.0341797)
+size = Vector3(1.0484, 1, 0.0341797)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_lnspf"]
 subdivide_width = 20
@@ -90,7 +90,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.93587, 0)
 collision_layer = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/Barandas"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0255911, 0.422906, -0.497712)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0198493, 0.422906, -0.497712)
 shape = SubResource("BoxShape3D_e7ppt")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/Barandas"]
