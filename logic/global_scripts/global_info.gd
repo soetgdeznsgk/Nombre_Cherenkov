@@ -7,7 +7,10 @@ var splot_count := 0
 
 # info jugador
 static var playerPosition : Vector3
-var timerPosPJ : Timer
+@onready var timerInteractionBuffer: Timer = Timer.new()
+const NO_INTERACTION_TIME := 0.5
+
+# referencias jugador
 @onready var refPlayer : CharacterBody3D = get_tree().get_nodes_in_group("Jugador").front()
 @onready var refTrapero : Mop = get_tree().get_nodes_in_group("Trapero").front()
 
@@ -23,20 +26,12 @@ signal trapero_limpiado
 var cantidad_ranas : int
 var cantidad_pulpos : int
 
-func _init() -> void:
-	#timerPosPJ = Timer.new()
-	#timerPosPJ.wait_time = 1
-	#timerPosPJ.autostart = true
-	#timerPosPJ.connect("timeout", recuperar_posicion_jugador)
-	#add_child(timerPosPJ)
-	pass
+func _ready() -> void:
+	add_child(timerInteractionBuffer)
+	timerInteractionBuffer.one_shot = true
 
 func _process(_delta: float) -> void:
 	playerPosition = refPlayer.position
-	
-#func recuperar_posicion_jugador() -> void:
-	#playerPosition = refPlayer.position
-	#timerPosPJ.start()
 
 func on_aterrizaje_rana(v : Vector3) -> Vector3: #llamado desde rana.gd
 	v = GeometricToolbox.y_offset_vector_to_0(v)
@@ -66,4 +61,7 @@ func squid_hugs_player(squidPosition : Vector3) -> void:
 func squid_leaves_player() -> void:
 	refUI.reset_healty_status()  # actualmente no hay UI entonces no hace nada
 	refPlayer.reset_player_movement_freedom()
+	
+func start_interaction_buffer() -> void:
+	timerInteractionBuffer.start(NO_INTERACTION_TIME)
 	

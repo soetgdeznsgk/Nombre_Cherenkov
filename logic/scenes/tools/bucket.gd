@@ -7,13 +7,16 @@ var player_on_range : bool = false
 
 var mop_reference : Mop
 var mop_stored : bool = false
+var bucket_ko : bool = false
+const tumbled_over_trigger : float = 0.2
 
 # nuevas variables
 var saturation := 0.0
 
 func _physics_process(_delta: float) -> void:
-	steering = get_rotation_needed_towards_player()
+	check_bucket_orientation() # A DIFERIR, no vale la pena hacerlo todos los frames, aunque es solo checar un bit, no debe ser fuente de lag
 	if (Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE)): # DEBUG
+		steering = get_rotation_needed_towards_player()
 		engine_force = 300
 		anim_time += _delta
 		lerp_towards_player(anim_time)
@@ -32,6 +35,7 @@ func change_which_wheels_will_traction() -> void:
 func lerp_towards_player(time) -> void:
 	rotate(Vector3.UP, lerpf(0, steering, time))
 
+#region interacciones con jugador y mundo
 func enter_player_focus() -> void:
 	if not mop_stored:
 		mesh_reference.activate_outline()
@@ -42,12 +46,22 @@ func exit_player_focus() -> void:
 	player_on_range = false
 
 func player_interaction() -> void: #ésta función estará en TODOS los objetos con un efecto especial de interacción
-	if not mop_stored:
-		place_mop_on_bucket()
-		mop_stored = true
-	else:
-		mop_reference.exprimir()
+	if GlobalInfo.timerInteractionBuffer.is_stopped():
+		if bucket_ko:
+			reset_bucket_orientation()
+			
+		else:
+			if mop_stored:
+				# acá ira exprimir() cuando se meta la palanca
+				pass
+			else:
+				place_mop_on_bucket()
+				mop_reference.exprimir() # TEMPORAL
+				mop_stored = true
+				
 
+
+#region in/out trapero
 func place_mop_on_bucket() -> void:
 	mop_reference = GlobalInfo.refTrapero
 	mop_reference.reparent_action(self)
@@ -58,3 +72,19 @@ func place_mop_on_bucket() -> void:
 
 func retrieve_mop() -> void:
 	mop_stored = false
+#endregion
+
+#region estabilidad
+
+func check_bucket_orientation() -> void:
+	if not bucket_ko and transform.basis.y.dot(Vector3.UP) < tumbled_over_trigger:
+		bucket_ko = true
+		print("e cayó")
+		
+func reset_bucket_orientation() -> void:
+	bucket_ko = false
+	transform.basis = Basis()
+
+#endregion
+
+#endregion

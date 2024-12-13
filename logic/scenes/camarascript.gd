@@ -60,6 +60,7 @@ func _physics_process(delta):
 		#print($RayCast3D.get_collider())
 		if last_collision != null and last_collision.has_method("player_interaction"):
 			last_collision.player_interaction()
+			GlobalInfo.start_interaction_buffer()
 		
 	elif not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		mop_reference.trapeo_lerp_back(0)
