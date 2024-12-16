@@ -1,7 +1,7 @@
 extends VehicleBody3D
 class_name Balde
 
-@onready var mesh_reference := $Sketchfab_Scene/Sketchfab_model/SM_kzhang3_bucket_obj_cleaner_materialmerger_gles/Object_2
+@onready var mesh_reference := $badleAnimation/Esqueleto_002/Skeleton3D/Balde
 var anim_time : float
 var player_on_range : bool = false
 
@@ -72,6 +72,7 @@ func place_mop_on_bucket() -> void:
 
 func retrieve_mop() -> void:
 	mop_stored = false
+	mop_reference.exit_player_focus()
 #endregion
 
 #region estabilidad

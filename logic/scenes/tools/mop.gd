@@ -13,14 +13,13 @@ static var mop_saturation : float = 0.0:
 @export var remote_transform_ref : RemoteTransform3D
 @export var camera_ref : InteraccionesJugador
 @onready var balde_ref : Balde = get_tree().get_first_node_in_group("Baldes")
-@onready var mesh_parent_ref : Node3D = $"compound mesh/Sketchfab_model/root/GLTF_SceneRootNode/PSXBroom_0"
+@onready var mesh_ref : MeshInstance3D = $"mopAniText/Esqueleto_001/Skeleton3D/Círculo_002"
 
 var origin_point_in_HUD : Vector3
 var current_point_of_intersection_with_floor : Vector3
 
-@onready var mop_height : float =  $"compound mesh/Sketchfab_model/root/GLTF_SceneRootNode/PSXBroom_0/Object_4".get_aabb().size.y
-@onready var mop_head_size : Vector3 = $"compound mesh/Sketchfab_model/root/GLTF_SceneRootNode/PSXBroom_0/Object_6".get_aabb().size
-
+@onready var mop_height : float =  $"mopAniText/Esqueleto_001/Skeleton3D/Círculo_002".get_aabb().size.y
+@onready var mop_head_size : Vector3 = Vector3.ZERO#$"compound mesh/Sketchfab_model/root/GLTF_SceneRootNode/PSXBroom_0/Object_6".get_aabb().size
 var state_stowed : bool = true # xq aparezce guardado
 var state_cleaning : bool
 var current_splot_selected : Splot
@@ -30,6 +29,7 @@ func _ready() -> void:
 	GlobalInfo.jugador_trapea.connect(func(_o): mop_saturation += mop_saturation_pace)
 	origin_point_in_HUD = remote_transform_ref.position
 	state_stowed = false # DEBUG hasta que se haga para poderse "recoger" en el inicio
+	
 	
 func _physics_process(_delta: float) -> void:
 	if state_cleaning:
@@ -60,7 +60,9 @@ func trapeo_lerp_to(p : Vector3, _t : float) -> void:
 		#print("rutina terminada")
 	#print(remote_transform_ref.global_position.distance_to(p))
 	current_point_of_intersection_with_floor = p
-	remote_transform_ref.global_position = p + Vector3(0, mop_height / 3, 0) # arreglar
+	var deb := mop_height /5
+	remote_transform_ref.global_position = p + Vector3(0, deb / 5, 0) # arreglar
+	print(deb)
 	
 func trapeo_lerp_back(_t : float) -> void:
 	#TODO animar estavaina
@@ -100,14 +102,15 @@ func reparent_action(nodo : Node):
 		"Baldes":
 			remote_transform_ref.remote_path = ""
 			state_stowed = true
+	
+	print(transform.basis)
 		
 func enter_player_focus() -> void:
 	if state_stowed:
-		mesh_parent_ref.activate_outline()
-		pass	
+		mesh_ref.activate_outline()
 
 func exit_player_focus() -> void:
-	mesh_parent_ref.deactivate_outline()
+	mesh_ref.deactivate_outline()
 
 func player_interaction() -> void: # metodo "interfaz"
 	if state_stowed:
