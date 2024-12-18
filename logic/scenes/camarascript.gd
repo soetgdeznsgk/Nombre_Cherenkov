@@ -18,6 +18,7 @@ var time_locked : float = 0: #para el lerp de la camara cunado se atrapa
 var pre_grab_camera_direction : Vector3
 var focus_point : Vector3
 
+@onready var interaction_raycast : RayCast3D = $RayCast3D
 var last_collision : Node
 
 func _ready():
@@ -45,18 +46,25 @@ func _physics_process(delta):
 		look_at((global_position - pre_grab_camera_direction).lerp(focus_point, time_locked))
 		mop_reference.rotate_to_camera()
 	
-	#region Codigo para los outlines para los interactuables
-	if $RayCast3D.is_colliding():	
-		last_collision = $RayCast3D.get_collider()
+	#region Codigo para los outlines para los interactuables (radioactivo)
+	if interaction_raycast.is_colliding():	
+		
+		if last_collision != interaction_raycast.get_collider():
+			if last_collision != null and last_collision.has_method("exit_player_focus"):
+				last_collision.exit_player_focus()
+			last_collision = interaction_raycast.get_collider()
+		#print(last_collision)
+		
 		if last_collision != null and last_collision.has_method("enter_player_focus"):
 			last_collision.enter_player_focus()
+			
 	elif last_collision != null and last_collision.has_method("exit_player_focus"):
 		last_collision.exit_player_focus()
 		last_collision = null
 	#endregion
 	
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and $RayCast3D.is_colliding(): 
-		mop_reference.trapeo_lerp_to($RayCast3D.get_collision_point(), 0)
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and interaction_raycast.is_colliding(): 
+		mop_reference.trapeo_lerp_to(interaction_raycast.get_collision_point(), 0)
 		#print($RayCast3D.get_collider())
 		if last_collision != null and last_collision.has_method("player_interaction"):
 			last_collision.player_interaction()
@@ -68,17 +76,17 @@ func _physics_process(delta):
 
 func updateDetectionExceptions() -> void:
 	#	wawait get_tree().process_frame
-	$RayCast3D.add_exception($"..")
+	interaction_raycast.add_exception($"..")
 	for node in get_tree().get_nodes_in_group("NodosNavegacion"): # TODO averiguar qué otros nodos necesitan ignorarse
-		$RayCast3D.add_exception(node)
-	$RayCast3D.add_exception(get_tree().get_first_node_in_group("Trapero")) # con la secuencia de inicio, esto se trata con alterMopException
+		interaction_raycast.add_exception(node)
+	interaction_raycast.add_exception(get_tree().get_first_node_in_group("Trapero")) # con la secuencia de inicio, esto se trata con alterMopException
 
 func alterMopException(n : Mop) -> void:
 	if ignoringMop:
-		$RayCast3D.remove_exception(n)
+		interaction_raycast.remove_exception(n)
 		ignoringMop = false
 	else:
-		$RayCast3D.add_exception(n)
+		interaction_raycast.add_exception(n)
 		ignoringMop = true
 
 func lock_camera(p : Vector3) -> void:
@@ -90,3 +98,6 @@ func lock_camera(p : Vector3) -> void:
 	
 func free_camera() -> void:
 	locked = false
+	
+func get_interaction_raycast_ref() -> RayCast3D:
+	return interaction_raycast

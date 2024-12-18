@@ -1,19 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://di6fatgsdf124"]
+[gd_scene load_steps=8 format=3 uid="uid://di6fatgsdf124"]
 
 [ext_resource type="Script" path="res://logic/scenes/tools/bucket.gd" id="1_owtkk"]
+[ext_resource type="Script" path="res://logic/scenes/tools/bucket_lever.gd" id="2_1sgoo"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/postprocessing_items/outline_on_selection.gd" id="3_c0ipn"]
+[ext_resource type="Material" uid="uid://cb1yquyn7im4w" path="res://logic/ambient_scripts/postprocessing_items/outline_material_bucket.tres" id="3_ditig"]
 [ext_resource type="PackedScene" uid="uid://6a2jvntjyt6o" path="res://modelos/low_poly_bucket/badleAnimation.glb" id="4_q27ig"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_dewda"]
+size = Vector3(0.248413, 0.778442, 0.253662)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_32tyu"]
-size = Vector3(1.79858, 1.6876, 1)
+size = Vector3(1.7281, 0.916277, 0.885254)
 
 [node name="bucket" type="VehicleBody3D" groups=["Baldes"]]
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, 0.5, 0)
 script = ExtResource("1_owtkk")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0540771, 0.78917, 0)
+[node name="Area3D Palanca" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.77934, 1.49125, 0.214844)
+monitoring = false
+monitorable = false
+script = ExtResource("2_1sgoo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D Palanca"]
+shape = SubResource("BoxShape3D_dewda")
+disabled = true
+
+[node name="TimerUnavailable" type="Timer" parent="Area3D Palanca"]
+
+[node name="CollisionShape3D Balde" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0572433, 0.496643, -0.0378418)
 shape = SubResource("BoxShape3D_32tyu")
 
 [node name="FrontR" type="VehicleWheel3D" parent="."]
@@ -37,7 +54,7 @@ use_as_traction = true
 use_as_steering = true
 
 [node name="PosicionTrapero" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.720999, 2.01162, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.565208, 1.43803, 0)
 
 [node name="badleAnimation" parent="." instance=ExtResource("4_q27ig")]
 transform = Transform3D(0.39, 0, 0, 0, 0.39, 0, 0, 0, 0.39, 0, 0, 0)
@@ -50,5 +67,8 @@ bones/3/rotation = Quaternion(3.77489e-08, 1.90663e-14, 1.25528e-14, 1)
 
 [node name="Balde" parent="badleAnimation/Esqueleto_002/Skeleton3D" index="0"]
 script = ExtResource("3_c0ipn")
+overlay = ExtResource("3_ditig")
+
+[connection signal="lever_activated" from="Area3D Palanca" to="." method="palanca_activada"]
 
 [editable path="badleAnimation"]

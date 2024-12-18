@@ -10,6 +10,7 @@ var mop_stored : bool = false
 var bucket_ko : bool = false
 const tumbled_over_trigger : float = 0.2
 
+@onready var lever_interaction_node : Area3D = $"Area3D Palanca"
 # nuevas variables
 var saturation := 0.0
 
@@ -56,23 +57,29 @@ func player_interaction() -> void: #ésta función estará en TODOS los objetos 
 				pass
 			else:
 				place_mop_on_bucket()
-				mop_reference.exprimir() # TEMPORAL
-				mop_stored = true
+				#mop_reference.exprimir() # TEMPORAL
 				
+#region palanca
 
+func palanca_activada() -> void:
+	mop_reference.exprimir()
+#endregion
 
 #region in/out trapero
 func place_mop_on_bucket() -> void:
+	mop_stored = true
 	mop_reference = GlobalInfo.refTrapero
 	mop_reference.reparent_action(self)
 	$mop.transform = Transform3D.IDENTITY
 	$mop.position = $PosicionTrapero.position
 	$mop.rotate(Vector3.UP, PI/2)
 	exit_player_focus()
+	lever_interaction_node.activate()
 
 func retrieve_mop() -> void:
 	mop_stored = false
 	mop_reference.exit_player_focus()
+	lever_interaction_node.deactivate()
 #endregion
 
 #region estabilidad

@@ -12,6 +12,7 @@ const NO_INTERACTION_TIME := 0.5
 
 # referencias jugador
 @onready var refPlayer : CharacterBody3D = get_tree().get_nodes_in_group("Jugador").front()
+@onready var refCamara : InteraccionesJugador = refPlayer.get_camera_ref()
 @onready var refTrapero : Mop = get_tree().get_nodes_in_group("Trapero").front()
 
 # info UI

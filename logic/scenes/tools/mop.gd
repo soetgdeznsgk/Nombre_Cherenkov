@@ -62,7 +62,6 @@ func trapeo_lerp_to(p : Vector3, _t : float) -> void:
 	current_point_of_intersection_with_floor = p
 	var deb := mop_height /5
 	remote_transform_ref.global_position = p + Vector3(0, deb / 5, 0) # arreglar
-	print(deb)
 	
 func trapeo_lerp_back(_t : float) -> void:
 	#TODO animar estavaina
@@ -102,8 +101,7 @@ func reparent_action(nodo : Node):
 		"Baldes":
 			remote_transform_ref.remote_path = ""
 			state_stowed = true
-	
-	print(transform.basis)
+
 		
 func enter_player_focus() -> void:
 	if state_stowed:

@@ -10,7 +10,7 @@ emission = Color(0, 1, 1, 1)
 emission_energy_multiplier = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0f5uk"]
-size = Vector3(0.456604, 0.416016, 0.184814)
+size = Vector3(0.456604, 2.21809, 0.184814)
 
 [node name="mop" type="Area3D" groups=["Trapero"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.741355, 0)
@@ -25,7 +25,7 @@ surface_material_override/2 = SubResource("StandardMaterial3D_wmxb2")
 script = ExtResource("2_0paim")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0101624, -0.509766, 0.00671387)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0101624, 0.391269, 0.00671387)
 shape = SubResource("BoxShape3D_0f5uk")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

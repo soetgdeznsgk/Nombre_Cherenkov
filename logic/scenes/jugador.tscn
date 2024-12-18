@@ -23,8 +23,13 @@ var currState : int:
 			$Camera3D.free_camera()
 			currState = v
 
+@onready var camara_ref : InteraccionesJugador = $Camera3D
+
 # trapped state variable
 var center_of_gravity : Vector3
+
+func get_camera_ref() -> Camera3D:
+	return camara_ref
 
 func _ready() -> void:
 	currState = playerStates.Free
@@ -32,7 +37,7 @@ func _ready() -> void:
 	
 
 func _physics_process(_delta: float) -> void:
-	direction = $Camera3D.get_global_transform().basis.z
+	direction = camara_ref.get_global_transform().basis.z
 	match currState:
 		playerStates.Free:
 			free_pp(_delta)
@@ -119,6 +124,6 @@ visible = false
 mesh = SubResource("CapsuleMesh_xqvju")
 
 [node name="mop" parent="." node_paths=PackedStringArray("remote_transform_ref", "camera_ref") instance=ExtResource("3_atr1m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03452, 0.057638, -1.34491)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03452, 0.0576379, -1.34491)
 remote_transform_ref = NodePath("../Camera3D/RemoteTransform3D_mop")
 camera_ref = NodePath("../Camera3D")
