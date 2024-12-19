@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://026e8181v5li"
-path="res://.godot/imported/alfad-1_downgrade.png-9972dfdbd03ddcdd38546ed0bf17a73d.ctex"
+uid="uid://dw6nscfcy2sge"
+path="res://.godot/imported/alfad-1_downgrade.icon.png-d82c439b8fb82bc921090946732eefdb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://exports/itch/alfad-1_downgrade.png"
-dest_files=["res://.godot/imported/alfad-1_downgrade.png-9972dfdbd03ddcdd38546ed0bf17a73d.ctex"]
+source_file="res://exports/itch/alfad-1/alfad-1_downgrade.icon.png"
+dest_files=["res://.godot/imported/alfad-1_downgrade.icon.png-d82c439b8fb82bc921090946732eefdb.ctex"]
 
 [params]
 
