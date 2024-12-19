@@ -63,7 +63,7 @@ transform = Transform3D(0.39, 0, 0, 0, 0.39, 0, 0, 0, 0.39, 0, 0, 0)
 bones/0/rotation = Quaternion(-2.66925e-08, 2.66925e-08, 0.707107, 0.707107)
 bones/1/position = Vector3(1.44473, 0.0236297, 0.0115105)
 bones/2/rotation = Quaternion(8.42937e-08, 8.42937e-08, -0.707107, 0.707107)
-bones/3/rotation = Quaternion(3.77489e-08, 1.90663e-14, 1.25528e-14, 1)
+bones/3/rotation = Quaternion(0.000474975, 0.000474975, 0.000474975, 1.00048)
 
 [node name="Balde" parent="badleAnimation/Esqueleto_002/Skeleton3D" index="0"]
 script = ExtResource("3_c0ipn")

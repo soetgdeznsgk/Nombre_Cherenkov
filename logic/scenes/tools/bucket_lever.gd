@@ -4,17 +4,23 @@ var highlight : bool = false
 var enabled : bool = false
 var winding : bool = false
 @export var z_rotation_target : float = 75
+var origin_local : Vector3
 var delta_time : float
 var time_total : float = 0
 
+@onready var skeleton_ref : Skeleton3D = $"../badleAnimation/Esqueleto_002/Skeleton3D"
+@onready var lever_bone_idx : int = skeleton_ref.find_bone("Bone.003")
 @onready var mesh_ref : MeshInstance3D = $"../badleAnimation/Esqueleto_002/Skeleton3D/Balde"
 @onready var material : Material = preload("res://logic/ambient_scripts/postprocessing_items/blue_override_bucket_lever.tres")
+
 
 @onready var timer_ref : Timer = $TimerUnavailable
 var wind_up_time : float = 1
 
 signal lever_activated
 	
+func _ready():
+	origin_local = position
 
 func _physics_process(delta: float) -> void:
 	delta_time =  delta
@@ -46,7 +52,11 @@ func reset_rotation():
 	winding = true
 
 func action_lerp():
-	rotation_degrees.z = lerp(rotation_degrees.z, z_rotation_target, time_total)
+	var n_z : float = lerp(rotation_degrees.z, z_rotation_target, time_total)
+	
+	rotation_degrees.z = n_z
+	position += Vector3.LEFT * delta_time * (1 - time_total) # TODO arreglar para que no se aleje tanto
+	skeleton_ref.set_bone_pose_rotation(lever_bone_idx, Quaternion(Vector3.FORWARD, -n_z * PI/180 * 0.5))
 	if time_total > 0.8: 
 		lever_activated.emit()
 		time_total = 0
@@ -54,7 +64,11 @@ func action_lerp():
 	# rotar el mesh
 	
 func reset_lerp(delta : float):
-	rotation_degrees.z = lerp(rotation_degrees.z, 0.0, delta)
+	var n_z : float = lerp(rotation_degrees.z, 0.0, delta)
+	
+	rotation_degrees.z = n_z
+	position = origin_local
+	skeleton_ref.set_bone_pose_rotation(lever_bone_idx, Quaternion(Vector3.FORWARD, -n_z * PI/180 * 0.5))
 	time_total += delta_time
 	# devolver la rotación del mesh
 	if time_total > 1:
