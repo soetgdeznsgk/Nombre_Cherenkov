@@ -13,6 +13,13 @@ var is_jumping := false
 var time : float
 #signal finished_jump
 
+# VFX related variables
+@onready var anim_ref : AnimationPlayer = $forgAnimation/AnimationPlayer
+var AnimationRegister = {
+	"Idle" : "MovUp",
+	"Jumping" : "Esconder acción]_001"
+}
+
 var initial_target : Node3D
 
 func with_target(N : Node3D) -> Area3D: # CONSTRUCTOR
@@ -20,6 +27,8 @@ func with_target(N : Node3D) -> Area3D: # CONSTRUCTOR
 	return self
 
 func _ready() -> void:
+	#print(AnimationRegister.get("Idle"))
+	anim_ref.play(AnimationRegister.get("Idle"))
 	change_target()
 	#print("Rana : initial target position: ", navRef.target_position)
 	
@@ -46,6 +55,7 @@ func _on_area_entered(area) -> void:
 func _on_body_entered(body: Node3D) -> void: # xq el escenario es un staticbody
 	if body.is_in_group("Ambiente"):
 		reset_jump()
+		anim_ref.play(AnimationRegister.get("Idle"))
 		GlobalInfo.on_aterrizaje_rana(position)
 	
 		
@@ -55,6 +65,9 @@ func change_target() -> void:
 		navRef.target_position = initial_target.position
 	else:
 		navRef.target_position = get_tree().get_nodes_in_group("NodosNavegacion").pick_random().position
+	
+	look_at(navRef.target_position) # TODO arreglar problema de que 
+	# "NODE ORIGIN AND TARGET ARE IN THE SAME POSITION, LOOK_AT() FAILED
 	#print("Rana: cambio de objetivo")
 
 func reset_jump():
@@ -64,6 +77,7 @@ func reset_jump():
 
 func restart_jump() -> void: # timer llama ésto cuando se agota
 	#print("Rana: reinicia salto")
+	anim_ref.play(AnimationRegister.get("Jumping"))
 	is_jumping = true
 	starting_position = position
 	jump_peak = jump_direction + ((position + navRef.get_next_path_position()) / 2)

@@ -10,7 +10,7 @@
 size = Vector3(0.248413, 0.778442, 0.253662)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_32tyu"]
-size = Vector3(1.7281, 0.916277, 0.885254)
+size = Vector3(1.7281, 0.996403, 0.885254)
 
 [node name="bucket" type="VehicleBody3D" groups=["Baldes"]]
 center_of_mass_mode = 1
@@ -30,7 +30,7 @@ disabled = true
 [node name="TimerUnavailable" type="Timer" parent="Area3D Palanca"]
 
 [node name="CollisionShape3D Balde" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0572433, 0.496643, -0.0378418)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0572433, 0.45658, -0.0378418)
 shape = SubResource("BoxShape3D_32tyu")
 
 [node name="FrontR" type="VehicleWheel3D" parent="."]

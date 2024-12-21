@@ -15,25 +15,29 @@ const tumbled_over_trigger : float = 0.2
 var saturation := 0.0
 
 func _physics_process(_delta: float) -> void:
+	engine_force = 0
 	check_bucket_orientation() # A DIFERIR, no vale la pena hacerlo todos los frames, aunque es solo checar un bit, no debe ser fuente de lag
-	if (Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE)): # DEBUG
-		steering = get_rotation_needed_towards_player()
-		engine_force = 300
-		anim_time += _delta
-		lerp_towards_player(anim_time)
+	
+	if global_position.distance_squared_to(GlobalInfo.playerPosition) < 16:
+		player_on_range = true
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE): 
+			steering = get_rotation_needed_towards_player()
+			engine_force = 200
+			anim_time += _delta
+			lerp_towards_player(anim_time)
 	else:
-		engine_force = 0
+		player_on_range = false
 		anim_time = 0
+		
+	
+		
 		
 func get_rotation_needed_towards_player() -> float:
 	var angle = transform.basis.x.signed_angle_to(GlobalInfo.playerPosition - position, Vector3.UP) # Frente del carrito
 	#print(angle)
 	return angle
 	
-func change_which_wheels_will_traction() -> void:
-	pass #TODO averiguar como darle más estabilidad al carro para que no se caiga
-	
-func lerp_towards_player(time) -> void:
+func lerp_towards_player(time) -> void: # TODO arreglar para que no se vea epileptico
 	rotate(Vector3.UP, lerpf(0, steering, time))
 
 #region interacciones con jugador y mundo
@@ -87,6 +91,8 @@ func retrieve_mop() -> void:
 func check_bucket_orientation() -> void:
 	if transform.basis.y.dot(Vector3.UP) < tumbled_over_trigger:
 		if not bucket_ko:
+			#spawnear un charco justo donde cae 
+			GlobalInfo.on_aterrizaje_rana(global_position + basis.y)
 			bucket_ko = true
 			
 	else:
