@@ -14,6 +14,12 @@ static var mop_saturation : float = 0.0:
 @export var camera_ref : InteraccionesJugador
 @onready var balde_ref : Balde = get_tree().get_first_node_in_group("Baldes")
 @onready var mesh_ref : MeshInstance3D = $"mopAniText/Esqueleto_001/Skeleton3D/Círculo_002"
+@onready var esqueleto_ref : Skeleton3D = $mopAniText/Esqueleto_001/Skeleton3D
+
+# huesos
+@onready var base_bone_idx : int = esqueleto_ref.find_bone("Bone.002") # base se rota hacia adelante y atrás
+@onready var intermediate_bone_idx : int = esqueleto_ref.find_bone("Bone.003") # medio se rota hacia los lados
+@onready var tip_bone_idx : int = esqueleto_ref.find_bone("Bone.005")
 
 var origin_point_in_HUD : Vector3
 var current_point_of_intersection_with_floor : Vector3
@@ -32,6 +38,9 @@ func _ready() -> void:
 	
 	
 func _physics_process(_delta: float) -> void:
+	# llamada al lerp normalizador de la rotación horizontal del mesh
+	normalize_mesh_perturbation()
+	
 	if state_cleaning:
 		if mop_saturation < 1:
 			paint_holes_in_splots()
@@ -47,9 +56,22 @@ func trapeo_call(selected_node : Node) -> void:
 	if selected_node == null:
 		return
 		
-func rotate_to_camera():
+func rotate_to_camera(mouse_movement_delta : Vector3):
 	if not state_stowed:
-		look_at(GlobalInfo.refPlayer.position)
+		look_at(GlobalInfo.refPlayer.position)	
+		#print(-basis.y, " % ",Vector3.DOWN,  " ---> ", (-basis.y).angle_to(Vector3.DOWN))
+		
+		esqueleto_ref.set_bone_pose_rotation(base_bone_idx, Quaternion(Vector3.RIGHT, 
+						(-basis.y).angle_to(Vector3.DOWN))) # TODO xq no funciona signed_angle_to??
+		
+		#esqueleto_ref.set_bone_pose_rotation(intermediate_bone_idx, Quaternion(Vector3.FORWARD, 
+						#mouse_movement_delta.x / 10)) # TODO averiguar como putas funciona esto
+		
+func normalize_mesh_perturbation() -> void:
+	#esqueleto_ref.set_bone_pose_rotation(intermediate_bone_idx, Quaternion(Vector3.FORWARD, 
+						#basis.x.signed_angle_to(Vector3.RIGHT,Vector3.FORWARD) - 1))
+	# TODO averiguar como vergas hacer esta rotación
+	pass # TODO reiniciar la rotación de los huesos cuando esté en el balde
 
 func trapeo_lerp_to(p : Vector3, _t : float) -> void:
 	#remote_transform_ref.global_position = remote_transform_ref.global_position.lerp(p, t)
@@ -111,5 +133,5 @@ func exit_player_focus() -> void:
 	mesh_ref.deactivate_outline()
 
 func player_interaction() -> void: # metodo "interfaz"
-	if state_stowed:
+	if state_stowed and GlobalInfo.timerInteractionBuffer.is_stopped():
 		reparent_action(get_tree().get_first_node_in_group("Jugador"))

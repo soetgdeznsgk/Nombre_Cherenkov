@@ -8,7 +8,7 @@ var splot_count := 0
 # info jugador
 static var playerPosition : Vector3
 @onready var timerInteractionBuffer: Timer = Timer.new()
-const NO_INTERACTION_TIME := 0.5
+const NO_INTERACTION_TIME := 0.3
 
 # referencias jugador
 @onready var refPlayer : CharacterBody3D = get_tree().get_nodes_in_group("Jugador").front()

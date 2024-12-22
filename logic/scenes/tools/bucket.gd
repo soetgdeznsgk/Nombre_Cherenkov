@@ -16,13 +16,14 @@ var saturation := 0.0
 
 func _physics_process(_delta: float) -> void:
 	engine_force = 0
+	steering = get_rotation_needed_towards_player()
 	check_bucket_orientation() # A DIFERIR, no vale la pena hacerlo todos los frames, aunque es solo checar un bit, no debe ser fuente de lag
 	
-	if global_position.distance_squared_to(GlobalInfo.playerPosition) < 16:
+	if global_position.distance_squared_to(GlobalInfo.playerPosition) < 40:
 		player_on_range = true
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE): 
-			steering = get_rotation_needed_towards_player()
-			engine_force = 200
+			
+			engine_force = 300
 			anim_time += _delta
 			lerp_towards_player(anim_time)
 	else:
@@ -74,9 +75,9 @@ func place_mop_on_bucket() -> void:
 	mop_stored = true
 	mop_reference = GlobalInfo.refTrapero
 	mop_reference.reparent_action(self)
-	$mop.transform = Transform3D.IDENTITY
-	$mop.position = $PosicionTrapero.position
-	$mop.rotate(Vector3.UP, PI/2)
+	mop_reference.transform = Transform3D.IDENTITY
+	mop_reference.position = $PosicionTrapero.position
+	mop_reference.rotate(Vector3.UP, PI/2)
 	exit_player_focus()
 	lever_interaction_node.activate()
 
@@ -91,6 +92,7 @@ func retrieve_mop() -> void:
 func check_bucket_orientation() -> void:
 	if transform.basis.y.dot(Vector3.UP) < tumbled_over_trigger:
 		if not bucket_ko:
+			print("caido")
 			#spawnear un charco justo donde cae 
 			GlobalInfo.on_aterrizaje_rana(global_position + basis.y)
 			bucket_ko = true
