@@ -38,9 +38,6 @@ func _ready() -> void:
 	
 	
 func _physics_process(_delta: float) -> void:
-	# llamada al lerp normalizador de la rotación horizontal del mesh
-	normalize_mesh_perturbation()
-	
 	if state_cleaning:
 		if mop_saturation < 1:
 			paint_holes_in_splots()
@@ -56,21 +53,25 @@ func trapeo_call(selected_node : Node) -> void:
 	if selected_node == null:
 		return
 		
-func rotate_to_camera(mouse_movement_delta : Vector3):
+func rotate_to_camera(mouse_movement_delta : Vector2):
 	if not state_stowed:
 		look_at(GlobalInfo.refPlayer.position)	
 		#print(-basis.y, " % ",Vector3.DOWN,  " ---> ", (-basis.y).angle_to(Vector3.DOWN))
-		
+		#region Rotación del esqueleto
 		esqueleto_ref.set_bone_pose_rotation(base_bone_idx, Quaternion(Vector3.RIGHT, 
 						(-basis.y).angle_to(Vector3.DOWN))) # TODO xq no funciona signed_angle_to??
 		
-		#esqueleto_ref.set_bone_pose_rotation(intermediate_bone_idx, Quaternion(Vector3.FORWARD, 
-						#mouse_movement_delta.x / 10)) # TODO averiguar como putas funciona esto
+		esqueleto_ref.set_bone_pose_rotation(intermediate_bone_idx, Quaternion(Vector3.FORWARD, 
+						mouse_movement_delta.x / 100)) # TODO averiguar como hacerlo "mas fluido"
+						
+		esqueleto_ref.set_bone_pose_rotation(tip_bone_idx, Quaternion(Vector3.FORWARD,
+						mouse_movement_delta.x / 130))
+		#endregion
 		
 func normalize_mesh_perturbation() -> void:
-	#esqueleto_ref.set_bone_pose_rotation(intermediate_bone_idx, Quaternion(Vector3.FORWARD, 
-						#basis.x.signed_angle_to(Vector3.RIGHT,Vector3.FORWARD) - 1))
-	# TODO averiguar como vergas hacer esta rotación
+	#esqueleto_ref.set_bone_pose_rotation(base_bone_idx, Quaternion(basis.x, 
+						#(-basis.y).signed_angle_to(Vector3.DOWN, basis.x)))
+	#esqueleto_ref.set_bone_rest(base_bone_idx, Basis.IDENTITY)
 	pass # TODO reiniciar la rotación de los huesos cuando esté en el balde
 
 func trapeo_lerp_to(p : Vector3, _t : float) -> void:
@@ -102,12 +103,6 @@ func _on_area_exited(area: Area3D) -> void:
 		state_cleaning = false
 		current_splot_selected = null
 
-func _on_body_entered(_body: Node3D) -> void:
-	#if body.is_in_group("Baldes"): DEPRECADO: ahora se reinicia con una llamada desde el balde a exprimir()
-		#mop_saturation = 0
-		#GlobalInfo.reset_in_mop_saturation()
-	pass
-	
 func exprimir() -> void:
 		mop_saturation = 0
 		GlobalInfo.reset_in_mop_saturation()
@@ -123,6 +118,7 @@ func reparent_action(nodo : Node):
 		"Baldes":
 			remote_transform_ref.remote_path = ""
 			state_stowed = true
+			normalize_mesh_perturbation()
 
 		
 func enter_player_focus() -> void:

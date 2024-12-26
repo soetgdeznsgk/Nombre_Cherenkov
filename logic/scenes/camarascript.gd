@@ -33,7 +33,7 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		v.y -= (event.relative.x * 0.2)
 		v.x -= (event.relative.y * 0.2)
-		mop_reference.rotate_to_camera(v)
+		mop_reference.rotate_to_camera(event.relative)
 		v.x = clamp(v.x,-80,90)
 		
 
@@ -44,7 +44,7 @@ func _physics_process(delta):
 	else:
 		time_locked += delta
 		look_at((global_position - pre_grab_camera_direction).lerp(focus_point, time_locked))
-		mop_reference.rotate_to_camera(Vector3.ZERO)
+		mop_reference.rotate_to_camera(Vector2.ZERO)
 	
 	#region Codigo para los outlines para los interactuables (radioactivo)
 	if interaction_raycast.is_colliding():	
