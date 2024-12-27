@@ -56,11 +56,16 @@ func trapeo_call(selected_node : Node) -> void:
 func rotate_to_camera(mouse_movement_delta : Vector2):
 	if not state_stowed:
 		look_at(GlobalInfo.refPlayer.position)	
-		#print(-basis.y, " % ",Vector3.DOWN,  " ---> ", (-basis.y).angle_to(Vector3.DOWN))
+		#print("baseY: ", global_basis.y, " to ", Vector3.DOWN, " -> ", (-global_basis.y).signed_angle_to(Vector3.DOWN, Vector3.RIGHT))
 		#region Rotación del esqueleto
+		# Rotación producto de la gravedad y la fuerza centrífuga
 		esqueleto_ref.set_bone_pose_rotation(base_bone_idx, Quaternion(Vector3.RIGHT, 
-						(-basis.y).angle_to(Vector3.DOWN))) # TODO xq no funciona signed_angle_to??
+						(-global_basis.y).angle_to(Vector3.DOWN) # TODO xq no funciona signed_angle_to??
+						- abs(mouse_movement_delta.x / 130))) # centrífuga 
+		#esqueleto_ref.set_bone_pose_rotation(base_bone_idx, Quaternion(Vector3.RIGHT,
+						#-abs(mouse_movement_delta.x / 150))) funciona bien
 		
+		# Rotación producto del momento de rotación
 		esqueleto_ref.set_bone_pose_rotation(intermediate_bone_idx, Quaternion(Vector3.FORWARD, 
 						mouse_movement_delta.x / 100)) # TODO averiguar como hacerlo "mas fluido"
 						
