@@ -10,15 +10,14 @@
 size = Vector3(0.248413, 0.778442, 0.253662)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_32tyu"]
-size = Vector3(1.7281, 1.19303, 0.885254)
+size = Vector3(1.7281, 1.04769, 0.885254)
 
 [node name="bucket" type="VehicleBody3D" groups=["Baldes"]]
 center_of_mass_mode = 1
-center_of_mass = Vector3(0, 0.5, 0)
 script = ExtResource("1_owtkk")
 
 [node name="Area3D Palanca" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.77934, 1.49125, 0.214844)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.187816, 1.49125, -0.7542)
 monitoring = false
 monitorable = false
 script = ExtResource("2_1sgoo")
@@ -30,44 +29,70 @@ disabled = true
 [node name="TimerUnavailable" type="Timer" parent="Area3D Palanca"]
 
 [node name="CollisionShape3D Balde" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0572433, 0.594919, -0.0378418)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0572433, 0.66759, -0.0378418)
 shape = SubResource("BoxShape3D_32tyu")
 
-[node name="FrontR" type="VehicleWheel3D" parent="."]
-transform = Transform3D(-1.28949e-08, 0, 0.295, 0, 0.295, 0, -0.295, 0, -1.28949e-08, 0.546718, 0.130073, 0.400322)
+[node name="FrontD" type="VehicleWheel3D" parent="."]
+transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, 0.194, 0, -0.608)
+brake = 100.0
 use_as_traction = true
 use_as_steering = true
-
-[node name="BackR" type="VehicleWheel3D" parent="."]
-transform = Transform3D(-1.28949e-08, 0, 0.295, 0, 0.295, 0, -0.295, 0, -1.28949e-08, -0.503836, 0.130073, 0.400322)
-use_as_traction = true
-use_as_steering = true
-
-[node name="BackL" type="VehicleWheel3D" parent="."]
-transform = Transform3D(-1.28949e-08, 0, 0.295, 0, 0.295, 0, -0.295, 0, -1.28949e-08, -0.503836, 0.130073, -0.378402)
-use_as_traction = true
-use_as_steering = true
+wheel_roll_influence = 1.0
 
 [node name="FrontL" type="VehicleWheel3D" parent="."]
-transform = Transform3D(-1.28949e-08, 0, 0.295, 0, 0.295, 0, -0.295, 0, -1.28949e-08, 0.546718, 0.130073, -0.377461)
+transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, -0.203, 0, -0.608)
+brake = 100.0
 use_as_traction = true
 use_as_steering = true
+wheel_roll_influence = 1.0
+
+[node name="BackL" type="VehicleWheel3D" parent="."]
+transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, -0.224, 0, 0.56)
+brake = 100.0
+use_as_traction = true
+use_as_steering = true
+wheel_roll_influence = 1.0
+
+[node name="BackD" type="VehicleWheel3D" parent="."]
+transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, 0.208, 0, 0.56)
+brake = 5.0
+use_as_traction = true
+use_as_steering = true
+wheel_roll_influence = 1.0
 
 [node name="PosicionTrapero" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.565208, 1.43803, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.011761, 1.43803, -0.585496)
 
 [node name="badleAnimation" parent="." instance=ExtResource("4_q27ig")]
-transform = Transform3D(0.39, 0, 0, 0, 0.39, 0, 0, 0, 0.39, 0, 0, 0)
+transform = Transform3D(-1.70474e-08, 0, 0.39, 0, 0.39, 0, -0.39, 0, -1.70474e-08, 0, 0, 0)
 
 [node name="Skeleton3D" parent="badleAnimation/Esqueleto_002" index="0"]
 bones/0/rotation = Quaternion(-2.66925e-08, 2.66925e-08, 0.707107, 0.707107)
 bones/1/position = Vector3(1.44473, 0.0236297, 0.0115105)
 bones/2/rotation = Quaternion(8.42937e-08, 8.42937e-08, -0.707107, 0.707107)
-bones/3/rotation = Quaternion(0.000474975, 0.000474975, 0.000474975, 1.00048)
+bones/3/rotation = Quaternion(3.77489e-08, 1.90663e-14, 1.25528e-14, 1)
 
 [node name="Balde" parent="badleAnimation/Esqueleto_002/Skeleton3D" index="0"]
 script = ExtResource("3_c0ipn")
 overlay = ExtResource("3_ditig")
+
+[node name="steering" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67345, 0)
+target_position = Vector3(0, 0, 1)
+collide_with_bodies = false
+debug_shape_thickness = 5
+
+[node name="z" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83614, 0)
+target_position = Vector3(0, 0, 1)
+collide_with_bodies = false
+debug_shape_custom_color = Color(0, 33.514, 0, 1)
+debug_shape_thickness = 5
+
+[node name="grab_buffer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
 
 [connection signal="lever_activated" from="Area3D Palanca" to="." method="palanca_activada"]
 

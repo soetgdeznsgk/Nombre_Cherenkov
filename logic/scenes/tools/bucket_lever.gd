@@ -55,7 +55,7 @@ func action_lerp():
 	var n_z : float = lerp(rotation_degrees.z, z_rotation_target, time_total)
 	
 	rotation_degrees.z = n_z
-	position += Vector3.LEFT * delta_time * (1 - time_total) # TODO arreglar para que no se aleje tanto
+	position += Vector3.BACK * delta_time * (1 - time_total) # TODO arreglar para que no se aleje tanto
 	skeleton_ref.set_bone_pose_rotation(lever_bone_idx, Quaternion(Vector3.FORWARD, -n_z * PI/180 * 0.5))
 	if time_total > 0.8: 
 		lever_activated.emit()

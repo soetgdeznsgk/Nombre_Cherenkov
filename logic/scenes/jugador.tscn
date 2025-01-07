@@ -115,6 +115,11 @@ remote_path = NodePath("../../mop")
 update_rotation = false
 update_scale = false
 
+[node name="RemoteTransform3D_bucket" type="RemoteTransform3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.148634, -1.22491, -2.40896)
+update_rotation = false
+update_scale = false
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.999999, -0.00134197, 0.000845586, 0.00134066, 0.999998, 0.00154888, -0.000847652, -0.00154775, 0.999998, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_pnppo")
