@@ -8,7 +8,7 @@ resource_name = "pj"
 script/source = "extends CharacterBody3D
 var direction : Vector3
 var gravity := 10
-
+var realentizacion_balde : bool = false
 enum playerStates {
 	Free,
 	Trapped,
@@ -58,7 +58,7 @@ func free_pp(_delta : float) -> void:
 		moveSpeed += direction.cross($\".\".up_direction)
 	if (Input.is_action_pressed(\"MoveR\")):
 		moveSpeed += $\".\".up_direction.cross(direction)	
-	velocity = moveSpeed.normalized() * 10
+	velocity = moveSpeed.normalized() * (10 - (realentizacion_balde as int * 3))
 	velocity.y -= gravity
 	move_and_slide()
 	

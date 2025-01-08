@@ -22,6 +22,7 @@ var temp_vx
 
 @onready var interaction_raycast : RayCast3D = $RayCast3D
 @onready var bucket_remote_transform : RemoteTransform3D = $RemoteTransform3D_bucket
+var bucket_RT_dereferenced : bool = false
 var last_collision : Node
 
 func _ready():
@@ -49,6 +50,8 @@ func _physics_process(delta):
 		time_locked += delta
 		look_at((global_position - pre_grab_camera_direction).lerp(focus_point, time_locked))
 		mop_reference.rotate_to_camera(Vector2.ZERO)
+		
+		
 
 	
 	#region Codigo para los outlines para los interactuables (radioactivo)

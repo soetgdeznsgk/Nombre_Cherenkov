@@ -10,7 +10,7 @@
 size = Vector3(0.248413, 0.778442, 0.253662)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_32tyu"]
-size = Vector3(1.7281, 1.04769, 0.885254)
+size = Vector3(1.7281, 1.1854, 0.885254)
 
 [node name="bucket" type="VehicleBody3D" groups=["Baldes"]]
 center_of_mass_mode = 1
@@ -29,32 +29,32 @@ disabled = true
 [node name="TimerUnavailable" type="Timer" parent="Area3D Palanca"]
 
 [node name="CollisionShape3D Balde" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0572433, 0.66759, -0.0378418)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0572433, 0.598733, -0.0378418)
 shape = SubResource("BoxShape3D_32tyu")
 
 [node name="FrontD" type="VehicleWheel3D" parent="."]
-transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, 0.194, 0, -0.608)
+transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, 0.194, -0.15874, -0.608)
 brake = 100.0
 use_as_traction = true
 use_as_steering = true
 wheel_roll_influence = 1.0
 
 [node name="FrontL" type="VehicleWheel3D" parent="."]
-transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, -0.203, 0, -0.608)
+transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, -0.203, -0.159, -0.608)
 brake = 100.0
 use_as_traction = true
 use_as_steering = true
 wheel_roll_influence = 1.0
 
 [node name="BackL" type="VehicleWheel3D" parent="."]
-transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, -0.224, 0, 0.56)
+transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, -0.224, -0.159, 0.56)
 brake = 100.0
 use_as_traction = true
 use_as_steering = true
 wheel_roll_influence = 1.0
 
 [node name="BackD" type="VehicleWheel3D" parent="."]
-transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, 0.208, 0, 0.56)
+transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, 0.208, -0.159, 0.56)
 brake = 5.0
 use_as_traction = true
 use_as_steering = true
@@ -80,6 +80,13 @@ overlay = ExtResource("3_ditig")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67345, 0)
 target_position = Vector3(0, 0, 1)
 collide_with_bodies = false
+debug_shape_thickness = 5
+
+[node name="inercia" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51114, 0)
+target_position = Vector3(0, 0, 1)
+collide_with_bodies = false
+debug_shape_custom_color = Color(92.973, 0, 0, 1)
 debug_shape_thickness = 5
 
 [node name="z" type="RayCast3D" parent="."]
