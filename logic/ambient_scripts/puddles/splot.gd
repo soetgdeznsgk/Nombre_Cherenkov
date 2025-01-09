@@ -25,8 +25,8 @@ func spawn_hole(v: Vector3, size:Vector3) -> void:
 			GlobalInfo.change_in_mop_saturation()
 			var hole : CSGMesh3D = holes_ref.instantiate()
 			#hole.position = (fatherTransformation * transform).affine_inverse() * v
-			hole.custom_aabb.size.x = size.x 
-			hole.custom_aabb.size.y = size.z
+			#hole.custom_aabb.size.x = size.x TODO a implementar escalado del hueco con respecto a la forma intersecante 
+			#hole.custom_aabb.size.y = size.z
 			$MeshInstance3D.add_child(hole)
 			hole.global_position = v
 			hole.position.z = 0

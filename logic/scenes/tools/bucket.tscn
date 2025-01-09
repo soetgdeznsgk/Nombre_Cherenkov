@@ -84,6 +84,7 @@ debug_shape_thickness = 5
 
 [node name="inercia" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51114, 0)
+visible = false
 target_position = Vector3(0, 0, 1)
 collide_with_bodies = false
 debug_shape_custom_color = Color(92.973, 0, 0, 1)
@@ -91,13 +92,14 @@ debug_shape_thickness = 5
 
 [node name="z" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83614, 0)
+visible = false
 target_position = Vector3(0, 0, 1)
 collide_with_bodies = false
 debug_shape_custom_color = Color(0, 33.514, 0, 1)
 debug_shape_thickness = 5
 
 [node name="grab_buffer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.3
 one_shot = true
 autostart = true
 

@@ -9,6 +9,7 @@ script/source = "extends CharacterBody3D
 var direction : Vector3
 var gravity := 10
 var realentizacion_balde : bool = false
+var moveSpeed : Vector3
 enum playerStates {
 	Free,
 	Trapped,
@@ -49,7 +50,7 @@ func _physics_process(_delta: float) -> void:
 	
 #region physics_process
 func free_pp(_delta : float) -> void:
-	var moveSpeed := Vector3.ZERO
+	moveSpeed = Vector3.ZERO
 	if (Input.is_action_pressed(\"MoveBackwards\")):
 		moveSpeed += direction
 	if (Input.is_action_pressed(\"MoveForwards\")):
@@ -58,12 +59,13 @@ func free_pp(_delta : float) -> void:
 		moveSpeed += direction.cross($\".\".up_direction)
 	if (Input.is_action_pressed(\"MoveR\")):
 		moveSpeed += $\".\".up_direction.cross(direction)	
-	velocity = moveSpeed.normalized() * (10 - (realentizacion_balde as int * 3))
+	moveSpeed = moveSpeed.normalized() * (10 - (realentizacion_balde as int * 3))  
+	velocity = moveSpeed
 	velocity.y -= gravity
 	move_and_slide()
 	
 func trapped_pp(_delta: float) -> void:
-	var moveSpeed := Vector3.ZERO
+	moveSpeed = Vector3.ZERO
 	if (Input.is_action_pressed(\"MoveBackwards\")):
 		moveSpeed += direction
 	if (Input.is_action_pressed(\"MoveForwards\")):
@@ -72,7 +74,8 @@ func trapped_pp(_delta: float) -> void:
 		moveSpeed += direction.cross($\".\".up_direction)
 	if (Input.is_action_pressed(\"MoveR\")):
 		moveSpeed += $\".\".up_direction.cross(direction)
-	velocity = ((moveSpeed.normalized() * 1.1) -direction.normalized()) * 5 
+	moveSpeed = ((moveSpeed.normalized() * 1.1) -direction.normalized()) * 5 
+	velocity = moveSpeed
 	velocity.y -= gravity
 	move_and_slide()
 	

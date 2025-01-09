@@ -7,6 +7,7 @@ var boot := true
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	Engine.time_scale = 0
+	Engine.max_fps = 60
 
 
 func _input(event):

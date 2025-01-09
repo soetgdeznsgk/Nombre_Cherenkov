@@ -6,7 +6,8 @@ var remote_transform_ref : RemoteTransform3D
 var anim_time : float
 var player_on_range : bool = false
 
-var in_hud : bool = false
+@export var in_hud : bool = false
+var position_delta : Vector3 = Vector3.ZERO
 signal bucket_equipped
 signal bucket_unequipped
 var mop_reference : Mop
@@ -26,6 +27,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	#print(engine_force)
+	#look_at_from_pos(Vector3(global_position.x, 0, global_position.z), GeometricToolbox.y_offset_vector_to_0(GlobalInfo.playerPosition))
 	if not in_hud:
 		#steering = get_rotation_needed_towards_player()
 		check_bucket_orientation() # A DIFERIR, no vale la pena hacerlo todos los frames, aunque es solo checar un bit, no debe ser fuente de lag
@@ -42,9 +44,21 @@ func _physics_process(_delta: float) -> void:
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE) and $grab_buffer.is_stopped(): 
 			alternate_on_player_hud()
 		
+		position_delta = GeometricToolbox.y_offset_vector_to_0(remote_transform_ref.global_position - global_position)
 		global_position.x = remote_transform_ref.global_position.x
 		global_position.z = remote_transform_ref.global_position.z
-			
+		
+func _input(event: InputEvent) -> void:
+	if in_hud:
+		if event is InputEventMouseMotion or event is InputEventAction:
+			# TODO arreglar bug donde el juego se caga encima si se llama a look_at 
+			look_at(GeometricToolbox.y_offset_vector_to_0(GlobalInfo.playerPosition)) 
+			adjust_forces(event.relative.x)
+		elif event is InputEventKey:
+			adjust_forces(1)
+		
+		
+		
 func get_rotation_needed_towards_player() -> float: # sin uso con la nueva implementación
 	var angle = transform.basis.x.signed_angle_to(GlobalInfo.playerPosition - position, Vector3.UP) # Frente del carrito
 	return angle
@@ -54,46 +68,40 @@ func lerp_towards_player(time) -> void: # TODO arreglar para que no se vea epile
 
 #region interacciones con jugador y mundo
 
+#func calculate_position_delta() -> void:
+	#return GeometricToolbox.y_offset_vector_to_0(remote_transform_ref.global_position - global_position)
+
 func alternate_on_player_hud() -> void:
 	$grab_buffer.start()
 	if not in_hud:
-		#if remote_transform_ref == null:
-			#remote_transform_ref = GlobalInfo.refPlayer.camara_ref.bucket_remote_transform
-			#pass
-		#remote_transform_ref.remote_path = get_path()
 		freeze = true
+		#sleeping = true
 		$"CollisionShape3D Balde".disabled = true
 		bucket_equipped.emit()
 		in_hud = true
-		rotate_to_camera(0)
-		
+	
 		
 	elif global_position.y > -0.5: # para que no se clipee en el piso TODO limitar que no se pueda poner afuera de las paredes también
-		if remote_transform_ref != null:
-			remote_transform_ref.remote_path = ""
-		freeze = false
+		freeze = false  # ACÁ ESTÁ EL BUG CUANDO SE COLOCA CERCA EL BALDE, cómo putas se puede arreglar?
 		$"CollisionShape3D Balde".disabled = false
 		bucket_unequipped.emit()
 		in_hud = false
-		
+	
 
-func rotate_to_camera(horizontal_cam_delta : float) -> void:
-	if in_hud:
-		look_at_from_position(GeometricToolbox.y_offset_vector_to_0(global_position), GeometricToolbox.y_offset_vector_to_0(GlobalInfo.playerPosition))
-		#region Rotación del esqueleto
-		var inercia = (Vector3.LEFT * horizontal_cam_delta)
+func adjust_forces(horizontal_cam_delta : float) -> void: # mi obra maestra
+		var inercia = position_delta.rotated(Vector3.UP, -rotation.y) * Engine.max_fps * 30 / abs(horizontal_cam_delta)
 		var centrifuga = Vector3.BACK * abs(horizontal_cam_delta) # TODO esto será afectado por si el balde tiene agua o no
-		# TODO también por la velocidad actual del vehículo
-		
-		$steering.target_position = inercia + centrifuga
-		$z.target_position = Vector3.BACK
-		
+		#$inercia.target_position = inercia
+		#$steering.target_position =  centrifuga + inercia 
+		#$z.target_position = Vector3.BACK
+		#TODO arreglar bug donde no se actualiza automáticamente sino tras 1 segundo
 		steering = Vector3.BACK.signed_angle_to(inercia + centrifuga, Vector3.UP)
-		if abs(horizontal_cam_delta) > 15:
-			engine_force = abs(horizontal_cam_delta) * 5
-		#endregion
+		if abs(horizontal_cam_delta) + (inercia.length()) > 15:
+			engine_force = ( abs(horizontal_cam_delta * 7) + (inercia.length())  )
+			#print(engine_force, " = ", abs(horizontal_cam_delta * 5), " + ", inercia.length())
 
 func enter_player_focus() -> void:
+	#print("entra a la vision ", Time.get_time_string_from_system())
 	if not mop_stored:
 		mesh_reference.activate_outline()
 		player_on_range = true

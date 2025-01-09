@@ -38,7 +38,7 @@ func _input(event):
 		v.y -= (event.relative.x * 0.2)
 		v.x -= (event.relative.y * 0.2)
 		mop_reference.rotate_to_camera(event.relative)
-		bucket_reference.rotate_to_camera(event.relative.x) # no se necesita todos los frames
+		#bucket_reference.rotate_to_camera(event.relative.x) # no se necesita todos los frames
 		v.x = clamp(v.x,-80,90)
 		
 
