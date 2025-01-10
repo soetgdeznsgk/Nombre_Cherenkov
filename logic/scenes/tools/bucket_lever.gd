@@ -8,9 +8,9 @@ var origin_local : Vector3
 var delta_time : float
 var time_total : float = 0
 
-@onready var skeleton_ref : Skeleton3D = $"../badleAnimation/Esqueleto_002/Skeleton3D"
+@onready var skeleton_ref : Skeleton3D = $"../baldeClean/Esqueleto_002/Skeleton3D"
 @onready var lever_bone_idx : int = skeleton_ref.find_bone("Bone.003")
-@onready var mesh_ref : MeshInstance3D = $"../badleAnimation/Esqueleto_002/Skeleton3D/Balde"
+@onready var mesh_ref : MeshInstance3D = $"../baldeClean/Esqueleto_002/Skeleton3D/Balde"
 @onready var material : Material = preload("res://logic/ambient_scripts/postprocessing_items/blue_override_bucket_lever.tres")
 
 

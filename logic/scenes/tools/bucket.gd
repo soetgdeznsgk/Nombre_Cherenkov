@@ -1,7 +1,7 @@
 extends VehicleBody3D
 class_name Balde
 
-@onready var mesh_reference : MeshInstance3D = $badleAnimation/Esqueleto_002/Skeleton3D/Balde
+@onready var mesh_reference : MeshInstance3D = $baldeClean/Esqueleto_002/Skeleton3D/Balde
 var remote_transform_ref : RemoteTransform3D
 var anim_time : float
 var player_on_range : bool = false

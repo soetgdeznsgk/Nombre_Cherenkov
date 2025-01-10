@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://6a2jvntjyt6o"
-path="res://.godot/imported/badleAnimation.glb-17eba23666fbbb48fdf594c9fc7b68a8.scn"
+uid="uid://bqmh6e3fv0qow"
+path="res://.godot/imported/baldeClean.glb-5b10d430d53296ae1d877f4fd2442baa.scn"
 
 [deps]
 
-source_file="res://modelos/low_poly_bucket/badleAnimation.glb"
-dest_files=["res://.godot/imported/badleAnimation.glb-17eba23666fbbb48fdf594c9fc7b68a8.scn"]
+source_file="res://modelos/low_poly_bucket/baldeClean.glb"
+dest_files=["res://.godot/imported/baldeClean.glb-5b10d430d53296ae1d877f4fd2442baa.scn"]
 
 [params]
 
@@ -31,6 +31,14 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"nodes": {
+"PATH:Esqueleto_002/Skeleton3D": {
+"rest_pose/external_animation_library": null,
+"retarget/bone_map": Object(BoneMap,"resource_local_to_scene":false,"resource_name":"","profile":null,"bonemap":null,"script":null)
+
+}
+}
+}
 gltf/naming_version=1
 gltf/embedded_image_handling=1
