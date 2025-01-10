@@ -5,6 +5,7 @@ var v = Vector3()
 var currSelection : Node
 
 @export var mop_reference : Mop
+@onready var bucket_reference : Balde = get_tree().get_first_node_in_group("Baldes")
 var ignoringMop := false 
 
 var locked : bool = false
@@ -17,8 +18,11 @@ var time_locked : float = 0: #para el lerp de la camara cunado se atrapa
 
 var pre_grab_camera_direction : Vector3
 var focus_point : Vector3
+var temp_vx 
 
 @onready var interaction_raycast : RayCast3D = $RayCast3D
+@onready var bucket_remote_transform : RemoteTransform3D = $RemoteTransform3D_bucket
+var bucket_RT_dereferenced : bool = false
 var last_collision : Node
 
 func _ready():
@@ -34,6 +38,7 @@ func _input(event):
 		v.y -= (event.relative.x * 0.2)
 		v.x -= (event.relative.y * 0.2)
 		mop_reference.rotate_to_camera(event.relative)
+		#bucket_reference.rotate_to_camera(event.relative.x) # no se necesita todos los frames
 		v.x = clamp(v.x,-80,90)
 		
 
@@ -45,6 +50,9 @@ func _physics_process(delta):
 		time_locked += delta
 		look_at((global_position - pre_grab_camera_direction).lerp(focus_point, time_locked))
 		mop_reference.rotate_to_camera(Vector2.ZERO)
+		
+		
+
 	
 	#region Codigo para los outlines para los interactuables (radioactivo)
 	if interaction_raycast.is_colliding():	

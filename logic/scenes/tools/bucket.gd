@@ -1,48 +1,107 @@
 extends VehicleBody3D
 class_name Balde
 
-@onready var mesh_reference := $badleAnimation/Esqueleto_002/Skeleton3D/Balde
+@onready var mesh_reference : MeshInstance3D = $baldeClean/Esqueleto_002/Skeleton3D/Balde
+var remote_transform_ref : RemoteTransform3D
 var anim_time : float
 var player_on_range : bool = false
 
+@export var in_hud : bool = false
+var position_delta : Vector3 = Vector3.ZERO
+signal bucket_equipped
+signal bucket_unequipped
 var mop_reference : Mop
 var mop_stored : bool = false
 var bucket_ko : bool = false
 const tumbled_over_trigger : float = 0.2
+const VERTICAL_BUCKET_POSITION_LIMIT = 0.25
 
 @onready var lever_interaction_node : Area3D = $"Area3D Palanca"
 # nuevas variables
 var saturation := 0.0
 
+func _ready() -> void:
+	bucket_equipped.connect(GlobalInfo.bucket_just_equipped)
+	bucket_unequipped.connect(GlobalInfo.bucket_just_unequipped)
+	remote_transform_ref = GlobalInfo.refPlayer.camara_ref.bucket_remote_transform
+
 func _physics_process(_delta: float) -> void:
-	engine_force = 0
-	steering = get_rotation_needed_towards_player()
-	check_bucket_orientation() # A DIFERIR, no vale la pena hacerlo todos los frames, aunque es solo checar un bit, no debe ser fuente de lag
-	
-	if global_position.distance_squared_to(GlobalInfo.playerPosition) < 40:
-		player_on_range = true
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE): 
+	#print(engine_force)
+	#look_at_from_pos(Vector3(global_position.x, 0, global_position.z), GeometricToolbox.y_offset_vector_to_0(GlobalInfo.playerPosition))
+	if not in_hud:
+		#steering = get_rotation_needed_towards_player()
+		check_bucket_orientation() # A DIFERIR, no vale la pena hacerlo todos los frames, aunque es solo checar un bit, no debe ser fuente de lag
 			
-			engine_force = 300
-			anim_time += _delta
-			lerp_towards_player(anim_time)
-	else:
-		player_on_range = false
-		anim_time = 0
+		if engine_force > 1: # solución barata, funciona para frenar entonces lo considero terminado
+			engine_force /= 1.05
+					
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE) and $grab_buffer.is_stopped() and player_on_range: 
+			#anim_time += _delta
+			#lerp_towards_player(anim_time)
+			alternate_on_player_hud()
+				
+	else: # TODO refactorizar este codigo horrible
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE) and $grab_buffer.is_stopped(): 
+			alternate_on_player_hud()
 		
-	
+		position_delta = GeometricToolbox.y_offset_vector_to_0(remote_transform_ref.global_position - global_position)
+		global_position.x = remote_transform_ref.global_position.x
+		global_position.z = remote_transform_ref.global_position.z
+		
+func _input(event: InputEvent) -> void:
+	if in_hud:
+		if event is InputEventMouseMotion or event is InputEventAction:
+			# TODO arreglar bug donde el juego se caga encima si se llama a look_at 
+			look_at(GeometricToolbox.y_offset_vector_to_0(GlobalInfo.playerPosition)) 
+			adjust_forces(event.relative.x)
+		elif event is InputEventKey:
+			adjust_forces(1)
 		
 		
-func get_rotation_needed_towards_player() -> float:
+		
+func get_rotation_needed_towards_player() -> float: # sin uso con la nueva implementación
 	var angle = transform.basis.x.signed_angle_to(GlobalInfo.playerPosition - position, Vector3.UP) # Frente del carrito
-	#print(angle)
 	return angle
 	
-func lerp_towards_player(time) -> void: # TODO arreglar para que no se vea epileptico
+func lerp_towards_player(time) -> void: # TODO arreglar para que no se vea epileptico // sin uso
 	rotate(Vector3.UP, lerpf(0, steering, time))
 
 #region interacciones con jugador y mundo
+
+#func calculate_position_delta() -> void:
+	#return GeometricToolbox.y_offset_vector_to_0(remote_transform_ref.global_position - global_position)
+
+func alternate_on_player_hud() -> void:
+	$grab_buffer.start()
+	if not in_hud:
+		freeze = true
+		#sleeping = true
+		$"CollisionShape3D Balde".disabled = true
+		bucket_equipped.emit()
+		in_hud = true
+	
+		
+	elif global_position.y > -0.5: # para que no se clipee en el piso TODO limitar que no se pueda poner afuera de las paredes también
+		freeze = false  # ACÁ ESTÁ EL BUG CUANDO SE COLOCA CERCA EL BALDE, cómo putas se puede arreglar?
+		$"CollisionShape3D Balde".disabled = false
+		bucket_unequipped.emit()
+		in_hud = false
+	
+
+func adjust_forces(horizontal_cam_delta : float) -> void: # mi obra maestra
+		var inercia = position_delta.rotated(Vector3.UP, -rotation.y) * Engine.max_fps * 30 / abs(horizontal_cam_delta)
+		var centrifuga = Vector3.BACK * abs(horizontal_cam_delta) # TODO esto será afectado por si el balde tiene agua o no
+		#$inercia.target_position = inercia
+		#$steering.target_position =  centrifuga + inercia 
+		#$z.target_position = Vector3.BACK
+		#TODO arreglar bug donde no se actualiza automáticamente sino tras 1 segundo
+		steering = Vector3.BACK.signed_angle_to(inercia + centrifuga, Vector3.UP)
+		if abs(horizontal_cam_delta) + (inercia.length()) > 15:
+			engine_force = ( abs(horizontal_cam_delta * 7) + (inercia.length())  )
+			#print(engine_force, " = ", abs(horizontal_cam_delta * 5), " + ", inercia.length())
+
 func enter_player_focus() -> void:
+	#print("entra a la vision ", Time.get_time_string_from_system())
 	if not mop_stored:
 		mesh_reference.activate_outline()
 		player_on_range = true
@@ -96,6 +155,7 @@ func check_bucket_orientation() -> void:
 			#spawnear un charco justo donde cae 
 			GlobalInfo.on_aterrizaje_rana(global_position + basis.y)
 			bucket_ko = true
+			engine_force = 0
 			
 	else:
 		if bucket_ko:
@@ -108,7 +168,7 @@ func reset_bucket_orientation() -> void:
 	transform.basis = Basis() 
 	
 func fall_from_collision_in(collider_pos: Vector3) -> void:
-	if not bucket_ko:
+	if not bucket_ko and not in_hud:
 		var eje = (collider_pos - global_position).cross(Vector3.UP).normalized()
 		rotate(eje, 1) # volver una corutina
 		bucket_ko = true

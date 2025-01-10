@@ -8,9 +8,9 @@ var origin_local : Vector3
 var delta_time : float
 var time_total : float = 0
 
-@onready var skeleton_ref : Skeleton3D = $"../badleAnimation/Esqueleto_002/Skeleton3D"
+@onready var skeleton_ref : Skeleton3D = $"../baldeClean/Esqueleto_002/Skeleton3D"
 @onready var lever_bone_idx : int = skeleton_ref.find_bone("Bone.003")
-@onready var mesh_ref : MeshInstance3D = $"../badleAnimation/Esqueleto_002/Skeleton3D/Balde"
+@onready var mesh_ref : MeshInstance3D = $"../baldeClean/Esqueleto_002/Skeleton3D/Balde"
 @onready var material : Material = preload("res://logic/ambient_scripts/postprocessing_items/blue_override_bucket_lever.tres")
 
 
@@ -55,7 +55,7 @@ func action_lerp():
 	var n_z : float = lerp(rotation_degrees.z, z_rotation_target, time_total)
 	
 	rotation_degrees.z = n_z
-	position += Vector3.LEFT * delta_time * (1 - time_total) # TODO arreglar para que no se aleje tanto
+	position += Vector3.BACK * delta_time * (1 - time_total) # TODO arreglar para que no se aleje tanto
 	skeleton_ref.set_bone_pose_rotation(lever_bone_idx, Quaternion(Vector3.FORWARD, -n_z * PI/180 * 0.5))
 	if time_total > 0.8: 
 		lever_activated.emit()

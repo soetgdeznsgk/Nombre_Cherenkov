@@ -12,8 +12,9 @@ const NO_INTERACTION_TIME := 0.3
 
 # referencias jugador
 @onready var refPlayer : CharacterBody3D = get_tree().get_nodes_in_group("Jugador").front()
-@onready var refCamara : InteraccionesJugador = refPlayer.get_camera_ref()
+@onready var refCamara : InteraccionesJugador
 @onready var refTrapero : Mop = get_tree().get_nodes_in_group("Trapero").front()
+
 
 # info UI
 @onready var refUI : UI = get_tree().get_first_node_in_group("UI")
@@ -30,6 +31,8 @@ var cantidad_pulpos : int
 func _ready() -> void:
 	add_child(timerInteractionBuffer)
 	timerInteractionBuffer.one_shot = true
+	await refPlayer.ready
+	refCamara = refPlayer.get_camera_ref()
 
 func _process(_delta: float) -> void:
 	playerPosition = refPlayer.position
@@ -64,4 +67,11 @@ func squid_leaves_player() -> void:
 	
 func start_interaction_buffer() -> void:
 	timerInteractionBuffer.start(NO_INTERACTION_TIME)
-	
+
+func bucket_just_equipped() -> void:
+	refPlayer.realentizacion_balde = true
+	refCamara.interaction_raycast.enabled = false
+
+func bucket_just_unequipped() -> void:
+	refPlayer.realentizacion_balde = false
+	refCamara.interaction_raycast.enabled = true
