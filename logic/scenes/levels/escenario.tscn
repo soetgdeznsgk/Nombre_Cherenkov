@@ -1,13 +1,19 @@
-[gd_scene load_steps=16 format=3 uid="uid://koqv2tici8g"]
+[gd_scene load_steps=23 format=3 uid="uid://koqv2tici8g"]
 
 [ext_resource type="PackedScene" uid="uid://bnl1k0w4e64he" path="res://logic/scenes/jugador.tscn" id="1_5xau3"]
 [ext_resource type="ArrayMesh" uid="uid://ylflb3vcbrgg" path="res://GodotActionRPG-Assets/Models/Environment/naturePack_001.obj" id="2_yj3f1"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/floor.gd" id="3_e045v"]
+[ext_resource type="Texture2D" uid="uid://tsal6dlej1g1" path="res://modelos/textures/marble_tiles_dirty_1k/marble_tiles_diff_1k.png" id="3_us5my"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/piscina/pool_script.gd" id="4_s5yiq"]
+[ext_resource type="Texture2D" uid="uid://b3dgc52lfotem" path="res://modelos/textures/marble_tiles_dirty_1k/marble_tiles_nor_gl_1k.png" id="4_xnu1m"]
 [ext_resource type="PackedScene" uid="uid://di6fatgsdf124" path="res://logic/scenes/tools/bucket.tscn" id="5_ahg2q"]
+[ext_resource type="Texture2D" uid="uid://duwcgfll4f3ki" path="res://modelos/textures/marble_tiles_dirty_1k/marble_tiles_rough_1k.png" id="5_kuf7l"]
 [ext_resource type="Shader" path="res://logic/ambient_scripts/piscina/water.gdshader" id="5_rjvlk"]
 [ext_resource type="PackedScene" uid="uid://cu30dahipapwi" path="res://logic/UI/control.tscn" id="6_eyfdm"]
 [ext_resource type="PackedScene" uid="uid://dmdd4q078nrgb" path="res://logic/UI/display_contamination_bar.tscn" id="7_i1h8h"]
+[ext_resource type="Texture2D" uid="uid://vtfu3gd5f1y8" path="res://modelos/textures/grey_plaster_1k/grey_plaster_nor_gl_1k.png" id="10_kvo7a"]
+[ext_resource type="Texture2D" uid="uid://wmnenbf6cxbp" path="res://modelos/textures/grey_plaster_1k/grey_plaster_diff_05k.png" id="11_mejav"]
+[ext_resource type="Texture2D" uid="uid://bx3ktojh7nl80" path="res://modelos/textures/grey_plaster_1k/grey_plaster_rough_1k.png" id="11_qtel0"]
 
 [sub_resource type="Environment" id="Environment_owekg"]
 glow_enabled = true
@@ -15,6 +21,13 @@ glow_enabled = true
 [sub_resource type="NavigationMesh" id="NavigationMesh_inggj"]
 vertices = PackedVector3Array(4.86374e-05, 14.6883, -30.1558, 4.86374e-05, 14.6883, 0.0942001, 31.5, 14.6883, 0.0942001, 31.5, 14.6883, -30.1558, 1.25005, -6.56174, -28.9058, 1.25005, -6.56174, -1.4058, 28.5, -6.56174, -1.4058, 28.5, -6.56174, -28.9058, 1.25005, 0.43826, -18.1558, 11.25, 0.43826, -18.1558, 11.25, 0.43826, -18.9058, 12.5, 0.43826, -19.6558, 12.5, 0.43826, -28.9058, 1.25005, 0.43826, -28.9058, 14.25, 0.43826, -18.6558, 13.75, 0.43826, -16.6558, 18, 0.43826, -10.9058, 28, 0.43826, -10.9058, 28.5, 0.43826, -28.9058, 28.5, 0.43826, -1.4058, 17.5, 0.43826, -10.6558, 12, 0.43826, -16.9058, 1.25005, 0.43826, -1.4058, 17.5, 0.43826, -1.4058)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(10, 9, 8), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(13, 10, 8), PackedInt32Array(16, 15, 14), PackedInt32Array(14, 11, 12), PackedInt32Array(16, 14, 17), PackedInt32Array(17, 14, 12), PackedInt32Array(17, 12, 18), PackedInt32Array(18, 19, 17), PackedInt32Array(15, 16, 20), PackedInt32Array(15, 20, 21), PackedInt32Array(21, 20, 23), PackedInt32Array(21, 23, 8), PackedInt32Array(8, 23, 22), PackedInt32Array(8, 9, 21)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jtryp"]
+albedo_texture = ExtResource("3_us5my")
+roughness_texture = ExtResource("5_kuf7l")
+normal_enabled = true
+normal_texture = ExtResource("4_xnu1m")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e7ppt"]
 size = Vector3(1.0484, 1, 0.0341797)
@@ -36,6 +49,10 @@ shader_parameter/roughness = 0.2
 shader_parameter/emission = Vector3(0, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_51aeb"]
+albedo_texture = ExtResource("11_mejav")
+roughness_texture = ExtResource("11_qtel0")
+normal_enabled = true
+normal_texture = ExtResource("10_kvo7a")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t688q"]
 size = Vector3(1, 0.202484, 1)
@@ -59,6 +76,7 @@ rotation_edit_mode = 2
 use_collision = true
 collision_layer = 3
 mesh = ExtResource("2_yj3f1")
+material = SubResource("StandardMaterial3D_jtryp")
 script = ExtResource("3_e045v")
 
 [node name="PiscinaD" type="CSGBox3D" parent="NavigationRegion3D/Geometría/Piso" node_paths=PackedStringArray("first_frog_target")]
