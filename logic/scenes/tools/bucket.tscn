@@ -243,6 +243,8 @@ _data = {
 }
 
 [node name="bucket" type="VehicleBody3D" groups=["Baldes"]]
+collision_layer = 3
+collision_mask = 5
 center_of_mass_mode = 1
 script = ExtResource("1_owtkk")
 
@@ -340,26 +342,30 @@ libraries = {
 "": SubResource("AnimationLibrary_8relm")
 }
 
-[node name="steering" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67345, 0)
-target_position = Vector3(0, 0, 1)
-collide_with_bodies = false
+[node name="ground scanner" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.395399, 0.404356)
+
+[node name="placement_enabler" type="RayCast3D" parent="ground scanner"]
 debug_shape_thickness = 5
 
-[node name="inercia" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51114, 0)
-visible = false
-target_position = Vector3(0, 0, 1)
-collide_with_bodies = false
-debug_shape_custom_color = Color(92.973, 0, 0, 1)
+[node name="placement_enabler4" type="RayCast3D" parent="ground scanner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.803515)
 debug_shape_thickness = 5
 
-[node name="z" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83614, 0)
-visible = false
-target_position = Vector3(0, 0, 1)
-collide_with_bodies = false
-debug_shape_custom_color = Color(0, 33.514, 0, 1)
+[node name="placement_enabler2" type="RayCast3D" parent="ground scanner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223061, 0, -0.407644)
+debug_shape_thickness = 5
+
+[node name="placement_enabler5" type="RayCast3D" parent="ground scanner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223061, 0, 0.193287)
+debug_shape_thickness = 5
+
+[node name="placement_enabler6" type="RayCast3D" parent="ground scanner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.223908, 0, 0.193287)
+debug_shape_thickness = 5
+
+[node name="placement_enabler3" type="RayCast3D" parent="ground scanner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.209848, 0, -0.408669)
 debug_shape_thickness = 5
 
 [node name="grab_buffer" type="Timer" parent="."]

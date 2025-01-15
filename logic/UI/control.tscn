@@ -106,5 +106,7 @@ label_settings = SubResource("LabelSettings_uhvfi")
 [node name="aviso_inicio" type="Label" parent="."]
 offset_right = 470.0
 offset_bottom = 150.0
-text = "click para entrar al juego"
+text = "click para entrar al juego
+build jacobo
+"
 label_settings = SubResource("LabelSettings_uhvfi")

@@ -13,6 +13,7 @@ signal bucket_unequipped
 var mop_reference : Mop
 var mop_stored : bool = false
 var bucket_ko : bool = false
+var placeable : bool = true
 const tumbled_over_trigger : float = 0.2
 const VERTICAL_BUCKET_POSITION_LIMIT = 0.25
 
@@ -36,13 +37,12 @@ func _physics_process(_delta: float) -> void:
 			engine_force /= 1.05
 					
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE) and $grab_buffer.is_stopped() and player_on_range: 
-			#anim_time += _delta
-			#lerp_towards_player(anim_time)
 			alternate_on_player_hud()
 				
 	else: # TODO refactorizar este codigo horrible
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE) and $grab_buffer.is_stopped(): 
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE) and $grab_buffer.is_stopped() and confirm_placeability():
 			alternate_on_player_hud()
+			#print(get_contact_count())
 		
 		position_delta = GeometricToolbox.y_offset_vector_to_0(remote_transform_ref.global_position - global_position)
 		global_position.x = remote_transform_ref.global_position.x
@@ -75,15 +75,14 @@ func alternate_on_player_hud() -> void:
 	$grab_buffer.start()
 	if not in_hud:
 		freeze = true
-		#sleeping = true
-		$"CollisionShape3D Balde".disabled = true
+		collision_layer = 0
 		bucket_equipped.emit()
 		in_hud = true
 	
 		
 	elif global_position.y > -0.5: # para que no se clipee en el piso TODO limitar que no se pueda poner afuera de las paredes también
 		freeze = false  # ACÁ ESTÁ EL BUG CUANDO SE COLOCA CERCA EL BALDE, cómo putas se puede arreglar?
-		$"CollisionShape3D Balde".disabled = false
+		collision_layer = 1
 		bucket_unequipped.emit()
 		in_hud = false
 	
@@ -174,7 +173,11 @@ func fall_from_collision_in(collider_pos: Vector3) -> void:
 		bucket_ko = true
 		# spawnear un charco
 	
-	
+func confirm_placeability() -> bool: # no es infalible, pero requiere dedicación tirar el balde al agua
+	var b : bool = true
+	for child in $"ground scanner".get_children():
+		b = b and child.is_colliding()
+	return b
 
 #endregion
 
