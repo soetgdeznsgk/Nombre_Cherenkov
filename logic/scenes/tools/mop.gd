@@ -59,11 +59,10 @@ func rotate_to_camera(mouse_movement_delta : Vector2):
 		#print("baseY: ", global_basis.y, " to ", Vector3.DOWN, " -> ", (-global_basis.y).signed_angle_to(Vector3.DOWN, Vector3.RIGHT))
 		#region Rotación del esqueleto
 		# Rotación producto de la gravedad y la fuerza centrífuga
+		
 		esqueleto_ref.set_bone_pose_rotation(base_bone_idx, Quaternion(Vector3.RIGHT, 
-						(-global_basis.y).angle_to(Vector3.DOWN) # TODO xq no funciona signed_angle_to??
+						(-global_basis.y).signed_angle_to(Vector3.DOWN, basis.x)
 						- abs(mouse_movement_delta.x / 130))) # centrífuga 
-		#esqueleto_ref.set_bone_pose_rotation(base_bone_idx, Quaternion(Vector3.RIGHT,
-						#-abs(mouse_movement_delta.x / 150))) funciona bien
 		
 		# Rotación producto del momento de rotación
 		esqueleto_ref.set_bone_pose_rotation(intermediate_bone_idx, Quaternion(Vector3.FORWARD, 
