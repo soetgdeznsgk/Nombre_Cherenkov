@@ -41,6 +41,8 @@ func _input(event):
 		#bucket_reference.rotate_to_camera(event.relative.x) # no se necesita todos los frames
 		v.x = clamp(v.x,-80,90)
 		
+	elif Input.is_key_label_pressed(KEY_C): # DEBUG mientras se ata a el presionar un botón
+		get_tree().call_group("Alarmables", "start")
 
 func _physics_process(delta):
 	if not locked:

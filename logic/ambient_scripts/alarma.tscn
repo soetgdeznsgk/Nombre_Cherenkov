@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://cux2lmkev1y7c"]
+
+[ext_resource type="PackedScene" uid="uid://dutmanhfhbij4" path="res://modelos/first_motor_siren/scene.gltf" id="1_flrcg"]
+
+[sub_resource type="GDScript" id="GDScript_qjf21"]
+script/source = "extends Node3D
+
+func _ready() -> void: 
+	process_mode = PROCESS_MODE_DISABLED
+
+func _physics_process(delta: float) -> void:
+	$SpotLight3D.rotate(basis.x, PI * delta)
+
+func start() -> void: # parte del grupo de nodos \"alarmables
+	process_mode = PROCESS_MODE_INHERIT
+	$SpotLight3D.light_energy = 1
+"
+
+[node name="Alarma" type="Node3D" groups=["Alarmables"]]
+script = SubResource("GDScript_qjf21")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223813, 0.365388, -0.256184)
+light_color = Color(100, 1, 1, 1)
+light_energy = 0.0
+light_specular = 29.755
+spot_range = 5.89562
+spot_angle = 72.36
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_flrcg")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)

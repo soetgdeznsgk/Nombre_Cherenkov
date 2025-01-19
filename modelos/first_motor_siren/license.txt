@@ -1,0 +1,11 @@
+Model Information:
+* title:	First Motor Siren
+* source:	https://sketchfab.com/3d-models/first-motor-siren-55070fbdcc754a08aa270acea7d89e6c
+* author:	Signalrenders (https://sketchfab.com/Signalrenders)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "First Motor Siren" (https://sketchfab.com/3d-models/first-motor-siren-55070fbdcc754a08aa270acea7d89e6c) by Signalrenders (https://sketchfab.com/Signalrenders) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
