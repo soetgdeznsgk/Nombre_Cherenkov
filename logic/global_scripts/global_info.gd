@@ -75,3 +75,7 @@ func bucket_just_equipped() -> void:
 func bucket_just_unequipped() -> void:
 	refPlayer.realentizacion_balde = false
 	refCamara.interaction_raycast.enabled = true
+	
+func start_reactor_meltdown() -> void:
+	await get_tree().create_timer(1).timeout
+	get_tree().call_group("Alarmables", "start")

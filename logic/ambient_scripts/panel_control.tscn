@@ -1,0 +1,98 @@
+[gd_scene load_steps=11 format=3 uid="uid://btpu3eyttcmkr"]
+
+[ext_resource type="PackedScene" uid="uid://dow5ivvg1vhra" path="res://modelos/button_-_from_portal_2_original/scene.gltf" id="1_c0lom"]
+[ext_resource type="Texture2D" uid="uid://cbkgv4jvt85xd" path="res://modelos/button_-_from_portal_2_original/textures/portal_button_switch_baseColor.jpeg" id="2_ki8hd"]
+[ext_resource type="Script" path="res://logic/ambient_scripts/postprocessing_items/outline_on_selection.gd" id="3_e7dye"]
+[ext_resource type="Material" uid="uid://cnqwt7axy0vyl" path="res://logic/ambient_scripts/postprocessing_items/outline_material_mop.tres" id="4_gn8tt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ykyx0"]
+albedo_texture = ExtResource("2_ki8hd")
+emission_enabled = true
+emission = Color(1.081, 0, 0, 1)
+heightmap_enabled = true
+disable_receive_shadows = true
+
+[sub_resource type="GDScript" id="GDScript_ka5ew"]
+script/source = "extends Area3D
+
+@onready var meshRef : MeshInstance3D = $\"../Sketchfab_model/22651b82dee743ada4984ec97caf27be_fbx/RootNode/portal_button_reduced/Object_6/Skeleton3D/Object_9\"
+func enter_player_focus() -> void:
+	meshRef.activate_outline()
+
+func exit_player_focus() -> void:
+	meshRef.deactivate_outline()
+
+func player_interaction() -> void:
+	$\"../AnimationPlayer\".play(\"press\")
+	GlobalInfo.start_reactor_meltdown()
+"
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jwfwm"]
+height = 0.726987
+radius = 0.804695
+
+[sub_resource type="Animation" id="Animation_yrll2"]
+resource_name = "press"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sketchfab_model/22651b82dee743ada4984ec97caf27be_fbx/RootNode/portal_button_reduced/Object_6/Skeleton3D:portal_button_top_03")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 15, 0, 0.5, 1, 0, 7, 0, 1, 1, 0, 15, 0)
+
+[sub_resource type="Animation" id="Animation_fmsh8"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sketchfab_model/22651b82dee743ada4984ec97caf27be_fbx/RootNode/portal_button_reduced/Object_6/Skeleton3D:portal_button_top_03")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 13.6402, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mcu5q"]
+_data = {
+"RESET": SubResource("Animation_fmsh8"),
+"press": SubResource("Animation_yrll2")
+}
+
+[node name="Panel_Control" type="CSGPolygon3D"]
+transform = Transform3D(-9.96959e-08, 0, -1.20595, 0, 1, 0, 2.28078, 0, -5.27136e-08, 0, 0, 0)
+operation = 2
+polygon = PackedVector2Array(1.43174, -0.223885, 0.0200481, 0.469478, 1.80631, 0.985589)
+mode = 1
+spin_degrees = 176.0
+spin_sides = 5
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="."]
+transform = Transform3D(-0.282275, 0, 0.959334, 0, 1, 0, -0.959333, 0, -0.282275, 0, 0, 0.173491)
+operation = 2
+polygon = PackedVector2Array(-0.0331738, -0.0727901, -0.122429, 1.03563, 0.910485, 0.974326, 1.57084, -0.0222774)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 8
+
+[node name="Botón_Rojo" parent="." instance=ExtResource("1_c0lom")]
+transform = Transform3D(-1.68054e-08, 3.96148e-09, 0.209, 0.0906281, 0.384463, 2.1169e-16, -0.384463, 0.0906281, -9.13568e-09, 0.114088, 0.807111, -1.22442)
+
+[node name="Object_8" parent="Botón_Rojo/Sketchfab_model/22651b82dee743ada4984ec97caf27be_fbx/RootNode/portal_button_reduced/Object_6/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ykyx0")
+
+[node name="Object_9" parent="Botón_Rojo/Sketchfab_model/22651b82dee743ada4984ec97caf27be_fbx/RootNode/portal_button_reduced/Object_6/Skeleton3D" index="1"]
+script = ExtResource("3_e7dye")
+overlay = ExtResource("4_gn8tt")
+
+[node name="Area3D" type="Area3D" parent="Botón_Rojo"]
+transform = Transform3D(1, 1.49012e-08, 0, -1.49012e-08, 1, 1.33227e-15, 0, -8.88178e-16, 1, 0, 0, -5.96046e-08)
+script = SubResource("GDScript_ka5ew")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Botón_Rojo/Area3D"]
+shape = SubResource("CylinderShape3D_jwfwm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Botón_Rojo"]
+libraries = {
+"": SubResource("AnimationLibrary_mcu5q")
+}
+
+[editable path="Botón_Rojo"]

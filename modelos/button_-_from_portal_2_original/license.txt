@@ -1,0 +1,11 @@
+Model Information:
+* title:	Button - from portal 2 (original)
+* source:	https://sketchfab.com/3d-models/button-from-portal-2-original-f1c4fcfc668a4577a30f4d1c8ed3ca9a
+* author:	D3DARTM (https://sketchfab.com/D3DARTM)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Button - from portal 2 (original)" (https://sketchfab.com/3d-models/button-from-portal-2-original-f1c4fcfc668a4577a30f4d1c8ed3ca9a) by D3DARTM (https://sketchfab.com/D3DARTM) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
