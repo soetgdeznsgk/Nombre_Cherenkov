@@ -22,13 +22,14 @@ var temp_vx
 
 @onready var interaction_raycast : RayCast3D = $RayCast3D
 @onready var bucket_remote_transform : RemoteTransform3D = $RemoteTransform3D_bucket
+@onready var mop_remote_transform : RemoteTransform3D = $RemoteTransform3D_mop
 var bucket_RT_dereferenced : bool = false
 var last_collision : Node
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	call_deferred("updateDetectionExceptions")
-	ignoringMop = true # CAMBIAR CUANDO YA ESTÉ LA RUTINA DE INICIO
+	#ignoringMop = true # CAMBIAR CUANDO YA ESTÉ LA RUTINA DE INICIO
 	#GlobalInfo.jugador_atrapado.connect(lock_camera)
 	
 	#GlobalInfo.jugador_trapea.connect(func(): mop_saturation += mop_saturation_pace)
@@ -37,7 +38,8 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		v.y -= (event.relative.x * 0.2)
 		v.x -= (event.relative.y * 0.2)
-		mop_reference.rotate_to_camera(event.relative)
+		if mop_reference != null:
+			mop_reference.rotate_to_camera(event.relative)
 		#bucket_reference.rotate_to_camera(event.relative.x) # no se necesita todos los frames
 		v.x = clamp(v.x,-80,90)
 		
@@ -63,7 +65,6 @@ func _physics_process(delta):
 			if last_collision != null and last_collision.has_method("exit_player_focus"):
 				last_collision.exit_player_focus()
 			last_collision = interaction_raycast.get_collider()
-		#print(last_collision)
 		
 		if last_collision != null and last_collision.has_method("enter_player_focus"):
 			last_collision.enter_player_focus()
@@ -74,13 +75,14 @@ func _physics_process(delta):
 	#endregion
 	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and interaction_raycast.is_colliding(): 
-		mop_reference.trapeo_lerp_to(interaction_raycast.get_collision_point(), 0)
+		if mop_reference != null:
+			mop_reference.trapeo_lerp_to(interaction_raycast.get_collision_point(), 0)
 		#print($RayCast3D.get_collider())
 		if last_collision != null and last_collision.has_method("player_interaction"):
 			last_collision.player_interaction()
 			GlobalInfo.start_interaction_buffer()
 		
-	elif not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	elif not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and mop_reference != null:
 		mop_reference.trapeo_lerp_back(0)
 
 
@@ -89,7 +91,7 @@ func updateDetectionExceptions() -> void:
 	interaction_raycast.add_exception($"..")
 	for node in get_tree().get_nodes_in_group("NodosNavegacion"): # TODO averiguar qué otros nodos necesitan ignorarse
 		interaction_raycast.add_exception(node)
-	interaction_raycast.add_exception(get_tree().get_first_node_in_group("Trapero")) # con la secuencia de inicio, esto se trata con alterMopException
+	#interaction_raycast.add_exception(get_tree().get_first_node_in_group("Trapero")) # con la secuencia de inicio, esto se trata con alterMopException
 
 func alterMopException(n : Mop) -> void:
 	if ignoringMop:

@@ -71,8 +71,7 @@ func change_target() -> void:
 	else:
 		navRef.target_position = get_tree().get_nodes_in_group("NodosNavegacion").pick_random().position
 	
-	if Engine.time_scale != 0: 
-		look_at(GeometricToolbox.y_offset_vector_to_0(navRef.target_position)) # BUG cuando se pausa tira infinitos errores
+	look_at(GeometricToolbox.y_offset_vector_to_0(navRef.target_position)) # BUG cuando se pausa tira infinitos errores
 	#print("Rana: cambio de objetivo")
 
 func reset_jump():

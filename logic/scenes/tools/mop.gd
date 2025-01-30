@@ -11,7 +11,7 @@ static var mop_saturation : float = 0.0:
 @export var mop_saturation_pace := 0.01
 
 @export var remote_transform_ref : RemoteTransform3D
-@export var camera_ref : InteraccionesJugador
+@onready var camera_ref : InteraccionesJugador = GlobalInfo.refCamara
 @onready var balde_ref : Balde = get_tree().get_first_node_in_group("Baldes")
 @onready var mesh_ref : MeshInstance3D = $"mopAniText/Esqueleto_001/Skeleton3D/Círculo_002"
 @onready var esqueleto_ref : Skeleton3D = $mopAniText/Esqueleto_001/Skeleton3D
@@ -33,8 +33,9 @@ var current_splot_selected : Splot
 
 func _ready() -> void:
 	GlobalInfo.jugador_trapea.connect(func(_o): mop_saturation += mop_saturation_pace)
+	remote_transform_ref = GlobalInfo.refCamara.mop_remote_transform
 	origin_point_in_HUD = remote_transform_ref.position
-	state_stowed = false # DEBUG hasta que se haga para poderse "recoger" en el inicio
+	#state_stowed = false # DEBUG hasta que se haga para poderse "recoger" en el inicio
 	
 	
 func _physics_process(_delta: float) -> void:
@@ -118,7 +119,8 @@ func reparent_action(nodo : Node):
 		"Jugador":
 			remote_transform_ref.remote_path = get_path()
 			state_stowed = false
-			balde_ref.retrieve_mop()
+			balde_ref.retrieve_mop() # no importa xq la función no hace nada si no tiene el trapero
+			camera_ref.mop_reference = self
 		"Baldes":
 			remote_transform_ref.remote_path = ""
 			state_stowed = true

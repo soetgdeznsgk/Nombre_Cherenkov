@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnl1k0w4e64he"]
+[gd_scene load_steps=5 format=3 uid="uid://bnl1k0w4e64he"]
 
 [ext_resource type="Script" path="res://logic/scenes/camarascript.gd" id="1_jh4ox"]
-[ext_resource type="PackedScene" uid="uid://cju206cf1ni5m" path="res://logic/scenes/tools/mop.tscn" id="3_atr1m"]
 
 [sub_resource type="GDScript" id="GDScript_cx7sy"]
 resource_name = "pj"
@@ -104,7 +103,7 @@ script = SubResource("GDScript_cx7sy")
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("mop_reference")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_jh4ox")
-mop_reference = NodePath("../mop")
+mop_reference = NodePath("")
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0.21, 0, -3)
@@ -114,7 +113,6 @@ debug_shape_custom_color = Color(0.537255, 0.443137, 0.164706, 0)
 
 [node name="RemoteTransform3D_mop" type="RemoteTransform3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03452, -0.234879, -1.34491)
-remote_path = NodePath("../../mop")
 update_rotation = false
 update_scale = false
 
@@ -130,8 +128,3 @@ shape = SubResource("CapsuleShape3D_pnppo")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
 mesh = SubResource("CapsuleMesh_xqvju")
-
-[node name="mop" parent="." node_paths=PackedStringArray("remote_transform_ref", "camera_ref") instance=ExtResource("3_atr1m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03452, 0.765121, -1.34491)
-remote_transform_ref = NodePath("../Camera3D/RemoteTransform3D_mop")
-camera_ref = NodePath("../Camera3D")

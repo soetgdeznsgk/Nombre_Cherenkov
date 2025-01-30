@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://koqv2tici8g"]
+[gd_scene load_steps=27 format=3 uid="uid://koqv2tici8g"]
 
 [ext_resource type="PackedScene" uid="uid://bnl1k0w4e64he" path="res://logic/scenes/jugador.tscn" id="1_5xau3"]
 [ext_resource type="ArrayMesh" uid="uid://ylflb3vcbrgg" path="res://GodotActionRPG-Assets/Models/Environment/naturePack_001.obj" id="2_yj3f1"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bx3ktojh7nl80" path="res://modelos/textures/grey_plaster_1k/grey_plaster_rough_1k.png" id="11_qtel0"]
 [ext_resource type="PackedScene" uid="uid://btpu3eyttcmkr" path="res://logic/ambient_scripts/panel_control.tscn" id="13_jkktu"]
 [ext_resource type="PackedScene" uid="uid://cux2lmkev1y7c" path="res://logic/ambient_scripts/alarma.tscn" id="15_rqa8x"]
+[ext_resource type="PackedScene" uid="uid://cju206cf1ni5m" path="res://logic/scenes/tools/mop.tscn" id="17_8ncmv"]
 
 [sub_resource type="Environment" id="Environment_owekg"]
 glow_enabled = true
@@ -82,7 +83,7 @@ mesh = ExtResource("2_yj3f1")
 material = SubResource("StandardMaterial3D_jtryp")
 script = ExtResource("3_e045v")
 
-[node name="PiscinaD" type="CSGBox3D" parent="NavigationRegion3D/Geometría/Piso" node_paths=PackedStringArray("first_frog_target")]
+[node name="PiscinaD" type="CSGBox3D" parent="NavigationRegion3D/Geometría/Piso" node_paths=PackedStringArray("first_frog_target") groups=["Alarmables"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3, -1.97949, -0.563)
 operation = 2
 size = Vector3(1, 4.95898, 1)
@@ -91,7 +92,6 @@ first_frog_target = NodePath("../../../../RanaManager/NodosDeNavegacionRana/nodo
 
 [node name="RanaSpawnerTimer" type="Timer" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
 wait_time = 10.0
-autostart = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
 transform = Transform3D(0.1, 0, 0, 0, 1, 0, 0, 0, 0.1, -0.212667, -4.07754, -0.149284)
@@ -104,7 +104,6 @@ omni_shadow_mode = 0
 
 [node name="PulpoSpawnerTimer" type="Timer" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
 wait_time = 30.0
-autostart = true
 
 [node name="Barandas" type="StaticBody3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.93587, 0)
@@ -231,6 +230,9 @@ shape = SubResource("BoxShape3D_t688q")
 [node name="PulpoManager" type="Node" parent="." groups=["PulpoManager"]]
 
 [node name="UI" parent="." instance=ExtResource("6_eyfdm")]
+
+[node name="mop" parent="." instance=ExtResource("17_8ncmv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.329883, 1.05315, -8.08531)
 
 [node name="Alarmas" type="Node" parent="."]
 

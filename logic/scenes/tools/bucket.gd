@@ -140,9 +140,10 @@ func place_mop_on_bucket() -> void:
 	lever_interaction_node.activate()
 
 func retrieve_mop() -> void:
-	mop_stored = false
-	mop_reference.exit_player_focus()
-	lever_interaction_node.deactivate()
+	if mop_stored:
+		mop_stored = false
+		mop_reference.exit_player_focus()
+		lever_interaction_node.deactivate()
 #endregion
 
 #region estabilidad

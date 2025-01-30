@@ -31,16 +31,6 @@ func player_interaction() -> void:
 height = 0.726987
 radius = 0.804695
 
-[sub_resource type="Animation" id="Animation_yrll2"]
-resource_name = "press"
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sketchfab_model/22651b82dee743ada4984ec97caf27be_fbx/RootNode/portal_button_reduced/Object_6/Skeleton3D:portal_button_top_03")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 15, 0, 0.5, 1, 0, 7, 0, 1, 1, 0, 15, 0)
-
 [sub_resource type="Animation" id="Animation_fmsh8"]
 length = 0.001
 tracks/0/type = "position_3d"
@@ -50,6 +40,17 @@ tracks/0/path = NodePath("Sketchfab_model/22651b82dee743ada4984ec97caf27be_fbx/R
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 13.6402, 0)
+
+[sub_resource type="Animation" id="Animation_yrll2"]
+resource_name = "press"
+length = 0.5
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sketchfab_model/22651b82dee743ada4984ec97caf27be_fbx/RootNode/portal_button_reduced/Object_6/Skeleton3D:portal_button_top_03")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 15, 0, 0.166667, 1, 0, 7, 0, 0.5, 1, 0, 15, 0)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mcu5q"]
 _data = {
@@ -75,6 +76,9 @@ spin_sides = 8
 
 [node name="Botón_Rojo" parent="." instance=ExtResource("1_c0lom")]
 transform = Transform3D(-1.68054e-08, 3.96148e-09, 0.209, 0.0906281, 0.384463, 2.1169e-16, -0.384463, 0.0906281, -9.13568e-09, 0.114088, 0.807111, -1.22442)
+
+[node name="Skeleton3D" parent="Botón_Rojo/Sketchfab_model/22651b82dee743ada4984ec97caf27be_fbx/RootNode/portal_button_reduced/Object_6" index="0"]
+bones/4/position = Vector3(0, 13.6402, 0)
 
 [node name="Object_8" parent="Botón_Rojo/Sketchfab_model/22651b82dee743ada4984ec97caf27be_fbx/RootNode/portal_button_reduced/Object_6/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ykyx0")
