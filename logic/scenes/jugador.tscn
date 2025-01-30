@@ -33,11 +33,15 @@ func get_camera_ref() -> Camera3D:
 
 func _ready() -> void:
 	currState = playerStates.Free
+	
+	floor_snap_length = 1
 	#GlobalInfo.jugador_atrapado.connect(func(p): set_center_of_gravity(p))
 	
 
 func _physics_process(_delta: float) -> void:
 	direction = camara_ref.get_global_transform().basis.z
+	#if $GroundRayCast.get_collider():
+		#print($GroundRayCast.get_collision_normal()) # acá no está la inclinación de las escaleras
 	match currState:
 		playerStates.Free:
 			free_pp(_delta)
@@ -46,6 +50,8 @@ func _physics_process(_delta: float) -> void:
 		playerStates.OnMainMenu:
 			on_menu_pp(_delta)
 	
+	move_and_slide()
+	apply_floor_snap()	
 	
 #region physics_process
 func free_pp(_delta : float) -> void:
@@ -60,8 +66,6 @@ func free_pp(_delta : float) -> void:
 		moveSpeed += $\".\".up_direction.cross(direction)	
 	moveSpeed = moveSpeed.normalized() * (10 - (realentizacion_balde as int * 3))  
 	velocity = moveSpeed
-	velocity.y -= gravity
-	move_and_slide()
 	
 func trapped_pp(_delta: float) -> void:
 	moveSpeed = Vector3.ZERO
@@ -75,8 +79,6 @@ func trapped_pp(_delta: float) -> void:
 		moveSpeed += $\".\".up_direction.cross(direction)
 	moveSpeed = ((moveSpeed.normalized() * 1.1) -direction.normalized()) * 5 
 	velocity = moveSpeed
-	velocity.y -= gravity
-	move_and_slide()
 	
 func on_menu_pp(_delta: float) -> void:
 	pass
@@ -100,10 +102,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10292, 0)
 collision_mask = 5
 script = SubResource("GDScript_cx7sy")
 
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("mop_reference")]
+[node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_jh4ox")
-mop_reference = NodePath("")
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0.21, 0, -3)
@@ -126,5 +127,7 @@ transform = Transform3D(0.999999, -0.00134197, 0.000845586, 0.00134066, 0.999998
 shape = SubResource("CapsuleShape3D_pnppo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
 mesh = SubResource("CapsuleMesh_xqvju")
+
+[node name="GroundRayCast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.917645, 0)

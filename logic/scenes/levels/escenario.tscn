@@ -1,7 +1,6 @@
-[gd_scene load_steps=27 format=3 uid="uid://koqv2tici8g"]
+[gd_scene load_steps=29 format=4 uid="uid://koqv2tici8g"]
 
 [ext_resource type="PackedScene" uid="uid://bnl1k0w4e64he" path="res://logic/scenes/jugador.tscn" id="1_5xau3"]
-[ext_resource type="ArrayMesh" uid="uid://ylflb3vcbrgg" path="res://GodotActionRPG-Assets/Models/Environment/naturePack_001.obj" id="2_yj3f1"]
 [ext_resource type="Texture2D" uid="uid://de27uxs2gwl0c" path="res://modelos/textures/marble_tiles_dirty_1k/marble_tiles_diff_1k_editao.png" id="3_8xm7x"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/floor.gd" id="3_e045v"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/piscina/pool_script.gd" id="4_s5yiq"]
@@ -25,6 +24,56 @@ glow_enabled = true
 [sub_resource type="NavigationMesh" id="NavigationMesh_inggj"]
 vertices = PackedVector3Array(4.86374e-05, 14.6883, -30.1558, 4.86374e-05, 14.6883, 0.0942001, 31.5, 14.6883, 0.0942001, 31.5, 14.6883, -30.1558, 1.25005, -6.56174, -28.9058, 1.25005, -6.56174, -1.4058, 28.5, -6.56174, -1.4058, 28.5, -6.56174, -28.9058, 1.25005, 0.43826, -18.1558, 11.25, 0.43826, -18.1558, 11.25, 0.43826, -18.9058, 12.5, 0.43826, -19.6558, 12.5, 0.43826, -28.9058, 1.25005, 0.43826, -28.9058, 14.25, 0.43826, -18.6558, 13.75, 0.43826, -16.6558, 18, 0.43826, -10.9058, 28, 0.43826, -10.9058, 28.5, 0.43826, -28.9058, 28.5, 0.43826, -1.4058, 17.5, 0.43826, -10.6558, 12, 0.43826, -16.9058, 1.25005, 0.43826, -1.4058, 17.5, 0.43826, -1.4058)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(10, 9, 8), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(13, 10, 8), PackedInt32Array(16, 15, 14), PackedInt32Array(14, 11, 12), PackedInt32Array(16, 14, 17), PackedInt32Array(17, 14, 12), PackedInt32Array(17, 12, 18), PackedInt32Array(18, 19, 17), PackedInt32Array(15, 16, 20), PackedInt32Array(15, 20, 21), PackedInt32Array(21, 20, 23), PackedInt32Array(21, 23, 8), PackedInt32Array(8, 23, 22), PackedInt32Array(8, 9, 21)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kyeya"]
+resource_name = "Wood"
+albedo_color = Color(0.666667, 0.545098, 0.356863, 1)
+metallic = 0.33
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbaum"]
+resource_name = "Leafs"
+albedo_color = Color(0.270588, 0.407843, 0.4, 1)
+metallic = 0.33
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_2n3vl"]
+_surfaces = [{
+"aabb": AABB(0, 0, 0, 3, 0.3, 1e-05),
+"attribute_data": PackedByteArray("AAAAAAAAgD9SOOxC2/kswVI47EIAAIA/AAAAANv5LME="),
+"format": 34359742487,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAQAAAAMA"),
+"material": SubResource("StandardMaterial3D_kyeya"),
+"name": "Wood",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAAAAAAAAAABAQJqZmT4AAAAAAABAQAAAAAAAAAAAAAAAAJqZmT4AAAAA/3//f////7//f/9/////v/9//3////+//3//f////78=")
+}, {
+"aabb": AABB(0, 0.3, -3, 3, 1e-05, 3),
+"attribute_data": PackedByteArray("/38AAP//F4H/fxeB//8AAA=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAQAAAAMA"),
+"material": SubResource("StandardMaterial3D_jbaum"),
+"name": "Leafs",
+"primitive": 3,
+"uv_scale": Vector4(236.22, 234.22, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAA/7///wAA////vwAAAAD///+///8AAAAA/7////9/////f////3////9/")
+}, {
+"aabb": AABB(0, 0, -3, 3, 0.3, 3),
+"attribute_data": PackedByteArray("//8Xgf9/LnT//y50/38XgQAAAAD/fxeBAAAXgf9/AAAAAC50/38XgQAAF4H/fy50AAAXgf9/LnT/fxeBAAAudA=="),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAQAAAAMABAAFAAYABQAEAAcACAAJAAoACQAIAAsADAANAA4ADQAMAA8A"),
+"material": SubResource("StandardMaterial3D_kyeya"),
+"name": "Wood",
+"primitive": 3,
+"uv_scale": Vector4(236.22, 234.22, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("//8AAAAA/7//////////v/////8AAP+///8AAP///7///wAAAAD//wAAAAD///////8AAP////8AAAAAAAD//wAA//8AAP+/AAAAAP///78AAAAAAAD/vwAA//////+///8AAAAA//8AAP//AAD//wAAAAAAAP///////wAA////fwAA/38AAP9/AAD/fwAA/3//P/9//z//f/8//3//P/9/////f////3////9/////f////3////9/////f///")
+}]
+blend_shape_mode = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jtryp"]
 albedo_texture = ExtResource("3_8xm7x")
@@ -79,7 +128,7 @@ transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, -0.28, 0)
 rotation_edit_mode = 2
 use_collision = true
 collision_layer = 3
-mesh = ExtResource("2_yj3f1")
+mesh = SubResource("ArrayMesh_2n3vl")
 material = SubResource("StandardMaterial3D_jtryp")
 script = ExtResource("3_e045v")
 
@@ -103,7 +152,7 @@ omni_attenuation = 0.414
 omni_shadow_mode = 0
 
 [node name="PulpoSpawnerTimer" type="Timer" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
-wait_time = 30.0
+wait_time = 15.0
 
 [node name="Barandas" type="StaticBody3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.93587, 0)
@@ -174,8 +223,8 @@ operation = 2
 size = Vector3(11.3169, 4.17627, 9.91602)
 
 [node name="MarcoPuerta" type="CSGBox3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.68597, -0.577892, 6.29886)
-size = Vector3(1.95923, 2.90848, 3.01953)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.68597, -0.614444, 6.29886)
+size = Vector3(1.95923, 2.98158, 3.01953)
 
 [node name="Escalera" type="CSGBox3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/MarcoPuerta"]
 transform = Transform3D(0.765966, 0.642881, 0, -0.642881, 0.765966, 0, 0, 0, 1, 5.39686, -3.75781, 0.055479)
