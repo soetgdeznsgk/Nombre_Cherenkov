@@ -110,7 +110,7 @@ func exit_player_focus() -> void:
 	player_on_range = false
 
 func player_interaction() -> void: #ésta función estará en TODOS los objetos con un efecto especial de interacción
-	if GlobalInfo.timerInteractionBuffer.is_stopped():
+	if GlobalInfo.timerInteractionBuffer.is_stopped() and GlobalInfo.refCamara.mop_reference != null:
 		if bucket_ko:
 			reset_bucket_orientation()
 			
