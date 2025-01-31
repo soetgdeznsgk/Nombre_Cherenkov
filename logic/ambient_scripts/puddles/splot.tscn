@@ -1,16 +1,17 @@
 [gd_scene load_steps=6 format=3 uid="uid://bvsuhho1i86dg"]
 
-[ext_resource type="Texture2D" uid="uid://dy0651v37mfxf" path="res://icon.svg" id="1_0756d"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/puddles/splot.gd" id="1_nr8lu"]
+[ext_resource type="Texture2D" uid="uid://bi8mnx142tu1o" path="res://Puddle.png" id="2_2sqon"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_4toat"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5fmjb"]
+transparency = 1
 albedo_color = Color(1, 0.999, 17.838, 1)
-albedo_texture = ExtResource("1_0756d")
+albedo_texture = ExtResource("2_2sqon")
 emission_enabled = true
 emission = Color(0, 1, 1, 1)
-emission_energy_multiplier = 0.29
+emission_energy_multiplier = 0.4
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_elab6"]
 height = 0.002
@@ -24,7 +25,7 @@ wait_time = 0.3
 one_shot = true
 
 [node name="MeshInstance3D" type="CSGMesh3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, -4.25158e-09, 0.1, 0, -0.0972647, -4.37114e-09, 0, 0, 0)
+transform = Transform3D(0.13, 0, 0, 0, -5.50763e-09, 0.13, 0, -0.126, -5.68248e-09, 0, 0, 0)
 mesh = SubResource("QuadMesh_4toat")
 material = SubResource("StandardMaterial3D_5fmjb")
 
