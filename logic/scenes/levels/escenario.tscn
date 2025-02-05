@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://koqv2tici8g"]
+[gd_scene load_steps=30 format=4 uid="uid://koqv2tici8g"]
 
 [ext_resource type="PackedScene" uid="uid://bnl1k0w4e64he" path="res://logic/scenes/jugador.tscn" id="1_5xau3"]
 [ext_resource type="Texture2D" uid="uid://de27uxs2gwl0c" path="res://modelos/textures/marble_tiles_dirty_1k/marble_tiles_diff_1k_editao.png" id="3_8xm7x"]
@@ -109,6 +109,11 @@ normal_texture = ExtResource("10_kvo7a")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t688q"]
 size = Vector3(1, 0.202484, 1)
+
+[sub_resource type="GDScript" id="GDScript_bt5qu"]
+resource_name = "camara_trailer"
+script/source = "extends Window
+"
 
 [node name="Escenario" type="Node3D"]
 
@@ -293,6 +298,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5233, 10.0724, -14.4675)
 
 [node name="Display Contamination Bar" parent="." instance=ExtResource("7_i1h8h")]
 transform = Transform3D(-2.12656e-07, 0, 4.865, 0, 4.865, 0, -4.865, 0, -2.12656e-07, 0.654193, 2.65701, -15.4314)
+
+[node name="Window_Trailer" type="Window" parent="."]
+title = "Camara 2"
+size = Vector2i(960, 540)
+script = SubResource("GDScript_bt5qu")
+
+[node name="Trailer_Recorder" type="Camera3D" parent="Window_Trailer" groups=["Trailer_INDEV"]]
+transform = Transform3D(0.936458, 0.170992, -0.306281, 0, 0.873143, 0.487463, 0.35078, -0.456489, 0.817662, -3.87363, 8.64373, -14.5138)
 
 [connection signal="timeout" from="NavigationRegion3D/Geometría/Piso/PiscinaD/RanaSpawnerTimer" to="NavigationRegion3D/Geometría/Piso/PiscinaD" method="_on_rana_spawner_timer_timeout"]
 [connection signal="timeout" from="NavigationRegion3D/Geometría/Piso/PiscinaD/PulpoSpawnerTimer" to="NavigationRegion3D/Geometría/Piso/PiscinaD" method="_on_pulpo_spawner_timer_timeout"]

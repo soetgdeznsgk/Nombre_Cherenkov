@@ -27,6 +27,7 @@ LevelBuilder="*res://logic/global_scripts/level_builder.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/subwindows/embed_subwindows=false
 
 [global_group]
 
@@ -41,6 +42,7 @@ Trapero=""
 ContaminationBar=""
 PulpoManager=""
 Alarmables="Todos los nodos que necesitan activarse una vez se active la alarma"
+Trailer_INDEV=""
 
 [input]
 
