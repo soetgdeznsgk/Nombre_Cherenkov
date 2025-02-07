@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://koqv2tici8g"]
+[gd_scene load_steps=31 format=4 uid="uid://koqv2tici8g"]
 
 [ext_resource type="PackedScene" uid="uid://bnl1k0w4e64he" path="res://logic/scenes/jugador.tscn" id="1_5xau3"]
 [ext_resource type="Texture2D" uid="uid://de27uxs2gwl0c" path="res://modelos/textures/marble_tiles_dirty_1k/marble_tiles_diff_1k_editao.png" id="3_8xm7x"]
@@ -106,6 +106,9 @@ albedo_texture = ExtResource("11_mejav")
 roughness_texture = ExtResource("11_qtel0")
 normal_enabled = true
 normal_texture = ExtResource("10_kvo7a")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2do16"]
+albedo_color = Color(1, 1, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t688q"]
 size = Vector3(1, 0.202484, 1)
@@ -237,6 +240,12 @@ size = Vector3(13.4414, 2.30323, 2.06006)
 
 [node name="Panel_Control" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control" instance=ExtResource("13_jkktu")]
 transform = Transform3D(-9.96959e-08, 0, -1.20595, 0, 1, 0, 2.28078, 0, -5.27136e-08, 0, -1.82592, 0)
+
+[node name="CAJAFUSIBLES_DEBUG" type="CSGBox3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0555, -0.789795, -0.528809)
+operation = 2
+size = Vector3(1, 2.57959, 2.05762)
+material = SubResource("StandardMaterial3D_2do16")
 
 [node name="bucket" parent="NavigationRegion3D" instance=ExtResource("5_ahg2q")]
 transform = Transform3D(0.874569, 0, -0.484901, 0, 1, 0, 0.484901, 0, 0.874569, 12.7887, 0.610428, -18.1323)
