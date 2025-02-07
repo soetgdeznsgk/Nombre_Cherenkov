@@ -1,9 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://btpu3eyttcmkr"]
+[gd_scene load_steps=12 format=3 uid="uid://btpu3eyttcmkr"]
 
 [ext_resource type="PackedScene" uid="uid://dow5ivvg1vhra" path="res://modelos/button_-_from_portal_2_original/scene.gltf" id="1_c0lom"]
 [ext_resource type="Texture2D" uid="uid://cbkgv4jvt85xd" path="res://modelos/button_-_from_portal_2_original/textures/portal_button_switch_baseColor.jpeg" id="2_ki8hd"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/postprocessing_items/outline_on_selection.gd" id="3_e7dye"]
 [ext_resource type="Material" uid="uid://cnqwt7axy0vyl" path="res://logic/ambient_scripts/postprocessing_items/outline_material_mop.tres" id="4_gn8tt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qk04c"]
+cull_mode = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ykyx0"]
 albedo_texture = ExtResource("2_ki8hd")
@@ -73,6 +76,7 @@ polygon = PackedVector2Array(-0.0331738, -0.0727901, -0.122429, 1.03563, 0.91048
 mode = 1
 spin_degrees = 360.0
 spin_sides = 8
+material = SubResource("StandardMaterial3D_qk04c")
 
 [node name="Botón_Rojo" parent="." instance=ExtResource("1_c0lom")]
 transform = Transform3D(-1.68054e-08, 3.96148e-09, 0.209, 0.0906281, 0.384463, 2.1169e-16, -0.384463, 0.0906281, -9.13568e-09, 0.114088, 0.807111, -1.22442)
