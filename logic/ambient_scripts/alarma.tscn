@@ -7,6 +7,7 @@ script/source = "extends Node3D
 
 func _ready() -> void: 
 	process_mode = PROCESS_MODE_DISABLED
+	#start() # debug
 
 func _physics_process(delta: float) -> void:
 	$SpotLight3D.rotate(basis.x, PI * delta)
@@ -20,11 +21,15 @@ func start() -> void: # parte del grupo de nodos \"alarmables
 script = SubResource("GDScript_qjf21")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223813, 0.365388, -0.256184)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223813, 0.365388, -0.667134)
 light_color = Color(100, 1, 1, 1)
 light_energy = 0.0
 light_specular = 29.755
-spot_range = 5.89562
+shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_length = 5.0
+spot_range = 11.9158
+spot_attenuation = 4.0
 spot_angle = 72.36
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("1_flrcg")]
