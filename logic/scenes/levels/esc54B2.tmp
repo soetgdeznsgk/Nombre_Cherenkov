@@ -34,8 +34,8 @@ adjustment_contrast = 1.1
 [sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_glesx"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_inggj"]
-vertices = PackedVector3Array(-12.4343, 14.6883, -30.1558, -12.4343, 14.6883, 0.0942001, 31.3157, 14.6883, 0.0942001, 31.3157, 14.6883, -30.1558, 0.565729, -6.56174, -28.9058, 0.565729, -6.56174, -1.4058, 28.5657, -6.56174, -1.4058, 28.5657, -6.56174, -28.9058, 9.56573, 0.43826, -22.9058, 16.5657, 0.43826, -25.4058, 16.5657, 0.43826, -28.9058, 0.565729, 0.43826, -18.1558, 7.56573, 0.43826, -18.1558, 0.565729, 0.43826, -28.9058, 24.8157, 0.43826, -12.9058, 25.0657, 0.43826, -12.1558, 28.5657, 0.43826, -12.1558, 25.0657, 0.43826, -17.6558, 24.0657, 0.43826, -17.1558, 24.3157, 0.43826, -12.9058, 23.3157, 0.43826, -22.4058, 28.5657, 0.43826, -28.9058, 25.0657, 0.43826, -18.4058, 8.56573, 0.18826, -17.1558, 8.56573, 0.18826, -13.4058, 9.06573, 0.18826, -13.1558, 9.06573, 0.18826, -17.4058, 23.0657, 0.18826, -18.4058, 21.8157, 0.43826, -21.6558, 16.0657, 0.43826, -23.9058, 23.5657, 0.18826, -12.6558, 10.8157, 0.43826, -21.6558, 17.0657, 0.43826, -6.9058, 10.8157, 0.43826, -8.9058, 15.5657, 0.43826, -6.9058, 22.0657, 0.18826, -9.1558, -10.1843, 7.43826, -19.9058, -10.1843, 7.43826, -17.6558, -9.18427, 7.43826, -17.4058, -5.68427, 7.43826, -17.1558, -5.68427, 7.43826, -19.9058, -4.93427, 7.43826, -14.4058, -4.93427, 7.43826, -16.4058, -9.18427, 7.43826, -14.6558, -5.93427, 7.43826, -13.6558, -9.18427, 7.43826, -11.1558, -10.1843, 7.43826, -14.4058, -10.1843, 7.43826, -8.4058, -9.43427, 7.43826, -9.6558, -5.93427, 7.43826, -11.1558, -1.43427, 1.43826, -8.6558, -1.43427, 1.43826, -9.4058, -8.72594, 7.43826, -8.44747, -8.10094, 6.93826, -9.61413, -0.434271, 7.43826, -19.9058, -4.18427, 7.43826, -19.9058, -3.18427, 7.43826, -19.1558, -2.43427, 7.43826, -13.6558, -3.93427, 7.43826, -11.1558, -0.434271, 7.43826, -11.1558, -2.43427, 7.43826, -17.1558, -4.93427, 8.68826, -12.9058, -4.93427, 8.68826, -12.1558, -4.43427, 8.68826, -12.1558, -3.43427, 8.68826, -14.1558, -3.93427, 8.68826, -13.9058, -4.18427, 8.68826, -18.6558, -4.68427, 8.68826, -18.6558, -4.68427, 8.68826, -17.6558, -3.93427, 8.68826, -16.9058, -3.43427, 8.68826, -16.6558, 7.56573, 0.43826, -12.9058, 7.56573, 0.43826, -17.6558, 0.565729, 0.43826, -12.4058, 7.56573, 0.43826, -12.4058, 0.565729, 0.43826, -8.4058, 0.565729, 0.43826, -9.6558, -0.434271, 0.43826, -9.5308, -0.434271, 0.43826, -8.5308, 16.3157, 0.43826, -1.4058, 16.3157, 0.43826, -5.1558, 9.56573, 0.43826, -7.6558, 0.565729, 0.43826, -1.4058, 23.0657, 0.43826, -7.6558, 28.5657, 0.43826, -1.4058, 22.0657, 0.43826, -7.6558)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(10, 9, 8), PackedInt32Array(8, 12, 11), PackedInt32Array(11, 13, 8), PackedInt32Array(8, 13, 10), PackedInt32Array(15, 14, 16), PackedInt32Array(16, 14, 18), PackedInt32Array(16, 18, 17), PackedInt32Array(14, 19, 18), PackedInt32Array(9, 10, 20), PackedInt32Array(20, 10, 21), PackedInt32Array(22, 20, 16), PackedInt32Array(16, 20, 21), PackedInt32Array(16, 17, 22), PackedInt32Array(23, 26, 24), PackedInt32Array(24, 26, 25), PackedInt32Array(29, 28, 27), PackedInt32Array(19, 30, 18), PackedInt32Array(18, 30, 27), PackedInt32Array(31, 29, 25), PackedInt32Array(25, 29, 27), PackedInt32Array(25, 27, 30), PackedInt32Array(25, 30, 32), PackedInt32Array(34, 33, 32), PackedInt32Array(32, 33, 25), PackedInt32Array(32, 30, 35), PackedInt32Array(25, 26, 31), PackedInt32Array(37, 36, 38), PackedInt32Array(38, 36, 39), PackedInt32Array(39, 36, 40), PackedInt32Array(42, 41, 39), PackedInt32Array(39, 41, 44), PackedInt32Array(39, 44, 43), PackedInt32Array(39, 43, 38), PackedInt32Array(48, 47, 45), PackedInt32Array(45, 47, 46), PackedInt32Array(46, 43, 45), PackedInt32Array(45, 43, 44), PackedInt32Array(45, 44, 49), PackedInt32Array(47, 48, 52), PackedInt32Array(52, 48, 53), PackedInt32Array(52, 53, 51), PackedInt32Array(52, 51, 50), PackedInt32Array(56, 55, 54), PackedInt32Array(59, 58, 57), PackedInt32Array(60, 56, 54), PackedInt32Array(57, 60, 59), PackedInt32Array(59, 60, 54), PackedInt32Array(62, 61, 63), PackedInt32Array(63, 61, 65), PackedInt32Array(63, 65, 64), PackedInt32Array(67, 66, 68), PackedInt32Array(68, 66, 69), PackedInt32Array(69, 66, 70), PackedInt32Array(64, 65, 70), PackedInt32Array(70, 65, 69), PackedInt32Array(24, 71, 23), PackedInt32Array(23, 71, 72), PackedInt32Array(72, 71, 73), PackedInt32Array(72, 73, 11), PackedInt32Array(11, 12, 72), PackedInt32Array(71, 74, 73), PackedInt32Array(51, 77, 50), PackedInt32Array(50, 77, 78), PackedInt32Array(78, 77, 76), PackedInt32Array(78, 76, 75), PackedInt32Array(80, 79, 81), PackedInt32Array(81, 79, 75), PackedInt32Array(75, 79, 82), PackedInt32Array(76, 73, 74), PackedInt32Array(76, 74, 75), PackedInt32Array(75, 74, 81), PackedInt32Array(15, 16, 83), PackedInt32Array(83, 16, 84), PackedInt32Array(85, 83, 80), PackedInt32Array(80, 83, 79), PackedInt32Array(79, 83, 84)]
+vertices = PackedVector3Array(-12.4343, 14.6883, -30.1558, -12.4343, 14.6883, 0.0942001, 31.3157, 14.6883, 0.0942001, 31.3157, 14.6883, -30.1558, 0.565729, -6.56174, -28.9058, 0.565729, -6.56174, -1.4058, 28.5657, -6.56174, -1.4058, 28.5657, -6.56174, -28.9058, 0.565729, 0.43826, -22.9058, 8.06573, 0.43826, -22.9058, 8.81573, 0.43826, -23.9058, 16.3157, 0.43826, -26.9058, 16.3157, 0.43826, -28.9058, 0.565729, 0.43826, -28.9058, 27.8157, 0.43826, -19.4058, 28.0657, 0.43826, -18.6558, 28.5657, 0.43826, -18.6558, 28.5657, 0.43826, -28.9058, 26.8157, 0.43826, -19.9058, 27.0657, 0.43826, -19.4058, 17.3157, 0.43826, -26.6558, 17.3157, 0.43826, -25.6558, 16.8157, 0.43826, -25.4058, 25.5657, 0.43826, -19.4058, 25.8157, 0.43826, -19.9058, 0.565729, 0.43826, -9.6558, -1.43427, 1.43826, -9.4058, -1.43427, 1.43826, -8.6558, 0.565729, 0.43826, -8.4058, -0.434271, 0.43826, -9.5308, -0.434271, 0.43826, -8.5308, 28.5657, 0.43826, -1.4058, 26.8157, 0.43826, -16.6558, 25.3157, 0.43826, -16.6558, 8.31573, 0.43826, -22.1558, 25.0657, 0.43826, -18.4058, 9.31573, 0.43826, -22.1558, 0.565729, 0.43826, -1.4058, -10.1843, 7.43826, -19.9058, -10.1843, 7.43826, -17.6558, -9.18427, 7.43826, -17.4058, -5.68427, 7.43826, -17.1558, -5.68427, 7.43826, -19.9058, -4.93427, 7.43826, -14.4058, -4.93427, 7.43826, -16.4058, -9.18427, 7.43826, -14.6558, -5.93427, 7.43826, -13.6558, -9.18427, 7.43826, -11.1558, -10.1843, 7.43826, -14.4058, -10.1843, 7.43826, -8.4058, -9.43427, 7.43826, -9.6558, -5.93427, 7.43826, -11.1558, -8.72594, 7.43826, -8.44747, -8.10094, 6.93826, -9.61413, -0.434271, 7.43826, -19.9058, -4.18427, 7.43826, -19.9058, -3.18427, 7.43826, -19.1558, -2.43427, 7.43826, -13.6558, -3.93427, 7.43826, -11.1558, -0.434271, 7.43826, -11.1558, -2.43427, 7.43826, -17.1558, -4.93427, 8.68826, -12.9058, -4.93427, 8.68826, -12.1558, -4.43427, 8.68826, -12.1558, -3.43427, 8.68826, -14.1558, -3.93427, 8.68826, -13.9058, -4.18427, 8.68826, -18.6558, -4.68427, 8.68826, -18.6558, -4.68427, 8.68826, -17.6558, -3.93427, 8.68826, -16.9058, -3.43427, 8.68826, -16.6558)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(10, 9, 8), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 8), PackedInt32Array(12, 8, 13), PackedInt32Array(15, 14, 16), PackedInt32Array(16, 14, 17), PackedInt32Array(19, 18, 14), PackedInt32Array(14, 18, 17), PackedInt32Array(20, 11, 12), PackedInt32Array(23, 22, 21), PackedInt32Array(23, 21, 20), PackedInt32Array(17, 18, 24), PackedInt32Array(24, 23, 17), PackedInt32Array(17, 23, 20), PackedInt32Array(17, 20, 12), PackedInt32Array(26, 29, 27), PackedInt32Array(27, 29, 30), PackedInt32Array(30, 29, 25), PackedInt32Array(30, 25, 28), PackedInt32Array(33, 32, 31), PackedInt32Array(15, 16, 32), PackedInt32Array(32, 16, 31), PackedInt32Array(9, 34, 8), PackedInt32Array(8, 34, 25), PackedInt32Array(22, 23, 35), PackedInt32Array(22, 35, 33), PackedInt32Array(22, 33, 36), PackedInt32Array(36, 33, 28), PackedInt32Array(28, 33, 37), PackedInt32Array(37, 33, 31), PackedInt32Array(34, 36, 25), PackedInt32Array(25, 36, 28), PackedInt32Array(39, 38, 40), PackedInt32Array(40, 38, 41), PackedInt32Array(41, 38, 42), PackedInt32Array(44, 43, 41), PackedInt32Array(41, 43, 46), PackedInt32Array(41, 46, 45), PackedInt32Array(41, 45, 40), PackedInt32Array(50, 49, 47), PackedInt32Array(47, 49, 48), PackedInt32Array(48, 45, 47), PackedInt32Array(47, 45, 46), PackedInt32Array(47, 46, 51), PackedInt32Array(49, 50, 52), PackedInt32Array(52, 50, 53), PackedInt32Array(52, 53, 26), PackedInt32Array(52, 26, 27), PackedInt32Array(56, 55, 54), PackedInt32Array(59, 58, 57), PackedInt32Array(60, 56, 54), PackedInt32Array(57, 60, 59), PackedInt32Array(59, 60, 54), PackedInt32Array(62, 61, 63), PackedInt32Array(63, 61, 65), PackedInt32Array(63, 65, 64), PackedInt32Array(67, 66, 68), PackedInt32Array(68, 66, 69), PackedInt32Array(69, 66, 70), PackedInt32Array(64, 65, 70), PackedInt32Array(70, 65, 69)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kyeya"]
 resource_name = "Wood"
@@ -95,7 +95,7 @@ normal_texture = ExtResource("4_xnu1m")
 uv1_scale = Vector3(0.01, 0.01, 0.01)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e7ppt"]
-size = Vector3(0.441583, 1.80273, 0.0809755)
+size = Vector3(1.12392, 1, 0.0809755)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_lnspf"]
 size = Vector2(4, 4)
@@ -140,10 +140,6 @@ camera_attributes = SubResource("CameraAttributesPhysical_glesx")
 [node name="Jugador" parent="." instance=ExtResource("1_5xau3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.10694, 7.82877, -14.8989)
 
-[node name="bucket" parent="." instance=ExtResource("5_ahg2q")]
-transform = Transform3D(0.874569, 0, -0.484901, 0, 1, 0, 0.484901, 0, 0.874569, 27.5606, 0.610428, -14.7666)
-mass = 50.0
-
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_inggj")
 
@@ -159,15 +155,15 @@ material = SubResource("StandardMaterial3D_jtryp")
 script = ExtResource("3_e045v")
 
 [node name="PiscinaD" type="CSGCylinder3D" parent="NavigationRegion3D/Geometría/Piso" node_paths=PackedStringArray("first_frog_target") groups=["Alarmables"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.62886, -1.97949, -1.52541)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.62886, -1.97949, -1.64359)
 operation = 2
 radius = 0.88697
-height = 4.89067
-smooth_faces = false
+height = 6.82549
 script = ExtResource("4_s5yiq")
-first_frog_target = NodePath("../../../../RanaManager/NodosDeNavegacionRana/nodo4")
+first_frog_target = NodePath("../../../../RanaManager/NodosDeNavegacionRana/nodo2")
 
 [node name="RanaSpawnerTimer" type="Timer" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
+wait_time = 10.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
 transform = Transform3D(0.1, 0, 0, 0, 1, 0, 0, 0, 0.1, -0.212667, -4.07754, -0.149284)
@@ -179,129 +175,29 @@ omni_attenuation = 0.414
 omni_shadow_mode = 0
 
 [node name="PulpoSpawnerTimer" type="Timer" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
-wait_time = 3.0
+wait_time = 15.0
 
-[node name="BarandasI" type="Node3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0.609)
+[node name="Barandas" type="StaticBody3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.93587, -0.362636)
+collision_layer = 4
 
-[node name="Tramo1" type="Area3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasI"]
-transform = Transform3D(0.92388, 0, 0.382683, 0, 1, 0, -0.382683, 0, 0.92388, 0.0682131, 3.40277, -1.0027)
+[node name="Tramo1" type="Node3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/Barandas"]
+transform = Transform3D(0.920157, 0, 0.39155, 0, 1, 0, -0.39155, 0, 0.920157, -0.0549624, 0, 0)
 
-[node name="reja" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasI/Tramo1" instance=ExtResource("8_7h1yo")]
+[node name="reja" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/Barandas/Tramo1" instance=ExtResource("8_7h1yo")]
 transform = Transform3D(0.035, 0, 0, 0, 0.35, 0, 0, 0, 0.035, -0.522395, -0.65638, -0.532642)
 
-[node name="reja2" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasI/Tramo1" instance=ExtResource("8_7h1yo")]
+[node name="reja2" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/Barandas/Tramo1" instance=ExtResource("8_7h1yo")]
 transform = Transform3D(0.035, 0, 0, 0, 0.35, 0, 0, 0, 0.035, -0.309095, -0.65638, -0.532642)
 
-[node name="reja3" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasI/Tramo1" instance=ExtResource("8_7h1yo")]
+[node name="reja3" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/Barandas/Tramo1" instance=ExtResource("8_7h1yo")]
 transform = Transform3D(0.035, 0, 0, 0, 0.35, 0, 0, 0, 0.035, -0.094903, -0.65638, -0.532642)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasI/Tramo1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.210068, 0.0215398, -0.531052)
-shape = SubResource("BoxShape3D_e7ppt")
+[node name="reja4" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/Barandas/Tramo1" instance=ExtResource("8_7h1yo")]
+transform = Transform3D(0.035, 0, 0, 0, 0.35, 0, 0, 0, 0.035, 0.124399, -0.65638, -0.532642)
 
-[node name="Tramo2" type="Area3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasI"]
-transform = Transform3D(0.919678, 0, -0.392674, 0, 1, 0, 0.392674, 0, 0.919678, 0.290456, 3.40277, -0.850687)
-
-[node name="reja" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasI/Tramo2" instance=ExtResource("8_7h1yo")]
-transform = Transform3D(0.035, 0, 0, 0, 0.35, 0, 0, 0, 0.035, -0.522395, -0.65638, -0.532642)
-
-[node name="reja2" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasI/Tramo2" instance=ExtResource("8_7h1yo")]
-transform = Transform3D(0.035, 0, 0, 0, 0.35, 0, 0, 0, 0.035, -0.309095, -0.65638, -0.532642)
-
-[node name="reja3" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasI/Tramo2" instance=ExtResource("8_7h1yo")]
-transform = Transform3D(0.035, 0, 0, 0, 0.35, 0, 0, 0, 0.035, -0.094903, -0.65638, -0.532642)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasI/Tramo2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.210068, 0.0215398, -0.531052)
-shape = SubResource("BoxShape3D_e7ppt")
-
-[node name="Tramo3" type="Area3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasI"]
-transform = Transform3D(0.400829, 0, -0.916153, 0, 1, 0, 0.916153, 0, 0.400829, 0.352183, 3.40277, -0.575452)
-
-[node name="reja" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasI/Tramo3" instance=ExtResource("8_7h1yo")]
-transform = Transform3D(0.035, 0, 0, 0, 0.35, 0, 0, 0, 0.035, -0.522395, -0.65638, -0.532642)
-
-[node name="reja2" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasI/Tramo3" instance=ExtResource("8_7h1yo")]
-transform = Transform3D(0.035, 0, 0, 0, 0.35, 0, 0, 0, 0.035, -0.309095, -0.65638, -0.532642)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasI/Tramo3"]
-transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, -0.319409, 0.0215398, -0.531052)
-shape = SubResource("BoxShape3D_e7ppt")
-
-[node name="Tramo4" type="Area3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasI"]
-transform = Transform3D(0.408729, 0, 0.912656, 0, 1, 0, -0.912656, 0, 0.408729, -0.0926243, 3.40277, -1.14168)
-
-[node name="reja" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasI/Tramo4" instance=ExtResource("8_7h1yo")]
-transform = Transform3D(0.035, 0, 0, 0, 0.35, 0, 0, 0, 0.035, -0.522395, -0.65638, -0.532642)
-
-[node name="reja2" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasI/Tramo4" instance=ExtResource("8_7h1yo")]
-transform = Transform3D(0.035, 0, 0, 0, 0.35, 0, 0, 0, 0.035, -0.309095, -0.65638, -0.532642)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasI/Tramo4"]
-transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, -0.319409, 0.0215398, -0.531052)
-shape = SubResource("BoxShape3D_e7ppt")
-
-[node name="BarandasD" type="Node3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0, -0.4, -0.615592)
-rotation_edit_mode = 2
-
-[node name="Tramo1" type="Area3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasD"]
-transform = Transform3D(0.92388, 0, 0.382683, 0, 1, 0, -0.382683, 0, 0.92388, 0.0682131, 3.40277, -1.0027)
-
-[node name="reja" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasD/Tramo1" instance=ExtResource("8_7h1yo")]
-transform = Transform3D(0.035, 0, 0, 0, 0.35, 0, 0, 0, 0.035, -0.522395, -0.65638, -0.532642)
-
-[node name="reja2" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasD/Tramo1" instance=ExtResource("8_7h1yo")]
-transform = Transform3D(0.035, 0, 0, 0, 0.35, 0, 0, 0, 0.035, -0.309095, -0.65638, -0.532642)
-
-[node name="reja3" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasD/Tramo1" instance=ExtResource("8_7h1yo")]
-transform = Transform3D(0.035, 0, 0, 0, 0.35, 0, 0, 0, 0.035, -0.094903, -0.65638, -0.532642)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasD/Tramo1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.210068, 0.0215398, -0.531052)
-shape = SubResource("BoxShape3D_e7ppt")
-
-[node name="Tramo2" type="Area3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasD"]
-transform = Transform3D(0.919678, 0, -0.392674, 0, 1, 0, 0.392674, 0, 0.919678, 0.290456, 3.40277, -0.850687)
-
-[node name="reja" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasD/Tramo2" instance=ExtResource("8_7h1yo")]
-transform = Transform3D(0.035, 0, 0, 0, 0.35, 0, 0, 0, 0.035, -0.522395, -0.65638, -0.532642)
-
-[node name="reja2" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasD/Tramo2" instance=ExtResource("8_7h1yo")]
-transform = Transform3D(0.035, 0, 0, 0, 0.35, 0, 0, 0, 0.035, -0.309095, -0.65638, -0.532642)
-
-[node name="reja3" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasD/Tramo2" instance=ExtResource("8_7h1yo")]
-transform = Transform3D(0.035, 0, 0, 0, 0.35, 0, 0, 0, 0.035, -0.094903, -0.65638, -0.532642)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasD/Tramo2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.210068, 0.0215398, -0.531052)
-shape = SubResource("BoxShape3D_e7ppt")
-
-[node name="Tramo3" type="Area3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasD"]
-transform = Transform3D(0.400829, 0, -0.916153, 0, 1, 0, 0.916153, 0, 0.400829, 0.352377, 3.40277, -0.61216)
-
-[node name="reja" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasD/Tramo3" instance=ExtResource("8_7h1yo")]
-transform = Transform3D(0.035, 0, 0, 0, 0.35, 0, 0, 0, 0.035, -0.522395, -0.65638, -0.532642)
-
-[node name="reja2" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasD/Tramo3" instance=ExtResource("8_7h1yo")]
-transform = Transform3D(0.035, 0, 0, 0, 0.35, 0, 0, 0, 0.035, -0.309095, -0.65638, -0.532642)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasD/Tramo3"]
-transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, -0.319409, 0.0215398, -0.531052)
-shape = SubResource("BoxShape3D_e7ppt")
-
-[node name="Tramo4" type="Area3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasD"]
-transform = Transform3D(0.408729, 0, 0.912656, 0, 1, 0, -0.912656, 0, 0.408729, -0.0926243, 3.40277, -1.14168)
-
-[node name="reja" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasD/Tramo4" instance=ExtResource("8_7h1yo")]
-transform = Transform3D(0.035, 0, 0, 0, 0.35, 0, 0, 0, 0.035, -0.522395, -0.65638, -0.532642)
-
-[node name="reja2" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasD/Tramo4" instance=ExtResource("8_7h1yo")]
-transform = Transform3D(0.035, 0, 0, 0, 0.35, 0, 0, 0, 0.035, -0.309095, -0.65638, -0.532642)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/BarandasD/Tramo4"]
-transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, -0.319409, 0.0215398, -0.531052)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD/Barandas/Tramo1"]
+transform = Transform3D(0.920157, 0, -0.39155, 0, 1, 0, 0.39155, 0, 0.920157, 0.236469, 0.422906, -0.461079)
 shape = SubResource("BoxShape3D_e7ppt")
 
 [node name="Agua" type="Node3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
@@ -344,6 +240,10 @@ operation = 2
 size = Vector3(1, 2.57959, 2.05762)
 material = SubResource("StandardMaterial3D_2do16")
 
+[node name="bucket" parent="NavigationRegion3D" instance=ExtResource("5_ahg2q")]
+transform = Transform3D(0.874569, 0, -0.484901, 0, 1, 0, 0.484901, 0, 0.874569, 26.3564, 0.610428, -18.1323)
+mass = 50.0
+
 [node name="RanaManager" type="Node" parent="." groups=["RanaManager"]]
 
 [node name="NodosDeNavegacionRana" type="Node" parent="RanaManager"]
@@ -363,14 +263,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
 shape = SubResource("BoxShape3D_t688q")
 
 [node name="nodo3" type="Area3D" parent="RanaManager/NodosDeNavegacionRana" groups=["NodosNavegacion"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.6194, -4.76837e-07, -26.0601)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9307, -4.76837e-07, -24.5184)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RanaManager/NodosDeNavegacionRana/nodo3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
 shape = SubResource("BoxShape3D_t688q")
 
 [node name="nodo4" type="Area3D" parent="RanaManager/NodosDeNavegacionRana" groups=["NodosNavegacion"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.8099, -4.76837e-07, -14.9534)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8726, -4.76837e-07, -14.9534)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RanaManager/NodosDeNavegacionRana/nodo4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)

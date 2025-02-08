@@ -53,7 +53,7 @@ func _physics_process(delta):
 	else:
 		time_locked += delta
 		look_at((global_position - pre_grab_camera_direction).lerp(focus_point, time_locked))
-		mop_reference.rotate_to_camera(Vector2.ZERO)
+		if mop_reference != null: mop_reference.rotate_to_camera(Vector2.ZERO)
 		
 		
 
