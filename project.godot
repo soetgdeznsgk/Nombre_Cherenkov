@@ -25,9 +25,11 @@ LevelBuilder="*res://logic/global_scripts/level_builder.gd"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/subwindows/embed_subwindows=false
+window/stretch/mode="viewport"
+window/stretch/scale=3.0
 
 [global_group]
 
