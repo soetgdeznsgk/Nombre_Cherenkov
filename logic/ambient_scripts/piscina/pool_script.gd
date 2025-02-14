@@ -17,7 +17,7 @@ func start() -> void:
 	$RanaSpawnerTimer.start()
 
 func _on_rana_spawner_timer_timeout() -> void:
-	if get_tree().get_first_node_in_group("RanaManager").get_child_count() < 4:
+	if get_tree().get_first_node_in_group("RanaManager").get_child_count() < 10:
 		var rana = rana_ref.instantiate().with_target(first_frog_target)
 		rana.position = global_position
 		rana.position += (height) * Vector3.DOWN
