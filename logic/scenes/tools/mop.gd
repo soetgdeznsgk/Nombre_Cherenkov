@@ -13,9 +13,24 @@ static var mop_saturation : float = 0.0:
 @export var remote_transform_ref : RemoteTransform3D
 @onready var camera_ref : InteraccionesJugador = GlobalInfo.refCamara
 @onready var balde_ref : Balde = get_tree().get_first_node_in_group("Baldes")
-@onready var mesh_ref : MeshInstance3D = $"mopAniText/Esqueleto_001/Skeleton3D/Círculo_002"
-@onready var esqueleto_ref : Skeleton3D = $mopAniText/Esqueleto_001/Skeleton3D
+@onready var mesh_ref : MeshInstance3D = $"trapcleaner/Esqueleto_001/GeneralSkeleton/Círculo_002"
+@onready var esqueleto_ref : Skeleton3D = $trapcleaner/Esqueleto_001/GeneralSkeleton
 
+# animationtree
+@onready var anim_tree : AnimationTree = $AnimationTree
+enum states {
+	Idle,
+	Cleaning
+}
+var anim_state : int = 0:
+	set(v):
+		match v:
+			0:
+				anim_tree["parameters/conditions/is_cleaning"] = false
+				print("no limpiando")
+			1:
+				anim_tree["parameters/conditions/is_cleaning"] = true
+				print("aura si!")
 # huesos
 @onready var base_bone_idx : int = esqueleto_ref.find_bone("Bone.002") # base se rota hacia adelante y atrás
 @onready var intermediate_bone_idx : int = esqueleto_ref.find_bone("Bone.003") # medio se rota hacia los lados
@@ -24,12 +39,11 @@ static var mop_saturation : float = 0.0:
 var origin_point_in_HUD : Vector3
 var current_point_of_intersection_with_floor : Vector3
 
-@onready var mop_height : float =  $"mopAniText/Esqueleto_001/Skeleton3D/Círculo_002".get_aabb().size.y
+@onready var mop_height : float =  $"trapcleaner/Esqueleto_001/GeneralSkeleton/Círculo_002".get_aabb().size.y
 @onready var mop_head_size : Vector3 = Vector3.ZERO#$"compound mesh/Sketchfab_model/root/GLTF_SceneRootNode/PSXBroom_0/Object_6".get_aabb().size
 var state_stowed : bool = true # xq aparezce guardado
 var state_cleaning : bool
 var current_splot_selected : Splot
-
 
 func _ready() -> void:
 	GlobalInfo.jugador_trapea.connect(func(_o): mop_saturation += mop_saturation_pace)
@@ -63,14 +77,14 @@ func rotate_to_camera(mouse_movement_delta : Vector2):
 		
 		esqueleto_ref.set_bone_pose_rotation(base_bone_idx, Quaternion(Vector3.RIGHT, 
 						(-global_basis.y).signed_angle_to(Vector3.DOWN, basis.x)
-						- abs(mouse_movement_delta.x / 130))) # centrífuga 
+						- abs(mouse_movement_delta.x / 13))) # centrífuga 
 		
 		# Rotación producto del momento de rotación
 		esqueleto_ref.set_bone_pose_rotation(intermediate_bone_idx, Quaternion(Vector3.FORWARD, 
-						mouse_movement_delta.x / 100)) # TODO averiguar como hacerlo "mas fluido"
+						mouse_movement_delta.x / 10)) # TODO arreglarlo, lo rompí
 						
 		esqueleto_ref.set_bone_pose_rotation(tip_bone_idx, Quaternion(Vector3.FORWARD,
-						mouse_movement_delta.x / 130))
+						mouse_movement_delta.x / 13))
 		#endregion
 		
 func normalize_mesh_perturbation() -> void:
@@ -87,21 +101,24 @@ func trapeo_lerp_to(p : Vector3, _t : float) -> void:
 	#else:
 		#print("rutina terminada")
 	#print(remote_transform_ref.global_position.distance_to(p))
+	if anim_state != states["Cleaning"]:
+		anim_state = states["Cleaning"]
 	current_point_of_intersection_with_floor = p
-	var deb := mop_height /5
-	remote_transform_ref.global_position = p + Vector3(0, deb / 5, 0) # arreglar
+	remote_transform_ref.global_position = p + Vector3(0, mop_height/10, 0) # arreglar
 	
 func trapeo_lerp_back(_t : float) -> void:
 	#TODO animar estavaina
 	remote_transform_ref.position = origin_point_in_HUD
+	#if anim_state != states["Idle"]:
+		#anim_tree["parameters/conditions/is_cleaning"] = false
+	anim_state = states["Idle"]
+	#print("lo mando a devolverse >:)", anim_tree["parameters/conditions/is_cleaning"])
 
 func _on_area_entered(area: Area3D) -> void:
 	if area.is_in_group("Charcos"):
-		state_cleaning = true
+		if not state_cleaning:
+			state_cleaning = true
 		current_splot_selected = area
-		#print(area.name)
-		#area.spawn_hole(current_point_of_intersection_with_floor, \
-		#GeometricToolbox.y_offset_vector_to_0(mop_head_size))
 
 func _on_area_exited(area: Area3D) -> void:
 	if area.is_in_group("Charcos"):
