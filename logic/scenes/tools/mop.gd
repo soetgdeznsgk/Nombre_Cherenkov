@@ -18,6 +18,7 @@ static var mop_saturation : float = 0.0:
 
 # animationtree
 @onready var anim_tree : AnimationTree = $AnimationTree
+@onready var wiggle_resource : DMWBWiggleRotationProperties3D = preload("res://logic/scenes/tools/mop_head_wiggle_material.tres")
 enum states {
 	Stowed,
 	Idle,
@@ -27,19 +28,18 @@ var anim_state : int = 0:
 	set(v):
 		match v:
 			states.Idle:
-				anim_tree["parameters/conditions/is_cleaning"] = false
-				anim_tree["parameters/conditions/stowed"] = false
-				#print("idle")
+				wiggle_resource.gravity = Vector3(0, -9.81, 0)
+				wiggle_resource.linear_scale = 500
 			states.Cleaning:
-				anim_tree["parameters/conditions/is_cleaning"] = true
+				wiggle_resource.gravity = Vector3.ZERO
+				wiggle_resource.linear_scale = 1500
+				#anim_tree["parameters/conditions/is_cleaning"] = true
 			states.Stowed:
-				anim_tree["parameters/conditions/stowed"] = true
+				#anim_tree["parameters/conditions/stowed"] = true
+				# TODO encontrar alguna manera de compactar la cabeza, no sirven las animaciones
+				pass
 		anim_state = v
 		print("nuevo estado: ", anim_state, " mientras mi padre es ", get_parent())
-# huesos
-@onready var base_bone_idx : int = esqueleto_ref.find_bone("Bone.002") # base se rota hacia adelante y atrás
-@onready var intermediate_bone_idx : int = esqueleto_ref.find_bone("Bone.003") # medio se rota hacia los lados
-@onready var tip_bone_idx : int = esqueleto_ref.find_bone("Bone.005")
 
 var origin_point_in_HUD : Vector3
 var current_point_of_intersection_with_floor : Vector3
@@ -76,21 +76,6 @@ func trapeo_call(selected_node : Node) -> void:
 func rotate_to_camera(mouse_movement_delta : Vector2):
 	if anim_state != states.Stowed:#not state_stowed:
 		look_at(GlobalInfo.refPlayer.position)	
-		#print("baseY: ", global_basis.y, " to ", Vector3.DOWN, " -> ", (-global_basis.y).signed_angle_to(Vector3.DOWN, Vector3.RIGHT))
-		#region Rotación del esqueleto
-		# Rotación producto de la gravedad y la fuerza centrífuga
-		
-		esqueleto_ref.set_bone_pose_rotation(base_bone_idx, Quaternion(Vector3.RIGHT, 
-						(-global_basis.y).signed_angle_to(Vector3.DOWN, basis.x)
-						- abs(mouse_movement_delta.x))) # centrífuga 
-		
-		# Rotación producto del momento de rotación
-		esqueleto_ref.set_bone_pose_rotation(intermediate_bone_idx, Quaternion(Vector3.FORWARD, 
-						mouse_movement_delta.x)) # TODO arreglarlo, lo rompí
-						
-		esqueleto_ref.set_bone_pose_rotation(tip_bone_idx, Quaternion(Vector3.FORWARD,
-						mouse_movement_delta.x))
-		#endregion
 
 func trapeo_lerp_to(p : Vector3, _t : float) -> void:
 	#remote_transform_ref.global_position = remote_transform_ref.global_position.lerp(p, t)
@@ -103,7 +88,7 @@ func trapeo_lerp_to(p : Vector3, _t : float) -> void:
 	if anim_state == states.Idle:
 		anim_state = states.Cleaning
 	current_point_of_intersection_with_floor = p
-	remote_transform_ref.global_position = p + Vector3(0, mop_height/10, 0) # arreglar
+	remote_transform_ref.global_position = p + Vector3(0, 0, 0) # arreglar
 	
 func trapeo_lerp_back(_t : float) -> void:
 	remote_transform_ref.position = origin_point_in_HUD
@@ -153,3 +138,4 @@ func exit_player_focus() -> void:
 func player_interaction() -> void: # metodo "interfaz"
 	if GlobalInfo.timerInteractionBuffer.is_stopped() and anim_state == states.Stowed:#states_stowed: OK
 		reparent_action(get_tree().get_first_node_in_group("Jugador"))
+		

@@ -1,7 +1,9 @@
-[gd_scene load_steps=33 format=4 uid="uid://cju206cf1ni5m"]
+[gd_scene load_steps=35 format=4 uid="uid://cju206cf1ni5m"]
 
 [ext_resource type="Script" path="res://logic/scenes/tools/mop.gd" id="1_qd35y"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/broom_glow.gd" id="2_0paim"]
+[ext_resource type="Script" path="res://addons/wigglebone/wiggle_rotation_modifier_3d.gd" id="3_cp8wc"]
+[ext_resource type="Resource" uid="uid://b535ha84kyfb6" path="res://logic/scenes/tools/mop_head_wiggle_material.tres" id="4_402ax"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0f5uk"]
 size = Vector3(0.456604, 2.21809, 0.184814)
@@ -113,6 +115,80 @@ bind/9/pose = Transform3D(1, -6.27833e-07, -1.8277e-10, 6.27833e-07, 1, 1.1921e-
 emission_enabled = true
 emission = Color(0, 1, 1, 1)
 emission_energy_multiplier = 0.0
+
+[sub_resource type="Animation" id="Animation_6h8mw"]
+resource_name = "Esconder acción]"
+length = 0.0416667
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Esqueleto_001/Skeleton3D:base")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -4.23516e-22, 2.24282, -6.41609e-30)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("Esqueleto_001/Skeleton3D:base")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 1, 5.0887e-16, 7.57478e-09, 6.3392e-08)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("Esqueleto_001/Skeleton3D:Bone.002")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 1.78814e-07, -1.42109e-14, 2.70895e-15, 1)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = true
+tracks/3/enabled = true
+tracks/3/path = NodePath("Esqueleto_001/Skeleton3D:Bone.003")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, -1.19209e-07, 5.96046e-08, -8.91139e-15, 1)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = true
+tracks/4/enabled = true
+tracks/4/path = NodePath("Esqueleto_001/Skeleton3D:Bone.004")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -8.12588e-15, -5.96046e-08, -1.5342e-21, 1)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = true
+tracks/5/enabled = true
+tracks/5/path = NodePath("Esqueleto_001/Skeleton3D:Bone.005")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 6.32574e-15, 5.96046e-08, 6.25934e-22, 1)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = true
+tracks/6/enabled = true
+tracks/6/path = NodePath("Esqueleto_001/Skeleton3D:Bone.006")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, -2.54093e-15, -5.96046e-08, -2.09885e-22, 1)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = true
+tracks/7/enabled = true
+tracks/7/path = NodePath("Esqueleto_001/Skeleton3D:Bone.007")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, -1.49861e-17, -1.77636e-15, -1.77491e-23, 1)
+tracks/8/type = "rotation_3d"
+tracks/8/imported = true
+tracks/8/enabled = true
+tracks/8/path = NodePath("Esqueleto_001/Skeleton3D:Bone.008")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, -1, 5.5439e-24, 6.55671e-08, 5.32907e-15)
+tracks/9/type = "position_3d"
+tracks/9/imported = true
+tracks/9/enabled = true
+tracks/9/path = NodePath("Esqueleto_001/Skeleton3D:camar")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, 0, 7.27282, 0)
 
 [sub_resource type="Animation" id="Animation_f8ent"]
 resource_name = "Esconder acción]_003"
@@ -261,80 +337,6 @@ tracks/9/path = NodePath("Esqueleto_001/Skeleton3D:camar")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = PackedFloat32Array(0, 1, 9.99683e-10, 7.27282, 5.47102)
-
-[sub_resource type="Animation" id="Animation_6h8mw"]
-resource_name = "Esconder acción]"
-length = 0.0416667
-tracks/0/type = "position_3d"
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/path = NodePath("Esqueleto_001/Skeleton3D:base")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, -4.23516e-22, 2.24282, -6.41609e-30)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("Esqueleto_001/Skeleton3D:base")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 1, 5.0887e-16, 7.57478e-09, 6.3392e-08)
-tracks/2/type = "rotation_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("Esqueleto_001/Skeleton3D:Bone.002")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 1.78814e-07, -1.42109e-14, 2.70895e-15, 1)
-tracks/3/type = "rotation_3d"
-tracks/3/imported = true
-tracks/3/enabled = true
-tracks/3/path = NodePath("Esqueleto_001/Skeleton3D:Bone.003")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, -1.19209e-07, 5.96046e-08, -8.91139e-15, 1)
-tracks/4/type = "rotation_3d"
-tracks/4/imported = true
-tracks/4/enabled = true
-tracks/4/path = NodePath("Esqueleto_001/Skeleton3D:Bone.004")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(0, 1, -8.12588e-15, -5.96046e-08, -1.5342e-21, 1)
-tracks/5/type = "rotation_3d"
-tracks/5/imported = true
-tracks/5/enabled = true
-tracks/5/path = NodePath("Esqueleto_001/Skeleton3D:Bone.005")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = PackedFloat32Array(0, 1, 6.32574e-15, 5.96046e-08, 6.25934e-22, 1)
-tracks/6/type = "rotation_3d"
-tracks/6/imported = true
-tracks/6/enabled = true
-tracks/6/path = NodePath("Esqueleto_001/Skeleton3D:Bone.006")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = PackedFloat32Array(0, 1, -2.54093e-15, -5.96046e-08, -2.09885e-22, 1)
-tracks/7/type = "rotation_3d"
-tracks/7/imported = true
-tracks/7/enabled = true
-tracks/7/path = NodePath("Esqueleto_001/Skeleton3D:Bone.007")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = PackedFloat32Array(0, 1, -1.49861e-17, -1.77636e-15, -1.77491e-23, 1)
-tracks/8/type = "rotation_3d"
-tracks/8/imported = true
-tracks/8/enabled = true
-tracks/8/path = NodePath("Esqueleto_001/Skeleton3D:Bone.008")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = PackedFloat32Array(0, 1, -1, 5.5439e-24, 6.55671e-08, 5.32907e-15)
-tracks/9/type = "position_3d"
-tracks/9/imported = true
-tracks/9/enabled = true
-tracks/9/path = NodePath("Esqueleto_001/Skeleton3D:camar")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = PackedFloat32Array(0, 1, 0, 7.27282, 0)
 
 [sub_resource type="Animation" id="Animation_itkuo"]
 resource_name = "accion"
@@ -642,7 +644,7 @@ transitions = ["IdleBlendSpace2D", "CleaningBlendSpace2D", SubResource("Animatio
 graph_offset = Vector2(-31, 54)
 
 [node name="mop" type="Area3D" groups=["Trapero"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.741355, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0105525, 0.741355, 0)
 script = ExtResource("1_qd35y")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -664,7 +666,7 @@ bones/0/name = "base"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 5.73772e-17, 1.51496e-08, 1.9781e-15, -1, -1.26784e-07, 1.51496e-08, 1.26784e-07, -1, 0, 2.24282, 0)
 bones/0/enabled = true
-bones/0/position = Vector3(0, 2.24282, 0)
+bones/0/position = Vector3(-4.23516e-22, 2.24282, -6.41609e-30)
 bones/0/rotation = Quaternion(1, 5.0887e-16, 7.57478e-09, 6.3392e-08)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "Bone.002"
@@ -686,35 +688,35 @@ bones/3/parent = 2
 bones/3/rest = Transform3D(1, 4.13376e-21, -1.19209e-07, -2.1964e-21, 1, 1.62518e-14, 1.19209e-07, -1.62518e-14, 1, -2.92187e-22, 0.471506, 1.77636e-15)
 bones/3/enabled = true
 bones/3/position = Vector3(-2.92187e-22, 0.471506, 1.77636e-15)
-bones/3/rotation = Quaternion(-8.12588e-15, -5.96046e-08, -1.58254e-21, 1)
-bones/3/scale = Vector3(1, 1, 1)
+bones/3/rotation = Quaternion(-8.12588e-15, -5.96046e-08, -1.5342e-21, 1)
+bones/3/scale = Vector3(1.00048, 1.00048, 1.00048)
 bones/4/name = "Bone.005"
 bones/4/parent = 3
 bones/4/rest = Transform3D(1, -4.96001e-22, 1.19209e-07, 2.00417e-21, 1, -1.26515e-14, -1.19209e-07, 1.26515e-14, 1, -6.70029e-24, 0.485775, 8.88178e-16)
 bones/4/enabled = true
 bones/4/position = Vector3(-6.70029e-24, 0.485775, 8.88178e-16)
-bones/4/rotation = Quaternion(6.32574e-15, 5.96046e-08, 6.25044e-22, 1)
+bones/4/rotation = Quaternion(6.32574e-15, 5.96046e-08, 6.25934e-22, 1)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "Bone.006"
 bones/5/parent = 4
 bones/5/rest = Transform3D(1, 6.17124e-22, -1.19209e-07, -1.13202e-23, 1, 5.08185e-15, 1.19209e-07, -5.08185e-15, 1, 1.54304e-21, 0.411818, -7.10543e-15)
 bones/5/enabled = true
 bones/5/position = Vector3(1.54304e-21, 0.411818, -7.10543e-15)
-bones/5/rotation = Quaternion(-2.54093e-15, -5.96046e-08, -1.57111e-22, 1)
+bones/5/rotation = Quaternion(-2.54093e-15, -5.96046e-08, -2.09885e-22, 1)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "Bone.007"
 bones/6/parent = 5
 bones/6/rest = Transform3D(1, 3.12111e-23, -3.55271e-15, -3.12111e-23, 1, 2.99723e-17, 3.55271e-15, -2.99723e-17, 1, 1.59133e-22, 0.370486, -1.77636e-15)
 bones/6/enabled = true
 bones/6/position = Vector3(1.59133e-22, 0.370486, -1.77636e-15)
-bones/6/rotation = Quaternion(-1.49861e-17, -1.77636e-15, -1.56055e-23, 1)
+bones/6/rotation = Quaternion(-1.49861e-17, -1.77636e-15, -1.77491e-23, 1)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/name = "Bone.008"
 bones/7/parent = 0
 bones/7/rest = Transform3D(1, -3.17462e-22, -8.74228e-08, 6.14302e-22, -1, 1.06581e-14, -8.74228e-08, -1.06581e-14, -1, 1.80597e-15, 1.42109e-14, -1.19209e-07)
 bones/7/enabled = true
 bones/7/position = Vector3(1.80597e-15, 1.42109e-14, -1.19209e-07)
-bones/7/rotation = Quaternion(1, 7.42098e-23, -4.37114e-08, -5.32907e-15)
+bones/7/rotation = Quaternion(1, -5.54393e-24, -6.55671e-08, -5.32907e-15)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/name = "bone.top"
 bones/8/parent = 7
@@ -737,15 +739,145 @@ skin = SubResource("Skin_ycv5j")
 surface_material_override/2 = SubResource("StandardMaterial3D_kgfim")
 script = ExtResource("2_0paim")
 
+[node name="DMWBWiggleRotationModifier3D" type="SkeletonModifier3D" parent="trapspffas/Esqueleto_001/Skeleton3D"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+transform = Transform3D(1, -1.48074e-13, 1.51495e-08, -5.25739e-17, -1, -9.77069e-06, 1.51495e-08, 9.77069e-06, -1, 0, 2.18859, 1.26085e-07)
+rotation_edit_mode = 0
+rotation_order = 2
+top_level = false
+visible = true
+visibility_parent = NodePath("")
+active = true
+influence = 1.0
+script = ExtResource("3_cp8wc")
+bone_name = "Bone.002"
+properties = ExtResource("4_402ax")
+
+[node name="DMWBWiggleRotationModifier3D2" type="SkeletonModifier3D" parent="trapspffas/Esqueleto_001/Skeleton3D"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+transform = Transform3D(1, 2.36426e-13, 1.34359e-07, 4.77157e-13, -1, -1.79169e-06, 1.34359e-07, 1.79169e-06, -1, 0, 1.8847, 4.94596e-05)
+rotation_edit_mode = 0
+rotation_order = 2
+top_level = false
+visible = true
+visibility_parent = NodePath("")
+active = true
+influence = 1.0
+script = ExtResource("3_cp8wc")
+bone_name = "Bone.003"
+properties = ExtResource("4_402ax")
+
+[node name="DMWBWiggleRotationModifier3D3" type="SkeletonModifier3D" parent="trapspffas/Esqueleto_001/Skeleton3D"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+transform = Transform3D(1, -2.067e-13, 1.51496e-08, -2.60877e-13, -1, 3.57615e-06, 1.51496e-08, -3.57615e-06, -1, 0, 1.4132, 5.03044e-05)
+rotation_edit_mode = 0
+rotation_order = 2
+top_level = false
+visible = true
+visibility_parent = NodePath("")
+active = true
+influence = 1.0
+script = ExtResource("3_cp8wc")
+bone_name = "Bone.004"
+properties = ExtResource("4_402ax")
+
+[node name="DMWBWiggleRotationModifier3D4" type="SkeletonModifier3D" parent="trapspffas/Esqueleto_001/Skeleton3D"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+transform = Transform3D(1.00048, -1.93171e-12, 1.34423e-07, -1.06804e-12, -1.00048, -6.4281e-06, 1.34423e-07, 6.4281e-06, -1.00048, 0, 0.927191, 4.85663e-05)
+rotation_edit_mode = 0
+rotation_order = 2
+top_level = false
+visible = true
+visibility_parent = NodePath("")
+active = true
+influence = 1.0
+script = ExtResource("3_cp8wc")
+bone_name = "Bone.005"
+properties = ExtResource("4_402ax")
+
+[node name="DMWBWiggleRotationModifier3D5" type="SkeletonModifier3D" parent="trapspffas/Esqueleto_001/Skeleton3D"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+transform = Transform3D(1.00048, -1.4925e-07, 1.51575e-08, -1.4925e-07, -1.00048, 3.5742e-06, 1.5157e-08, -3.5742e-06, -1.00048, 0, 0.515177, 5.12135e-05)
+rotation_edit_mode = 0
+rotation_order = 2
+top_level = false
+visible = true
+visibility_parent = NodePath("")
+active = true
+influence = 1.0
+script = ExtResource("3_cp8wc")
+bone_name = "Bone.006"
+properties = ExtResource("4_402ax")
+
+[node name="DMWBWiggleRotationModifier3D6" type="SkeletonModifier3D" parent="trapspffas/Esqueleto_001/Skeleton3D"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+transform = Transform3D(1.00048, -8.48809e-08, 1.51587e-08, -8.48811e-08, -1.00048, 1.35863e-05, 1.51575e-08, -1.35863e-05, -1.00048, -5.58794e-08, 0.144515, 4.98893e-05)
+rotation_edit_mode = 0
+rotation_order = 2
+top_level = false
+visible = true
+visibility_parent = NodePath("")
+active = true
+influence = 1.0
+script = ExtResource("3_cp8wc")
+bone_name = "Bone.007"
+properties = ExtResource("4_402ax")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="trapspffas"]
 libraries = {
 "": SubResource("AnimationLibrary_qwsm2")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-root_node = NodePath("../trapspffas")
 tree_root = SubResource("AnimationNodeStateMachine_sb3a0")
-anim_player = NodePath("../trapspffas/AnimationPlayer")
 parameters/conditions/is_cleaning = false
 parameters/conditions/stowed = false
 parameters/CleaningBlendSpace2D/blend_position = Vector2(0.893445, 0.0584071)
