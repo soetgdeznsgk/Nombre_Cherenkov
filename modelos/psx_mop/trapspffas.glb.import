@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cjl8ksydsdabs"
-path="res://.godot/imported/trapcleaner.glb-272178f0ab75faca633d2b899d665cbc.scn"
+uid="uid://bmvbn6h7uqbch"
+path="res://.godot/imported/trapspffas.glb-8fae2bd0d12022f564d489e8acb7cdde.scn"
 
 [deps]
 
-source_file="res://modelos/psx_mop/trapcleaner.glb"
-dest_files=["res://.godot/imported/trapcleaner.glb-272178f0ab75faca633d2b899d665cbc.scn"]
+source_file="res://modelos/psx_mop/trapspffas.glb"
+dest_files=["res://.godot/imported/trapspffas.glb-8fae2bd0d12022f564d489e8acb7cdde.scn"]
 
 [params]
 
