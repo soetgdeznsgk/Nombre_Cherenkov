@@ -1,6 +1,6 @@
 # Nombre_Cherenkov
 
-Prototipo de un juego de terror casual en primera persona, WIP en godot 4.3
+Prototipo de un juego de acción sombrío, casual en primera persona, WIP en godot 4.3
 
 Para desarrollo, las cosas que tendrán que ser refactorizada son:
 
