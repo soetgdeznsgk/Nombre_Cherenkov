@@ -33,7 +33,7 @@ window/stretch/scale=3.0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/jigglebones/plugin.cfg", "res://addons/wigglebone/plugin.cfg")
+enabled=PackedStringArray("res://addons/wigglebone/plugin.cfg")
 
 [global_group]
 
@@ -49,6 +49,7 @@ ContaminationBar=""
 PulpoManager=""
 Alarmables="Todos los nodos que necesitan activarse una vez se active la alarma"
 Trailer_INDEV=""
+CajasFusibles=""
 
 [input]
 

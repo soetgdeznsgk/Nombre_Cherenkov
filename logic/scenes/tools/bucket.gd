@@ -27,10 +27,7 @@ func _ready() -> void:
 	remote_transform_ref = GlobalInfo.refPlayer.camara_ref.bucket_remote_transform
 
 func _physics_process(_delta: float) -> void:
-	#print(engine_force)
-	#look_at_from_pos(Vector3(global_position.x, 0, global_position.z), GeometricToolbox.y_offset_vector_to_0(GlobalInfo.playerPosition))
 	if not in_hud:
-		#steering = get_rotation_needed_towards_player()
 		check_bucket_orientation() # A DIFERIR, no vale la pena hacerlo todos los frames, aunque es solo checar un bit, no debe ser fuente de lag
 			
 		if engine_force > 1: # solución barata, funciona para frenar entonces lo considero terminado
@@ -42,7 +39,6 @@ func _physics_process(_delta: float) -> void:
 	else: # TODO refactorizar este codigo horrible
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE) and $grab_buffer.is_stopped() and confirm_placeability():
 			alternate_on_player_hud()
-			#print(get_contact_count())
 		
 		position_delta = GeometricToolbox.y_offset_vector_to_0(remote_transform_ref.global_position - global_position)
 		global_position.x = remote_transform_ref.global_position.x
@@ -160,8 +156,6 @@ func check_bucket_orientation() -> void:
 	else:
 		if bucket_ko:
 			bucket_ko = false
-	#if not bucket_ko and transform.basis.y.dot(Vector3.UP) < tumbled_over_trigger:
-		#bucket_ko = true
 		
 func reset_bucket_orientation() -> void:
 	bucket_ko = false
