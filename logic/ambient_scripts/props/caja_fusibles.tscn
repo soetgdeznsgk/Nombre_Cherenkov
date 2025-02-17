@@ -681,7 +681,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_jltw5")
 
 [sub_resource type="Curve" id="Curve_alwlo"]
-_data = [Vector2(0, 0.15), 0.0, 0.0, 0, 0, Vector2(0.822857, 0.143973), 0.0, 0.0, 0, 0, Vector2(0.994286, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.15), 0.0, 0.0, 0, 0, Vector2(0.490797, 0.0612864), 0.0, 0.0, 0, 0, Vector2(0.994286, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_ckec4"]

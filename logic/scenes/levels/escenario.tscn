@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://koqv2tici8g"]
+[gd_scene load_steps=39 format=4 uid="uid://koqv2tici8g"]
 
 [ext_resource type="PackedScene" uid="uid://bnl1k0w4e64he" path="res://logic/scenes/jugador.tscn" id="1_5xau3"]
 [ext_resource type="Texture2D" uid="uid://de27uxs2gwl0c" path="res://modelos/textures/marble_tiles_dirty_1k/marble_tiles_diff_1k_editao.png" id="3_8xm7x"]
@@ -15,9 +15,13 @@
 [ext_resource type="Texture2D" uid="uid://wmnenbf6cxbp" path="res://modelos/textures/grey_plaster_1k/grey_plaster_diff_05k.png" id="11_mejav"]
 [ext_resource type="Texture2D" uid="uid://bx3ktojh7nl80" path="res://modelos/textures/grey_plaster_1k/grey_plaster_rough_1k.png" id="11_qtel0"]
 [ext_resource type="PackedScene" uid="uid://btpu3eyttcmkr" path="res://logic/ambient_scripts/panel_control.tscn" id="13_jkktu"]
+[ext_resource type="Texture2D" uid="uid://dv8aad7er4xg7" path="res://modelos/textures/painted_concrete_02_1k/painted_concrete_02_diff_05k.jpeg" id="13_nubtw"]
+[ext_resource type="Texture2D" uid="uid://cwf3m1y2s277c" path="res://modelos/textures/painted_concrete_02_1k/painted_concrete_02_nor_gl_1k.png" id="14_5ca6k"]
 [ext_resource type="PackedScene" uid="uid://cjx61d8bebjjq" path="res://logic/ambient_scripts/props/caja_fusibles.tscn" id="14_6egyr"]
+[ext_resource type="Texture2D" uid="uid://nk4vluu0hibk" path="res://modelos/textures/painted_concrete_02_1k/painted_concrete_02_rough_1k.png" id="15_avjb6"]
 [ext_resource type="PackedScene" uid="uid://cux2lmkev1y7c" path="res://logic/ambient_scripts/alarma.tscn" id="15_rqa8x"]
 [ext_resource type="PackedScene" uid="uid://cju206cf1ni5m" path="res://logic/scenes/tools/mop.tscn" id="17_8ncmv"]
+[ext_resource type="PackedScene" uid="uid://l8lqdh2083j" path="res://logic/ambient_scripts/escalera.tscn" id="22_61m3x"]
 
 [sub_resource type="Environment" id="Environment_owekg"]
 ambient_light_source = 2
@@ -122,6 +126,25 @@ albedo_texture = ExtResource("11_mejav")
 roughness_texture = ExtResource("11_qtel0")
 normal_enabled = true
 normal_texture = ExtResource("10_kvo7a")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rwyst"]
+albedo_texture = ExtResource("13_nubtw")
+roughness_texture = ExtResource("15_avjb6")
+normal_enabled = true
+normal_texture = ExtResource("14_5ca6k")
+heightmap_scale = -16.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j1hqs"]
+albedo_texture = ExtResource("13_nubtw")
+roughness_texture = ExtResource("15_avjb6")
+normal_enabled = true
+normal_texture = ExtResource("14_5ca6k")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ku5x2"]
+albedo_texture = ExtResource("13_nubtw")
+roughness_texture = ExtResource("15_avjb6")
+normal_enabled = true
+normal_texture = ExtResource("14_5ca6k")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t688q"]
 size = Vector3(1, 0.202484, 1)
@@ -329,20 +352,29 @@ material = SubResource("StandardMaterial3D_51aeb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.7048, 6.75005, -0.391781)
 operation = 2
 size = Vector3(11.3169, 4.17627, 9.91602)
+material = SubResource("StandardMaterial3D_rwyst")
 
-[node name="MarcoPuerta" type="CSGBox3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.68597, -0.614444, 6.29886)
-size = Vector3(1.95923, 2.98158, 3.01953)
+[node name="Antecámara" type="CSGBox3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.476608, -3.52738, 7.72115)
+size = Vector3(11.0664, 10.9843, 4.24585)
+material = SubResource("StandardMaterial3D_j1hqs")
 
-[node name="Escalera" type="CSGBox3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/MarcoPuerta"]
-transform = Transform3D(0.765966, 0.642881, 0, -0.642881, 0.765966, 0, 0, 0, 1, 5.39686, -3.75781, 0.055479)
-size = Vector3(13.4414, 2.30323, 2.06006)
+[node name="MarcoAntecámara" type="CSGBox3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Antecámara"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6528, -4.25975, -1.26636)
+size = Vector3(1.95923, 2.94691, 1.25922)
+material = SubResource("StandardMaterial3D_ku5x2")
+
+[node name="MarcoHabitaciónControl" type="CSGBox3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.68597, -0.597108, 5.4187)
+size = Vector3(1.95923, 2.94691, 1.25922)
+material = SubResource("StandardMaterial3D_ku5x2")
 
 [node name="Panel_Control" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control" instance=ExtResource("13_jkktu")]
 transform = Transform3D(-9.96959e-08, 0, -1.20595, 0, 1, 0, 2.28078, 0, -5.27136e-08, 0, -1.82592, 0)
 
 [node name="CajaFusibles" parent="NavigationRegion3D" instance=ExtResource("14_6egyr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.59447, 0.721564, -27.9533)
+is_active = true
 
 [node name="RanaManager" type="Node" parent="." groups=["RanaManager"]]
 
@@ -408,6 +440,9 @@ script = SubResource("GDScript_bt5qu")
 
 [node name="Trailer_Recorder" type="Camera3D" parent="Window_Trailer" groups=["Trailer_INDEV"]]
 transform = Transform3D(0.936458, 0.170992, -0.306281, 0, 0.873143, 0.487463, 0.35078, -0.456489, 0.817662, -3.87363, 8.64373, -14.5138)
+
+[node name="Escalera" parent="." instance=ExtResource("22_61m3x")]
+transform = Transform3D(-6.79712e-08, 0, 1.555, 0, 1.555, 0, -1.555, 0, -6.79712e-08, -8.97784, 2.65792, -9.87145)
 
 [connection signal="timeout" from="NavigationRegion3D/Geometría/Piso/PiscinaD/RanaSpawnerTimer" to="NavigationRegion3D/Geometría/Piso/PiscinaD" method="_on_rana_spawner_timer_timeout"]
 [connection signal="timeout" from="NavigationRegion3D/Geometría/Piso/PiscinaD/PulpoSpawnerTimer" to="NavigationRegion3D/Geometría/Piso/PiscinaD" method="_on_pulpo_spawner_timer_timeout"]

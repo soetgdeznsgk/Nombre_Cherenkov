@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://l8lqdh2083j"]
+
+[ext_resource type="PackedScene" uid="uid://dx3hnxw1mc1fy" path="res://modelos/steel_staircase/scene.gltf" id="1_ha02t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kc2ql"]
+size = Vector3(0.760498, 0.347595, 4.10474)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_crahb"]
+size = Vector3(5.38794, 0.293823, 1.1846)
+
+[node name="Escalera" type="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Sketchfab_Scene" parent="Node3D" instance=ExtResource("1_ha02t")]
+transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, 1.46094, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.737277, -0.67559, 0, 0.67559, 0.737277, -1.888, 1.46384, 1.40725)
+shape = SubResource("BoxShape3D_kc2ql")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00793457, 2.75386, -0.614901)
+shape = SubResource("BoxShape3D_crahb")

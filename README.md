@@ -16,6 +16,7 @@ Modelado 3D: Fabián Montes (movido51))
 Texturas: 
     Marble Tiles by Charlotte Baglioni, retrieved from polyhaven.com
     Grey Plaster by Rob Tuytel, retrieved from polyhaven.com
+    Painted Concrete 02 by Rob Tuytel, retrieved from polyhaven.com
     Puddle of black liquid, retrieved from pngtree.com
     Dot icon by Icons8
 

@@ -35,6 +35,10 @@ window/stretch/scale=3.0
 
 enabled=PackedStringArray("res://addons/wigglebone/plugin.cfg")
 
+[filesystem]
+
+import/blender/enabled=false
+
 [global_group]
 
 Jugador="Referencia al nodo jugador"
