@@ -5,6 +5,7 @@
 [sub_resource type="GDScript" id="GDScript_cx7sy"]
 resource_name = "pj"
 script/source = "extends CharacterBody3D
+class_name MovimientoJugador
 var direction : Vector3
 var gravity := 10
 var realentizacion_balde : bool = false
