@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://koqv2tici8g"]
+[gd_scene load_steps=44 format=4 uid="uid://koqv2tici8g"]
 
 [ext_resource type="PackedScene" uid="uid://bnl1k0w4e64he" path="res://logic/scenes/jugador.tscn" id="1_5xau3"]
 [ext_resource type="Texture2D" uid="uid://de27uxs2gwl0c" path="res://modelos/textures/marble_tiles_dirty_1k/marble_tiles_diff_1k_editao.png" id="3_8xm7x"]
@@ -156,12 +156,39 @@ normal_texture = ExtResource("14_5ca6k")
 [sub_resource type="BoxShape3D" id="BoxShape3D_t688q"]
 size = Vector3(1, 0.202484, 1)
 
+[sub_resource type="Animation" id="Animation_as6kw"]
+resource_name = "Travelling Escaleras"
+length = 5.0
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -1.77542, 1.02914, -9.30535, 5, 1, -7.10558, 6.07489, -9.30535)
+
+[sub_resource type="Animation" id="Animation_reths"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -1.77542, 1.02914, -9.30535)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bgm64"]
+_data = {
+"RESET": SubResource("Animation_reths"),
+"Travelling Escaleras": SubResource("Animation_as6kw")
+}
+
 [sub_resource type="GDScript" id="GDScript_bt5qu"]
 resource_name = "camara_trailer"
 script/source = "extends Window
 
-
-func _on_focus_entered() -> void:
+func _ready() -> void:
+	#print(get_render_info(self.RenderInfoType, self.RenderInfo))
 	pass
 "
 
@@ -391,9 +418,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.780089, -1.9594, -1.6531)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.467793, -3.22478, -1.6531)
 
 [node name="PlataformaEscalera" type="CSGBox3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Antecámara"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39534, 1.01162, -1.46184)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39534, 1.01162, -0.00508451)
 operation = 2
-size = Vector3(2.33728, 1, 1.34119)
+size = Vector3(2.33728, 1, 4.2547)
 material = SubResource("StandardMaterial3D_hfbb7")
 
 [node name="MarcoHabitaciónControl" type="CSGBox3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control"]
@@ -465,14 +492,21 @@ transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -10.52
 [node name="Display Contamination Bar" parent="." instance=ExtResource("7_i1h8h")]
 transform = Transform3D(-2.12656e-07, 0, 4.865, 0, 4.865, 0, -4.865, 0, -2.12656e-07, 0.654193, 2.65701, -15.4314)
 
+[node name="Trailer_Recorder" type="Camera3D" parent="." groups=["Trailer_INDEV"]]
+transform = Transform3D(-4.37114e-08, 0.707107, 0.707107, 0, 0.707107, -0.707107, -1, -3.09086e-08, -3.09086e-08, -1.77542, 1.02914, -9.30535)
+fov = 37.8493
+script = ExtResource("23_7poq2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Trailer_Recorder"]
+libraries = {
+"": SubResource("AnimationLibrary_bgm64")
+}
+
 [node name="Window_Trailer" type="Window" parent="."]
 title = "Camara 2"
 size = Vector2i(960, 540)
+visible = false
 script = SubResource("GDScript_bt5qu")
-
-[node name="Trailer_Recorder" type="Camera3D" parent="Window_Trailer" groups=["Trailer_INDEV"]]
-transform = Transform3D(0.936458, 0.170992, -0.306281, 0, 0.873143, 0.487463, 0.35078, -0.456489, 0.817662, -3.87363, 8.64373, -14.5138)
-script = ExtResource("23_7poq2")
 
 [connection signal="timeout" from="NavigationRegion3D/Geometría/Piso/PiscinaD/RanaSpawnerTimer" to="NavigationRegion3D/Geometría/Piso/PiscinaD" method="_on_rana_spawner_timer_timeout"]
 [connection signal="timeout" from="NavigationRegion3D/Geometría/Piso/PiscinaD/PulpoSpawnerTimer" to="NavigationRegion3D/Geometría/Piso/PiscinaD" method="_on_pulpo_spawner_timer_timeout"]

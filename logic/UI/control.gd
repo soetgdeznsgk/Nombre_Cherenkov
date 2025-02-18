@@ -25,7 +25,7 @@ func update_saturation_bar(val: float) -> void:
 
 func update_contamination_bar(delta: float) -> void:
 	contamination_bar.value += delta
-	if contamination_bar.value < 30 and delta < 0:
+	if contamination_bar.value < 30 and delta < 0:		# esta linea si hace bien su trabajo? o impide devolver la contaminación?
 		contamination_bar.add_theme_stylebox_override("fill", style_blue)
 	elif contamination_bar.value > 33 and 40 > contamination_bar.value:
 		contamination_bar.add_theme_stylebox_override("fill", style_yellow)
