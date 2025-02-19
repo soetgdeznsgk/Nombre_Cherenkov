@@ -39,7 +39,7 @@ var anim_state : int = 0:
 				# TODO encontrar alguna manera de compactar la cabeza, no sirven las animaciones
 				pass
 		anim_state = v
-		print("nuevo estado: ", anim_state, " mientras mi padre es ", get_parent())
+		#print("nuevo estado: ", anim_state, " mientras mi padre es ", get_parent())
 
 var origin_point_in_HUD : Vector3
 var current_point_of_intersection_with_floor : Vector3
