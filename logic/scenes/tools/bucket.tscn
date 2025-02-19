@@ -245,7 +245,7 @@ _data = {
 [node name="bucket" type="VehicleBody3D" groups=["Baldes"]]
 collision_layer = 3
 collision_mask = 5
-center_of_mass_mode = 1
+inertia = Vector3(100, 100, 100)
 script = ExtResource("1_owtkk")
 
 [node name="Area3D Palanca" type="Area3D" parent="."]

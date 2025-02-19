@@ -15,6 +15,7 @@ const NO_INTERACTION_TIME := 0.3
 @onready var refCamara : InteraccionesJugador
 @onready var refTrapero : Mop = get_tree().get_nodes_in_group("Trapero").front()
 
+@onready var refBalde : Balde = get_tree().get_first_node_in_group("Baldes")
 
 # info UI
 @onready var refUI : UI = get_tree().get_first_node_in_group("UI")
@@ -27,6 +28,7 @@ signal trapero_limpiado
 #signal cambio_saturacion # notificacion para cambiar el brillo del trapero
 var cantidad_ranas : int
 var cantidad_pulpos : int
+var debug_bool : bool = false
 
 func _ready() -> void:
 	add_child(timerInteractionBuffer)
@@ -36,6 +38,16 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	playerPosition = refPlayer.position
+
+func debug_call_function() -> void:
+	if debug_bool:
+		refBalde.reset_bucket_orientation()
+		debug_bool = false
+	else:
+		refBalde.fall_from_collision_in(playerPosition)
+		debug_bool = true
+	start_interaction_buffer()
+	
 
 func on_aterrizaje_rana(v : Vector3) -> Vector3: #llamado desde rana.gd
 	v = GeometricToolbox.y_offset_vector_to_0(v)

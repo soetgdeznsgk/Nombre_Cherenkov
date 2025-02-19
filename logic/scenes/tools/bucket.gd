@@ -14,8 +14,10 @@ var mop_reference : Mop
 var mop_stored : bool = false
 var bucket_ko : bool = false
 var placeable : bool = true
-const tumbled_over_trigger : float = 0.2
+const tumbled_over_trigger : float = 0.4
 const VERTICAL_BUCKET_POSITION_LIMIT = 0.25
+@export var DEBUG_CALL : bool = false
+	
 
 @onready var lever_interaction_node : Area3D = $"Area3D Palanca"
 # nuevas variables
@@ -56,7 +58,6 @@ func _input(event: InputEvent) -> void:
 			adjust_forces(1)
 		
 		
-		
 func get_rotation_needed_towards_player() -> float: # sin uso con la nueva implementación
 	var angle = transform.basis.x.signed_angle_to(GlobalInfo.playerPosition - position, Vector3.UP) # Frente del carrito
 	return angle
@@ -88,9 +89,6 @@ func alternate_on_player_hud() -> void:
 func adjust_forces(horizontal_cam_delta : float) -> void: # mi obra maestra
 		var inercia = position_delta.rotated(Vector3.UP, -rotation.y) * Engine.max_fps * 30 / abs(horizontal_cam_delta)
 		var centrifuga = Vector3.BACK * abs(horizontal_cam_delta) # TODO esto será afectado por si el balde tiene agua o no
-		#$inercia.target_position = inercia
-		#$steering.target_position =  centrifuga + inercia 
-		#$z.target_position = Vector3.BACK
 		#TODO arreglar bug donde no se actualiza automáticamente sino tras 1 segundo
 		steering = Vector3.BACK.signed_angle_to(inercia + centrifuga, Vector3.UP)
 		if abs(horizontal_cam_delta) + (inercia.length()) > 15:
@@ -108,7 +106,7 @@ func exit_player_focus() -> void:
 	player_on_range = false
 
 func player_interaction() -> void: #ésta función estará en TODOS los objetos con un efecto especial de interacción
-	if GlobalInfo.timerInteractionBuffer.is_stopped() and GlobalInfo.refCamara.mop_reference != null:
+	if GlobalInfo.timerInteractionBuffer.is_stopped() and GlobalInfo.refCamara.mop_reference != null: 
 		if bucket_ko:
 			reset_bucket_orientation()
 			
@@ -166,9 +164,19 @@ func reset_bucket_orientation() -> void:
 func fall_from_collision_in(collider_pos: Vector3) -> void:
 	if not bucket_ko and not in_hud:
 		var eje = (collider_pos - global_position).cross(Vector3.UP).normalized()
-		rotate(eje, 1) # volver una corutina
+		#rotate(eje, PI/2.5) # volver una corutina
+		fall_coroutine(collider_pos, eje, 0)
 		bucket_ko = true
 		# spawnear un charco
+
+func fall_coroutine(punto_colision : Vector3, eje : Vector3, t : float) -> void:
+	if t > 0.3: 
+		return
+	rotate(eje, lerpf(0, 0.4, t))
+	position.y += 2*get_physics_process_delta_time()
+	position -= (punto_colision-global_position)*get_physics_process_delta_time()		# se ve como una solución enredad
+	await get_tree().process_frame														# pero no debería traer problemas
+	fall_coroutine(punto_colision, eje, t + get_physics_process_delta_time())
 	
 func confirm_placeability() -> bool: # no es infalible, pero requiere dedicación tirar el balde al agua
 	var b : bool = true
