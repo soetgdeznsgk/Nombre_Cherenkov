@@ -293,7 +293,7 @@ use_as_steering = true
 wheel_roll_influence = 1.0
 
 [node name="PosicionTrapero" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.011761, 1.43803, -0.585496)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.011761, 1.30707, -0.585496)
 
 [node name="baldeClean" type="Node3D" parent="."]
 transform = Transform3D(-1.70474e-08, 0, 0.39, 0, 0.39, 0, -0.39, 0, -1.70474e-08, 0, 0, 0)

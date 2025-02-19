@@ -25,8 +25,10 @@ func _ready() -> void:
 	bucket_equipped.connect(GlobalInfo.bucket_just_equipped)
 	bucket_unequipped.connect(GlobalInfo.bucket_just_unequipped)
 	remote_transform_ref = GlobalInfo.refPlayer.camara_ref.bucket_remote_transform
+	#steering = 0 #trailer
 
 func _physics_process(_delta: float) -> void:
+	#if Input.is_key_label_pressed(KEY_0): engine_force = 600 #trailer
 	if not in_hud:
 		check_bucket_orientation() # A DIFERIR, no vale la pena hacerlo todos los frames, aunque es solo checar un bit, no debe ser fuente de lag
 			

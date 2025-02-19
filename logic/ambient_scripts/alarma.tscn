@@ -21,7 +21,7 @@ func start() -> void: # parte del grupo de nodos \"alarmables
 script = SubResource("GDScript_qjf21")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223813, 0.365388, -0.667134)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223813, 0.365388, -0.597655)
 light_color = Color(100, 1, 1, 1)
 light_energy = 0.0
 light_specular = 29.755

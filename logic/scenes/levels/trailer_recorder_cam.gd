@@ -7,6 +7,10 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_key_label_pressed(KEY_C):
-		make_current()
+		if not current:
+			make_current()
+		else:
+			clear_current()
 	if Input.is_key_label_pressed(KEY_P):
-		$AnimationPlayer.play("Travelling Escaleras")
+		#$AnimationPlayer.play("Travelling Escaleras")
+		pass
