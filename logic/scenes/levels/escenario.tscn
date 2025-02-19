@@ -192,7 +192,7 @@ environment = SubResource("Environment_owekg")
 camera_attributes = SubResource("CameraAttributesPhysical_glesx")
 
 [node name="Jugador" parent="." instance=ExtResource("1_5xau3")]
-transform = Transform3D(0.980313, 0, -0.197452, 0, 1, 0, 0.197452, 0, 0.980313, 26.3416, 0.907136, -23.829)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6.08868, 8.61526, -15.0779)
 
 [node name="Trailer_Recorder" type="Camera3D" parent="." groups=["Trailer_INDEV"]]
 transform = Transform3D(0.870168, 0.0754178, -0.48695, -0.00586787, 0.989734, 0.142802, 0.492721, -0.121404, 0.861677, 3.96631, 2.07473, -22.1915)
@@ -435,6 +435,10 @@ material = SubResource("StandardMaterial3D_ku5x2")
 
 [node name="Panel_Control" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control" instance=ExtResource("13_jkktu")]
 transform = Transform3D(-9.96959e-08, 0, -1.20595, 0, 1, 0, 2.28078, 0, -5.27136e-08, 0, -1.82592, 0)
+
+[node name="PlayerSpawn" type="Marker3D" parent="NavigationRegion3D/Geometría/Caja_Habitación"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.08868, 8.61526, -15.0779)
+top_level = true
 
 [node name="CajaFusibles" parent="NavigationRegion3D" instance=ExtResource("14_6egyr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.59447, 0.721564, -27.9533)
