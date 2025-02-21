@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://bf406wn55n27m"]
+
+[ext_resource type="PackedScene" uid="uid://ttiq0h2rocwu" path="res://modelos/locker/low_poly_old_locker.glb" id="1_xfsrc"]
+[ext_resource type="Texture2D" uid="uid://crjfqy78ir4hc" path="res://modelos/textures/RadioSign.png" id="2_jubvn"]
+[ext_resource type="PackedScene" uid="uid://cqmfnyj5k86cq" path="res://modelos/bench/old_bench.glb" id="3_p0ics"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tsqgd"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("2_jubvn")
+
+[sub_resource type="QuadMesh" id="QuadMesh_fvlh5"]
+material = SubResource("StandardMaterial3D_tsqgd")
+
+[node name="Lockers" type="Node3D"]
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_xfsrc")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_fvlh5")
+
+[node name="Sketchfab_Scene2" parent="." instance=ExtResource("3_p0ics")]
+transform = Transform3D(2.16, 0, 0, 0, 2.16, 0, 0, 0, 2.16, 0, 0, 0)
+
+[editable path="Sketchfab_Scene2"]

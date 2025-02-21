@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://koqv2tici8g"]
+[gd_scene load_steps=49 format=4 uid="uid://koqv2tici8g"]
 
 [ext_resource type="PackedScene" uid="uid://bnl1k0w4e64he" path="res://logic/scenes/jugador.tscn" id="1_5xau3"]
 [ext_resource type="Texture2D" uid="uid://de27uxs2gwl0c" path="res://modelos/textures/marble_tiles_dirty_1k/marble_tiles_diff_1k_editao.png" id="3_8xm7x"]
@@ -21,6 +21,8 @@
 [ext_resource type="Texture2D" uid="uid://nk4vluu0hibk" path="res://modelos/textures/painted_concrete_02_1k/painted_concrete_02_rough_1k.png" id="15_avjb6"]
 [ext_resource type="PackedScene" uid="uid://cux2lmkev1y7c" path="res://logic/ambient_scripts/props/alarma.tscn" id="15_rqa8x"]
 [ext_resource type="PackedScene" uid="uid://cju206cf1ni5m" path="res://logic/scenes/tools/mop.tscn" id="17_8ncmv"]
+[ext_resource type="MeshLibrary" uid="uid://c8gt317cpvqc0" path="res://modelos/antecamara_gridmap.tres" id="18_14go2"]
+[ext_resource type="PackedScene" uid="uid://cqmfnyj5k86cq" path="res://modelos/bench/old_bench.glb" id="19_jn5qv"]
 [ext_resource type="PackedScene" uid="uid://5i7i8msiobe3" path="res://logic/ambient_scripts/props/escalera.tscn" id="22_61m3x"]
 [ext_resource type="Script" path="res://logic/scenes/levels/trailer_recorder_cam.gd" id="23_7poq2"]
 [ext_resource type="PackedScene" uid="uid://cve4e3lmdeq5d" path="res://logic/ambient_scripts/props/pruebasreloj/reloj.tscn" id="24_nf8fp"]
@@ -72,10 +74,22 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 8.626, 3, -15.255, 10, 1, 22.996, 3, -15.255)
 
+[sub_resource type="Animation" id="Animation_j5cxp"]
+resource_name = "TravellingAntecámara"
+length = 5.0
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -7.22136, 0.890571, -7.31187, 5, 1, -7.8943, 0.890571, -5.63378)
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bgm64"]
 _data = {
 "RESET": SubResource("Animation_reths"),
 "Travelling Escaleras": SubResource("Animation_as6kw"),
+"TravellingAntecámara": SubResource("Animation_j5cxp"),
 "TravellingPiscina": SubResource("Animation_g8jim")
 }
 
@@ -215,7 +229,7 @@ camera_attributes = SubResource("CameraAttributesPhysical_glesx")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6.08868, 8.61526, -15.0779)
 
 [node name="Trailer_Recorder" type="Camera3D" parent="." groups=["Trailer_INDEV"]]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.6259, 0.890571, -15.2546)
+transform = Transform3D(0.608941, 0, 0.793215, 0, 1, 0, -0.793215, 0, 0.608941, 8.6259, 0.890571, -15.2546)
 fov = 37.8493
 script = ExtResource("23_7poq2")
 
@@ -446,6 +460,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39534, 1.01162, -0.0050845
 operation = 2
 size = Vector3(2.33728, 1, 4.2547)
 material = SubResource("StandardMaterial3D_hfbb7")
+
+[node name="GridMap" type="GridMap" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Antecámara"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.572207, -5.85411, -1.36627)
+mesh_library = ExtResource("18_14go2")
+cell_size = Vector3(0.5, 0.5, 0.5)
+data = {
+"cells": PackedInt32Array(65526, 3, 1114112, 65526, 4, 1114112, 65526, 2, 1114112, 65526, 1, 1114112, 65526, 65535, 1114112, 65526, 0, 1114112, 262136, 65534, 1)
+}
+metadata/_editor_floor_ = Vector3(0, 3, 0)
+
+[node name="Bench" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Antecámara/GridMap" instance=ExtResource("19_jn5qv")]
+transform = Transform3D(2.3, 0, 0, 0, 2.3, 0, 0, 0, 2.3, -2.72593, 0.236396, 0.865862)
 
 [node name="MarcoHabitaciónControl" type="CSGBox3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.68597, -0.597108, 5.4187)

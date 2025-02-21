@@ -12,5 +12,5 @@ func _physics_process(_delta: float) -> void:
 		else:
 			clear_current()
 	if Input.is_key_label_pressed(KEY_P):
-		$AnimationPlayer.play("TravellingPiscina")
+		$AnimationPlayer.play("TravellingAntecámara")
 		pass
