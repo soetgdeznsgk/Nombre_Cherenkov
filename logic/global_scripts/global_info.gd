@@ -40,6 +40,7 @@ func _process(_delta: float) -> void:
 	playerPosition = refPlayer.position
 
 func debug_call_function() -> void:
+	return
 	if debug_bool:
 		refBalde.reset_bucket_orientation()
 		debug_bool = false

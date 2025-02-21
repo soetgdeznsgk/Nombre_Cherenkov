@@ -11,9 +11,13 @@ func _ready() -> void:
 	#_on_rana_spawner_timer_timeout()
 	#_on_pulpo_spawner_timer_timeout()
 	pass
-	
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Debug_Exec"):
+		_on_pulpo_spawner_timer_timeout()
+		
 func start() -> void:
-	$PulpoSpawnerTimer.start()
+	#$PulpoSpawnerTimer.start()
 	$RanaSpawnerTimer.start()
 
 func _on_rana_spawner_timer_timeout() -> void:

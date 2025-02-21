@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://koqv2tici8g"]
+[gd_scene load_steps=46 format=4 uid="uid://koqv2tici8g"]
 
 [ext_resource type="PackedScene" uid="uid://bnl1k0w4e64he" path="res://logic/scenes/jugador.tscn" id="1_5xau3"]
 [ext_resource type="Texture2D" uid="uid://de27uxs2gwl0c" path="res://modelos/textures/marble_tiles_dirty_1k/marble_tiles_diff_1k_editao.png" id="3_8xm7x"]
@@ -14,15 +14,16 @@
 [ext_resource type="Texture2D" uid="uid://vtfu3gd5f1y8" path="res://modelos/textures/grey_plaster_1k/grey_plaster_nor_gl_1k.png" id="10_kvo7a"]
 [ext_resource type="Texture2D" uid="uid://wmnenbf6cxbp" path="res://modelos/textures/grey_plaster_1k/grey_plaster_diff_05k.png" id="11_mejav"]
 [ext_resource type="Texture2D" uid="uid://bx3ktojh7nl80" path="res://modelos/textures/grey_plaster_1k/grey_plaster_rough_1k.png" id="11_qtel0"]
-[ext_resource type="PackedScene" uid="uid://btpu3eyttcmkr" path="res://logic/ambient_scripts/panel_control.tscn" id="13_jkktu"]
+[ext_resource type="PackedScene" uid="uid://btpu3eyttcmkr" path="res://logic/ambient_scripts/props/panel_control.tscn" id="13_jkktu"]
 [ext_resource type="Texture2D" uid="uid://dv8aad7er4xg7" path="res://modelos/textures/painted_concrete_02_1k/painted_concrete_02_diff_05k.jpeg" id="13_nubtw"]
 [ext_resource type="Texture2D" uid="uid://cwf3m1y2s277c" path="res://modelos/textures/painted_concrete_02_1k/painted_concrete_02_nor_gl_1k.png" id="14_5ca6k"]
 [ext_resource type="PackedScene" uid="uid://cjx61d8bebjjq" path="res://logic/ambient_scripts/props/caja_fusibles.tscn" id="14_6egyr"]
 [ext_resource type="Texture2D" uid="uid://nk4vluu0hibk" path="res://modelos/textures/painted_concrete_02_1k/painted_concrete_02_rough_1k.png" id="15_avjb6"]
-[ext_resource type="PackedScene" uid="uid://cux2lmkev1y7c" path="res://logic/ambient_scripts/alarma.tscn" id="15_rqa8x"]
+[ext_resource type="PackedScene" uid="uid://cux2lmkev1y7c" path="res://logic/ambient_scripts/props/alarma.tscn" id="15_rqa8x"]
 [ext_resource type="PackedScene" uid="uid://cju206cf1ni5m" path="res://logic/scenes/tools/mop.tscn" id="17_8ncmv"]
-[ext_resource type="PackedScene" uid="uid://5i7i8msiobe3" path="res://logic/ambient_scripts/escalera.tscn" id="22_61m3x"]
+[ext_resource type="PackedScene" uid="uid://5i7i8msiobe3" path="res://logic/ambient_scripts/props/escalera.tscn" id="22_61m3x"]
 [ext_resource type="Script" path="res://logic/scenes/levels/trailer_recorder_cam.gd" id="23_7poq2"]
+[ext_resource type="PackedScene" uid="uid://cve4e3lmdeq5d" path="res://logic/ambient_scripts/props/pruebasreloj/reloj.tscn" id="24_nf8fp"]
 
 [sub_resource type="Environment" id="Environment_owekg"]
 ambient_light_source = 2
@@ -41,6 +42,13 @@ adjustment_contrast = 1.1
 
 [sub_resource type="Animation" id="Animation_reths"]
 length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 8.6259, 0.890571, -15.2546)
 
 [sub_resource type="Animation" id="Animation_as6kw"]
 resource_name = "Travelling Escaleras"
@@ -53,10 +61,22 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, -7.10558, 6.07489, -9.30535, 8.16667, 1, -1.77542, 1.02914, -9.30535)
 
+[sub_resource type="Animation" id="Animation_g8jim"]
+resource_name = "TravellingPiscina"
+length = 10.0
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 8.626, 3, -15.255, 10, 1, 22.996, 3, -15.255)
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bgm64"]
 _data = {
 "RESET": SubResource("Animation_reths"),
-"Travelling Escaleras": SubResource("Animation_as6kw")
+"Travelling Escaleras": SubResource("Animation_as6kw"),
+"TravellingPiscina": SubResource("Animation_g8jim")
 }
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_inggj"]
@@ -195,18 +215,17 @@ camera_attributes = SubResource("CameraAttributesPhysical_glesx")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6.08868, 8.61526, -15.0779)
 
 [node name="Trailer_Recorder" type="Camera3D" parent="." groups=["Trailer_INDEV"]]
-transform = Transform3D(0.870168, 0.0754178, -0.48695, -0.00586787, 0.989734, 0.142802, 0.492721, -0.121404, 0.861677, 3.96631, 2.07473, -22.1915)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.6259, 0.890571, -15.2546)
 fov = 37.8493
 script = ExtResource("23_7poq2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Trailer_Recorder"]
-active = false
 libraries = {
 "": SubResource("AnimationLibrary_bgm64")
 }
 
 [node name="bucket" parent="." instance=ExtResource("5_ahg2q")]
-transform = Transform3D(0.0410563, 0, -0.999157, 0, 1, 0, 0.999157, 0, 0.0410563, 24.6881, 0.610428, -27.3209)
+transform = Transform3D(0.0410563, 0, -0.999157, 0, 1, 0, 0.999157, 0, 0.0410563, 19.4576, 0.610428, -26.3748)
 mass = 50.0
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
@@ -447,6 +466,9 @@ is_active = true
 [node name="CajaFusibles2" parent="NavigationRegion3D" instance=ExtResource("14_6egyr")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 22.2484, 0.740109, -2.2572)
 
+[node name="CajaFusibles3" parent="NavigationRegion3D" instance=ExtResource("14_6egyr")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.1897, 0.740109, -2.2572)
+
 [node name="RanaManager" type="Node" parent="." groups=["RanaManager"]]
 
 [node name="NodosDeNavegacionRana" type="Node" parent="RanaManager"]
@@ -500,6 +522,11 @@ transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 29.125
 
 [node name="Alarma_Panel" parent="Alarmas" instance=ExtResource("15_rqa8x")]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -10.5233, 10.9349, -15.4675)
+
+[node name="Relojes" type="Node" parent="."]
+
+[node name="Reloj" parent="Relojes" instance=ExtResource("24_nf8fp")]
+transform = Transform3D(-8.74228e-08, -2, 8.74228e-08, 0, -8.74228e-08, -2, 2, -8.74228e-08, 3.82137e-15, 29.199, 9.70705, -15.3038)
 
 [node name="Display Contamination Bar" parent="." instance=ExtResource("7_i1h8h")]
 transform = Transform3D(-2.12656e-07, 0, 4.865, 0, 4.865, 0, -4.865, 0, -2.12656e-07, 0.654193, 2.65701, -15.4314)

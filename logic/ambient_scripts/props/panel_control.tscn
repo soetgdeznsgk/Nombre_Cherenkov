@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://btpu3eyttcmkr"]
+[gd_scene load_steps=13 format=3 uid="uid://btpu3eyttcmkr"]
 
 [ext_resource type="PackedScene" uid="uid://dow5ivvg1vhra" path="res://modelos/button_-_from_portal_2_original/scene.gltf" id="1_c0lom"]
 [ext_resource type="Texture2D" uid="uid://cbkgv4jvt85xd" path="res://modelos/button_-_from_portal_2_original/textures/portal_button_switch_baseColor.jpeg" id="2_ki8hd"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/postprocessing_items/outline_on_selection.gd" id="3_e7dye"]
 [ext_resource type="Material" uid="uid://cnqwt7axy0vyl" path="res://logic/ambient_scripts/postprocessing_items/outline_material_mop.tres" id="4_gn8tt"]
+[ext_resource type="PackedScene" uid="uid://cve4e3lmdeq5d" path="res://logic/ambient_scripts/props/pruebasreloj/reloj.tscn" id="5_phnoe"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qk04c"]
 cull_mode = 2
@@ -79,7 +80,7 @@ spin_sides = 8
 material = SubResource("StandardMaterial3D_qk04c")
 
 [node name="Botón_Rojo" parent="." instance=ExtResource("1_c0lom")]
-transform = Transform3D(-1.68054e-08, 3.96148e-09, 0.209, 0.0906281, 0.384463, 2.1169e-16, -0.384463, 0.0906281, -9.13568e-09, 0.114088, 0.807111, -1.22442)
+transform = Transform3D(-1.48909e-08, 3.51017e-09, 0.185, 0.0803033, 0.340663, -1.08621e-15, -0.340663, 0.0803033, -8.08661e-09, 0, 0.807, -1.158)
 
 [node name="Skeleton3D" parent="Botón_Rojo/Sketchfab_model/22651b82dee743ada4984ec97caf27be_fbx/RootNode/portal_button_reduced/Object_6" index="0"]
 bones/4/position = Vector3(0, 13.6402, 0)
@@ -102,5 +103,8 @@ shape = SubResource("CylinderShape3D_jwfwm")
 libraries = {
 "": SubResource("AnimationLibrary_mcu5q")
 }
+
+[node name="Reloj" parent="." instance=ExtResource("5_phnoe")]
+transform = Transform3D(0.135733, 0.0104183, 0.0490144, 9.20224e-11, 0.322789, -0.0686108, -0.0947709, 0.0533726, 0.251099, -0.686888, 0.886472, -1.11853)
 
 [editable path="Botón_Rojo"]
