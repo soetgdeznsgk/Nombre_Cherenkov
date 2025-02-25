@@ -63,17 +63,6 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, -7.10558, 6.07489, -9.30535, 8.16667, 1, -1.77542, 1.02914, -9.30535)
 
-[sub_resource type="Animation" id="Animation_g8jim"]
-resource_name = "TravellingPiscina"
-length = 10.0
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 8.626, 3, -15.255, 10, 1, 22.996, 3, -15.255)
-
 [sub_resource type="Animation" id="Animation_j5cxp"]
 resource_name = "TravellingAntecámara"
 length = 5.0
@@ -84,6 +73,17 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, -7.22136, 0.890571, -7.31187, 5, 1, -7.8943, 0.890571, -5.63378)
+
+[sub_resource type="Animation" id="Animation_g8jim"]
+resource_name = "TravellingPiscina"
+length = 10.0
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 8.626, 3, -15.255, 10, 1, 22.996, 3, -15.255)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bgm64"]
 _data = {
