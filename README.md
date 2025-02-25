@@ -22,6 +22,10 @@ Texturas:
     Puddle of black liquid, retrieved from pngtree.com
     Dot icon by Icons8
     Radiation Radioactive decay Symbol Computer Icons, nuclear retrieved from pngegg.com
+    Marble Tiles by Charlotte Baglioni, retrieved from polyhaven.com, licensed under CC0
+    Grey Plaster by Rob Tuytel, retrieved from polyhaven.com, licensed under CC0
+    Painted Concrete 02 by Rob Tuytel, retrieved from polyhaven.com, licensed under CC0
+    Puddle of black liquid by Ahmer, retrieved from https://pngtree.com/freepng/puddle-of-black-liquid_16010980.html, free license for non commercial use.
 
 Modelos:
     This work is based on "First Motor Siren" (https://sketchfab.com/3d-models/first-motor-siren-55070fbdcc754a08aa270acea7d89e6c) by Signalrenders (https://sketchfab.com/Signalrenders) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
