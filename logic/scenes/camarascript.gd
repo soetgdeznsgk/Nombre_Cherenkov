@@ -56,8 +56,6 @@ func _physics_process(delta):
 		if mop_reference != null: mop_reference.rotate_to_camera(Vector2.ZERO)
 		
 		
-
-	
 	#region Codigo para los outlines para los interactuables (radioactivo)
 	if interaction_raycast.is_colliding():	
 		
@@ -74,6 +72,7 @@ func _physics_process(delta):
 		last_collision = null
 	#endregion
 	
+	#region Código de interacción con objetos
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and interaction_raycast.is_colliding(): 
 		if last_collision != null:
 			if mop_reference != null and not last_collision.is_in_group("Trapero") and GlobalInfo.timerInteractionBuffer.is_stopped():
@@ -85,6 +84,7 @@ func _physics_process(delta):
 			
 	elif not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and mop_reference != null:
 		mop_reference.trapeo_lerp_back(0)
+	#endregion
 
 
 func updateDetectionExceptions() -> void:

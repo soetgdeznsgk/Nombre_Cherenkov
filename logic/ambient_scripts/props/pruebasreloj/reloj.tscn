@@ -384,7 +384,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_s3n83")
 
-[node name="Reloj" type="Node3D" node_paths=PackedStringArray("horas_decena", "horas_unidad", "minutos_decena", "minutos_unidad", "segundos_decena", "segundos_unidad")]
+[node name="Reloj" type="Node3D" node_paths=PackedStringArray("horas_decena", "horas_unidad", "minutos_decena", "minutos_unidad", "segundos_decena", "segundos_unidad") groups=["Alarmables"]]
 script = ExtResource("1_6l4y7")
 horas_decena = [NodePath("HorasDecena/Number0"), NodePath("HorasDecena/Number1"), NodePath("HorasDecena/Number2")]
 horas_unidad = [NodePath("HorasUnidad/Number0"), NodePath("HorasUnidad/Number1"), NodePath("HorasUnidad/Number2"), NodePath("HorasUnidad/Number3"), NodePath("HorasUnidad/Number4"), NodePath("HorasUnidad/Number5"), NodePath("HorasUnidad/Number6"), NodePath("HorasUnidad/Number7"), NodePath("HorasUnidad/Number8"), NodePath("HorasUnidad/Number9")]

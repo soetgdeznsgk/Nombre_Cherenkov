@@ -92,11 +92,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ykyx0")
 script = ExtResource("3_e7dye")
 overlay = ExtResource("4_gn8tt")
 
-[node name="Area3D" type="Area3D" parent="Botón_Rojo"]
+[node name="Area3D_BotónRojo" type="Area3D" parent="Botón_Rojo"]
 transform = Transform3D(1, 1.49012e-08, 0, -1.49012e-08, 1, 1.33227e-15, 0, -8.88178e-16, 1, 0, 0, -5.96046e-08)
 script = SubResource("GDScript_ka5ew")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Botón_Rojo/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Botón_Rojo/Area3D_BotónRojo"]
 shape = SubResource("CylinderShape3D_jwfwm")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Botón_Rojo"]

@@ -39,15 +39,15 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	playerPosition = refPlayer.position
 
-func debug_call_function() -> void:
-	return
-	if debug_bool:
-		refBalde.reset_bucket_orientation()
-		debug_bool = false
-	else:
-		refBalde.fall_from_collision_in(playerPosition)
-		debug_bool = true
-	start_interaction_buffer()
+#func debug_call_function() -> void:
+	#return
+	#if debug_bool:
+		#refBalde.reset_bucket_orientation()
+		#debug_bool = false
+	#else:
+		#refBalde.fall_from_collision_in(playerPosition)
+		#debug_bool = true
+	#start_interaction_buffer()
 	
 
 func on_aterrizaje_rana(v : Vector3) -> Vector3: #llamado desde rana.gd

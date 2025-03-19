@@ -2,6 +2,11 @@ extends Camera3D
 # TODO darle movimiento a la camara del trailer?
 
 # Called when the node enters the scene tree for the first time.
+
+func _init() -> void:
+	queue_free()
+	pass
+	
 func _ready() -> void:
 	pass # Replace with function body.
 

@@ -16,7 +16,7 @@ var bucket_ko : bool = false
 var placeable : bool = true
 const tumbled_over_trigger : float = 0.4
 const VERTICAL_BUCKET_POSITION_LIMIT = 0.25
-@export var DEBUG_CALL : bool = false
+#@export var DEBUG_CALL : bool = false
 	
 
 @onready var lever_interaction_node : Area3D = $"Area3D Palanca"

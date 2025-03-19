@@ -23,6 +23,10 @@ GeometricToolbox="*res://logic/global_scripts/geometric_toolbox.gd"
 NavegacionPulpo="*res://logic/global_scripts/navegacion_pulpo.gd"
 LevelBuilder="*res://logic/global_scripts/level_builder.gd"
 
+[debug]
+
+gdscript/warnings/integer_division=0
+
 [display]
 
 window/size/viewport_width=960

@@ -8,19 +8,20 @@ class_name InGameClock
 @export var segundos_decena: Array[MeshInstance3D]
 @export var segundos_unidad: Array[MeshInstance3D]
 
-# Multiplicador de velocidad: x1 = tiempo normal
-static var escala_de_tiempo: float = 60 
+# Multiplicador de velocidad: x1 = tiempo real, x60 = tiempo ingame
+static var escala_de_tiempo: float = 1 
 static var hora_inicial : Vector3i = Vector3i(0,58,0) 	# para que empiece a las 12:58
 
 var tiempo_simulado : float = 0.0
 
-func _ready():
-	print("on god", visible)
+func _ready() -> void:
 	tiempo_simulado += (hora_inicial.x * 3600) + (hora_inicial.y * 60) + (hora_inicial.z)
 	actualizar_reloj()
 
-func actualizar_reloj():
-	
+func start() -> void:
+	escala_de_tiempo = 60
+
+func actualizar_reloj() -> void:	
 	var tiempo_transcurrido_en_segundos = int(tiempo_simulado)
 	
 	var segundos : int = (tiempo_transcurrido_en_segundos % 60)
