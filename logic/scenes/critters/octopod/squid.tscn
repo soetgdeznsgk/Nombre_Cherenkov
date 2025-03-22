@@ -286,5 +286,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_djwsv")
 [connection signal="timeout" from="Reaching State Timer" to="." method="enter_pursuing_state"]
 [connection signal="timeout" from="Idle State Timer" to="." method="enter_pursuing_state"]
 [connection signal="body_entered" from="arm_span" to="." method="_on_arm_span_body_entered"]
+[connection signal="body_exited" from="arm_span" to="." method="_on_arm_span_body_exited"]
 
 [editable path="pulpoAnimation"]

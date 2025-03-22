@@ -18,7 +18,7 @@ func _input(event: InputEvent) -> void:
 	return
 		
 func start() -> void:
-	#$PulpoSpawnerTimer.start()
+	$PulpoSpawnerTimer.start()
 	$RanaSpawnerTimer.start()
 
 func _on_rana_spawner_timer_timeout() -> void:
@@ -35,11 +35,9 @@ func _on_rana_spawner_timer_timeout() -> void:
 func _on_pulpo_spawner_timer_timeout() -> void: 
 	# BUG en itch, al tener 3 ranas, cuando spawnea el tercer pulpo, la pantalla se va a blanco y el juego
 	# sigue corriendo
-	if get_tree().get_first_node_in_group("PulpoManager").get_child_count() < 2: #and GlobalInfo.cantidad_ranas > 1:
+	if get_tree().get_first_node_in_group("PulpoManager").get_child_count() < 4: #and GlobalInfo.cantidad_ranas > 1:
 		var pulpo : Pulpo = pulpo_ref.instantiate()#.set_origin(global_position)
 		pulpo.position = global_position
-		#pulpo.position += (radius) * Vector3.FORWARD * 3
-		#pulpo.position += (height) * Vector3.UP / 2
 		pulpo.set_origin()
 		get_tree().get_first_node_in_group("PulpoManager").add_child(pulpo)
 		GlobalInfo.cantidad_pulpos += 1

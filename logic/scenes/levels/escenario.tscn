@@ -479,7 +479,6 @@ top_level = true
 
 [node name="CajaFusibles" parent="NavigationRegion3D" instance=ExtResource("14_6egyr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.59447, 0.721564, -27.9533)
-is_active = true
 
 [node name="CajaFusibles2" parent="NavigationRegion3D" instance=ExtResource("14_6egyr")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 22.2484, 0.740109, -2.2572)
@@ -499,14 +498,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
 shape = SubResource("BoxShape3D_t688q")
 
 [node name="nodo2" type="Area3D" parent="RanaManager/NodosDeNavegacionRana" groups=["NodosNavegacion"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1732, -0.0695873, -2.90978)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8192, -0.0695873, -2.90978)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RanaManager/NodosDeNavegacionRana/nodo2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
 shape = SubResource("BoxShape3D_t688q")
 
 [node name="nodo3" type="Area3D" parent="RanaManager/NodosDeNavegacionRana" groups=["NodosNavegacion"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.6194, -4.76837e-07, -26.0601)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.0501, -4.76837e-07, -28.5149)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RanaManager/NodosDeNavegacionRana/nodo3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
@@ -520,7 +519,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
 shape = SubResource("BoxShape3D_t688q")
 
 [node name="nodo5" type="Area3D" parent="RanaManager/NodosDeNavegacionRana" groups=["NodosNavegacion"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.50141, -4.76837e-07, -5.93106)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.13876, -4.76837e-07, -2.07955)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RanaManager/NodosDeNavegacionRana/nodo5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)

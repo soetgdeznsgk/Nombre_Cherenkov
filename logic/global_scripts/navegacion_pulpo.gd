@@ -25,9 +25,9 @@ func rmv_splot_from_registry(s : Splot) -> void: # se borran desde splot.gd
 		pathfinding_map.remove_point(s.navigation_id)
 	splot_map_updated.emit()
 	
-func get_pulpo_path_from_point(pulpo_pos : Vector3) -> PackedVector3Array:
-	var start_ref : int = pathfinding_map.get_closest_point(pulpo_pos)
-	var end_ref : int = pathfinding_map.get_closest_point(GlobalInfo.playerPosition)
+func get_pulpo_path_from_point(pulpo_posicion : Vector3, objetivo : Node3D) -> PackedVector3Array:
+	var start_ref : int = pathfinding_map.get_closest_point(pulpo_posicion)
+	var end_ref : int = pathfinding_map.get_closest_point(objetivo.global_position)
 
 	if start_ref != -1 and end_ref != -1:
 		return pathfinding_map.get_point_path(start_ref, end_ref, true)

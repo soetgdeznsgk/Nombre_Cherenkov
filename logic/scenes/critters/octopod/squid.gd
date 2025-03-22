@@ -6,14 +6,22 @@ class_name Pulpo
 var current_state : int
 var target_retriever : Callable
 var origin : Vector3
+
 enum states {
 	Idle, # ko
 	Pursuing, # pursuing será también utilizado para la rutina de escape al ser golpeados
 	ReachingOut,
-	Grabbing
+	Grabbing,
+	TearingShitApart
+}
+
+enum targets {
+	FuseBox,
+	Player
 }
 
 # Variables de persecución
+var current_target
 var current_path : PackedVector3Array 
 @export_category("Persecución")
 @export var crawl_speed : float
@@ -47,13 +55,24 @@ var escaping : bool = false
 
 func set_origin() -> void: # CONSTRUCTOR
 	origin = position
+	current_target = targets.FuseBox#.values().pick_random()
 	#return self
 
 
 func _ready() -> void:
 	#NavegacionPulpo.splot_map_updated.connect(assign_path)
-	target_retriever = NavegacionPulpo.get_pulpo_path_from_point.bind(position)
+	choose_target()
 	enter_reaching_state()
+	
+func choose_target() -> void:
+	#print("currtar = fusebox? : ", targets.FuseBox == current_target, " o player?: ", targets.Player == current_target)
+	match current_target:
+		targets.FuseBox:
+			var caja_fusible = get_tree().get_nodes_in_group("CajasFusibles").pick_random()
+			print(caja_fusible)
+			target_retriever = NavegacionPulpo.get_pulpo_path_from_point.bind(position, caja_fusible)
+		targets.Player:
+			target_retriever = NavegacionPulpo.get_pulpo_path_from_point.bind(position, GlobalInfo.refPlayer)
 
 func _physics_process(delta: float) -> void:
 	look_at(GeometricToolbox.y_offset_vector_to_0(GlobalInfo.playerPosition))
@@ -138,8 +157,11 @@ func _on_area_entered(area: Area3D) -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Baldes"):
 		tumble_bucket(body)
+	elif body.is_in_group("CajasFusibles"):		# Puede que esto tenga que cambiarse, si tengo que cambiarle el tipo a la caja de fusibles
+		print("llegó a la caja!")
+		body.is_active = true
 
-func _on_body_exited(_body: Node3D) -> void: # DEBUG
+func _on_body_exited(body: Node3D) -> void: # DEBUG
 	#if body.is_in_group("Jugador"):
 		#GlobalInfo.squid_leaves_player()
 	pass
@@ -152,6 +174,14 @@ func _on_arm_span_body_entered(body: Node3D) -> void:
 		GlobalInfo.squid_hugs_player(position)
 	elif body.is_in_group("Baldes"):
 		tumble_bucket(body)
+
+
+func _on_arm_span_body_exited(body: Node3D) -> void:
+	if body.is_in_group("Jugador"):	# TODO arreglar ésta función para que, alejándose del pulpo, se pueda escapar
+		#print("jugador exita brazos")
+		#GlobalInfo.squid_leaves_player()
+		pass
+
 
 #endregion
 
