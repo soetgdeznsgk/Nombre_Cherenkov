@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://koqv2tici8g"]
+[gd_scene load_steps=49 format=4 uid="uid://koqv2tici8g"]
 
 [ext_resource type="PackedScene" uid="uid://bnl1k0w4e64he" path="res://logic/scenes/jugador.tscn" id="1_5xau3"]
 [ext_resource type="Texture2D" uid="uid://de27uxs2gwl0c" path="res://modelos/textures/marble_tiles_dirty_1k/marble_tiles_diff_1k_editao.png" id="3_8xm7x"]
@@ -30,7 +30,7 @@
 [sub_resource type="Environment" id="Environment_owekg"]
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 0.01
+ambient_light_energy = 0.0
 tonemap_mode = 2
 tonemap_white = 16.0
 ssr_enabled = true
@@ -207,6 +207,39 @@ roughness_texture = ExtResource("15_avjb6")
 normal_enabled = true
 normal_texture = ExtResource("14_5ca6k")
 
+[sub_resource type="GDScript" id="GDScript_6rhnd"]
+script/source = "extends OmniLight3D
+
+var flickering : bool = false
+	
+func _process(delta: float) -> void:
+	if flickering:
+		light_energy = lerp(light_energy, randf(), 0.3)
+	
+
+func _on_timer_timeout() -> void:
+	flickering = not flickering
+	if flickering:
+		$Timer.wait_time = randi_range(3,6)
+	else:
+		$Timer.wait_time = randi_range(10,30)
+	$Timer.start()
+	#print(\"wait time: \", $Timer.wait_time, \" mientras está flickering: \", flickering)
+
+func force_flicker() -> void:
+	flickering = true
+	$Timer.paused = true
+	
+func reset_light() -> void:
+	$Timer.start()
+	light_energy = 1
+	
+func force_off() -> void:
+	flickering = false
+	$Timer.paused = true
+	light_energy = 0
+"
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_t688q"]
 size = Vector3(1, 0.202484, 1)
 
@@ -266,7 +299,6 @@ light_color = Color(0, 1, 1, 1)
 light_energy = 2.509
 light_indirect_energy = 3.264
 omni_range = 4096.0
-omni_attenuation = 0.414
 omni_shadow_mode = 0
 
 [node name="PulpoSpawnerTimer" type="Timer" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
@@ -454,7 +486,7 @@ size = Vector3(2.33728, 1, 4.2547)
 material = SubResource("StandardMaterial3D_hfbb7")
 
 [node name="GridMap" type="GridMap" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Antecámara"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.572207, -5.85411, -1.36627)
+transform = Transform3D(1.395, 0, 0, 0, 1.395, 0, 0, 0, 1.395, 1.53346, -5.94453, -1.36627)
 mesh_library = ExtResource("18_14go2")
 cell_size = Vector3(0.5, 0.5, 0.5)
 data = {
@@ -486,6 +518,48 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 22.248
 [node name="CajaFusibles3" parent="NavigationRegion3D" instance=ExtResource("14_6egyr")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.1897, 0.740109, -2.2572)
 
+[node name="FuentesDeLuz" type="Node" parent="NavigationRegion3D"]
+
+[node name="BombilloReactor" type="OmniLight3D" parent="NavigationRegion3D/FuentesDeLuz" groups=["BombillasApagables"]]
+transform = Transform3D(-0.919678, -8.04008e-08, 0.392674, 8.74228e-08, -1, 0, 0.392674, 3.43286e-08, 0.919678, 18.0804, 7.47946, -15.1875)
+light_indirect_energy = 0.3
+shadow_enabled = true
+omni_range = 151.722
+omni_attenuation = 0.643
+script = SubResource("GDScript_6rhnd")
+
+[node name="Timer" type="Timer" parent="NavigationRegion3D/FuentesDeLuz/BombilloReactor"]
+wait_time = 3.0
+autostart = true
+
+[node name="BombilloControl" type="OmniLight3D" parent="NavigationRegion3D/FuentesDeLuz" groups=["BombillasApagables"]]
+transform = Transform3D(-0.919678, -8.04008e-08, 0.392674, 8.74228e-08, -1, -4.61853e-14, 0.392674, 3.43286e-08, 0.919678, -7.34825, 11.0105, -15.1875)
+light_indirect_energy = 0.3
+shadow_enabled = true
+omni_range = 13.037
+script = SubResource("GDScript_6rhnd")
+
+[node name="Timer" type="Timer" parent="NavigationRegion3D/FuentesDeLuz/BombilloControl"]
+wait_time = 3.0
+autostart = true
+
+[node name="BombilloControl2" type="OmniLight3D" parent="NavigationRegion3D/FuentesDeLuz" groups=["BombillasApagables"]]
+transform = Transform3D(-0.919678, -8.04008e-08, 0.392674, 8.74228e-08, -1, -4.9738e-14, 0.392674, 3.43286e-08, 0.919678, -9.13477, 3.48741, -5.69889)
+light_indirect_energy = 0.3
+shadow_enabled = true
+omni_range = 13.037
+script = SubResource("GDScript_6rhnd")
+
+[node name="Timer" type="Timer" parent="NavigationRegion3D/FuentesDeLuz/BombilloControl2"]
+wait_time = 3.0
+autostart = true
+
+[node name="Alarma_Habitación" parent="NavigationRegion3D/FuentesDeLuz" instance=ExtResource("15_rqa8x")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 29.1251, 6.58752, -15.3614)
+
+[node name="Alarma_Panel" parent="NavigationRegion3D/FuentesDeLuz" instance=ExtResource("15_rqa8x")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -10.5233, 10.9349, -15.4675)
+
 [node name="RanaManager" type="Node" parent="." groups=["RanaManager"]]
 
 [node name="NodosDeNavegacionRana" type="Node" parent="RanaManager"]
@@ -498,10 +572,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
 shape = SubResource("BoxShape3D_t688q")
 
 [node name="nodo2" type="Area3D" parent="RanaManager/NodosDeNavegacionRana" groups=["NodosNavegacion"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8192, -0.0695873, -2.90978)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.461, -0.0695873, -1.74389)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RanaManager/NodosDeNavegacionRana/nodo2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120804, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.217474, 0.302948)
 shape = SubResource("BoxShape3D_t688q")
 
 [node name="nodo3" type="Area3D" parent="RanaManager/NodosDeNavegacionRana" groups=["NodosNavegacion"]]
@@ -532,14 +606,6 @@ shape = SubResource("BoxShape3D_t688q")
 [node name="mop" parent="." instance=ExtResource("17_8ncmv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.21746, 1.05315, -5.66448)
 
-[node name="Alarmas" type="Node" parent="."]
-
-[node name="Alarma_Habitación" parent="Alarmas" instance=ExtResource("15_rqa8x")]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 29.1251, 6.58752, -15.3614)
-
-[node name="Alarma_Panel" parent="Alarmas" instance=ExtResource("15_rqa8x")]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -10.5233, 10.9349, -15.4675)
-
 [node name="Relojes" type="Node" parent="."]
 
 [node name="Reloj" parent="Relojes" instance=ExtResource("24_nf8fp")]
@@ -550,3 +616,6 @@ transform = Transform3D(-2.12656e-07, 0, 4.865, 0, 4.865, 0, -4.865, 0, -2.12656
 
 [connection signal="timeout" from="NavigationRegion3D/Geometría/Piso/PiscinaD/RanaSpawnerTimer" to="NavigationRegion3D/Geometría/Piso/PiscinaD" method="_on_rana_spawner_timer_timeout"]
 [connection signal="timeout" from="NavigationRegion3D/Geometría/Piso/PiscinaD/PulpoSpawnerTimer" to="NavigationRegion3D/Geometría/Piso/PiscinaD" method="_on_pulpo_spawner_timer_timeout"]
+[connection signal="timeout" from="NavigationRegion3D/FuentesDeLuz/BombilloReactor/Timer" to="NavigationRegion3D/FuentesDeLuz/BombilloReactor" method="_on_timer_timeout"]
+[connection signal="timeout" from="NavigationRegion3D/FuentesDeLuz/BombilloControl/Timer" to="NavigationRegion3D/FuentesDeLuz/BombilloControl" method="_on_timer_timeout"]
+[connection signal="timeout" from="NavigationRegion3D/FuentesDeLuz/BombilloControl2/Timer" to="NavigationRegion3D/FuentesDeLuz/BombilloControl2" method="_on_timer_timeout"]

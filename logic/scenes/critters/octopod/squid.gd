@@ -3,7 +3,7 @@ class_name Pulpo
 # Éste pulpo, a diferencia de la rana, no utilizará el nodo NavigationRegion, puesto que no toda la superficie
 # le está disponible, por el contrario, se moverá con fre
 
-var current_state : int
+@export var current_state : int
 var target_retriever : Callable
 var origin : Vector3
 
@@ -36,11 +36,9 @@ var escaping : bool = false
 @onready var arm_span : CollisionShape3D = $arm_span/CollisionShape3D
 @export var health : int = 3:
 	set(v):
-		#print(v)
 		if v <= 0:
 			enter_idle_state()
 			target_retriever = NavegacionPulpo.get_escape_path.bind(self)
-			#print("Pulpo escapa!")
 			escaping = true
 			health = 0
 		else:
@@ -55,17 +53,17 @@ var escaping : bool = false
 
 func set_origin() -> void: # CONSTRUCTOR
 	origin = position
-	current_target = targets.FuseBox#.values().pick_random()
+	#current_target = targets.FuseBox#.values().pick_random()
 	#return self
 
 
 func _ready() -> void:
 	#NavegacionPulpo.splot_map_updated.connect(assign_path)
-	choose_target()
+	choose_target(targets.FuseBox)#.values().pick_random())
 	enter_reaching_state()
 	
-func choose_target() -> void:
-	#print("currtar = fusebox? : ", targets.FuseBox == current_target, " o player?: ", targets.Player == current_target)
+func choose_target(new_target : int) -> void:
+	current_target = new_target
 	match current_target:
 		targets.FuseBox:
 			var caja_fusible = get_tree().get_nodes_in_group("CajasFusibles").pick_random()
@@ -107,6 +105,7 @@ func pursuing_pp(delta: float) -> void:
 func enter_pursuing_state() -> void:
 	current_state = states.Pursuing
 	anim_player.play("Pursuing")
+	#print("current target : ", current_target, " y target retriever : ", target_retriever.get_object().name)
 	assign_path(target_retriever)
 	#print("entra a pursuing")
 
@@ -132,7 +131,6 @@ func enter_grabbing_state() -> void:
 	call_deferred("change_arm_monitoring_state", true)
 	current_state = states.Grabbing
 	anim_player.play("Grabbing")
-	#print("entra a grabbing")
 	
 # IDLE
 
@@ -143,8 +141,23 @@ func enter_idle_state() -> void:
 	$"Idle State Timer".start()
 	current_state = states.Idle
 	# anim
-	#print("entra a idle")
 	GlobalInfo.squid_leaves_player()
+	
+# TEARING SHIT APART
+
+func tearing_shit_pp(_delta: float) -> void:
+	pass
+
+func enter_tearing_shit_state() -> void:
+	current_state = states.TearingShitApart
+	$"Tearing State Timer".start()
+	GlobalInfo.force_lights_flickering()
+	
+	await $"Tearing State Timer".timeout
+	
+	GlobalInfo.shut_down_lights()
+	choose_target(targets.Player)
+	enter_pursuing_state()
 #endregion
 
 #region Magia con los colliders
@@ -158,8 +171,9 @@ func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Baldes"):
 		tumble_bucket(body)
 	elif body.is_in_group("CajasFusibles"):		# Puede que esto tenga que cambiarse, si tengo que cambiarle el tipo a la caja de fusibles
-		print("llegó a la caja!")
-		body.is_active = true
+		# también puede hacerse más general con un "has_method(squid_interaction)"
+		if body.squid_interaction():			# osea, si el pulpo puede interactuar con la caja
+			enter_tearing_shit_state()
 
 func _on_body_exited(body: Node3D) -> void: # DEBUG
 	#if body.is_in_group("Jugador"):

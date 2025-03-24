@@ -41,10 +41,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	direction = camara_ref.get_global_transform().basis.z
-	if Input.is_action_just_pressed(\"Debug_Exec\") and GlobalInfo.timerInteractionBuffer.is_stopped():
-		GlobalInfo.debug_call_function()
-	#if $GroundRayCast.get_collider():
-		#print($GroundRayCast.get_collision_normal()) # acá no está la inclinación de las escaleras
+		
 	match currState:
 		playerStates.Free:
 			free_pp(_delta)
@@ -130,6 +127,7 @@ transform = Transform3D(0.999999, -0.00134197, 0.000845586, 0.00134066, 0.999998
 shape = SubResource("CapsuleShape3D_pnppo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_xqvju")
 
 [node name="GroundRayCast" type="RayCast3D" parent="."]

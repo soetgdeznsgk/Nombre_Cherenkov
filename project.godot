@@ -58,6 +58,7 @@ PulpoManager=""
 Alarmables="Todos los nodos que necesitan activarse una vez se active la alarma"
 Trailer_INDEV=""
 CajasFusibles=""
+BombillasApagables=""
 
 [input]
 

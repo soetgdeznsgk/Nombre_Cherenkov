@@ -164,7 +164,6 @@ func reset_bucket_orientation() -> void:
 func fall_from_collision_in(collider_pos: Vector3) -> void:
 	if not bucket_ko and not in_hud:
 		var eje = (collider_pos - global_position).cross(Vector3.UP).normalized()
-		#rotate(eje, PI/2.5) # volver una corutina
 		print("se cae")
 		fall_coroutine(collider_pos, eje, 0)
 		bucket_ko = true

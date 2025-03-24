@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b170fl7uw3rxy" path="res://modelos/low_poly_squid/pulpoAnimation.glb" id="3_n3bj6"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_06jv0"]
-radius = 0.592809
+radius = 0.961272
 
 [sub_resource type="Animation" id="Animation_3c2up"]
 resource_name = "Grabbing"
@@ -120,6 +120,9 @@ libraries = {
 }
 
 [node name="Reaching State Timer" type="Timer" parent="." groups=["TimersPulpo"]]
+one_shot = true
+
+[node name="Tearing State Timer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 

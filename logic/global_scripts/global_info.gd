@@ -4,6 +4,7 @@ class_name GlobalDB
 # parametros ambiente
 const splot_limit := 100
 var splot_count := 0
+@export var lightbulb_max_energy : int = 1
 
 # info jugador
 static var playerPosition : Vector3
@@ -92,3 +93,21 @@ func bucket_just_unequipped() -> void:
 func start_reactor_meltdown() -> void:
 	await get_tree().create_timer(1).timeout
 	get_tree().call_group("Alarmables", "start")
+	
+#region Manejo de fuentes de luz
+
+func force_lights_flickering() -> void:
+	for light in get_tree().get_nodes_in_group("BombillasApagables"):
+		light.force_flicker()
+	
+func shut_down_lights() -> void:
+	for light in get_tree().get_nodes_in_group("BombillasApagables"):
+		light.force_off()
+		#añadir sfx de apagado de luz
+	
+func reset_lights() -> void:
+	for light in get_tree().get_nodes_in_group("BombillasApagables"):
+		light.force_on()
+		#añadir sfx de prendido de luz
+
+#endregion

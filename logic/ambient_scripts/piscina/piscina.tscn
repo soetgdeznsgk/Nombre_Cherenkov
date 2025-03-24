@@ -5,12 +5,11 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_e7ppt"]
 size = Vector3(0.95752, 1, 0.0341797)
 
-[node name="PiscinaD" type="CSGBox3D" node_paths=PackedStringArray("first_frog_target")]
+[node name="PiscinaD" type="CSGBox3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3, -1.97949, -0.563)
 operation = 2
 size = Vector3(1, 4.95898, 1)
 script = ExtResource("1_lev4o")
-first_frog_target = NodePath("")
 
 [node name="RanaSpawnerTimer" type="Timer" parent="."]
 wait_time = 3.0
