@@ -77,6 +77,7 @@ func _physics_process(delta):
 		if last_collision != null:
 			if mop_reference != null and not last_collision.is_in_group("Trapero") and GlobalInfo.timerInteractionBuffer.is_stopped():
 				mop_reference.trapeo_lerp_to(interaction_raycast.get_collision_point(), 0)
+				#print(last_collision)
 	
 			if  last_collision.has_method("player_interaction"):
 				last_collision.player_interaction()

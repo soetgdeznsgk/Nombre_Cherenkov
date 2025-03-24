@@ -164,8 +164,9 @@ func enter_tearing_shit_state() -> void:
 
 
 func _on_area_entered(area: Area3D) -> void:
-	if area.is_in_group("Trapero"):
-		health -= 1
+	#if area.is_in_group("Trapero"):
+		#health -= 1
+	pass
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Baldes"):
@@ -196,6 +197,10 @@ func _on_arm_span_body_exited(body: Node3D) -> void:
 		#GlobalInfo.squid_leaves_player()
 		pass
 
+func player_interaction() -> void:
+	if GlobalInfo.timerInteractionBuffer.is_stopped() and GlobalInfo.refTrapero.anim_state != GlobalInfo.refTrapero.states.Stowed:
+		#print("squid lee interaction")
+		health -= 1
 
 #endregion
 

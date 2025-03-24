@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b170fl7uw3rxy" path="res://modelos/low_poly_squid/pulpoAnimation.glb" id="3_n3bj6"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_06jv0"]
-radius = 0.961272
+radius = 1.29656
 
 [sub_resource type="Animation" id="Animation_3c2up"]
 resource_name = "Grabbing"
@@ -111,7 +111,7 @@ reaching_state_duration = 5.0
 idle_state_duration = 3.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.008, -0.05)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00826955, 0.00799988, -0.0508168)
 shape = SubResource("SphereShape3D_06jv0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

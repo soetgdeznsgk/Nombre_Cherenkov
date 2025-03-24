@@ -294,11 +294,13 @@ first_frog_target = NodePath("../../../../RanaManager/NodosDeNavegacionRana/nodo
 wait_time = 5.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
-transform = Transform3D(0.1, 0, 0, 0, 1, 0, 0, 0, 0.1, -0.212667, -4.07754, -0.149284)
+transform = Transform3D(0.1, 0, 0, 0, 1, 0, 0, 0, 0.1, 0.0162436, -4.23561, 0.0381289)
 light_color = Color(0, 1, 1, 1)
 light_energy = 2.509
 light_indirect_energy = 3.264
-omni_range = 4096.0
+light_size = 1.0
+light_specular = 5.632
+omni_range = 224.617
 omni_shadow_mode = 0
 
 [node name="PulpoSpawnerTimer" type="Timer" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
