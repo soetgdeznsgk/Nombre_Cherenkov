@@ -44,3 +44,15 @@ func _on_pulpo_spawner_timer_timeout() -> void:
 
 func get_center() -> Vector3:
 	return global_position
+
+func trigger_white_out() -> void:
+	if $OmniLight3D.omni_attenuation <= -15:
+		return
+	
+	for source in get_tree().get_nodes_in_group("BombillasApagables"):
+		source.omni_attenuation -= 0.01
+		GlobalInfo.reset_lights()
+	$OmniLight3D.omni_attenuation -= 0.01
+	
+	await get_tree().process_frame
+	trigger_white_out()

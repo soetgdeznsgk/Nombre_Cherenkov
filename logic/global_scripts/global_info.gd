@@ -22,6 +22,8 @@ const NO_INTERACTION_TIME := 0.3
 @onready var refUI : UI = get_tree().get_first_node_in_group("UI")
 @onready var refContBar : Contamination_Ingame_Bar = get_tree().get_first_node_in_group("ContaminationBar")
 
+@onready var refPiscina : Pool = get_tree().get_first_node_in_group("Piscinas")
+
 signal rana_impacta # emitido desde on_aterrizaje_rana
 signal jugador_trapea # utilizada para la señal visual del trapero
 signal trapero_limpiado
@@ -40,15 +42,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	playerPosition = refPlayer.position
 
-#func debug_call_function() -> void:
-	#return
-	#if debug_bool:
-		#refBalde.reset_bucket_orientation()
-		#debug_bool = false
-	#else:
-		#refBalde.fall_from_collision_in(playerPosition)
-		#debug_bool = true
-	#start_interaction_buffer()
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_released("Debug_Exec") and not debug_bool:
+		debug_bool = true
+		trigger_game_over_state()
 	
 
 func on_aterrizaje_rana(v : Vector3) -> Vector3: #llamado desde rana.gd
@@ -107,7 +104,12 @@ func shut_down_lights() -> void:
 	
 func reset_lights() -> void:
 	for light in get_tree().get_nodes_in_group("BombillasApagables"):
-		light.force_on()
+		light.reset_light()
 		#añadir sfx de prendido de luz
 
 #endregion
+
+func trigger_game_over_state() -> void:
+	get_tree().get_first_node_in_group("GameOverTriggerables").start_screen_shake_game_over() # tocará abstraer ésta función para llamar a todos los objetos con similitudes
+	refPiscina.trigger_white_out()
+	

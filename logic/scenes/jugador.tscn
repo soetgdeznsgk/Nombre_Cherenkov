@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnl1k0w4e64he"]
+[gd_scene load_steps=6 format=3 uid="uid://bnl1k0w4e64he"]
 
 [ext_resource type="Script" path="res://logic/scenes/camarascript.gd" id="1_jh4ox"]
+[ext_resource type="Script" path="res://logic/scenes/screen_shake_component.gd" id="2_cfpkj"]
 
 [sub_resource type="GDScript" id="GDScript_cx7sy"]
 resource_name = "pj"
@@ -121,6 +122,9 @@ update_scale = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.148634, -1.22491, -2.40896)
 update_rotation = false
 update_scale = false
+
+[node name="ScreenShakeComponent" type="Node" parent="Camera3D" groups=["Alarmables", "GameOverTriggerables"]]
+script = ExtResource("2_cfpkj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.999999, -0.00134197, 0.000845586, 0.00134066, 0.999998, 0.00154888, -0.000847652, -0.00154775, 0.999998, 0, 0, 0)

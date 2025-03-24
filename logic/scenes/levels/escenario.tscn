@@ -281,7 +281,7 @@ mesh = SubResource("ArrayMesh_2n3vl")
 material = SubResource("StandardMaterial3D_jtryp")
 script = ExtResource("3_e045v")
 
-[node name="PiscinaD" type="CSGCylinder3D" parent="NavigationRegion3D/Geometría/Piso" node_paths=PackedStringArray("first_frog_target") groups=["Alarmables"]]
+[node name="PiscinaD" type="CSGCylinder3D" parent="NavigationRegion3D/Geometría/Piso" node_paths=PackedStringArray("first_frog_target") groups=["Alarmables", "Piscinas"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.62886, -1.97949, -1.52541)
 operation = 2
 radius = 0.88697
@@ -545,14 +545,14 @@ script = SubResource("GDScript_6rhnd")
 wait_time = 3.0
 autostart = true
 
-[node name="BombilloControl2" type="OmniLight3D" parent="NavigationRegion3D/FuentesDeLuz" groups=["BombillasApagables"]]
+[node name="BombilloLockers" type="OmniLight3D" parent="NavigationRegion3D/FuentesDeLuz" groups=["BombillasApagables"]]
 transform = Transform3D(-0.919678, -8.04008e-08, 0.392674, 8.74228e-08, -1, -4.9738e-14, 0.392674, 3.43286e-08, 0.919678, -9.13477, 3.48741, -5.69889)
 light_indirect_energy = 0.3
 shadow_enabled = true
 omni_range = 13.037
 script = SubResource("GDScript_6rhnd")
 
-[node name="Timer" type="Timer" parent="NavigationRegion3D/FuentesDeLuz/BombilloControl2"]
+[node name="Timer" type="Timer" parent="NavigationRegion3D/FuentesDeLuz/BombilloLockers"]
 wait_time = 3.0
 autostart = true
 
@@ -620,4 +620,4 @@ transform = Transform3D(-2.12656e-07, 0, 4.865, 0, 4.865, 0, -4.865, 0, -2.12656
 [connection signal="timeout" from="NavigationRegion3D/Geometría/Piso/PiscinaD/PulpoSpawnerTimer" to="NavigationRegion3D/Geometría/Piso/PiscinaD" method="_on_pulpo_spawner_timer_timeout"]
 [connection signal="timeout" from="NavigationRegion3D/FuentesDeLuz/BombilloReactor/Timer" to="NavigationRegion3D/FuentesDeLuz/BombilloReactor" method="_on_timer_timeout"]
 [connection signal="timeout" from="NavigationRegion3D/FuentesDeLuz/BombilloControl/Timer" to="NavigationRegion3D/FuentesDeLuz/BombilloControl" method="_on_timer_timeout"]
-[connection signal="timeout" from="NavigationRegion3D/FuentesDeLuz/BombilloControl2/Timer" to="NavigationRegion3D/FuentesDeLuz/BombilloControl2" method="_on_timer_timeout"]
+[connection signal="timeout" from="NavigationRegion3D/FuentesDeLuz/BombilloLockers/Timer" to="NavigationRegion3D/FuentesDeLuz/BombilloLockers" method="_on_timer_timeout"]
