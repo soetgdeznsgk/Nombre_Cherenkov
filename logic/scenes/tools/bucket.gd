@@ -37,11 +37,11 @@ func _physics_process(_delta: float) -> void:
 		if engine_force > 1: # solución barata, funciona para frenar entonces lo considero terminado
 			engine_force /= 1.05
 					
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE) and $grab_buffer.is_stopped() and player_on_range: 
+		if Input.is_action_pressed("SecondaryInteraction") and $grab_buffer.is_stopped() and player_on_range: 
 			alternate_on_player_hud()
 				
 	else: # TODO refactorizar este codigo horrible
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE) and $grab_buffer.is_stopped() and confirm_placeability():
+		if Input.is_action_pressed("SecondaryInteraction") and $grab_buffer.is_stopped() and confirm_placeability():
 			alternate_on_player_hud()
 		
 		position_delta = GeometricToolbox.y_offset_vector_to_0(remote_transform_ref.global_position - global_position)
@@ -50,9 +50,8 @@ func _physics_process(_delta: float) -> void:
 		
 func _input(event: InputEvent) -> void:
 	if in_hud:
+		look_at(GeometricToolbox.y_offset_vector_to_0(GlobalInfo.playerPosition)) 
 		if event is InputEventMouseMotion or event is InputEventAction:
-			# TODO arreglar bug donde el juego se caga encima si se llama a look_at 
-			look_at(GeometricToolbox.y_offset_vector_to_0(GlobalInfo.playerPosition)) 
 			adjust_forces(event.relative.x)
 		elif event is InputEventKey:
 			adjust_forces(1)
@@ -71,6 +70,8 @@ func lerp_towards_player(time) -> void: # TODO arreglar para que no se vea epile
 	#return GeometricToolbox.y_offset_vector_to_0(remote_transform_ref.global_position - global_position)
 
 func alternate_on_player_hud() -> void:
+	if LevelBuilder.controller_connected:
+		Input.start_joy_vibration(0, 0.5, 0, 0.1)
 	$grab_buffer.start()
 	if not in_hud:
 		freeze = true

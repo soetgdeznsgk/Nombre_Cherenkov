@@ -88,8 +88,10 @@ func bucket_just_unequipped() -> void:
 	refCamara.interaction_raycast.enabled = true
 	
 func start_reactor_meltdown() -> void:
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(0.5).timeout
 	get_tree().call_group("Alarmables", "start")
+	if LevelBuilder.controller_connected:
+		Input.start_joy_vibration(0, 0.5, 0.5, 1.5)
 	
 #region Manejo de fuentes de luz
 
@@ -112,4 +114,6 @@ func reset_lights() -> void:
 func trigger_game_over_state() -> void:
 	get_tree().get_first_node_in_group("GameOverTriggerables").start_screen_shake_game_over() # tocará abstraer ésta función para llamar a todos los objetos con similitudes
 	refPiscina.trigger_white_out()
+	if LevelBuilder.controller_connected:
+		Input.start_joy_vibration(0, 0.5, 0.5, 5)
 	

@@ -112,6 +112,10 @@ func exprimir() -> void:
 		GlobalInfo.reset_in_mop_saturation()
 
 func reparent_action(nodo : Node):
+	
+	if LevelBuilder.controller_connected:
+		Input.start_joy_vibration(0, 0.5, 0, 0.1)
+		
 	reparent(nodo, false)
 	camera_ref.alterMopException(self)
 	match nodo.get_groups().front():
