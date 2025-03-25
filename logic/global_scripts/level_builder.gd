@@ -1,33 +1,45 @@
 extends Node
+class_name Level_Builder
 
 @onready var refUI : UI = get_tree().get_first_node_in_group("UI")
 var paused : bool = true
 var boot := true
+static var controller_connected : bool 				# falso si teclado, verdadero si hay control
+static var controller_sensitivity : float = 5
+var pauseBuffer : Timer
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	Engine.time_scale = 0
 	Engine.max_fps = 60
+	Input.joy_connection_changed.connect(_on_gamepad_connection_status_changed)
 
 
-func _input(event):
-	if event is InputEventMouseButton and not boot:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		Engine.time_scale = 1
-		change_paused_state()
-		paused = false
-		boot = true
-		
-func _process(_delta: float) -> void:
-	if Input.is_key_label_pressed(KEY_ESCAPE) and not paused:
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		Engine.time_scale = 0
-		change_paused_state()
-	elif Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and paused:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		Engine.time_scale = 1
-		change_paused_state()
-		
+
+func _input(event : InputEvent) -> void:
+	if event is InputEventJoypadButton:
+		if Input.is_action_just_pressed("PauseGame"):
+			change_paused_state()
+			if paused:
+				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+				Engine.time_scale = 0
+			else:
+				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+				Engine.time_scale = 1
+			
+	elif event is InputEventKey or event is InputEventMouseButton:
+		if Input.is_action_just_pressed("PrimaryInteraction") or Input.is_action_just_pressed("PauseGame"):
+			change_paused_state()
+			if paused:
+				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+				Engine.time_scale = 0
+			else:
+				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+				Engine.time_scale = 1
+
+func _on_gamepad_connection_status_changed(device_id, connected : bool) -> void:
+	controller_connected = connected
+
 func change_paused_state() -> void:
 	refUI.alternate_esc_enter()
 	paused = not paused

@@ -34,7 +34,7 @@ func _ready():
 	
 	#GlobalInfo.jugador_trapea.connect(func(): mop_saturation += mop_saturation_pace)
  
-func _input(event):
+func _input(event : InputEvent):
 	if event is InputEventMouseMotion:
 		v.y -= (event.relative.x * 0.2)
 		v.x -= (event.relative.y * 0.2)
@@ -43,18 +43,27 @@ func _input(event):
 		#bucket_reference.rotate_to_camera(event.relative.x) # no se necesita todos los frames
 		v.x = clamp(v.x,-80,90)
 		
-	#elif Input.is_key_label_pressed(KEY_C): # DEBUG mientras se ata a el presionar un botón
-		#GlobalInfo.start_reactor_meltdown()
+func apply_controller_rotation() -> void:
+	var axis_vector : Vector2 = Vector2.ZERO
+	axis_vector.x = Input.get_axis("LookL", "LookR")
+	axis_vector.y = Input.get_axis("LookU", "LookD")
+	get_parent().rotate_y(deg_to_rad(-axis_vector.x) * LevelBuilder.controller_sensitivity)
+	rotate_x(deg_to_rad(-axis_vector.y) * LevelBuilder.controller_sensitivity)
+	rotation.x = clamp(rotation.x, deg_to_rad(-75), deg_to_rad(75))
 
 func _physics_process(delta):
-	if not locked:
+	if locked:
+		time_locked += delta
+		get_parent().look_at((global_position - pre_grab_camera_direction).lerp(focus_point, time_locked))
+		if mop_reference != null: 
+			mop_reference.rotate_to_camera(Vector2.ZERO)
+			
+	elif LevelBuilder.controller_connected:
+		apply_controller_rotation()
+		
+	else:
 		rotation_degrees.x = v.x
 		rotation_degrees.y = v.y
-	else:
-		time_locked += delta
-		look_at((global_position - pre_grab_camera_direction).lerp(focus_point, time_locked))
-		if mop_reference != null: mop_reference.rotate_to_camera(Vector2.ZERO)
-		
 		
 	#region Codigo para los outlines para los interactuables (radioactivo)
 	if interaction_raycast.is_colliding():	
@@ -73,7 +82,7 @@ func _physics_process(delta):
 	#endregion
 	
 	#region Código de interacción con objetos
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and interaction_raycast.is_colliding(): 
+	if Input.is_action_pressed("PrimaryInteraction") and interaction_raycast.is_colliding(): 
 		if last_collision != null:
 			if mop_reference != null and not last_collision.is_in_group("Trapero") and GlobalInfo.timerInteractionBuffer.is_stopped():
 				mop_reference.trapeo_lerp_to(interaction_raycast.get_collision_point(), 0)
