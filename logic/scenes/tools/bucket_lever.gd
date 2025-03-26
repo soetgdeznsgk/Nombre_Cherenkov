@@ -29,11 +29,13 @@ func _physics_process(delta: float) -> void:
 
 func enter_player_focus() -> void:
 	if enabled and not highlight:
+		$"../ControlTipRT".visible = true
 		mesh_ref.set_surface_override_material(1, material) # 1 es la palanca del balde
 		highlight = true
 		
 func exit_player_focus() -> void:
 	if highlight:
+		$"../ControlTipRT".visible = false
 		mesh_ref.set_surface_override_material(1, null)
 		highlight = false	
 	

@@ -24,6 +24,7 @@ func activate_fusebox()-> void:
 func deactivate_fusebox() -> void:
 	emisor_chispas_constantes.emitting = false
 	emisor_chispoteo.emitting = false
+	GlobalInfo.reset_lights()
 	
 func squid_interaction() -> bool:
 	if is_active:
@@ -31,3 +32,7 @@ func squid_interaction() -> bool:
 	
 	is_active = true
 	return true
+	
+func player_interaction() -> void:
+	if GlobalInfo.timerInteractionBuffer.is_stopped():
+		is_active = false

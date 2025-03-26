@@ -714,7 +714,7 @@ billboard_keep_scale = true
 material = SubResource("StandardMaterial3D_cgoeh")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0oqgp"]
-size = Vector3(1.80162, 1, 1)
+size = Vector3(1.80162, 2.85303, 1)
 
 [node name="CajaFusibles" type="StaticBody3D" node_paths=PackedStringArray("emisor_chispas_constantes", "emisor_chispoteo") groups=["CajasFusibles"]]
 script = ExtResource("1_3b1md")
@@ -897,5 +897,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26178, -0.476693, 1.50943)
 size = Vector3(3.60046, 0.189636, 5.01886)
 
 [node name="ColisiónPiso" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21644, 0, -0.665482)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21644, 0.926514, -0.665482)
 shape = SubResource("BoxShape3D_0oqgp")

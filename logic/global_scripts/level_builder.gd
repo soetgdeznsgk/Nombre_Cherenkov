@@ -17,25 +17,11 @@ func _ready() -> void:
 
 
 func _input(event : InputEvent) -> void:
-	if event is InputEventJoypadButton:
+	if event is InputEventJoypadButton or event is InputEventKey:
 		if Input.is_action_just_pressed("PauseGame"):
 			change_paused_state()
-			if paused:
-				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-				Engine.time_scale = 0
-			else:
-				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-				Engine.time_scale = 1
 			
-	elif event is InputEventKey or event is InputEventMouseButton:
-		if Input.is_action_just_pressed("PrimaryInteraction") or Input.is_action_just_pressed("PauseGame"):
-			change_paused_state()
-			if paused:
-				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-				Engine.time_scale = 0
-			else:
-				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-				Engine.time_scale = 1
+	
 
 func _on_gamepad_connection_status_changed(device_id, connected : bool) -> void:
 	controller_connected = connected
@@ -43,3 +29,9 @@ func _on_gamepad_connection_status_changed(device_id, connected : bool) -> void:
 func change_paused_state() -> void:
 	refUI.alternate_esc_enter()
 	paused = not paused
+	if paused:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		Engine.time_scale = 0
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		Engine.time_scale = 1

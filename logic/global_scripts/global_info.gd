@@ -5,6 +5,8 @@ class_name GlobalDB
 const splot_limit := 100
 var splot_count := 0
 @export var lightbulb_max_energy : int = 1
+var meltdown_triggered : bool = false
+var winning_secuence :bool = false
 
 # info jugador
 static var playerPosition : Vector3
@@ -43,15 +45,20 @@ func _process(_delta: float) -> void:
 	playerPosition = refPlayer.position
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_released("Debug_Exec") and not debug_bool:
-		debug_bool = true
-		trigger_game_over_state()
+	if Input.is_action_just_pressed("Debug_Exec"):
+		for n in get_tree().get_nodes_in_group("CajasFusibles"):
+			if debug_bool == false:
+				n.squid_interaction()
+			else:
+				n.player_interaction()
+			debug_bool = not debug_bool
+			
 	
 
 func on_aterrizaje_rana(v : Vector3) -> Vector3: #llamado desde rana.gd
 	v = GeometricToolbox.y_offset_vector_to_0(v)
 	#refUI.update_contamination_bar(3) #valor base de cada charco 
-	refContBar.update_contamination_bar(7)
+	refContBar.update_contamination_bar(3)
 	rana_impacta.emit(v)
 	splot_count += 1
 	return v
@@ -59,9 +66,7 @@ func on_aterrizaje_rana(v : Vector3) -> Vector3: #llamado desde rana.gd
 func change_in_mop_saturation() -> void:
 	jugador_trapea.emit(Mop.mop_saturation)
 	refUI.update_saturation_bar(Mop.mop_saturation)
-	#refUI.update_contamination_bar(-0.8) deprecado xq ahora la barra se ve ingame
 	refContBar.update_contamination_bar(-1)
-	#print(refContBar.get_contamination_value())
 
 func reset_in_mop_saturation() -> void:
 	trapero_limpiado.emit()
@@ -88,11 +93,13 @@ func bucket_just_unequipped() -> void:
 	refCamara.interaction_raycast.enabled = true
 	
 func start_reactor_meltdown() -> void:
-	await get_tree().create_timer(0.5).timeout
-	get_tree().call_group("Alarmables", "start")
-	if LevelBuilder.controller_connected:
-		Input.start_joy_vibration(0, 0.5, 0.5, 1.5)
-	
+	if not meltdown_triggered:
+		meltdown_triggered = true
+		await get_tree().create_timer(0.5).timeout
+		get_tree().call_group("Alarmables", "start")
+		if LevelBuilder.controller_connected:
+			Input.start_joy_vibration(0, 0.5, 0.5, 1.5)
+		
 #region Manejo de fuentes de luz
 
 func force_lights_flickering() -> void:
@@ -111,9 +118,20 @@ func reset_lights() -> void:
 
 #endregion
 
-func trigger_game_over_state() -> void:
+#region ENDINGS
+func trigger_loss_state() -> void:
+	if winning_secuence:
+		return
 	get_tree().get_first_node_in_group("GameOverTriggerables").start_screen_shake_game_over() # tocará abstraer ésta función para llamar a todos los objetos con similitudes
 	refPiscina.trigger_white_out()
 	if LevelBuilder.controller_connected:
 		Input.start_joy_vibration(0, 0.5, 0.5, 5)
+	await get_tree().create_timer(5).timeout
+	get_tree().quit()
 	
+func trigger_win_state() -> void:
+	winning_secuence = true
+	UI.trigger_win_sign()
+	await get_tree().create_timer(10).timeout
+	get_tree().quit()
+#endregion

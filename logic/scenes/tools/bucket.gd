@@ -27,6 +27,11 @@ func _ready() -> void:
 	bucket_equipped.connect(GlobalInfo.bucket_just_equipped)
 	bucket_unequipped.connect(GlobalInfo.bucket_just_unequipped)
 	remote_transform_ref = GlobalInfo.refPlayer.camara_ref.bucket_remote_transform
+	
+	await get_tree().process_frame
+	if LevelBuilder.controller_connected:
+		$SubViewportRT/Control/TextureRect.texture = load("res://xbox_rt.png")
+		$SubViewportLT/Control/TextureRect.texture = load("res://xbox_lt.png")
 	#steering = 0 #trailer
 
 func _physics_process(_delta: float) -> void:
@@ -53,7 +58,7 @@ func _input(event: InputEvent) -> void:
 		look_at(GeometricToolbox.y_offset_vector_to_0(GlobalInfo.playerPosition)) 
 		if event is InputEventMouseMotion or event is InputEventAction:
 			adjust_forces(event.relative.x)
-		elif event is InputEventKey:
+		else:
 			adjust_forces(1)
 		
 		
@@ -99,10 +104,15 @@ func adjust_forces(horizontal_cam_delta : float) -> void: # mi obra maestra
 func enter_player_focus() -> void:
 	#print("entra a la vision ", Time.get_time_string_from_system())
 	if not mop_stored:
+		if GlobalInfo.refTrapero.anim_state != GlobalInfo.refTrapero.states.Stowed:
+			$ControlTipRT.visible = true
+		$ControlTipLT.visible = true
 		mesh_reference.activate_outline()
 		player_on_range = true
 
 func exit_player_focus() -> void:
+	$ControlTipRT.visible = false
+	$ControlTipLT.visible = false
 	mesh_reference.deactivate_outline()
 	player_on_range = false
 

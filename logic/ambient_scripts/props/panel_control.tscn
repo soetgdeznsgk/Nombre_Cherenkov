@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://btpu3eyttcmkr"]
+[gd_scene load_steps=17 format=3 uid="uid://btpu3eyttcmkr"]
 
 [ext_resource type="PackedScene" uid="uid://dow5ivvg1vhra" path="res://modelos/button_-_from_portal_2_original/scene.gltf" id="1_c0lom"]
 [ext_resource type="Texture2D" uid="uid://cbkgv4jvt85xd" path="res://modelos/button_-_from_portal_2_original/textures/portal_button_switch_baseColor.jpeg" id="2_ki8hd"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/postprocessing_items/outline_on_selection.gd" id="3_e7dye"]
 [ext_resource type="Material" uid="uid://cnqwt7axy0vyl" path="res://logic/ambient_scripts/postprocessing_items/outline_material_mop.tres" id="4_gn8tt"]
+[ext_resource type="Texture2D" uid="uid://d2g0udfppb40" path="res://left-click.png" id="5_gukdn"]
 [ext_resource type="PackedScene" uid="uid://cve4e3lmdeq5d" path="res://logic/ambient_scripts/props/pruebasreloj/reloj.tscn" id="5_phnoe"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qk04c"]
@@ -18,17 +19,30 @@ disable_receive_shadows = true
 
 [sub_resource type="GDScript" id="GDScript_ka5ew"]
 script/source = "extends Area3D
+var alreadyPressed : bool = false
 
 @onready var meshRef : MeshInstance3D = $\"../Sketchfab_model/22651b82dee743ada4984ec97caf27be_fbx/RootNode/portal_button_reduced/Object_6/Skeleton3D/Object_9\"
+
+func _ready() -> void:
+	await get_tree().process_frame
+	if LevelBuilder.controller_connected:
+		$\"../SubViewport/Control/TextureRect\".texture = load(\"res://xbox_rt.png\")
+
 func enter_player_focus() -> void:
 	meshRef.activate_outline()
+	$\"../ControlTip\".visible = true
 
 func exit_player_focus() -> void:
 	meshRef.deactivate_outline()
+	$\"../ControlTip\".visible = false
 
 func player_interaction() -> void:
 	$\"../AnimationPlayer\".play(\"press\")
 	GlobalInfo.start_reactor_meltdown()
+	
+	if not alreadyPressed:
+		UI.trigger_next_order()
+		alreadyPressed = true
 "
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_jwfwm"]
@@ -61,6 +75,26 @@ _data = {
 "RESET": SubResource("Animation_fmsh8"),
 "press": SubResource("Animation_yrll2")
 }
+
+[sub_resource type="QuadMesh" id="QuadMesh_nb687"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_uw671"]
+viewport_path = NodePath("Botón_Rojo/SubViewport")
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_0lrju"]
+resource_local_to_scene = true
+no_depth_test = true
+diffuse_mode = 3
+disable_ambient_light = true
+disable_fog = true
+albedo_texture = SubResource("ViewportTexture_uw671")
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.01
+backlight = Color(1, 1, 1, 1)
+refraction_enabled = true
+disable_receive_shadows = true
+billboard_mode = 1
 
 [node name="Panel_Control" type="CSGPolygon3D"]
 transform = Transform3D(-9.96959e-08, 0, -1.20595, 0, 1, 0, 2.28078, 0, -5.27136e-08, 0, 0, 0)
@@ -103,6 +137,43 @@ shape = SubResource("CylinderShape3D_jwfwm")
 libraries = {
 "": SubResource("AnimationLibrary_mcu5q")
 }
+
+[node name="ControlTip" type="MeshInstance3D" parent="Botón_Rojo"]
+transform = Transform3D(0.0346361, 0.898335, 0.0044464, 0.0400707, 0.0823629, 1.05863, 0.88755, -0.034067, -0.0309447, 0.0946558, 0.401547, 1.94656)
+visible = false
+mesh = SubResource("QuadMesh_nb687")
+surface_material_override/0 = SubResource("ORMMaterial3D_0lrju")
+
+[node name="SubViewport" type="SubViewport" parent="Botón_Rojo"]
+
+[node name="Control" type="Control" parent="Botón_Rojo/SubViewport"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Botón_Rojo/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_gukdn")
 
 [node name="Reloj" parent="." instance=ExtResource("5_phnoe")]
 transform = Transform3D(0.135733, 0.0104183, 0.0490144, 9.20224e-11, 0.322789, -0.0686108, -0.0947709, 0.0533726, 0.251099, -0.686888, 0.886472, -1.11853)

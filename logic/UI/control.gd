@@ -4,6 +4,13 @@ class_name UI
 @onready var mop_saturation_bar := $SaturationBar
 @onready var aviso_atrapamiento := $Aviso_Atrapado
 @onready var contamination_bar := $GlobalContaminationBar
+static var aviso_pausa : Label 
+static var aviso_despausa : Label 
+static var objetivo_actual : Label
+
+# Objetivos:
+static var listaObjetivos : Array = ["Presiona el botón rojo", "Agarra el trapero", "Sobrevive hasta las 6 am!", "Exprime el trapero", "Bien hecho!"]
+static var punteroObjetivo : int = 0
 
 #region Styleboxes
 @onready var style_blue : StyleBoxFlat = preload("res://logic/UI/styleboxes/blue_stylebox.tres")
@@ -13,7 +20,15 @@ class_name UI
 
 func _ready() -> void:
 	#mop_saturation_bar.modulate(Color.AQUA)
-	pass
+	aviso_pausa = $"../aviso_pausar"
+	aviso_despausa = $"../aviso_despausar"
+	objetivo_actual = $aviso_objetivo
+	objetivo_actual.text = listaObjetivos[punteroObjetivo]
+	
+	await get_tree().process_frame
+	if LevelBuilder.controller_connected:
+		aviso_pausa.text = "Start para pausar"
+		aviso_despausa.text = "Start para despausar"
 
 func update_saturation_bar(val: float) -> void:
 	mop_saturation_bar.value = val
@@ -38,7 +53,18 @@ func reset_healty_status() -> void:
 func show_entrapment_inflicted_sign() -> void:
 	aviso_atrapamiento.visible = true
 	
-func alternate_esc_enter() -> void: # PAUSA PARA LA BUILD DE ITCH
-	$"../aviso_esc".visible = not $"../aviso_esc".visible
-	$"../aviso_inicio".visible = not 	$"../aviso_inicio".visible
-	#print("esc: ", $"../aviso_esc".visible, "enter: ", $"../aviso_enter".visible)
+static func alternate_esc_enter() -> void: # PAUSA PARA LA BUILD DE ITCH
+	aviso_pausa.visible = not aviso_pausa.visible
+	aviso_despausa.visible = not aviso_despausa.visible
+	#print(aviso_pausa.visible, " y ", aviso_despausa.visible)
+	
+static func trigger_next_order() -> void:
+	punteroObjetivo += 1
+	objetivo_actual.text = listaObjetivos[punteroObjetivo]
+	
+static func clean_mop_order_completed() -> void:
+	punteroObjetivo = 2
+	objetivo_actual.text = listaObjetivos[punteroObjetivo]
+	
+static func trigger_win_sign() -> void:
+	objetivo_actual.text = listaObjetivos[4]

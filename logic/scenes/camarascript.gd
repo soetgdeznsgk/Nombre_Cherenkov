@@ -55,6 +55,7 @@ func _physics_process(delta):
 	if locked:
 		time_locked += delta
 		get_parent().look_at((global_position - pre_grab_camera_direction).lerp(focus_point, time_locked))
+		look_at((global_position - pre_grab_camera_direction).lerp(focus_point, time_locked))
 		if mop_reference != null: 
 			mop_reference.rotate_to_camera(Vector2.ZERO)
 			
@@ -118,9 +119,14 @@ func lock_camera(p : Vector3) -> void:
 	#look_at(focus_point)
 	locked = true
 	v = Vector3.ZERO
+	if LevelBuilder.controller_connected:
+		Input.start_joy_vibration(0, 0.5, 0.3)
 	
 func free_camera() -> void:
+	get_parent().transform.basis = Basis()
 	locked = false
+	if LevelBuilder.controller_connected:
+		Input.stop_joy_vibration(0)
 	
 func get_interaction_raycast_ref() -> RayCast3D:
 	return interaction_raycast

@@ -20,6 +20,11 @@ func update_contamination_bar(delta: float) -> void:
 		
 	elif contamination_bar.value > 66: #and 71 > contamination_bar.value:
 		color_change(style_red)
+	
+	if contamination_bar.value >= 100:
+		await get_tree().create_timer(5).timeout
+		GlobalInfo.trigger_loss_state()
+		
 
 func get_contamination_value() -> float:
 	return contamination_bar.value

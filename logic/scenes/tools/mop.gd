@@ -1,14 +1,25 @@
 extends Area3D
 class_name Mop
 
-static var mop_saturation : float = 0.0:
+static var debug_bool1 : bool = false
+static var debug_bool2 : bool = false
+static var mop_saturation : float = 0:
 	set(value):
 		if value > 1:
 			mop_saturation = 1
-		else:
-			#print(value)
+			if not debug_bool2:
+				UI.trigger_next_order()
+				debug_bool2 = true
+			return
+		
+		elif value == 0:
+			UI.clean_mop_order_completed()
+			debug_bool2 = false
 			mop_saturation = value
-@export var mop_saturation_pace := 0.01
+		else:
+			mop_saturation = value
+
+static var mop_saturation_pace := 0.01
 
 @export var remote_transform_ref : RemoteTransform3D
 @onready var camera_ref : InteraccionesJugador = GlobalInfo.refCamara
@@ -51,11 +62,18 @@ var is_overlapping_with_splots : bool
 var current_splot_selected : Splot
 
 func _ready() -> void:
-	GlobalInfo.jugador_trapea.connect(func(_o): mop_saturation += mop_saturation_pace)
+	GlobalInfo.jugador_trapea.connect(increase_saturation)
 	remote_transform_ref = GlobalInfo.refCamara.mop_remote_transform
 	origin_point_in_HUD = remote_transform_ref.position
+	
+	await get_tree().process_frame
+	if LevelBuilder.controller_connected:
+		$SubViewport/Control/TextureRect.texture = load("res://xbox_rt.png")
+	
 	#state_stowed = false # DEBUG hasta que se haga para poderse "recoger" en el inicio
 	
+static func increase_saturation(_o : float) -> void:
+	mop_saturation += mop_saturation_pace
 	
 func _physics_process(_delta: float) -> void:
 	if is_overlapping_with_splots:
@@ -78,23 +96,15 @@ func rotate_to_camera(mouse_movement_delta : Vector2):
 		look_at(GlobalInfo.refPlayer.position)	
 
 func trapeo_lerp_to(p : Vector3, _t : float) -> void:
-	#remote_transform_ref.global_position = remote_transform_ref.global_position.lerp(p, t)
-	#print(t, " -- distancia : ", remote_transform_ref.global_position.distance_to(p))
-	#if t < 1:
-		#trapeo_lerp(p, t + 0.1)
-	#else:
-		#print("rutina terminada")
-	#print(remote_transform_ref.global_position.distance_to(p))
 	if anim_state == states.Idle:
 		anim_state = states.Cleaning
 	current_point_of_intersection_with_floor = p
-	remote_transform_ref.global_position = p + Vector3(0, 0, 0) # arreglar
+	remote_transform_ref.global_position = p 
 	
 func trapeo_lerp_back(_t : float) -> void:
 	remote_transform_ref.position = origin_point_in_HUD
 	if anim_state == states.Cleaning:
 		anim_state = states.Idle
-	#print("lo mando a devolverse >:)", anim_tree["parameters/conditions/is_cleaning"])
 
 func _on_area_entered(area: Area3D) -> void:
 	if area.is_in_group("Charcos"):
@@ -107,11 +117,15 @@ func _on_area_exited(area: Area3D) -> void:
 		is_overlapping_with_splots = false
 		current_splot_selected = null
 
-func exprimir() -> void:
+static func exprimir() -> void:
 		mop_saturation = 0
 		GlobalInfo.reset_in_mop_saturation()
 
 func reparent_action(nodo : Node):
+	
+	if not debug_bool1:
+		UI.trigger_next_order()
+		debug_bool1 = true
 	
 	if LevelBuilder.controller_connected:
 		Input.start_joy_vibration(0, 0.5, 0, 0.1)
@@ -135,9 +149,11 @@ func enter_player_focus() -> void:
 	if anim_state == states.Stowed:#state_stowed:	OK
 		#print("outline sirve")
 		mesh_ref.activate_outline()
+		$ControlTip.visible = true
 
 func exit_player_focus() -> void:
 	mesh_ref.deactivate_outline()
+	$ControlTip.visible = false
 
 func player_interaction() -> void: # metodo "interfaz"
 	if GlobalInfo.timerInteractionBuffer.is_stopped() and anim_state == states.Stowed:#states_stowed: OK

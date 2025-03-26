@@ -11,8 +11,11 @@ class_name InGameClock
 # Multiplicador de velocidad: x1 = tiempo real, x60 = tiempo ingame
 static var escala_de_tiempo: float = 1 
 static var hora_inicial : Vector3i = Vector3i(0,58,0) 	# para que empiece a las 12:58
+static var HORA_FINAL : int = (6 * 3600)
 
-var tiempo_simulado : float = 0.0
+static var tiempo_simulado : float = 0.0
+
+signal seis_de_la_mañana
 
 func _ready() -> void:
 	tiempo_simulado += (hora_inicial.x * 3600) + (hora_inicial.y * 60) + (hora_inicial.z)
@@ -55,3 +58,6 @@ func _process(delta):
 	# Actualizar el reloj cada segundo SIMULADO
 	if int(tiempo_simulado) % 1 == 0:
 		actualizar_reloj()
+	
+	if tiempo_simulado >= HORA_FINAL:
+		GlobalInfo.trigger_win_state()

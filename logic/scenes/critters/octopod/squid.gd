@@ -58,8 +58,7 @@ func set_origin() -> void: # CONSTRUCTOR
 
 
 func _ready() -> void:
-	#NavegacionPulpo.splot_map_updated.connect(assign_path)
-	choose_target(targets.FuseBox)#.values().pick_random())
+	choose_target(targets.values().pick_random())
 	enter_reaching_state()
 	
 func choose_target(new_target : int) -> void:
@@ -154,7 +153,6 @@ func enter_tearing_shit_state() -> void:
 	GlobalInfo.force_lights_flickering()
 	
 	await $"Tearing State Timer".timeout
-	
 	GlobalInfo.shut_down_lights()
 	choose_target(targets.Player)
 	enter_pursuing_state()
