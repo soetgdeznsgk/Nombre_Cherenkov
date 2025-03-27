@@ -14,6 +14,10 @@ Programación:  Emiliano Guerra (soetgdeznsgk)
 Modelado 3D: Fabián Montes (movido51))
 Ambiente: Felipe Duque (ItsLisis)
 
+Outline shader:
+Godot 4 Complete Cel Shader by Rafael Bordoni (eldskald, via https://github.com/eldskald/godot4-cel-shader)
+
+
 Texturas: 
     Marble Tiles by Charlotte Baglioni, retrieved from polyhaven.com
     Grey Plaster by Rob Tuytel, retrieved from polyhaven.com
