@@ -1,8 +1,9 @@
-[gd_scene load_steps=26 format=4 uid="uid://di6fatgsdf124"]
+[gd_scene load_steps=27 format=4 uid="uid://di6fatgsdf124"]
 
 [ext_resource type="Script" path="res://logic/scenes/tools/bucket.gd" id="1_owtkk"]
 [ext_resource type="Script" path="res://logic/scenes/tools/bucket_lever.gd" id="2_1sgoo"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/postprocessing_items/outline_on_selection.gd" id="3_c0ipn"]
+[ext_resource type="Material" uid="uid://kf8cd7ahl5n7" path="res://logic/ambient_scripts/postprocessing_items/bucket_lever_material.tres" id="3_qgo5h"]
 [ext_resource type="Material" uid="uid://cb1yquyn7im4w" path="res://logic/ambient_scripts/postprocessing_items/outline_material_bucket.tres" id="4_o6cvj"]
 [ext_resource type="Texture2D" uid="uid://d2g0udfppb40" path="res://left-click.png" id="5_b663r"]
 [ext_resource type="Texture2D" uid="uid://c10qmbfi656bw" path="res://middle_click.png" id="6_pdgvs"]
@@ -279,6 +280,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.1878
 monitoring = false
 monitorable = false
 script = ExtResource("2_1sgoo")
+material = ExtResource("3_qgo5h")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D Palanca"]
 shape = SubResource("BoxShape3D_dewda")

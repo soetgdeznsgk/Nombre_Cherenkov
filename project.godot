@@ -137,3 +137,26 @@ PauseGame={
 3d_physics/layer_1="Colisiones Raycast Jugador"
 3d_physics/layer_2="Colisiones Ambiente"
 3d_physics/layer_3="Paredes Invisibles"
+
+[shader_globals]
+
+diffuse_curve={
+"type": "sampler2D",
+"value": ""
+}
+specular_smoothness={
+"type": "float",
+"value": 0.05
+}
+fresnel_smoothness={
+"type": "float",
+"value": 4.51
+}
+outline_width={
+"type": "float",
+"value": 4.0
+}
+outline_color={
+"type": "color",
+"value": Color(0, 1, 1, 1)
+}

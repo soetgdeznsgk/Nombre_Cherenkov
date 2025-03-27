@@ -10,7 +10,7 @@ var pauseBuffer : Timer
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	InputMap.action_set_deadzone("LookD", 0.1)
 	InputMap.action_set_deadzone("LookL", 0.1)
 	InputMap.action_set_deadzone("LookR", 0.1)

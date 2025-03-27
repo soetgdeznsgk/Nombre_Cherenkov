@@ -2,7 +2,7 @@ extends MeshInstance3D
 
 var outline_on : bool = false
 
-@export var overlay : Material #= preload("res://logic/ambient_scripts/postprocessing_items/outline_material_bucket.tres")
+@export var overlay : Material
 
 func activate_outline() -> void:
 	if not outline_on:

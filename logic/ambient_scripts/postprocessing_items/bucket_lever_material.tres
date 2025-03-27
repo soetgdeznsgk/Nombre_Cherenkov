@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://kf8cd7ahl5n7"]
+
+[ext_resource type="Material" uid="uid://dg2b5wruwjan5" path="res://logic/ambient_scripts/postprocessing_items/blue_outline.tres" id="1_qhnpa"]
+
+[resource]
+next_pass = ExtResource("1_qhnpa")
+albedo_color = Color(1, 0, 0, 0)

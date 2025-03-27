@@ -11,7 +11,7 @@ var time_total : float = 0
 @onready var skeleton_ref : Skeleton3D = $"../baldeClean/Esqueleto_002/Skeleton3D"
 @onready var lever_bone_idx : int = skeleton_ref.find_bone("Bone.003")
 @onready var mesh_ref : MeshInstance3D = $"../baldeClean/Esqueleto_002/Skeleton3D/Balde"
-@onready var material : Material = preload("res://logic/ambient_scripts/postprocessing_items/blue_override_bucket_lever.tres")
+@export var material : Material
 
 
 @onready var timer_ref : Timer = $TimerUnavailable
@@ -29,15 +29,16 @@ func _physics_process(delta: float) -> void:
 
 func enter_player_focus() -> void:
 	if enabled and not highlight:
-		$"../ControlTipRT".visible = true
-		mesh_ref.set_surface_override_material(1, material) # 1 es la palanca del balde
 		highlight = true
+		$"../ControlTipRT".visible = true
+		mesh_ref.set_surface_override_material(1, material)
 		
 func exit_player_focus() -> void:
 	if highlight:
+		highlight = false
 		$"../ControlTipRT".visible = false
 		mesh_ref.set_surface_override_material(1, null)
-		highlight = false	
+		
 	
 func deactivate() -> void:
 	$CollisionShape3D.disabled = true
