@@ -106,7 +106,7 @@ func trapeo_lerp_back(_t : float) -> void:
 	if anim_state == states.Cleaning:
 		anim_state = states.Idle
 
-func _on_area_entered(area: Area3D) -> void:
+func _on_area_entered(area: Area3D) -> void:			# primiferia: no es suficientemente responsivo, hacer más chiquito el area3d del charco
 	if area.is_in_group("Charcos"):
 		if not is_overlapping_with_splots:
 			is_overlapping_with_splots = true
