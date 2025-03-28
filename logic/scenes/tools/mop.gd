@@ -6,7 +6,9 @@ static var debug_bool2 : bool = false
 static var mop_saturation : float = 0:
 	set(value):
 		if value > 1:
-			mop_saturation = 1
+			#mop_saturation = 1
+			if not particles_ref.emitting:
+				particles_ref.emitting = true
 			if not debug_bool2:
 				UI.trigger_next_order()
 				debug_bool2 = true
@@ -14,6 +16,7 @@ static var mop_saturation : float = 0:
 		
 		elif value == 0:
 			UI.clean_mop_order_completed()
+			particles_ref.emitting = false
 			debug_bool2 = false
 			mop_saturation = value
 		else:
@@ -26,6 +29,7 @@ static var mop_saturation_pace := 0.01
 @onready var balde_ref : Balde = get_tree().get_first_node_in_group("Baldes")
 @onready var mesh_ref : MeshInstance3D = $"trapspffas/Esqueleto_001/Skeleton3D/Círculo_002"
 @onready var esqueleto_ref : Skeleton3D = $trapspffas/Esqueleto_001/Skeleton3D
+static var particles_ref : GPUParticles3D
 
 # animationtree
 @onready var anim_tree : AnimationTree = $AnimationTree
@@ -65,6 +69,7 @@ func _ready() -> void:
 	GlobalInfo.jugador_trapea.connect(increase_saturation)
 	remote_transform_ref = GlobalInfo.refCamara.mop_remote_transform
 	origin_point_in_HUD = remote_transform_ref.position
+	particles_ref = $GPUParticles3D
 	
 	await get_tree().process_frame
 	if LevelBuilder.controller_connected:
