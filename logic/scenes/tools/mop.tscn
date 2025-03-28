@@ -1,10 +1,11 @@
-[gd_scene load_steps=38 format=4 uid="uid://cju206cf1ni5m"]
+[gd_scene load_steps=42 format=4 uid="uid://cju206cf1ni5m"]
 
 [ext_resource type="Script" path="res://logic/scenes/tools/mop.gd" id="1_qd35y"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/broom_glow.gd" id="2_0paim"]
 [ext_resource type="Script" path="res://addons/wigglebone/wiggle_rotation_modifier_3d.gd" id="3_cp8wc"]
 [ext_resource type="Resource" uid="uid://b535ha84kyfb6" path="res://logic/scenes/tools/mop_head_wiggle_material.tres" id="4_402ax"]
 [ext_resource type="Texture2D" uid="uid://d2g0udfppb40" path="res://left-click.png" id="5_ytbbx"]
+[ext_resource type="Texture2D" uid="uid://dv6fhgsrr6nra" path="res://modelos/electrical_box/icons8-dot-30.png" id="6_ug8d5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0f5uk"]
 size = Vector3(0.456604, 2.21809, 0.184814)
@@ -656,6 +657,26 @@ states/accion/position = Vector2(398, 212)
 transitions = ["IdleBlendSpace2D", "CleaningBlendSpace2D", SubResource("AnimationNodeStateMachineTransition_ik17u"), "CleaningBlendSpace2D", "IdleBlendSpace2D", SubResource("AnimationNodeStateMachineTransition_vtsqj"), "Start", "IdleBlendSpace2D", SubResource("AnimationNodeStateMachineTransition_80gb5"), "IdleBlendSpace2D", "accion", SubResource("AnimationNodeStateMachineTransition_2x7r3"), "accion", "IdleBlendSpace2D", SubResource("AnimationNodeStateMachineTransition_2jlts")]
 graph_offset = Vector2(-31, 54)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k3emg"]
+emission_shape = 3
+emission_box_extents = Vector3(0.2, 0.1, 0.05)
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s3ee7"]
+transparency = 1
+albedo_color = Color(0, 1, 1, 1)
+albedo_texture = ExtResource("6_ug8d5")
+emission_enabled = true
+emission = Color(0, 1, 1, 1)
+emission_energy_multiplier = 1.76
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_np2m6"]
+material = SubResource("StandardMaterial3D_s3ee7")
+size = Vector2(0.03, 0.05)
+
 [node name="mop" type="Area3D" groups=["Trapero"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0105525, 0.741355, 0)
 script = ExtResource("1_qd35y")
@@ -928,6 +949,14 @@ offset_bottom = 256.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_ytbbx")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 50
+lifetime = 5.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_k3emg")
+draw_pass_1 = SubResource("QuadMesh_np2m6")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

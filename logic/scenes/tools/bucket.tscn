@@ -475,4 +475,8 @@ visible = false
 mesh = SubResource("QuadMesh_wkxbk")
 surface_material_override/0 = SubResource("ORMMaterial3D_batbj")
 
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0408936, 0.790588, -0.514551)
+size = Vector3(0.670654, 0.418823, 0.654297)
+
 [connection signal="lever_activated" from="Area3D Palanca" to="." method="palanca_activada"]

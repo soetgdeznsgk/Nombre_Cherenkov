@@ -71,6 +71,7 @@ func change_in_mop_saturation() -> void:
 func reset_in_mop_saturation() -> void:
 	trapero_limpiado.emit()
 	refUI.update_saturation_bar(Mop.mop_saturation)# actualmente no hay UI entonces no hace nada
+	UI.clean_mop_order_completed()
 	
 func squid_hugs_player(squidPosition : Vector3) -> void:
 	refUI.show_entrapment_inflicted_sign() # actualmente no hay UI entonces no hace nada

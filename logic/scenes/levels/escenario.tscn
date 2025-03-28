@@ -440,6 +440,10 @@ surface_material_override/0 = SubResource("ShaderMaterial_jkne1")
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
 radius = 9.0
 
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="NavigationRegion3D/Geometría/Piso"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39337, -0.319763, -1.57559)
+size = Vector3(3.14795, 1.36047, 3.00775)
+
 [node name="Caja_Habitación" type="CSGBox3D" parent="NavigationRegion3D/Geometría"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.47843, 2.50796, -15.0779)
 use_collision = true
