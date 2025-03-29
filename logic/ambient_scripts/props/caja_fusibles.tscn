@@ -876,6 +876,7 @@ skeleton = NodePath("")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.319189, 1.03303, -1.24784)
+emitting = false
 amount = 20
 randomness = 0.5
 process_material = SubResource("ParticleProcessMaterial_xaxob")
@@ -883,6 +884,7 @@ draw_pass_1 = SubResource("QuadMesh_mcw4s")
 
 [node name="GPUParticles3DChispa" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.319189, 1.03303, -1.24784)
+emitting = false
 amount = 20
 explosiveness = 1.0
 randomness = 1.0

@@ -121,6 +121,7 @@ libraries = {
 
 [node name="ControlTip" type="Sprite3D" parent="Botón_Rojo"]
 transform = Transform3D(2.38893, 0.200981, 1.37342e-07, 1.78814e-07, 2.83355, -3.23749e-08, 5.68434e-14, -5.32907e-15, 2.36998, 0.125577, 0.532724, 1.31421)
+visible = false
 billboard = 1
 no_depth_test = true
 texture = ExtResource("5_gukdn")
