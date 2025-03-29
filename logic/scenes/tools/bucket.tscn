@@ -378,14 +378,14 @@ one_shot = true
 autostart = true
 
 [node name="ControlTipRT" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00692925, 1.53981, -0.262858)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 visible = false
 billboard = 1
 no_depth_test = true
 texture = ExtResource("5_b663r")
 
 [node name="ControlTipLT" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00692925, 1.53981, 0.464312)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0.464)
 visible = false
 billboard = 1
 no_depth_test = true

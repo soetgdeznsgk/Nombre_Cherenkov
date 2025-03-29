@@ -15,7 +15,7 @@ emission_energy_multiplier = 0.4
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_elab6"]
 height = 0.002
-radius = 0.0549538
+radius = 0.0348574
 
 [node name="Splot" type="Area3D" groups=["Charcos"]]
 script = ExtResource("1_nr8lu")

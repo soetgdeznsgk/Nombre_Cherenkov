@@ -66,7 +66,7 @@ func on_aterrizaje_rana(v : Vector3) -> Vector3: #llamado desde rana.gd
 func change_in_mop_saturation() -> void:
 	jugador_trapea.emit(Mop.mop_saturation)
 	refUI.update_saturation_bar(Mop.mop_saturation)
-	refContBar.update_contamination_bar(-1)
+	refContBar.update_contamination_bar(-0.7)
 
 func reset_in_mop_saturation() -> void:
 	trapero_limpiado.emit()

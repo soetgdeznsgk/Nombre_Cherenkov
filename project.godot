@@ -14,6 +14,7 @@ config/name="Cherenkov"
 config/tags=PackedStringArray("3d")
 run/main_scene="res://logic/scenes/levels/escenario.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
@@ -137,6 +138,10 @@ PauseGame={
 3d_physics/layer_1="Colisiones Raycast Jugador"
 3d_physics/layer_2="Colisiones Ambiente"
 3d_physics/layer_3="Paredes Invisibles"
+
+[physics]
+
+common/max_physics_steps_per_frame=1
 
 [shader_globals]
 

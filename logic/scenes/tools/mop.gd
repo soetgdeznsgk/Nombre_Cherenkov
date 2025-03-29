@@ -6,7 +6,7 @@ static var debug_bool2 : bool = false
 static var mop_saturation : float = 0:
 	set(value):
 		if value > 1:
-			#mop_saturation = 1
+			mop_saturation = 1
 			if not particles_ref.emitting:
 				particles_ref.emitting = true
 			if not debug_bool2:
