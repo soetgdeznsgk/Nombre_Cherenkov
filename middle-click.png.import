@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c10qmbfi656bw"
-path.s3tc="res://.godot/imported/middle_click.png-a396a5a2af0958494e2bbc721ec3df6b.s3tc.ctex"
+uid="uid://cunou4gmeyndt"
+path.s3tc="res://.godot/imported/middle-click.png-26ab2af121072e92f5fae06a5e97a219.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://middle_click.png"
-dest_files=["res://.godot/imported/middle_click.png-a396a5a2af0958494e2bbc721ec3df6b.s3tc.ctex"]
+source_file="res://middle-click.png"
+dest_files=["res://.godot/imported/middle-click.png-26ab2af121072e92f5fae06a5e97a219.s3tc.ctex"]
 
 [params]
 

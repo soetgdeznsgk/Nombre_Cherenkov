@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://di6fatgsdf124"]
+[gd_scene load_steps=22 format=4 uid="uid://di6fatgsdf124"]
 
 [ext_resource type="Script" path="res://logic/scenes/tools/bucket.gd" id="1_owtkk"]
 [ext_resource type="Script" path="res://logic/scenes/tools/bucket_lever.gd" id="2_1sgoo"]
@@ -6,7 +6,7 @@
 [ext_resource type="Material" uid="uid://kf8cd7ahl5n7" path="res://logic/ambient_scripts/postprocessing_items/bucket_lever_material.tres" id="3_qgo5h"]
 [ext_resource type="Material" uid="uid://cb1yquyn7im4w" path="res://logic/ambient_scripts/postprocessing_items/outline_material_bucket.tres" id="4_o6cvj"]
 [ext_resource type="Texture2D" uid="uid://d2g0udfppb40" path="res://left-click.png" id="5_b663r"]
-[ext_resource type="Texture2D" uid="uid://c10qmbfi656bw" path="res://middle_click.png" id="6_pdgvs"]
+[ext_resource type="Texture2D" uid="uid://cunou4gmeyndt" path="res://middle-click.png" id="7_cigtn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dewda"]
 size = Vector3(0.248413, 0.778442, 0.253662)
@@ -245,30 +245,6 @@ _data = {
 "press": SubResource("Animation_l52br")
 }
 
-[sub_resource type="QuadMesh" id="QuadMesh_wkxbk"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_18eve"]
-viewport_path = NodePath("SubViewportRT")
-
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_glyuk"]
-resource_local_to_scene = true
-disable_ambient_light = true
-disable_fog = true
-albedo_texture = SubResource("ViewportTexture_18eve")
-disable_receive_shadows = true
-billboard_mode = 1
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_4n6es"]
-viewport_path = NodePath("SubViewportLT")
-
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_batbj"]
-resource_local_to_scene = true
-disable_ambient_light = true
-disable_fog = true
-albedo_texture = SubResource("ViewportTexture_4n6es")
-disable_receive_shadows = true
-billboard_mode = 1
-
 [node name="bucket" type="VehicleBody3D" groups=["Baldes"]]
 collision_layer = 3
 collision_mask = 5
@@ -401,79 +377,19 @@ wait_time = 0.3
 one_shot = true
 autostart = true
 
-[node name="SubViewportRT" type="SubViewport" parent="."]
-
-[node name="Control" type="Control" parent="SubViewportRT"]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="SubViewportRT/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -256.0
-offset_right = 256.0
-offset_bottom = 256.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ControlTipRT" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00692925, 1.53981, -0.262858)
+visible = false
+billboard = 1
+no_depth_test = true
 texture = ExtResource("5_b663r")
 
-[node name="SubViewportLT" type="SubViewport" parent="."]
-
-[node name="Control" type="Control" parent="SubViewportLT"]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="SubViewportLT/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -256.0
-offset_right = 256.0
-offset_bottom = 256.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("6_pdgvs")
-
-[node name="ControlTipRT" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00692925, 1.53981, 0.163326)
+[node name="ControlTipLT" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00692925, 1.53981, 0.464312)
 visible = false
-mesh = SubResource("QuadMesh_wkxbk")
-surface_material_override/0 = SubResource("ORMMaterial3D_glyuk")
-
-[node name="ControlTipLT" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00692925, 1.53981, 0.913018)
-visible = false
-mesh = SubResource("QuadMesh_wkxbk")
-surface_material_override/0 = SubResource("ORMMaterial3D_batbj")
+billboard = 1
+no_depth_test = true
+texture = ExtResource("7_cigtn")
 
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0408936, 0.790588, -0.514551)

@@ -73,7 +73,7 @@ func _ready() -> void:
 	
 	await get_tree().process_frame
 	if LevelBuilder.controller_connected:
-		$SubViewport/Control/TextureRect.texture = load("res://xbox_rt.png")
+		$ControlTip.texture = load("res://xbox_rt.png")
 	
 	#state_stowed = false # DEBUG hasta que se haga para poderse "recoger" en el inicio
 	

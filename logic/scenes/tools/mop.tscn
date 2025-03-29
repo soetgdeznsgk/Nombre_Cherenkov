@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://cju206cf1ni5m"]
+[gd_scene load_steps=39 format=4 uid="uid://cju206cf1ni5m"]
 
 [ext_resource type="Script" path="res://logic/scenes/tools/mop.gd" id="1_qd35y"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/broom_glow.gd" id="2_0paim"]
@@ -9,20 +9,6 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0f5uk"]
 size = Vector3(0.456604, 2.21809, 0.184814)
-
-[sub_resource type="QuadMesh" id="QuadMesh_s154s"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_hhip1"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_tpwfh"]
-resource_local_to_scene = true
-no_depth_test = true
-disable_ambient_light = true
-disable_fog = true
-albedo_texture = SubResource("ViewportTexture_hhip1")
-disable_receive_shadows = true
-billboard_mode = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grr2v"]
 resource_name = "Balde"
@@ -685,13 +671,6 @@ script = ExtResource("1_qd35y")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0101624, 0.391269, 0.00671387)
 shape = SubResource("BoxShape3D_0f5uk")
 
-[node name="ControlTip" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.689936, 0.0900918, 0)
-visible = false
-cast_shadow = 0
-mesh = SubResource("QuadMesh_s154s")
-surface_material_override/0 = SubResource("ORMMaterial3D_tpwfh")
-
 [node name="trapspffas" type="Node3D" parent="."]
 transform = Transform3D(0.37, 0, 0, 0, 0.37, 0, 0, 0, 0.37, 0, -0.754, 0)
 
@@ -919,37 +898,6 @@ parameters/conditions/stowed = false
 parameters/CleaningBlendSpace2D/blend_position = Vector2(0.893445, 0.0584071)
 parameters/IdleBlendSpace2D/blend_position = Vector2(0, 0)
 
-[node name="SubViewport" type="SubViewport" parent="."]
-
-[node name="Control" type="Control" parent="SubViewport"]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="SubViewport/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -256.0
-offset_right = 256.0
-offset_bottom = 256.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_ytbbx")
-
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 emitting = false
 amount = 50
@@ -957,6 +905,13 @@ lifetime = 5.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_k3emg")
 draw_pass_1 = SubResource("QuadMesh_np2m6")
+
+[node name="ControlTip" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.543063, 0, 0)
+visible = false
+billboard = 1
+no_depth_test = true
+texture = ExtResource("5_ytbbx")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
