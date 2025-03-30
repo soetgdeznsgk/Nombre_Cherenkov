@@ -30,8 +30,8 @@ func _ready() -> void:
 	
 	await get_tree().process_frame
 	if LevelBuilder.controller_connected:
-		$ControlTipRT.texture = load("res://xbox_rt.png")
-		$ControlTipLT.texture = load("res://xbox_lt.png")
+		$ControlTipRT.texture = load("res://modelos/textures/sprites/xbox_rt.png")
+		$ControlTipLT.texture = load("res://modelos/textures/sprites/xbox_lt.png")
 	#steering = 0 #trailer
 
 func _physics_process(_delta: float) -> void:

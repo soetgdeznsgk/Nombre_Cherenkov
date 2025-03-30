@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1i5po1akkijr"
-path.s3tc="res://.godot/imported/xbox_lt.png-a43c23e0166036b0525bde4e9c938992.s3tc.ctex"
+uid="uid://cunou4gmeyndt"
+path.s3tc="res://.godot/imported/middle-click.png-cffbbc788af8a5f703b1c3bab2b1e928.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://xbox_lt.png"
-dest_files=["res://.godot/imported/xbox_lt.png-a43c23e0166036b0525bde4e9c938992.s3tc.ctex"]
+source_file="res://modelos/textures/sprites/middle-click.png"
+dest_files=["res://.godot/imported/middle-click.png-cffbbc788af8a5f703b1c3bab2b1e928.s3tc.ctex"]
 
 [params]
 

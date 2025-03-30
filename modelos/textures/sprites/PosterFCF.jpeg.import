@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bi8mnx142tu1o"
-path.s3tc="res://.godot/imported/Puddle.png-43cb40252aff6c27245d90ca67ef2c00.s3tc.ctex"
+uid="uid://pm57w8dsj5sk"
+path.s3tc="res://.godot/imported/PosterFCF.jpeg-65846a3d23e91dfc629b78f4f2f128a8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Puddle.png"
-dest_files=["res://.godot/imported/Puddle.png-43cb40252aff6c27245d90ca67ef2c00.s3tc.ctex"]
+source_file="res://modelos/textures/sprites/PosterFCF.jpeg"
+dest_files=["res://.godot/imported/PosterFCF.jpeg-65846a3d23e91dfc629b78f4f2f128a8.s3tc.ctex"]
 
 [params]
 

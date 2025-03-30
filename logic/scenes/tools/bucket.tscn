@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://logic/ambient_scripts/postprocessing_items/outline_on_selection.gd" id="3_c0ipn"]
 [ext_resource type="Material" uid="uid://kf8cd7ahl5n7" path="res://logic/ambient_scripts/postprocessing_items/bucket_lever_material.tres" id="3_qgo5h"]
 [ext_resource type="Material" uid="uid://cb1yquyn7im4w" path="res://logic/ambient_scripts/postprocessing_items/outline_material_bucket.tres" id="4_o6cvj"]
-[ext_resource type="Texture2D" uid="uid://d2g0udfppb40" path="res://left-click.png" id="5_b663r"]
-[ext_resource type="Texture2D" uid="uid://cunou4gmeyndt" path="res://middle-click.png" id="7_cigtn"]
+[ext_resource type="Texture2D" uid="uid://d2g0udfppb40" path="res://modelos/textures/sprites/left-click.png" id="5_b663r"]
+[ext_resource type="Texture2D" uid="uid://cunou4gmeyndt" path="res://modelos/textures/sprites/middle-click.png" id="7_cigtn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dewda"]
 size = Vector3(0.248413, 0.778442, 0.253662)

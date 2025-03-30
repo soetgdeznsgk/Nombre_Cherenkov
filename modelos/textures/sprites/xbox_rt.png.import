@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crjfqy78ir4hc"
-path.s3tc="res://.godot/imported/RadioSign.png-390d8f9ea5e130485b13d654f00ccbb1.s3tc.ctex"
+uid="uid://c1clojy3g0n2e"
+path.s3tc="res://.godot/imported/xbox_rt.png-890536030a215bd9b8ab37686cbe8abe.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://modelos/textures/RadioSign.png"
-dest_files=["res://.godot/imported/RadioSign.png-390d8f9ea5e130485b13d654f00ccbb1.s3tc.ctex"]
+source_file="res://modelos/textures/sprites/xbox_rt.png"
+dest_files=["res://.godot/imported/xbox_rt.png-890536030a215bd9b8ab37686cbe8abe.s3tc.ctex"]
 
 [params]
 

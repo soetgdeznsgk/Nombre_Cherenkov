@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://logic/ambient_scripts/broom_glow.gd" id="2_0paim"]
 [ext_resource type="Script" path="res://addons/wigglebone/wiggle_rotation_modifier_3d.gd" id="3_cp8wc"]
 [ext_resource type="Resource" uid="uid://b535ha84kyfb6" path="res://logic/scenes/tools/mop_head_wiggle_material.tres" id="4_402ax"]
-[ext_resource type="Texture2D" uid="uid://d2g0udfppb40" path="res://left-click.png" id="5_ytbbx"]
+[ext_resource type="Texture2D" uid="uid://d2g0udfppb40" path="res://modelos/textures/sprites/left-click.png" id="5_ytbbx"]
 [ext_resource type="Texture2D" uid="uid://dv6fhgsrr6nra" path="res://modelos/electrical_box/icons8-dot-30.png" id="6_ug8d5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0f5uk"]

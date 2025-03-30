@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bf406wn55n27m"]
 
 [ext_resource type="PackedScene" uid="uid://ttiq0h2rocwu" path="res://modelos/locker/low_poly_old_locker.glb" id="1_xfsrc"]
-[ext_resource type="Texture2D" uid="uid://crjfqy78ir4hc" path="res://modelos/textures/RadioSign.png" id="2_jubvn"]
+[ext_resource type="Texture2D" uid="uid://crjfqy78ir4hc" path="res://modelos/textures/sprites/RadioSign.png" id="2_jubvn"]
 [ext_resource type="PackedScene" uid="uid://cqmfnyj5k86cq" path="res://modelos/bench/old_bench.glb" id="3_p0ics"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tsqgd"]

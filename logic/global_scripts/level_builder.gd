@@ -18,6 +18,8 @@ func _ready() -> void:
 	Engine.time_scale = 0
 	Engine.max_fps = 60
 	Input.joy_connection_changed.connect(_on_gamepad_connection_status_changed)
+	#print(Input.get_connected_joypads())
+	
 
 
 func _input(event : InputEvent) -> void:

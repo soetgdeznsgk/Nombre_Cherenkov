@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cunou4gmeyndt"
-path.s3tc="res://.godot/imported/middle-click.png-26ab2af121072e92f5fae06a5e97a219.s3tc.ctex"
+uid="uid://bi8mnx142tu1o"
+path.s3tc="res://.godot/imported/Puddle.png-6680a80b958f1b06761322e7b4227071.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://middle-click.png"
-dest_files=["res://.godot/imported/middle-click.png-26ab2af121072e92f5fae06a5e97a219.s3tc.ctex"]
+source_file="res://modelos/textures/sprites/Puddle.png"
+dest_files=["res://.godot/imported/Puddle.png-6680a80b958f1b06761322e7b4227071.s3tc.ctex"]
 
 [params]
 
