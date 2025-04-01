@@ -716,8 +716,9 @@ material = SubResource("StandardMaterial3D_cgoeh")
 [sub_resource type="BoxShape3D" id="BoxShape3D_0oqgp"]
 size = Vector3(1.80162, 2.85303, 1)
 
-[node name="CajaFusibles" type="StaticBody3D" node_paths=PackedStringArray("emisor_chispas_constantes", "emisor_chispoteo") groups=["CajasFusibles"]]
+[node name="CajaFusibles" type="StaticBody3D" node_paths=PackedStringArray("ref_cables", "emisor_chispas_constantes", "emisor_chispoteo") groups=["CajasFusibles"]]
 script = ExtResource("1_3b1md")
+ref_cables = NodePath("Sketchfab_Scene/Sketchfab_model/a26a87c956d74689b89b62f245ba1286_fbx/RootNode/Cables/����������������������������������_����������������_0")
 emisor_chispas_constantes = NodePath("GPUParticles3D")
 emisor_chispoteo = NodePath("GPUParticles3DChispa")
 particle_amount = 20
@@ -796,10 +797,10 @@ transform = Transform3D(1.94707e-05, 100, 4.37114e-06, 5.55112e-15, -4.37114e-06
 mesh = SubResource("ArrayMesh_soqmq")
 skeleton = NodePath("")
 
-[node name="����������������������������������" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/a26a87c956d74689b89b62f245ba1286_fbx/RootNode"]
+[node name="Cables" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/a26a87c956d74689b89b62f245ba1286_fbx/RootNode"]
 transform = Transform3D(100, -0.0194248, -4.26349e-09, -1.21682e-09, -2.8213e-05, 100, -0.0194248, -100, -2.8213e-05, 3.74672, 9.46137, -30.3371)
 
-[node name="����������������������������������_����������������_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/a26a87c956d74689b89b62f245ba1286_fbx/RootNode/����������������������������������"]
+[node name="����������������������������������_����������������_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/a26a87c956d74689b89b62f245ba1286_fbx/RootNode/Cables"]
 mesh = SubResource("ArrayMesh_d4r7x")
 skeleton = NodePath("")
 

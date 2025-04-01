@@ -326,6 +326,7 @@ func force_flicker() -> void:
 	$Timer.paused = true
 	
 func reset_light() -> void:
+	flickering = false
 	$Timer.start()
 	light_energy = 1
 	
@@ -384,10 +385,10 @@ height = 4.89067
 smooth_faces = false
 script = ExtResource("4_s5yiq")
 first_frog_target = NodePath("../../../../RanaManager/NodosDeNavegacionRana/nodo4")
-MAX_SQUID_AMOUNT = 3
+MAX_FROG_AMOUNT = 3
 
 [node name="RanaSpawnerTimer" type="Timer" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
-wait_time = 30.0
+wait_time = 3.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
 transform = Transform3D(0.1, 0, 0, 0, 1, 0, 0, 0, 0.1, 0.0162436, -4.23561, 0.0381289)
@@ -400,7 +401,7 @@ omni_range = 224.617
 omni_shadow_mode = 0
 
 [node name="PulpoSpawnerTimer" type="Timer" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
-wait_time = 90.0
+wait_time = 5.0
 
 [node name="BarandasI" type="Node3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0.609)

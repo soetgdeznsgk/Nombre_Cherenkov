@@ -8,6 +8,9 @@ var splot_list := PackedVector3Array()
 
 signal splot_map_updated # para que los pulpos esperen a que hayan charcos para moverse
 
+func set_custom_splot_weight(index : int, v : float) -> void:		# BUG, a veces cuando spawnea el pulpo se queda trabado en el primer charco?
+	pathfinding_map.set_point_weight_scale(index, v)
+
 func add_splot_to_registry(s : Splot) -> void: # se añaden desde splot.gd
 	#splot_list.append(s.global_position)
 	var astar_index := randi_range(0, GlobalDB.splot_limit)
@@ -25,18 +28,27 @@ func rmv_splot_from_registry(s : Splot) -> void: # se borran desde splot.gd
 		pathfinding_map.remove_point(s.navigation_id)
 	splot_map_updated.emit()
 	
-func get_pulpo_path_from_point(pulpo_posicion : Vector3, objetivo : Node3D) -> PackedVector3Array:
-	var start_ref : int = pathfinding_map.get_closest_point(pulpo_posicion)
+func get_pulpo_path_from_point(pulpo : Pulpo, objetivo : Node3D) -> PackedVector3Array:
+	var start_ref : int = pathfinding_map.get_closest_point(pulpo.global_position)
 	var end_ref : int = pathfinding_map.get_closest_point(objetivo.global_position)
-
+	
 	if start_ref != -1 and end_ref != -1:
 		return pathfinding_map.get_point_path(start_ref, end_ref, true)
+	#print("pulpo path devuelve vacío!")
 	return PackedVector3Array()
 	
 func get_escape_path(pulpo_ref : Pulpo) -> PackedVector3Array:
+	#print(pulpo_ref.position.distance_squared_to(pulpo_ref.origin))
+	if pulpo_ref.position.distance_squared_to(pulpo_ref.origin) < 0.6:
+		pulpo_ref.pop_squid()
 	var start_ref : int = pathfinding_map.get_closest_point(pulpo_ref.position)
 	var end_ref : int = pathfinding_map.get_closest_point(pulpo_ref.origin)
-
+	
+	var t : int = pathfinding_map.get_point_weight_scale(Splot.origin_splot.navigation_id)
+	pathfinding_map.set_point_weight_scale(Splot.origin_splot.navigation_id, 0)
+	
 	if start_ref != -1 and end_ref != -1:
 		return pathfinding_map.get_point_path(start_ref, end_ref, true)
+		
+	pathfinding_map.set_point_weight_scale(Splot.origin_splot.navigation_id, t)
 	return PackedVector3Array()

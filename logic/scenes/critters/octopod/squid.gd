@@ -48,18 +48,21 @@ var escaping : bool = false
 @export_category("Idle")
 @export var idle_state_duration : float
 
+signal tearing_shit_state_exited
+
 
 @onready var anim_player : AnimationPlayer = $AnimationPlayer
 
-func set_origin() -> void: # CONSTRUCTOR
-	origin = position
-	#current_target = targets.FuseBox#.values().pick_random()
-	#return self
+#func set_origin() -> void: # CONSTRUCTOR
+	#origin = position
 
 
 func _ready() -> void:
-	choose_target(targets.values().pick_random())
+	choose_target(targets.Player)#targets.values().pick_random())
+	origin = Splot.origin_splot.global_position
 	enter_reaching_state()
+	escaping = false
+	#enter_pursuing_state()
 	
 func choose_target(new_target : int) -> void:
 	current_target = new_target
@@ -67,16 +70,16 @@ func choose_target(new_target : int) -> void:
 		targets.FuseBox:
 			var caja_fusible = get_tree().get_nodes_in_group("CajasFusibles").pick_random()
 			print(caja_fusible)
-			target_retriever = NavegacionPulpo.get_pulpo_path_from_point.bind(position, caja_fusible)
+			target_retriever = NavegacionPulpo.get_pulpo_path_from_point.bind(self, caja_fusible)
 		targets.Player:
-			target_retriever = NavegacionPulpo.get_pulpo_path_from_point.bind(position, GlobalInfo.refPlayer)
+			target_retriever = NavegacionPulpo.get_pulpo_path_from_point.bind(self, GlobalInfo.refPlayer)
 
 func _physics_process(delta: float) -> void:
 	look_at(GeometricToolbox.y_offset_vector_to_0(GlobalInfo.playerPosition))
 	match current_state:
 		states.ReachingOut:
 			reaching_pp(delta)
-		states.Pursuing:
+		states.Pursuing:				# cuando se queda vibrando, está en pursuing
 			pursuing_pp(delta)
 		states.Grabbing:
 			grabbing_pp(delta)
@@ -94,10 +97,11 @@ func pursuing_pp(delta: float) -> void:
 			current_path.remove_at(0)
 			if current_path.is_empty():
 				assign_path(target_retriever)
-		position += (current_path[0] - position).normalized() * crawl_speed * delta # BUG cuando no hay charcos
-		if position.distance_to(GlobalInfo.playerPosition) < position.distance_to(current_path[0]):
-			if not escaping:
-				enter_reaching_state()
+				return
+		
+		position += (current_path[0] - position).normalized() * crawl_speed * delta # BUG cuando no hay charcos, BUG cuando es una distancia muy cercana
+		if not escaping and position.distance_to(GlobalInfo.playerPosition) < position.distance_to(current_path[0]):
+			enter_reaching_state()
 	else:
 		assign_path(target_retriever)
 
@@ -150,11 +154,13 @@ func tearing_shit_pp(_delta: float) -> void:
 func enter_tearing_shit_state() -> void:
 	current_state = states.TearingShitApart
 	$"Tearing State Timer".start()
-	GlobalInfo.force_lights_flickering()
+	#GlobalInfo.force_lights_flickering()
 	
 	await $"Tearing State Timer".timeout
-	GlobalInfo.shut_down_lights()
+	
+	#GlobalInfo.shut_down_lights()
 	choose_target(targets.Player)
+	tearing_shit_state_exited.emit()
 	enter_pursuing_state()
 #endregion
 
@@ -171,7 +177,7 @@ func _on_body_entered(body: Node3D) -> void:
 		tumble_bucket(body)
 	elif body.is_in_group("CajasFusibles"):		# Puede que esto tenga que cambiarse, si tengo que cambiarle el tipo a la caja de fusibles
 		# también puede hacerse más general con un "has_method(squid_interaction)"
-		if body.squid_interaction():			# osea, si el pulpo puede interactuar con la caja
+		if body.squid_interaction(self):			# osea, si el pulpo puede interactuar con la caja
 			enter_tearing_shit_state()
 
 func _on_body_exited(body: Node3D) -> void: # DEBUG
@@ -217,3 +223,6 @@ func change_arm_monitoring_state(b : bool) -> void:
 	
 func tumble_bucket(balde: Balde) -> void:
 	balde.fall_from_collision_in(global_position)
+
+func pop_squid() -> void:
+	queue_free()

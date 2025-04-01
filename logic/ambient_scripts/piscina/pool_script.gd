@@ -29,6 +29,7 @@ func _on_rana_spawner_timer_timeout() -> void:
 		var rana = rana_ref.instantiate().with_target(first_frog_target)
 		rana.position = global_position
 		rana.position += (height) * Vector3.DOWN
+		if GlobalInfo.cantidad_ranas == 0: GlobalInfo.on_aterrizaje_rana(rana.position)				# función necesaria para incluir un nodo al que vuelvan los pulpos
 		get_tree().get_first_node_in_group("RanaManager").add_child(rana)
 		GlobalInfo.cantidad_ranas += 1
 
@@ -36,11 +37,11 @@ func _on_rana_spawner_timer_timeout() -> void:
 func _on_pulpo_spawner_timer_timeout() -> void: 
 	# BUG en itch, al tener 3 ranas, cuando spawnea el tercer pulpo, la pantalla se va a blanco y el juego
 	# sigue corriendo
-	print("pulpo aparece")
+	#print("pulpo aparece")
 	if get_tree().get_first_node_in_group("PulpoManager").get_child_count() < MAX_SQUID_AMOUNT: #and GlobalInfo.cantidad_ranas > 1:
 		var pulpo : Pulpo = pulpo_ref.instantiate()#.set_origin(global_position)
 		pulpo.position = global_position
-		pulpo.set_origin()
+		#pulpo.set_origin()
 		get_tree().get_first_node_in_group("PulpoManager").add_child(pulpo)
 		GlobalInfo.cantidad_pulpos += 1
 
