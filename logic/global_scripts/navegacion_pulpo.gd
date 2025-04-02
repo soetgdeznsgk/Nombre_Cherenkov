@@ -13,13 +13,16 @@ func set_custom_splot_weight(index : int, v : float) -> void:		# BUG, a veces cu
 
 func add_splot_to_registry(s : Splot) -> void: # se añaden desde splot.gd
 	#splot_list.append(s.global_position)
-	var astar_index := randi_range(0, GlobalDB.splot_limit)
+	var astar_index := randi_range(0, GlobalDB.splot_limit)					# revisar si ésto se bugea cuando hay más charcos que el límite
 	s.set_navigation_id(astar_index)
 	pathfinding_map.add_point(astar_index, s.global_position)
 	
+	if Splot.origin_splot != null:
+		print(pathfinding_map.get_point_weight_scale(Splot.origin_splot.navigation_id))
+
 	for point_id in pathfinding_map.get_point_ids():
 		if pathfinding_map.get_point_position(astar_index)\
-		.distance_squared_to(pathfinding_map.get_point_position(point_id)) > 6:
+		.distance_squared_to(pathfinding_map.get_point_position(point_id)) < 100:
 			pathfinding_map.connect_points(astar_index, point_id)
 	splot_map_updated.emit()
 	
@@ -33,22 +36,22 @@ func get_pulpo_path_from_point(pulpo : Pulpo, objetivo : Node3D) -> PackedVector
 	var end_ref : int = pathfinding_map.get_closest_point(objetivo.global_position)
 	
 	if start_ref != -1 and end_ref != -1:
-		return pathfinding_map.get_point_path(start_ref, end_ref, true)
-	#print("pulpo path devuelve vacío!")
+		return pathfinding_map.get_point_path(start_ref, end_ref, false)
 	return PackedVector3Array()
 	
 func get_escape_path(pulpo_ref : Pulpo) -> PackedVector3Array:
-	#print(pulpo_ref.position.distance_squared_to(pulpo_ref.origin))
 	if pulpo_ref.position.distance_squared_to(pulpo_ref.origin) < 0.6:
 		pulpo_ref.pop_squid()
 	var start_ref : int = pathfinding_map.get_closest_point(pulpo_ref.position)
 	var end_ref : int = pathfinding_map.get_closest_point(pulpo_ref.origin)
 	
-	var t : int = pathfinding_map.get_point_weight_scale(Splot.origin_splot.navigation_id)
+	var t : int = pathfinding_map.get_point_weight_scale(Splot.origin_splot.navigation_id)			# Guardar el INF del origen pa que no se pierda
 	pathfinding_map.set_point_weight_scale(Splot.origin_splot.navigation_id, 0)
 	
 	if start_ref != -1 and end_ref != -1:
-		return pathfinding_map.get_point_path(start_ref, end_ref, true)
+		var m : PackedVector3Array = pathfinding_map.get_point_path(start_ref, end_ref, false)
+		pathfinding_map.set_point_weight_scale(Splot.origin_splot.navigation_id, t)					# Reestablecer el INF
+		return m
 		
-	pathfinding_map.set_point_weight_scale(Splot.origin_splot.navigation_id, t)
+	pathfinding_map.set_point_weight_scale(Splot.origin_splot.navigation_id, t)						# Reestablecer el INF
 	return PackedVector3Array()

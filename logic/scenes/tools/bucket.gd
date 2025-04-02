@@ -71,14 +71,12 @@ func lerp_towards_player(time) -> void: # TODO arreglar para que no se vea epile
 
 #region interacciones con jugador y mundo
 
-#func calculate_position_delta() -> void:
-	#return GeometricToolbox.y_offset_vector_to_0(remote_transform_ref.global_position - global_position)
-
 func alternate_on_player_hud() -> void:
 	if LevelBuilder.controller_connected:
 		Input.start_joy_vibration(0, 0.5, 0, 0.1)
 	$grab_buffer.start()
 	if not in_hud:
+		reset_bucket_orientation()
 		freeze = true
 		collision_layer = 0
 		bucket_equipped.emit()
