@@ -62,6 +62,7 @@ CajasFusibles=""
 BombillasApagables=""
 Piscinas=""
 GameOverTriggerables=""
+WinStateTriggerables=""
 
 [input]
 

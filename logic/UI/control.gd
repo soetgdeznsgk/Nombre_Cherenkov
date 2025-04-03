@@ -9,7 +9,7 @@ static var aviso_despausa : Label
 static var objetivo_actual : Label
 
 # Objetivos:
-static var listaObjetivos : Array = ["Presiona el botón rojo", "Agarra el trapero", "Sobrevive hasta las 6 am!", "Exprime el trapero", "Bien hecho!"]
+static var listaObjetivos : Array = ["Presiona el botón rojo", "Agarra el trapero", "Sobrevive hasta las 6 am!", "Exprime el trapero", "Sal del edificio!"]
 static var punteroObjetivo : int = 0
 
 #region Styleboxes

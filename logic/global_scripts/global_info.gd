@@ -47,11 +47,12 @@ func _process(_delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Debug_Exec"):
 		print("jiji")
+		trigger_win_state()
 		#for n in get_tree().get_nodes_in_group("CajasFusibles"):
-		if debug_bool == false:
-			get_tree().get_first_node_in_group("CajasFusibles").squid_interaction()
-		else:
-			get_tree().get_first_node_in_group("CajasFusibles").player_interaction()
+		#if debug_bool == false:
+			#get_tree().get_first_node_in_group("CajasFusibles").squid_interaction()
+		#else:
+			#get_tree().get_first_node_in_group("CajasFusibles").player_interaction()
 		debug_bool = not debug_bool
 			
 	
@@ -135,6 +136,10 @@ func trigger_loss_state() -> void:
 func trigger_win_state() -> void:
 	winning_secuence = true
 	UI.trigger_win_sign()
-	await get_tree().create_timer(10).timeout
+	get_tree().get_first_node_in_group("WinStateTriggerables").play("Door_Open")
+	#await get_tree().create_timer(10).timeout
+	#get_tree().quit()
+	
+func force_quit() -> void:
 	get_tree().quit()
 #endregion
