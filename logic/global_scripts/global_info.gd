@@ -44,16 +44,17 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	playerPosition = refPlayer.position
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Debug_Exec"):
 		print("jiji")
-		trigger_win_state()
+		#trigger_win_state()
+		
 		#for n in get_tree().get_nodes_in_group("CajasFusibles"):
-		#if debug_bool == false:
-			#get_tree().get_first_node_in_group("CajasFusibles").squid_interaction()
-		#else:
-			#get_tree().get_first_node_in_group("CajasFusibles").player_interaction()
-		debug_bool = not debug_bool
+			#if debug_bool == false:
+				#get_tree().get_first_node_in_group("CajasFusibles").squid_interaction(0)
+			#else:
+				#get_tree().get_first_node_in_group("CajasFusibles").player_interaction()
+		#debug_bool = not debug_bool
 			
 	
 
@@ -123,7 +124,6 @@ func reset_lights() -> void:
 
 #region ENDINGS
 func trigger_loss_state() -> void:
-	return
 	if winning_secuence:
 		return
 	get_tree().get_first_node_in_group("GameOverTriggerables").start_screen_shake_game_over() # tocará abstraer ésta función para llamar a todos los objetos con similitudes

@@ -43,3 +43,7 @@ Modelos:
     Low poly old locker by akhalas is licensed under Creative Commons Attribution
     Old bench by MaX3Dd is licensed under Creative Commons Attribution
     Low poly door #02 by sergeilihandristov is licensed under Creative Commons Attribution
+
+SFX:
+    ELECTRIC BUZZ SOUND EFFECT FREE by Sound FX is licensed under CC0
+    Projector Button Push - Sound Effect by RazendeGijs TODO CLEAR LICENSE

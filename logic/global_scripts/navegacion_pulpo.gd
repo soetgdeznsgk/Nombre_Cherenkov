@@ -22,7 +22,7 @@ func add_splot_to_registry(s : Splot) -> void: # se añaden desde splot.gd
 
 	for point_id in pathfinding_map.get_point_ids():
 		if pathfinding_map.get_point_position(astar_index)\
-		.distance_squared_to(pathfinding_map.get_point_position(point_id)) < 100:
+		.distance_squared_to(pathfinding_map.get_point_position(point_id)) < 100 and point_id != astar_index:
 			pathfinding_map.connect_points(astar_index, point_id)
 	splot_map_updated.emit()
 	

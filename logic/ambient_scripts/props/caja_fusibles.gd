@@ -35,6 +35,7 @@ func squid_interaction(p : Pulpo) -> bool:
 		return false
 	
 	is_active = true
+	$Zumbido.play()
 	light_flicker_coroutine(p)
 	return true
 
@@ -57,6 +58,7 @@ func light_flicker_coroutine(p) -> void:
 
 func player_fixes_cables() -> void:
 	light_flicker_coroutine(0)
+	$Zumbido.stop()
 	# lógica de arreglar cables
 	await get_tree().create_timer(3).timeout # debug
 	is_active = false
@@ -65,7 +67,7 @@ func player_fixes_cables() -> void:
 #region Outline
 
 func enter_player_focus() -> void:
-	if ref_cables.material_overlay == null:
+	if is_active and ref_cables.material_overlay == null:
 		ref_cables.material_overlay = blue_outline
 	#pass
 

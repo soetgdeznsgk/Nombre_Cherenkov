@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dxybjnksjvoa1"
+path="res://.godot/imported/ELECTRIC-BUZZ-SOUND-EFFECT-FREE (cortado).wav-e03809f8bf3f2d856bbe5a07a34da496.sample"
+
+[deps]
+
+source_file="res://audio/CajaFusibles/ELECTRIC-BUZZ-SOUND-EFFECT-FREE (cortado).wav"
+dest_files=["res://.godot/imported/ELECTRIC-BUZZ-SOUND-EFFECT-FREE (cortado).wav-e03809f8bf3f2d856bbe5a07a34da496.sample"]
+
+[params]
+
+force/8_bit=true
+force/mono=true
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

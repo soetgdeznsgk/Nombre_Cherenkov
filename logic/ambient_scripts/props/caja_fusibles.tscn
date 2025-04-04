@@ -1,10 +1,11 @@
-[gd_scene load_steps=53 format=4 uid="uid://cjx61d8bebjjq"]
+[gd_scene load_steps=54 format=4 uid="uid://cjx61d8bebjjq"]
 
 [ext_resource type="Script" path="res://logic/ambient_scripts/props/caja_fusibles.gd" id="1_3b1md"]
 [ext_resource type="Texture2D" uid="uid://cilth080hdd3u" path="res://modelos/electrical_box/textures/material_baseColor.png" id="1_b62go"]
 [ext_resource type="Texture2D" uid="uid://dv6fhgsrr6nra" path="res://modelos/electrical_box/icons8-dot-30.png" id="1_djwwr"]
 [ext_resource type="Texture2D" uid="uid://c68s1qfb7p4yo" path="res://modelos/electrical_box/textures/material_metallicRoughness.png" id="2_gmyjj"]
 [ext_resource type="Texture2D" uid="uid://dtg6sa7ko5hql" path="res://modelos/electrical_box/textures/material_normal.png" id="3_upud6"]
+[ext_resource type="AudioStream" uid="uid://dxybjnksjvoa1" path="res://audio/CajaFusibles/ELECTRIC-BUZZ-SOUND-EFFECT-FREE (cortado).wav" id="6_t3nq4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_owh2i"]
 resource_name = "material"
@@ -896,3 +897,7 @@ draw_pass_1 = SubResource("QuadMesh_mcw4s")
 [node name="ColisiónPiso" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21644, 0.926514, -0.665482)
 shape = SubResource("BoxShape3D_0oqgp")
+
+[node name="Zumbido" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.878584, -1.27804)
+stream = ExtResource("6_t3nq4")
