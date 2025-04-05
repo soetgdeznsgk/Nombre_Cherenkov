@@ -47,7 +47,7 @@ func _process(_delta: float) -> void:
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Debug_Exec"):
 		print("jiji")
-		#trigger_win_state()
+		trigger_win_state()
 		
 		#for n in get_tree().get_nodes_in_group("CajasFusibles"):
 			#if debug_bool == false:
