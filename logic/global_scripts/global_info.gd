@@ -46,15 +46,13 @@ func _process(_delta: float) -> void:
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Debug_Exec"):
-		print("jiji")
-		trigger_win_state()
-		
-		#for n in get_tree().get_nodes_in_group("CajasFusibles"):
-			#if debug_bool == false:
-				#get_tree().get_first_node_in_group("CajasFusibles").squid_interaction(0)
-			#else:
-				#get_tree().get_first_node_in_group("CajasFusibles").player_interaction()
-		#debug_bool = not debug_bool
+		if not debug_bool:
+			get_tree().get_first_node_in_group("WinStateTriggerables").play("Door_Open")	# añadir un efecto de luz para que door_open se note más
+			#get_tree().get_first_node_in_group("CajasFusibles").squid_interaction(Pulpo.new())
+		else:
+			get_tree().get_first_node_in_group("WinStateTriggerables").play("Door_Close")
+			#get_tree().get_first_node_in_group("CajasFusibles").player_interaction()
+		debug_bool = not debug_bool
 			
 	
 

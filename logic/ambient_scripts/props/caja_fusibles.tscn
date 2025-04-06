@@ -1,10 +1,11 @@
-[gd_scene load_steps=54 format=4 uid="uid://cjx61d8bebjjq"]
+[gd_scene load_steps=56 format=4 uid="uid://cjx61d8bebjjq"]
 
 [ext_resource type="Script" path="res://logic/ambient_scripts/props/caja_fusibles.gd" id="1_3b1md"]
 [ext_resource type="Texture2D" uid="uid://cilth080hdd3u" path="res://modelos/electrical_box/textures/material_baseColor.png" id="1_b62go"]
 [ext_resource type="Texture2D" uid="uid://dv6fhgsrr6nra" path="res://modelos/electrical_box/icons8-dot-30.png" id="1_djwwr"]
 [ext_resource type="Texture2D" uid="uid://c68s1qfb7p4yo" path="res://modelos/electrical_box/textures/material_metallicRoughness.png" id="2_gmyjj"]
 [ext_resource type="Texture2D" uid="uid://dtg6sa7ko5hql" path="res://modelos/electrical_box/textures/material_normal.png" id="3_upud6"]
+[ext_resource type="PackedScene" uid="uid://ms3fbucvi732" path="res://logic/ambient_scripts/spatial_sfx/SpatialAudioPlayer3D.tscn" id="6_nxxdk"]
 [ext_resource type="AudioStream" uid="uid://dxybjnksjvoa1" path="res://audio/CajaFusibles/ELECTRIC-BUZZ-SOUND-EFFECT-FREE (cortado).wav" id="6_t3nq4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_owh2i"]
@@ -717,7 +718,11 @@ material = SubResource("StandardMaterial3D_cgoeh")
 [sub_resource type="BoxShape3D" id="BoxShape3D_0oqgp"]
 size = Vector3(1.80162, 2.85303, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_j0cqc"]
+size = Vector3(1.49155, 2.98315, 0.236572)
+
 [node name="CajaFusibles" type="StaticBody3D" node_paths=PackedStringArray("ref_cables", "emisor_chispas_constantes", "emisor_chispoteo") groups=["CajasFusibles"]]
+collision_layer = 9
 script = ExtResource("1_3b1md")
 ref_cables = NodePath("Sketchfab_Scene/Sketchfab_model/a26a87c956d74689b89b62f245ba1286_fbx/RootNode/Cables/����������������������������������_����������������_0")
 emisor_chispas_constantes = NodePath("GPUParticles3D")
@@ -898,6 +903,10 @@ draw_pass_1 = SubResource("QuadMesh_mcw4s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21644, 0.926514, -0.665482)
 shape = SubResource("BoxShape3D_0oqgp")
 
-[node name="Zumbido" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.878584, -1.27804)
+[node name="ColisiónPuerta" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.400781, 0, -0.916174, 0, 1, 0, 0.916174, 0, 0.400781, 0.699858, 0.8844, 0.131711)
+shape = SubResource("BoxShape3D_j0cqc")
+
+[node name="Zumbido" parent="." instance=ExtResource("6_nxxdk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.24467)
 stream = ExtResource("6_t3nq4")

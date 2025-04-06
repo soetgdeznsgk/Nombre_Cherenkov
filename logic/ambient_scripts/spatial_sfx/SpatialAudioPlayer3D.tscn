@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://ms3fbucvi732"]
+
+[ext_resource type="Script" path="res://logic/ambient_scripts/spatial_sfx/SpatialAudioPlayer3D.gd" id="1_f1sh5"]
+
+[node name="SpatialAudioPlayer3D" type="AudioStreamPlayer3D"]
+script = ExtResource("1_f1sh5")
+max_raycast_distance = 100.0
+update_frequency_seconds = 0.2
+wall_lowpass_cutoff_amount = 15000
+lerp_speed_modifier = 3.0
+
+[node name="RaycastDown" type="RayCast3D" parent="."]
+target_position = Vector3(0, -100, 0)
+collision_mask = 8
+
+[node name="RaycastLeft" type="RayCast3D" parent="."]
+target_position = Vector3(100, 0, 0)
+collision_mask = 8
+
+[node name="RaycastRight" type="RayCast3D" parent="."]
+target_position = Vector3(-100, 0, 0)
+collision_mask = 8
+
+[node name="RaycastForward" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, 100)
+collision_mask = 8
+
+[node name="RaycastForwardLeft" type="RayCast3D" parent="."]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+target_position = Vector3(0, 0, 100)
+collision_mask = 8
+
+[node name="RaycastForwardRight" type="RayCast3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
+target_position = Vector3(0, 0, 100)
+collision_mask = 8
+
+[node name="RaycastBackwardRight" type="RayCast3D" parent="."]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+target_position = Vector3(0, 0, -100)
+collision_mask = 8
+
+[node name="RaycastBackwardLeft" type="RayCast3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
+target_position = Vector3(0, 0, -100)
+collision_mask = 8
+
+[node name="RaycastBackward" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -100)
+collision_mask = 8
+
+[node name="RaycastUp" type="RayCast3D" parent="."]
+target_position = Vector3(0, 100, 0)
+collision_mask = 8

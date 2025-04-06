@@ -97,7 +97,7 @@ func trapeo_call(selected_node : Node) -> void:
 		return
 		
 func rotate_to_camera(mouse_movement_delta : Vector2):
-	if anim_state != states.Stowed:#not state_stowed:
+	if anim_state != states.Stowed:
 		look_at(GlobalInfo.refPlayer.position)	
 
 func trapeo_lerp_to(p : Vector3, _t : float) -> void:

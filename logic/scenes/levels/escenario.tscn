@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=4 uid="uid://koqv2tici8g"]
+[gd_scene load_steps=83 format=4 uid="uid://koqv2tici8g"]
 
 [ext_resource type="PackedScene" uid="uid://bnl1k0w4e64he" path="res://logic/scenes/jugador.tscn" id="1_5xau3"]
 [ext_resource type="Texture2D" uid="uid://de27uxs2gwl0c" path="res://modelos/textures/marble_tiles_dirty_1k/marble_tiles_diff_1k_editao.png" id="3_8xm7x"]
@@ -35,6 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://be8es0rygcb1p" path="res://modelos/door/low_poly_door_02_2.png" id="27_yssgn"]
 [ext_resource type="AudioStream" uid="uid://dlukh4lao856n" path="res://audio/Puertas/closing-metal-door-44280.mp3" id="28_msdjt"]
 [ext_resource type="AudioStream" uid="uid://b44m5c4sewsap" path="res://audio/Puertas/opening-metal-door-98518.mp3" id="29_bckvr"]
+[ext_resource type="PackedScene" uid="uid://ms3fbucvi732" path="res://logic/ambient_scripts/spatial_sfx/SpatialAudioPlayer3D.tscn" id="30_nidux"]
 
 [sub_resource type="Environment" id="Environment_owekg"]
 ambient_light_source = 2
@@ -458,7 +459,6 @@ tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_vwv7a"]
 resource_name = "Door_Open"
-length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -498,6 +498,18 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0.0333333)
 }
 tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LuzPuerta:light_energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 16.0]
+}
 
 [sub_resource type="Animation" id="Animation_k0qs8"]
 length = 0.001
@@ -524,6 +536,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LuzPuerta:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wqjrw"]
@@ -613,7 +637,7 @@ navigation_mesh = SubResource("NavigationMesh_inggj")
 transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, -0.28, 0)
 rotation_edit_mode = 2
 use_collision = true
-collision_layer = 3
+collision_layer = 11
 mesh = SubResource("ArrayMesh_2n3vl")
 material = SubResource("StandardMaterial3D_jtryp")
 script = ExtResource("3_e045v")
@@ -786,6 +810,7 @@ size = Vector3(3.14795, 1.36047, 3.00775)
 [node name="Caja_Habitación" type="CSGBox3D" parent="NavigationRegion3D/Geometría"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.47843, 2.50796, -15.0779)
 use_collision = true
+collision_layer = 9
 size = Vector3(44.8254, 23.6394, 31.1558)
 
 [node name="Espacio_Habitación" type="CSGBox3D" parent="NavigationRegion3D/Geometría/Caja_Habitación"]
@@ -915,6 +940,13 @@ libraries = {
 "": SubResource("AnimationLibrary_wqjrw")
 }
 
+[node name="LuzPuerta" type="SpotLight3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Puerta/Model"]
+transform = Transform3D(0.445119, 0.140214, -0.884426, 0.0811198, 0.97729, 0.195763, 0.891789, -0.158882, 0.423637, -8.96738, 10.1037, -20.1974)
+top_level = true
+light_energy = 0.0
+light_size = 1.0
+spot_range = 54.5045
+
 [node name="Area3D" type="Area3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Puerta"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Puerta/Area3D"]
@@ -929,7 +961,8 @@ material = SubResource("StandardMaterial3D_gvqki")
 [node name="TitleCard" type="AnimatedSprite3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Puerta"]
 sprite_frames = SubResource("SpriteFrames_n0jff")
 
-[node name="SonidoPuerta" type="AudioStreamPlayer3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Puerta"]
+[node name="SonidoPuerta" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Puerta" instance=ExtResource("30_nidux")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0557995, -0.636828, 4.00031)
 
 [node name="PlayerSpawn" type="Marker3D" parent="NavigationRegion3D/Geometría/Caja_Habitación"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.08868, 8.61526, -15.0779)

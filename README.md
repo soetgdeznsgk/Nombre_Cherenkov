@@ -15,7 +15,13 @@ Modelado 3D: Fabián Montes (movido51))
 Ambiente: Felipe Duque (ItsLisis)
 
 Outline shader:
-Godot 4 Complete Cel Shader by Rafael Bordoni (eldskald, via https://github.com/eldskald/godot4-cel-shader)
+    Godot 4 Complete Cel Shader by Rafael Bordoni (eldskald, via https://github.com/eldskald/godot4-cel-shader)
+
+Spatial audio:
+    SpatialAudioStream node by Blekoh (via https://www.youtube.com/watch?v=mHokBQyB_08)
+
+Wiggle physics:
+    Wigglebone Godot 4.x addon by Simon Schoenenberger (detomon, via https://github.com/detomon/wigglebone)
 
 
 Texturas: 
