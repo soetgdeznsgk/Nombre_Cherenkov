@@ -25,6 +25,7 @@ func update_contamination_bar(delta: float) -> void:
 		await get_tree().create_timer(5).timeout
 		GlobalInfo.trigger_loss_state()
 		
+	GlobalInfo.refPlayer.update_geiger(contamination_bar.value / 100)
 
 func get_contamination_value() -> float:
 	return contamination_bar.value

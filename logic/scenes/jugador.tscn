@@ -1,7 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnl1k0w4e64he"]
+[gd_scene load_steps=10 format=3 uid="uid://bnl1k0w4e64he"]
 
 [ext_resource type="Script" path="res://logic/scenes/camarascript.gd" id="1_jh4ox"]
 [ext_resource type="Script" path="res://logic/scenes/screen_shake_component.gd" id="2_cfpkj"]
+[ext_resource type="Script" path="res://logic/UI/geiger.gd" id="3_ek5ne"]
+[ext_resource type="AudioStream" uid="uid://ishklfpjc7tf" path="res://audio/Geiger/geiger1.wav" id="3_qww2w"]
+[ext_resource type="PackedScene" uid="uid://ms3fbucvi732" path="res://logic/ambient_scripts/spatial_sfx/SpatialAudioPlayer3D.tscn" id="4_7lgmq"]
+[ext_resource type="AudioStream" uid="uid://ci0gas7favq26" path="res://audio/Geiger/geiger2.wav" id="5_f22i1"]
 
 [sub_resource type="GDScript" id="GDScript_cx7sy"]
 resource_name = "pj"
@@ -92,6 +96,9 @@ func set_center_of_gravity(p : Vector3) -> void:
 	
 func reset_player_movement_freedom() -> void:
 	currState = playerStates.Free
+	
+func update_geiger(v : float) -> void:
+	$Sonidos.intensity = v
 "
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pnppo"]
@@ -136,3 +143,20 @@ mesh = SubResource("CapsuleMesh_xqvju")
 
 [node name="GroundRayCast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.917645, 0)
+
+[node name="Sonidos" type="Node3D" parent="." node_paths=PackedStringArray("_players") groups=["Alarmables"]]
+visible = false
+script = ExtResource("3_ek5ne")
+min_wait = 0.01
+_players = [NodePath("Geiger1"), NodePath("Geiger2")]
+
+[node name="Geiger1" parent="Sonidos" instance=ExtResource("4_7lgmq")]
+stream = ExtResource("3_qww2w")
+
+[node name="Geiger2" parent="Sonidos" instance=ExtResource("4_7lgmq")]
+stream = ExtResource("5_f22i1")
+
+[node name="ClickTimer" type="Timer" parent="Sonidos"]
+wait_time = 5.0
+
+[connection signal="timeout" from="Sonidos/ClickTimer" to="Sonidos" method="_on_click_timer_timeout"]
