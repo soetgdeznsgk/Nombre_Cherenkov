@@ -18,7 +18,7 @@ font_size = 10
 
 [node name="UI" type="CanvasLayer"]
 
-[node name="Control" type="Control" parent="." groups=["UI"]]
+[node name="Control" type="Control" parent="." groups=["HasUserTooltip", "UI"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -119,7 +119,6 @@ text = "hola caracola
 label_settings = SubResource("LabelSettings_3d7co")
 
 [node name="aviso_pausar" type="Label" parent="."]
-visible = false
 offset_right = 470.0
 offset_bottom = 150.0
 text = "ESC para pausar
@@ -127,6 +126,7 @@ text = "ESC para pausar
 label_settings = SubResource("LabelSettings_w2kkn")
 
 [node name="aviso_despausar" type="Label" parent="."]
+visible = false
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.261111

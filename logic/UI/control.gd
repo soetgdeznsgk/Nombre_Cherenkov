@@ -26,9 +26,17 @@ func _ready() -> void:
 	objetivo_actual.text = listaObjetivos[punteroObjetivo]
 	
 	await get_tree().process_frame
-	if LevelBuilder.controller_connected:
+	
+
+func define_appropiate_gamepad_tooltip(control : bool) -> void:
+	if control:
 		aviso_pausa.text = "Start para pausar"
 		aviso_despausa.text = "Start para despausar"
+	else:
+		aviso_pausa.text = "ESC para pausar"
+		aviso_despausa.text = "ESC para despausar"
+	
+	
 
 func update_saturation_bar(val: float) -> void:
 	mop_saturation_bar.value = val

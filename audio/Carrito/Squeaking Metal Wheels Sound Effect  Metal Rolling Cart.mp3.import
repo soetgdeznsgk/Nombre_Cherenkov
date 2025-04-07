@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dexckhu1sd6dw"
+path="res://.godot/imported/Squeaking Metal Wheels Sound Effect  Metal Rolling Cart.mp3-86cec3b46c7b5385c7f91e24e002a740.mp3str"
+
+[deps]
+
+source_file="res://audio/Carrito/Squeaking Metal Wheels Sound Effect  Metal Rolling Cart.mp3"
+dest_files=["res://.godot/imported/Squeaking Metal Wheels Sound Effect  Metal Rolling Cart.mp3-86cec3b46c7b5385c7f91e24e002a740.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

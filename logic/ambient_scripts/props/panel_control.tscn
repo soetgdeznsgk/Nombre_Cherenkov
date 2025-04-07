@@ -26,8 +26,13 @@ var alreadyPressed : bool = false
 
 func _ready() -> void:
 	await get_tree().process_frame
-	if LevelBuilder.controller_connected:
+	
+		
+func define_appropiate_gamepad_tooltip(control : bool) -> void:
+	if control:
 		$\"../ControlTip\".texture = load(\"res://modelos/textures/sprites/xbox_rt.png\")
+	else:
+		$\"../ControlTip\".texture = load(\"res://modelos/textures/sprites/left-click.png\")
 
 func enter_player_focus() -> void:
 	if not alreadyPressed:
@@ -123,7 +128,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ykyx0")
 script = ExtResource("3_e7dye")
 overlay = ExtResource("4_gn8tt")
 
-[node name="Area3D_BotónRojo" type="Area3D" parent="Botón_Rojo"]
+[node name="Area3D_BotónRojo" type="Area3D" parent="Botón_Rojo" groups=["HasUserTooltip"]]
 transform = Transform3D(1, 1.49012e-08, 0, -1.49012e-08, 1, 1.33227e-15, 0, -8.88178e-16, 1, 0, 0, -5.96046e-08)
 script = SubResource("GDScript_ka5ew")
 

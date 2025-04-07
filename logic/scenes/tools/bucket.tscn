@@ -1,7 +1,9 @@
-[gd_scene load_steps=22 format=4 uid="uid://di6fatgsdf124"]
+[gd_scene load_steps=24 format=4 uid="uid://di6fatgsdf124"]
 
 [ext_resource type="Script" path="res://logic/scenes/tools/bucket.gd" id="1_owtkk"]
 [ext_resource type="Script" path="res://logic/scenes/tools/bucket_lever.gd" id="2_1sgoo"]
+[ext_resource type="PackedScene" uid="uid://ms3fbucvi732" path="res://logic/ambient_scripts/spatial_sfx/SpatialAudioPlayer3D.tscn" id="2_6r4sr"]
+[ext_resource type="AudioStream" uid="uid://dexckhu1sd6dw" path="res://audio/Carrito/Squeaking Metal Wheels Sound Effect  Metal Rolling Cart.mp3" id="2_kkrxi"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/postprocessing_items/outline_on_selection.gd" id="3_c0ipn"]
 [ext_resource type="Material" uid="uid://kf8cd7ahl5n7" path="res://logic/ambient_scripts/postprocessing_items/bucket_lever_material.tres" id="3_qgo5h"]
 [ext_resource type="Material" uid="uid://cb1yquyn7im4w" path="res://logic/ambient_scripts/postprocessing_items/outline_material_bucket.tres" id="4_o6cvj"]
@@ -245,11 +247,16 @@ _data = {
 "press": SubResource("Animation_l52br")
 }
 
-[node name="bucket" type="VehicleBody3D" groups=["Baldes"]]
+[node name="bucket" type="VehicleBody3D" groups=["Baldes", "HasUserTooltip"]]
 collision_layer = 3
 collision_mask = 5
 inertia = Vector3(100, 100, 100)
 script = ExtResource("1_owtkk")
+
+[node name="SFX" type="Node3D" parent="."]
+
+[node name="Ruedas" parent="SFX" instance=ExtResource("2_6r4sr")]
+stream = ExtResource("2_kkrxi")
 
 [node name="Area3D Palanca" type="Area3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.187816, 1.49125, -0.7542)

@@ -43,6 +43,10 @@ func _ready() -> void:
 	floor_snap_length = 1
 	#GlobalInfo.jugador_atrapado.connect(func(p): set_center_of_gravity(p))
 	
+#func _input(event: InputEvent) -> void:
+	#print(event.as_text())
+	#if Input.is_action_just_pressed(\"MoveBackwards\"):
+		#print(\"muevepalante\")
 
 func _physics_process(_delta: float) -> void:
 	direction = camara_ref.get_global_transform().basis.z

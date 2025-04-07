@@ -27,7 +27,6 @@ var bucket_RT_dereferenced : bool = false
 var last_collision : Node
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	call_deferred("updateDetectionExceptions")
 	#ignoringMop = true # CAMBIAR CUANDO YA ESTÉ LA RUTINA DE INICIO
 	#GlobalInfo.jugador_atrapado.connect(lock_camera)
@@ -44,6 +43,7 @@ func _input(event : InputEvent):
 		v.x = clamp(v.x,-80,90)
 		
 func apply_controller_rotation() -> void:
+	if not LevelBuilder.controller_connected: return
 	var axis_vector : Vector2 = Vector2.ZERO
 	axis_vector.x = Input.get_axis("LookL", "LookR")
 	axis_vector.y = Input.get_axis("LookU", "LookD")
@@ -58,13 +58,11 @@ func _physics_process(delta):
 		look_at((global_position - pre_grab_camera_direction).lerp(focus_point, time_locked))
 		if mop_reference != null: 
 			mop_reference.rotate_to_camera(Vector2.ZERO)
-			
-	elif LevelBuilder.controller_connected:
-		apply_controller_rotation()
 		
 	else:
 		rotation_degrees.x = v.x
 		rotation_degrees.y = v.y
+		apply_controller_rotation()
 		
 	#region Codigo para los outlines para los interactuables (radioactivo)
 	if interaction_raycast.is_colliding():	

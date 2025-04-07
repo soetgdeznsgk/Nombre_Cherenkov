@@ -41,6 +41,8 @@ func _physics_process(_delta: float) -> void:
 			
 		if engine_force > 1: # solución barata, funciona para frenar entonces lo considero terminado
 			engine_force /= 1.05
+		else:
+			wheels_moving_sound()
 					
 		if Input.is_action_pressed("SecondaryInteraction") and $grab_buffer.is_stopped() and player_on_range: 
 			alternate_on_player_hud()
@@ -52,6 +54,7 @@ func _physics_process(_delta: float) -> void:
 		position_delta = GeometricToolbox.y_offset_vector_to_0(remote_transform_ref.global_position - global_position)
 		global_position.x = remote_transform_ref.global_position.x
 		global_position.z = remote_transform_ref.global_position.z
+		wheels_moving_sound()
 		
 func _input(event: InputEvent) -> void:
 	if in_hud:
@@ -66,8 +69,8 @@ func get_rotation_needed_towards_player() -> float: # sin uso con la nueva imple
 	var angle = transform.basis.x.signed_angle_to(GlobalInfo.playerPosition - position, Vector3.UP) # Frente del carrito
 	return angle
 	
-func lerp_towards_player(time) -> void: # TODO arreglar para que no se vea epileptico // sin uso
-	rotate(Vector3.UP, lerpf(0, steering, time))
+#func lerp_towards_player(time) -> void: # TODO arreglar para que no se vea epileptico // sin uso
+	#rotate(Vector3.UP, lerpf(0, steering, time))
 
 #region interacciones con jugador y mundo
 
@@ -113,6 +116,14 @@ func exit_player_focus() -> void:
 	$ControlTipLT.visible = false
 	mesh_reference.deactivate_outline()
 	player_on_range = false
+	
+func define_appropiate_gamepad_tooltip(control : bool) -> void:
+	if control:
+		$ControlTipRT.texture = load("res://modelos/textures/sprites/xbox_rt.png")
+		$ControlTipLT.texture = load("res://modelos/textures/sprites/xbox_lt.png")
+	else:
+		$ControlTipRT.texture = load("res://modelos/textures/sprites/left-click.png")
+		$ControlTipLT.texture = load("res://modelos/textures/sprites/middle-click.png")
 
 func player_interaction() -> void: #ésta función estará en TODOS los objetos con un efecto especial de interacción
 	if GlobalInfo.timerInteractionBuffer.is_stopped() and GlobalInfo.refCamara.mop_reference != null: 
@@ -195,4 +206,12 @@ func confirm_placeability() -> bool: # no es infalible, pero requiere dedicació
 
 #endregion
 
+#endregion
+
+#region Sonido
+func wheels_moving_sound() -> void:
+	if not $SFX/Ruedas.playing and position_delta.length_squared() > 0.1:
+		$SFX/Ruedas.play()
+	elif $SFX/Ruedas.playing and engine_force < 1.5:
+		$SFX/Ruedas.stop()
 #endregion

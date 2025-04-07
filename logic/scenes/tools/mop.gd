@@ -72,8 +72,6 @@ func _ready() -> void:
 	particles_ref = $GPUParticles3D
 	
 	await get_tree().process_frame
-	if LevelBuilder.controller_connected:
-		$ControlTip.texture = load("res://modelos/textures/sprites/xbox_rt.png")
 	
 	#state_stowed = false # DEBUG hasta que se haga para poderse "recoger" en el inicio
 	
@@ -159,6 +157,12 @@ func enter_player_focus() -> void:
 func exit_player_focus() -> void:
 	mesh_ref.deactivate_outline()
 	$ControlTip.visible = false
+
+func define_appropiate_gamepad_tooltip(control : bool) -> void:
+	if control:
+		$"ControlTip".texture = load("res://modelos/textures/sprites/xbox_rt.png")
+	else:
+		$"ControlTip".texture = load("res://modelos/textures/sprites/left-click.png")
 
 func player_interaction() -> void: # metodo "interfaz"
 	if GlobalInfo.timerInteractionBuffer.is_stopped() and anim_state == states.Stowed:#states_stowed: OK

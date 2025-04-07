@@ -4,21 +4,18 @@ extends Node
 # Éste singleton va a estar encargado de manejar la actualización de los nodos por los cuales el pulpo será capaz
 # de viajar, se ejecutará su contenido cuando haya un cambio en la cantidad de charcos del mapa
 
-var splot_list := PackedVector3Array()
-
 signal splot_map_updated # para que los pulpos esperen a que hayan charcos para moverse
 
 func set_custom_splot_weight(index : int, v : float) -> void:		# BUG, a veces cuando spawnea el pulpo se queda trabado en el primer charco?
 	pathfinding_map.set_point_weight_scale(index, v)
 
 func add_splot_to_registry(s : Splot) -> void: # se añaden desde splot.gd
-	#splot_list.append(s.global_position)
 	var astar_index := randi_range(0, GlobalDB.splot_limit)					# revisar si ésto se bugea cuando hay más charcos que el límite
 	s.set_navigation_id(astar_index)
 	pathfinding_map.add_point(astar_index, s.global_position)
 	
-	if Splot.origin_splot != null:
-		print(pathfinding_map.get_point_weight_scale(Splot.origin_splot.navigation_id))
+	#if Splot.origin_splot != null:
+		#print("sp : ", pathfinding_map.get_point_weight_scale(Splot.origin_splot.navigation_id))
 
 	for point_id in pathfinding_map.get_point_ids():
 		if pathfinding_map.get_point_position(astar_index)\
