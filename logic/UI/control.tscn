@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cu30dahipapwi"]
+[gd_scene load_steps=8 format=3 uid="uid://cu30dahipapwi"]
 
 [ext_resource type="Script" path="res://logic/UI/control.gd" id="1_yfp7f"]
 [ext_resource type="StyleBox" uid="uid://crbcaxlixf3yw" path="res://logic/UI/styleboxes/blue_stylebox.tres" id="2_u2acb"]
+[ext_resource type="AudioStream" uid="uid://dvo1asbdwr06h" path="res://audio/OST/Cherenkov-Main-Theme-v1.wav" id="3_gcon1"]
 
 [sub_resource type="Theme" id="Theme_u7d16"]
 default_font_size = 30
@@ -18,7 +19,7 @@ font_size = 10
 
 [node name="UI" type="CanvasLayer"]
 
-[node name="Control" type="Control" parent="." groups=["HasUserTooltip", "UI"]]
+[node name="Control" type="Control" parent="." groups=["Alarmables", "HasUserTooltip", "UI"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -117,6 +118,9 @@ grow_horizontal = 0
 text = "hola caracola
 "
 label_settings = SubResource("LabelSettings_3d7co")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("3_gcon1")
 
 [node name="aviso_pausar" type="Label" parent="."]
 offset_right = 470.0

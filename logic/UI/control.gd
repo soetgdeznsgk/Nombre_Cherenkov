@@ -27,6 +27,8 @@ func _ready() -> void:
 	
 	await get_tree().process_frame
 	
+func start() -> void:
+	$AudioStreamPlayer.play()
 
 func define_appropiate_gamepad_tooltip(control : bool) -> void:
 	if control:
