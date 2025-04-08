@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cux2lmkev1y7c"]
+[gd_scene load_steps=5 format=3 uid="uid://cux2lmkev1y7c"]
 
 [ext_resource type="PackedScene" uid="uid://dutmanhfhbij4" path="res://modelos/first_motor_siren/scene.gltf" id="1_flrcg"]
+[ext_resource type="PackedScene" uid="uid://ms3fbucvi732" path="res://logic/ambient_scripts/spatial_sfx/SpatialAudioPlayer3D.tscn" id="2_j376r"]
+[ext_resource type="AudioStream" uid="uid://jqtphi3lx1jo" path="res://audio/Alarma/Nuclear Alarm Siren.mp3" id="3_7827c"]
 
 [sub_resource type="GDScript" id="GDScript_qjf21"]
 script/source = "extends Node3D
@@ -15,6 +17,7 @@ func _physics_process(delta: float) -> void:
 func start() -> void: # parte del grupo de nodos \"alarmables
 	process_mode = PROCESS_MODE_INHERIT
 	$SpotLight3D.light_energy = 1
+	$SpatialAudioPlayer3D.play()
 "
 
 [node name="Alarma" type="Node3D" groups=["Alarmables"]]
@@ -34,3 +37,7 @@ spot_angle = 72.36
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("1_flrcg")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="SpatialAudioPlayer3D" parent="." instance=ExtResource("2_j376r")]
+stream = ExtResource("3_7827c")
+max_reverb_wetness = 1.5

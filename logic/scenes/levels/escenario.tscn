@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=4 uid="uid://koqv2tici8g"]
+[gd_scene load_steps=82 format=4 uid="uid://koqv2tici8g"]
 
 [ext_resource type="PackedScene" uid="uid://bnl1k0w4e64he" path="res://logic/scenes/jugador.tscn" id="1_5xau3"]
 [ext_resource type="Texture2D" uid="uid://de27uxs2gwl0c" path="res://modelos/textures/marble_tiles_dirty_1k/marble_tiles_diff_1k_editao.png" id="3_8xm7x"]
@@ -35,7 +35,6 @@
 [ext_resource type="Texture2D" uid="uid://be8es0rygcb1p" path="res://modelos/door/low_poly_door_02_2.png" id="27_yssgn"]
 [ext_resource type="AudioStream" uid="uid://dlukh4lao856n" path="res://audio/Puertas/closing-metal-door-44280.mp3" id="28_msdjt"]
 [ext_resource type="AudioStream" uid="uid://b44m5c4sewsap" path="res://audio/Puertas/opening-metal-door-98518.mp3" id="29_bckvr"]
-[ext_resource type="PackedScene" uid="uid://ms3fbucvi732" path="res://logic/ambient_scripts/spatial_sfx/SpatialAudioPlayer3D.tscn" id="30_nidux"]
 
 [sub_resource type="Environment" id="Environment_owekg"]
 ambient_light_source = 2
@@ -961,8 +960,10 @@ material = SubResource("StandardMaterial3D_gvqki")
 [node name="TitleCard" type="AnimatedSprite3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Puerta"]
 sprite_frames = SubResource("SpriteFrames_n0jff")
 
-[node name="SonidoPuerta" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Puerta" instance=ExtResource("30_nidux")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0557995, -0.636828, 4.00031)
+[node name="SonidoPuerta" type="AudioStreamPlayer3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Puerta"]
+attenuation_model = 3
+volume_db = 10.0
+unit_size = 100.0
 
 [node name="PlayerSpawn" type="Marker3D" parent="NavigationRegion3D/Geometría/Caja_Habitación"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.08868, 8.61526, -15.0779)

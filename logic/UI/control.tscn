@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://logic/UI/control.gd" id="1_yfp7f"]
 [ext_resource type="StyleBox" uid="uid://crbcaxlixf3yw" path="res://logic/UI/styleboxes/blue_stylebox.tres" id="2_u2acb"]
-[ext_resource type="AudioStream" uid="uid://dvo1asbdwr06h" path="res://audio/OST/Cherenkov-Main-Theme-v1.wav" id="3_gcon1"]
+[ext_resource type="AudioStream" uid="uid://jcujd6epkm1e" path="res://audio/OST/soetgdeznsgk-Cherenkov-Main-Theme-v2.wav" id="3_xw0ai"]
 
 [sub_resource type="Theme" id="Theme_u7d16"]
 default_font_size = 30
@@ -120,7 +120,7 @@ text = "hola caracola
 label_settings = SubResource("LabelSettings_3d7co")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control"]
-stream = ExtResource("3_gcon1")
+stream = ExtResource("3_xw0ai")
 
 [node name="aviso_pausar" type="Label" parent="."]
 offset_right = 470.0

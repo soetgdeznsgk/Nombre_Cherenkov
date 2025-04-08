@@ -58,11 +58,12 @@ func _physics_process(delta):
 		look_at((global_position - pre_grab_camera_direction).lerp(focus_point, time_locked))
 		if mop_reference != null: 
 			mop_reference.rotate_to_camera(Vector2.ZERO)
-		
+	
+	elif LevelBuilder.controller_connected:
+		apply_controller_rotation()
 	else:
 		rotation_degrees.x = v.x
 		rotation_degrees.y = v.y
-		apply_controller_rotation()
 		
 	#region Codigo para los outlines para los interactuables (radioactivo)
 	if interaction_raycast.is_colliding():	
