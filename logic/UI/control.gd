@@ -4,6 +4,7 @@ class_name UI
 @onready var mop_saturation_bar := $SaturationBar
 @onready var aviso_atrapamiento := $Aviso_Atrapado
 @onready var contamination_bar := $GlobalContaminationBar
+@onready var ost_player_ref : AudioStreamPlayer = $OST
 static var aviso_pausa : Label 
 static var aviso_despausa : Label 
 static var objetivo_actual : Label
@@ -28,7 +29,7 @@ func _ready() -> void:
 	await get_tree().process_frame
 	
 func start() -> void:
-	$AudioStreamPlayer.play()
+	ost_player_ref.play()
 
 func define_appropiate_gamepad_tooltip(control : bool) -> void:
 	if control:
@@ -78,3 +79,8 @@ static func clean_mop_order_completed() -> void:
 	
 static func trigger_win_sign() -> void:
 	objetivo_actual.text = listaObjetivos[4]
+
+func game_over_sequence() -> void:
+	# TODO hacer un fade in y out más bonito
+	ost_player_ref.playing = false
+	$GameOverSFX.play(2)

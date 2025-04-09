@@ -15,17 +15,17 @@ func _ready() -> void:
 func start() -> void:
 	start_screen_shake_button_press()
 
-func start_screen_shake_game_over():
+func game_over_sequence() -> void:
 	shake_strength = gameOverShakeStrenght
 	shakeFade = SHAKE_FADE_GAME_OVER
 	shake_coroutine()
 
-func start_screen_shake_button_press():
+func start_screen_shake_button_press() -> void:
 	shake_strength = buttonPressShakeStrenght
 	shakeFade = SHAKE_FADE_BUTTON_PRESS
 	shake_coroutine()
 	
-func shake_coroutine():
+func shake_coroutine() -> void:
 	Camera.h_offset = randf_range(-shake_strength,shake_strength)
 	Camera.v_offset = randf_range(-shake_strength,shake_strength)
 	
