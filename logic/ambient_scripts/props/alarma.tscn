@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dutmanhfhbij4" path="res://modelos/first_motor_siren/scene.gltf" id="1_flrcg"]
 [ext_resource type="PackedScene" uid="uid://ms3fbucvi732" path="res://logic/ambient_scripts/spatial_sfx/SpatialAudioPlayer3D.tscn" id="2_j376r"]
-[ext_resource type="AudioStream" uid="uid://jqtphi3lx1jo" path="res://audio/Alarma/Nuclear Alarm Siren.mp3" id="3_7827c"]
+[ext_resource type="AudioStream" uid="uid://c52shjqacfoke" path="res://audio/Alarma/Nuclear Alarm Siren Loop.wav" id="3_kf2d3"]
 
 [sub_resource type="GDScript" id="GDScript_qjf21"]
 script/source = "extends Node3D
@@ -39,6 +39,6 @@ spot_angle = 72.36
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="SpatialAudioPlayer3D" parent="." instance=ExtResource("2_j376r")]
-stream = ExtResource("3_7827c")
-volume_db = -10.0
+stream = ExtResource("3_kf2d3")
+volume_db = 10.0
 max_reverb_wetness = 1.5

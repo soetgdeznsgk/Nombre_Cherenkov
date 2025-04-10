@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://logic/UI/control.gd" id="1_yfp7f"]
 [ext_resource type="StyleBox" uid="uid://crbcaxlixf3yw" path="res://logic/UI/styleboxes/blue_stylebox.tres" id="2_u2acb"]
-[ext_resource type="AudioStream" uid="uid://1qnrx43xjoey" path="res://audio/OST/soetgdeznsgk-Cherenkov-Main-Theme-v2-_1_.wav" id="3_ukpvx"]
+[ext_resource type="AudioStream" uid="uid://xf8bqhyw1kmt" path="res://audio/OST/Cherenkov Main Theme w_o Alarm.wav" id="3_a3mpb"]
 [ext_resource type="AudioStream" uid="uid://cpmm5uxak044c" path="res://audio/Cuarto/World-Trade-Center-Collapse-original-sound-_1_.wav" id="4_vaaqk"]
 
 [sub_resource type="Theme" id="Theme_u7d16"]
@@ -121,7 +121,8 @@ text = "hola caracola
 label_settings = SubResource("LabelSettings_3d7co")
 
 [node name="OST" type="AudioStreamPlayer" parent="Control"]
-stream = ExtResource("3_ukpvx")
+stream = ExtResource("3_a3mpb")
+volume_db = 10.0
 
 [node name="GameOverSFX" type="AudioStreamPlayer" parent="Control"]
 stream = ExtResource("4_vaaqk")

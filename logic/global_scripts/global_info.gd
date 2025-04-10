@@ -135,7 +135,7 @@ func trigger_loss_state() -> void:
 	await get_tree().create_timer(5).timeout
 	get_tree().quit()
 	
-func trigger_win_state() -> void:
+func trigger_win_state() -> void:		# al dejar correr el tiempo se está playando door_open en bucle? 
 	winning_secuence = true
 	UI.trigger_win_sign()
 	get_tree().get_first_node_in_group("WinStateTriggerables").play("Door_Open")
