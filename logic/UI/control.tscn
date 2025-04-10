@@ -122,7 +122,6 @@ label_settings = SubResource("LabelSettings_3d7co")
 
 [node name="OST" type="AudioStreamPlayer" parent="Control"]
 stream = ExtResource("3_a3mpb")
-volume_db = 10.0
 
 [node name="GameOverSFX" type="AudioStreamPlayer" parent="Control"]
 stream = ExtResource("4_vaaqk")

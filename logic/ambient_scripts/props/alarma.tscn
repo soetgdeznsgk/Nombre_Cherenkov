@@ -7,6 +7,8 @@
 [sub_resource type="GDScript" id="GDScript_qjf21"]
 script/source = "extends Node3D
 
+@export var ALARM_VOLUME : int = 10
+
 func _ready() -> void: 
 	process_mode = PROCESS_MODE_DISABLED
 	#start() # debug
@@ -18,6 +20,22 @@ func start() -> void: # parte del grupo de nodos \"alarmables
 	process_mode = PROCESS_MODE_INHERIT
 	$SpotLight3D.light_energy = 1
 	$SpatialAudioPlayer3D.play()
+
+func mute_sound() -> void:		
+	if $SpatialAudioPlayer3D.volume_db <= -80:
+		return
+		
+	$SpatialAudioPlayer3D.volume_db -= 1
+	await get_tree().process_frame
+	mute_sound()
+	
+func unmute_sound() -> void:	
+	if $SpatialAudioPlayer3D.volume_db >= ALARM_VOLUME:
+		return
+		
+	$SpatialAudioPlayer3D.volume_db += 1
+	await get_tree().process_frame
+	unmute_sound()
 "
 
 [node name="Alarma" type="Node3D" groups=["Alarmables"]]
@@ -40,5 +58,4 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 
 
 [node name="SpatialAudioPlayer3D" parent="." instance=ExtResource("2_j376r")]
 stream = ExtResource("3_kf2d3")
-volume_db = 10.0
 max_reverb_wetness = 1.5

@@ -2,9 +2,14 @@ extends StaticBody3D
 
 @export var ref_cables : MeshInstance3D
 @onready var blue_outline : StandardMaterial3D = preload("res://logic/ambient_scripts/postprocessing_items/bucket_lever_material.tres")
+
+@export_category("Partículas")
 @export var emisor_chispas_constantes : GPUParticles3D
 @export var emisor_chispoteo : GPUParticles3D 
 @export var particle_amount : int 
+@export_category("SFX")
+@export var BUZZING_VOLUME : int = 5
+
 @export var is_active : bool: # este setter es para alterarlo desde el editor GRACIAS POR EL COMENTARIO EMILIANO DEL PASADO
 	set(v):
 		if v:
@@ -34,9 +39,10 @@ func squid_interaction(p : Pulpo) -> bool:
 	if is_active:
 		return false
 	
-	is_active = true
 	$Zumbido.play()
+	#start_buzzing_sfx()
 	light_flicker_coroutine(p)
+	is_active = true
 	return true
 
 func player_interaction() -> void:
@@ -48,12 +54,15 @@ func light_flicker_coroutine(p) -> void:
 	GlobalInfo.force_lights_flickering()
 	if p is Pulpo:
 		await p.tearing_shit_state_exited
+		GlobalInfo.mute_alarm_sound()
+		$Zumbido.stop()
+		$ShutDownSFX.play()
 		GlobalInfo.shut_down_lights()
 	else:										# es llamada por jugador
-		print("esperando fin de arreglo de cables")
+		# dar más "juice"
 		await player_fixed_cables
-		print("sacabaron los cables")
 		GlobalInfo.reset_lights()
+		GlobalInfo.unmute_alarm_sound()
 	
 
 func player_fixes_cables() -> void:
@@ -75,3 +84,19 @@ func exit_player_focus() -> void:
 	ref_cables.material_overlay = null
 	
 #endregion
+
+func start_buzzing_sfx() -> void:
+	$Zumbido.play() # encontrar una manera de lerpearlo para que no tape al SHUTDOWNSFX
+	##if not $Zumbido.playing:
+		##$Zumbido.play()
+		#
+	#if $Zumbido.volume_db >= BUZZING_VOLUME:
+		#return
+	#
+	#$Zumbido.volume_db += 3
+	#await get_tree().process_frame
+	#start_buzzing_sfx()
+
+func _process(delta: float) -> void:
+	if is_active:
+		print($Zumbido.volume_db)

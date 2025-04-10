@@ -76,11 +76,12 @@ static func trigger_next_order() -> void:
 static func clean_mop_order_completed() -> void:
 	punteroObjetivo = 2
 	objetivo_actual.text = listaObjetivos[punteroObjetivo]
-	
-static func trigger_win_sign() -> void:
+
+func win_state_sequence() -> void:
+	# TODO hacer un fade in y out más bonito
+	ost_player_ref.playing = false
 	objetivo_actual.text = listaObjetivos[4]
 
 func game_over_sequence() -> void:
-	# TODO hacer un fade in y out más bonito
-	ost_player_ref.playing = false
+	#ost_player_ref.playing = false
 	$GameOverSFX.play(2)

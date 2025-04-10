@@ -58,7 +58,7 @@ signal tearing_shit_state_exited
 
 
 func _ready() -> void:
-	choose_target(targets.values().pick_random())
+	choose_target(targets.FuseBox)#.values().pick_random())
 	origin = Splot.origin_splot.global_position
 	enter_reaching_state()
 	escaping = false
@@ -69,7 +69,7 @@ func choose_target(new_target : int) -> void:
 	match current_target:
 		targets.FuseBox:
 			var caja_fusible = get_tree().get_nodes_in_group("CajasFusibles").pick_random()
-			print(caja_fusible)
+			#print(caja_fusible)
 			target_retriever = NavegacionPulpo.get_pulpo_path_from_point.bind(self, caja_fusible)
 		targets.Player:
 			target_retriever = NavegacionPulpo.get_pulpo_path_from_point.bind(self, GlobalInfo.refPlayer)
@@ -211,10 +211,10 @@ func player_interaction() -> void:
 func assign_path(Origen : Callable) -> void: # estar seguro de que SIEMPRE haya por lo menos un charco 
 	current_path = Origen.call()
 	#print(current_path)
-	if current_path.size() == 1 and current_target == targets.FuseBox:
-		print(global_position.distance_squared_to(current_path[0]))
+	#if current_path.size() == 1 and current_target == targets.FuseBox:
+		#print(global_position.distance_squared_to(current_path[0]))
 	if current_path.size() == 1 and global_position.distance_squared_to(current_path[0]) < 0.7 and current_target == targets.FuseBox:
-		print("re-elige fusebox")
+		#print("re-elige fusebox")
 		choose_target(targets.FuseBox)
 	#if not movement_permission:
 		#NavegacionPulpo.splot_map_updated.disconnect(assign_path)

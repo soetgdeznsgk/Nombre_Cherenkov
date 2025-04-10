@@ -653,7 +653,7 @@ MAX_FROG_AMOUNT = 4
 MAX_SQUID_AMOUNT = 2
 
 [node name="RanaSpawnerTimer" type="Timer" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
-wait_time = 30.0
+wait_time = 10.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
 transform = Transform3D(0.1, 0, 0, 0, 1, 0, 0, 0, 0.1, 0.0162436, -4.23561, 0.0381289)
@@ -666,7 +666,7 @@ omni_range = 224.617
 omni_shadow_mode = 0
 
 [node name="PulpoSpawnerTimer" type="Timer" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
-wait_time = 60.0
+wait_time = 10.0
 
 [node name="BarandasI" type="Node3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0.609)

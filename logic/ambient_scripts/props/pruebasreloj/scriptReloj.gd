@@ -12,6 +12,7 @@ class_name InGameClock
 static var escala_de_tiempo: float = 1 
 static var hora_inicial : Vector3i = Vector3i(0,58,46) 	# para que empiece a las 12:58
 static var HORA_FINAL : int = (6 * 3600)
+static var finished_shift : bool = false
 
 var tiempo_simulado : float = 0.0
 
@@ -57,9 +58,11 @@ func _process(delta : float):
 	tiempo_simulado += delta * escala_de_tiempo
 	
 	# Actualizar el reloj cada segundo SIMULADO
-	if int(tiempo_simulado) % 1 == 0:
-		actualizar_reloj()
-	
-	if tiempo_simulado >= HORA_FINAL:
-		GlobalInfo.trigger_win_state()
+	if not finished_shift:
+		if int(tiempo_simulado) % 1 == 0:
+			actualizar_reloj()
+		
+		if tiempo_simulado >= HORA_FINAL:
+			GlobalInfo.trigger_win_state()
+			finished_shift = true
 		
