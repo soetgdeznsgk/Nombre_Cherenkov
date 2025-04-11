@@ -27,4 +27,5 @@ func start_next_click():
 	_players.pick_random().play()
 
 func _on_click_timer_timeout():
-	start_next_click()
+	if not GlobalInfo.winning_secuence:
+		start_next_click()

@@ -21,11 +21,11 @@ func start() -> void: # parte del grupo de nodos \"alarmables
 	$SpotLight3D.light_energy = 1
 	$SpatialAudioPlayer3D.play()
 
-func mute_sound() -> void:		
+func mute_sound(speed : float = 1) -> void:		
 	if $SpatialAudioPlayer3D.volume_db <= -80:
 		return
 		
-	$SpatialAudioPlayer3D.volume_db -= 1
+	$SpatialAudioPlayer3D.volume_db -= 1 * speed
 	await get_tree().process_frame
 	mute_sound()
 	

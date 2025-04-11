@@ -48,11 +48,11 @@ func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Debug_Exec"):
 		if not debug_bool:
 			#get_tree().get_first_node_in_group("WinStateTriggerables").play("Door_Open")	# añadir un efecto de luz para que door_open se note más
-			get_tree().get_first_node_in_group("CajasFusibles").squid_interaction(Pulpo.new())
-			#trigger_loss_state()
+			#get_tree().get_first_node_in_group("CajasFusibles").squid_interaction(Pulpo.new())
+			trigger_win_state()
 		else:
-			#get_tree().get_first_node_in_group("WinStateTriggerables").play("Door_Close")
-			get_tree().get_first_node_in_group("CajasFusibles").player_interaction()
+			get_tree().get_first_node_in_group("WinStateTriggerables").play("Door_Close")
+			#get_tree().get_first_node_in_group("CajasFusibles").player_interaction()
 			
 		debug_bool = not debug_bool
 			
@@ -104,8 +104,8 @@ func start_reactor_meltdown() -> void:
 		if LevelBuilder.controller_connected:
 			Input.start_joy_vibration(0, 0.5, 0.5, 1.5)
 
-func mute_alarm_sound() -> void:
-	get_tree().call_group("Alarmables", "mute_sound")
+func mute_alarm_sound(speed : int = 1) -> void:
+	get_tree().call_group("Alarmables", "mute_sound", speed)
 	
 func unmute_alarm_sound() -> void:
 	get_tree().call_group("Alarmables", "unmute_sound")
@@ -130,7 +130,6 @@ func reset_lights() -> void:
 
 #region ENDINGS
 func trigger_loss_state() -> void:
-	return 
 	if winning_secuence:
 		return
 	for node in get_tree().get_nodes_in_group("GameOverTriggerables"):
@@ -146,7 +145,9 @@ func trigger_win_state() -> void:		# al dejar correr el tiempo se está playando
 	winning_secuence = true
 	#UI.trigger_win_sign()
 	refUI.win_state_sequence()
-	get_tree().get_first_node_in_group("WinStateTriggerables").play("Door_Open")
+	#get_tree().get_first_node_in_group("WinStateTriggerables").play("Door_Open")
+	mute_alarm_sound(0.001)
+	get_tree().call_group("WinStateTriggerables", "win_sequence")
 	#await get_tree().create_timer(10).timeout
 	#get_tree().quit()
 	

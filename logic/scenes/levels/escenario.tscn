@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=4 uid="uid://koqv2tici8g"]
+[gd_scene load_steps=135 format=4 uid="uid://koqv2tici8g"]
 
 [ext_resource type="PackedScene" uid="uid://bnl1k0w4e64he" path="res://logic/scenes/jugador.tscn" id="1_5xau3"]
 [ext_resource type="Texture2D" uid="uid://de27uxs2gwl0c" path="res://modelos/textures/marble_tiles_dirty_1k/marble_tiles_diff_1k_editao.png" id="3_8xm7x"]
@@ -35,6 +35,59 @@
 [ext_resource type="Texture2D" uid="uid://be8es0rygcb1p" path="res://modelos/door/low_poly_door_02_2.png" id="27_yssgn"]
 [ext_resource type="AudioStream" uid="uid://dlukh4lao856n" path="res://audio/Puertas/closing-metal-door-44280.mp3" id="28_msdjt"]
 [ext_resource type="AudioStream" uid="uid://b44m5c4sewsap" path="res://audio/Puertas/opening-metal-door-98518.mp3" id="29_bckvr"]
+[ext_resource type="Texture2D" uid="uid://djjrmipmgot3k" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088276.png" id="59_ycxcg"]
+[ext_resource type="Texture2D" uid="uid://bnkajfftnlisx" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088277.png" id="60_0l1ec"]
+[ext_resource type="Texture2D" uid="uid://cqltrjiyt8k73" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088278.png" id="61_yamo8"]
+[ext_resource type="Texture2D" uid="uid://mbitue072p8l" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088279.png" id="62_x5vd2"]
+[ext_resource type="Texture2D" uid="uid://djs3jhk8o2bs5" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088280.png" id="63_01wl1"]
+[ext_resource type="Texture2D" uid="uid://8g6vslka4pcp" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088281.png" id="64_bkobk"]
+[ext_resource type="Texture2D" uid="uid://cy7ndon5nf0v4" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088282.png" id="65_agoob"]
+[ext_resource type="Texture2D" uid="uid://gj188salwuq5" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088283.png" id="66_1kq8n"]
+[ext_resource type="Texture2D" uid="uid://cgpjtl20qc0kx" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088284.png" id="67_np5hj"]
+[ext_resource type="Texture2D" uid="uid://ci0kxwrj4sogq" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088285.png" id="68_8agm7"]
+[ext_resource type="Texture2D" uid="uid://d24lp7jjvvskh" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088286.png" id="69_ktt3n"]
+[ext_resource type="Texture2D" uid="uid://csmdqd3gqphgb" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088287.png" id="70_4kfs6"]
+[ext_resource type="Texture2D" uid="uid://dmlqx3w88mc8e" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088288.png" id="71_si8tt"]
+[ext_resource type="Texture2D" uid="uid://b8j4xhtkhxw36" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088289.png" id="72_04xhe"]
+[ext_resource type="Texture2D" uid="uid://dtyf35gniiccv" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088290.png" id="73_ogglm"]
+[ext_resource type="Texture2D" uid="uid://bww23vhknrem8" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088291.png" id="74_ukwt7"]
+[ext_resource type="Texture2D" uid="uid://dtf4sh7ujm040" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088292.png" id="75_ggpyr"]
+[ext_resource type="Texture2D" uid="uid://cvqqjlipnqdhd" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088293.png" id="76_6dt1d"]
+[ext_resource type="Texture2D" uid="uid://d4a2qvyq35b2" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088294.png" id="77_dsh73"]
+[ext_resource type="Texture2D" uid="uid://bvk8e40ory5sc" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088295.png" id="78_ohe6c"]
+[ext_resource type="Texture2D" uid="uid://cxpp7c6wtcl3j" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088296.png" id="79_mlbw7"]
+[ext_resource type="Texture2D" uid="uid://c0kb3486lu76g" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088297.png" id="80_0f1kp"]
+[ext_resource type="Texture2D" uid="uid://tklf6w7t6i2w" path="res://modelos/textures/sprites/credits/fabian.png" id="80_05pji"]
+[ext_resource type="Texture2D" uid="uid://cfmrh1wrvtoqx" path="res://modelos/textures/sprites/credits/felipe.png" id="81_1pogm"]
+[ext_resource type="Texture2D" uid="uid://c4wi8008eagpu" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088298.png" id="81_g2u4r"]
+[ext_resource type="Texture2D" uid="uid://bv7ytsrfpme45" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088299.png" id="82_7u35u"]
+[ext_resource type="Texture2D" uid="uid://c3gdwe0gbwcwj" path="res://modelos/textures/sprites/credits/emiliano.png" id="82_wsaor"]
+[ext_resource type="Texture2D" uid="uid://domkkthdnttm1" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088300.png" id="83_jd6se"]
+[ext_resource type="Texture2D" uid="uid://m6i8jny5r738" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088301.png" id="84_x6g7c"]
+[ext_resource type="Texture2D" uid="uid://cxkcboswwvnom" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088302.png" id="85_2cue1"]
+[ext_resource type="Texture2D" uid="uid://cvv8cl0nbqbao" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088303.png" id="86_iev3m"]
+[ext_resource type="Texture2D" uid="uid://chw0ywrr0so5g" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088304.png" id="87_1jfdy"]
+[ext_resource type="Texture2D" uid="uid://b5dskg4rw08ca" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088305.png" id="88_i6nmk"]
+[ext_resource type="Texture2D" uid="uid://dn545rnyfnkm0" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088306.png" id="89_jqvlr"]
+[ext_resource type="Texture2D" uid="uid://bp0adbm8ru5ef" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088307.png" id="90_wwtbc"]
+[ext_resource type="Texture2D" uid="uid://dww75c2cf44lw" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088308.png" id="91_0hwcw"]
+[ext_resource type="Texture2D" uid="uid://dgvpjsrhvf2uo" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088309.png" id="92_nyt6l"]
+[ext_resource type="Texture2D" uid="uid://dt38g37y3uy36" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088310.png" id="93_awhl1"]
+[ext_resource type="Texture2D" uid="uid://dqqcg2epejorw" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088311.png" id="94_hf4n8"]
+[ext_resource type="Texture2D" uid="uid://criyiw215ac75" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088312.png" id="95_gp1pa"]
+[ext_resource type="Texture2D" uid="uid://c0vfddirm6x1p" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088313.png" id="96_g6e3l"]
+[ext_resource type="Texture2D" uid="uid://bsn14dgaohsii" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088314.png" id="97_52nps"]
+[ext_resource type="Texture2D" uid="uid://cb8yalb1mb6d1" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088315.png" id="98_3syhe"]
+[ext_resource type="Texture2D" uid="uid://b2f5sd1m7cg0o" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088316.png" id="99_cdq0l"]
+[ext_resource type="Texture2D" uid="uid://dg3ibrsyfeeph" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088317.png" id="100_4eq1n"]
+[ext_resource type="Texture2D" uid="uid://bf05evwes2hin" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088318.png" id="101_5xjtp"]
+[ext_resource type="Texture2D" uid="uid://ch0dj1x3a3qhw" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088319.png" id="102_4s2p1"]
+[ext_resource type="Texture2D" uid="uid://dw1kws3f2p5ak" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088320.png" id="103_vbb8v"]
+[ext_resource type="Texture2D" uid="uid://bjpe7dtfxaljb" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088321.png" id="104_thv7x"]
+[ext_resource type="Texture2D" uid="uid://bgkt210gphuqq" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088322.png" id="105_h8vtj"]
+[ext_resource type="Texture2D" uid="uid://ss6yjgmo2gny" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088323.png" id="106_umgxy"]
+[ext_resource type="Texture2D" uid="uid://bo4b5f8bqmwgs" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088324.png" id="107_nxpr6"]
+[ext_resource type="Texture2D" uid="uid://rx0yutjxrrjn" path="res://modelos/textures/sprites/title_sprite/Timeline 1_00088325.png" id="108_0f1qc"]
 
 [sub_resource type="Environment" id="Environment_owekg"]
 ambient_light_source = 2
@@ -318,15 +371,18 @@ script/source = "extends CSGBox3D
 
 var state : bool = false
 
-
+func win_sequence() -> void:
+	$Model/AnimationPlayer.play(\"Door_Open\")
+	$\"CréditosTrabajo/MainTitle\".play()
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group(\"Jugador\") and not state:
 		$Model/AnimationPlayer.play(\"Door_Close\")
 		state = true
 		
-	await get_tree().create_timer(20).timeout
+	await get_tree().create_timer(30).timeout
 	GlobalInfo.force_quit()
+	
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_spkrw"]
@@ -564,7 +620,163 @@ emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 16.0
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_n0jff"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_0et4k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("59_ycxcg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_0l1ec")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_yamo8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_x5vd2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_01wl1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_bkobk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_agoob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_1kq8n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_np5hj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_8agm7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_ktt3n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_4kfs6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_si8tt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_04xhe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("73_ogglm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("74_ukwt7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("75_ggpyr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_6dt1d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_dsh73")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_ohe6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_mlbw7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("80_0f1kp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("81_g2u4r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("82_7u35u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("83_jd6se")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_x6g7c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("85_2cue1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("86_iev3m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("87_1jfdy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("88_i6nmk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("89_jqvlr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("90_wwtbc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("91_0hwcw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("92_nyt6l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("93_awhl1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("94_hf4n8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("95_gp1pa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("96_g6e3l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("97_52nps")
+}, {
+"duration": 1.0,
+"texture": ExtResource("98_3syhe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("99_cdq0l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("100_4eq1n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("101_5xjtp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("102_4s2p1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("103_vbb8v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("104_thv7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("105_h8vtj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("106_umgxy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("107_nxpr6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("108_0f1qc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="GDScript" id="GDScript_6rhnd"]
 script/source = "extends OmniLight3D
@@ -649,11 +861,11 @@ height = 4.89067
 smooth_faces = false
 script = ExtResource("4_s5yiq")
 first_frog_target = NodePath("../../../../RanaManager/NodosDeNavegacionRana/nodo4")
-MAX_FROG_AMOUNT = 4
+MAX_FROG_AMOUNT = 3
 MAX_SQUID_AMOUNT = 2
 
 [node name="RanaSpawnerTimer" type="Timer" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
-wait_time = 10.0
+wait_time = 30.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
 transform = Transform3D(0.1, 0, 0, 0, 1, 0, 0, 0, 0.1, 0.0162436, -4.23561, 0.0381289)
@@ -666,7 +878,7 @@ omni_range = 224.617
 omni_shadow_mode = 0
 
 [node name="PulpoSpawnerTimer" type="Timer" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
-wait_time = 10.0
+wait_time = 60.0
 
 [node name="BarandasI" type="Node3D" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0.609)
@@ -903,7 +1115,7 @@ transform = Transform3D(-9.96959e-08, 0, -1.20595, 0, 1, 0, 2.28078, 0, -5.27136
 transform = Transform3D(0.179955, -0.00401462, 0, 0.00401462, 0.179955, 0, 0, 0, 0.18, -3.97277, -7.41664, 5.78753)
 texture = ExtResource("24_g6r08")
 
-[node name="Puerta" type="CSGBox3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control"]
+[node name="Puerta" type="CSGBox3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control" groups=["WinStateTriggerables"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2314, -0.693359, -9.36851)
 size = Vector3(1.42871, 2.85938, 8.89404)
 material = SubResource("StandardMaterial3D_h6epr")
@@ -934,7 +1146,7 @@ top_level = true
 mesh = SubResource("ArrayMesh_i8roc")
 skeleton = NodePath("")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Puerta/Model" groups=["WinStateTriggerables"]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Puerta/Model"]
 libraries = {
 "": SubResource("AnimationLibrary_wqjrw")
 }
@@ -953,17 +1165,48 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.7096)
 shape = SubResource("BoxShape3D_0qxq8")
 
 [node name="HabitaciónCréditos" type="CSGBox3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Puerta"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0877857, 0.00288868, -0.615147)
-size = Vector3(8.13464, 2.92752, 10.0015)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.99963, 0.00288868, -0.615147)
+size = Vector3(12.3481, 2.92752, 10.0015)
 material = SubResource("StandardMaterial3D_gvqki")
-
-[node name="TitleCard" type="AnimatedSprite3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Puerta"]
-sprite_frames = SubResource("SpriteFrames_n0jff")
 
 [node name="SonidoPuerta" type="AudioStreamPlayer3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Puerta"]
 attenuation_model = 3
 volume_db = 10.0
 unit_size = 100.0
+
+[node name="CréditosSFX" type="Node3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Puerta"]
+transform = Transform3D(0.885, 0, 0, 0, 0.885, 0, 0, 0, 0.885, 1.4922, -0.663631, 1.34784)
+
+[node name="CréditosTexturas" type="Node3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Puerta"]
+transform = Transform3D(0.885, 0, 0, 0, 0.885, 0, 0, 0, 0.885, 1.4922, -0.663631, 1.34784)
+
+[node name="CréditosModelos" type="Node3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Puerta"]
+transform = Transform3D(0.885, 0, 0, 0, 0.885, 0, 0, 0, 0.885, 1.4922, -0.663631, 1.34784)
+
+[node name="CréditosTrabajo" type="Node3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Puerta"]
+transform = Transform3D(0.885, 0, 0, 0, 0.885, 0, 0, 0, 0.885, 7.01, -7.423, 22.091)
+
+[node name="MainTitle" type="AnimatedSprite3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Puerta/CréditosTrabajo"]
+transform = Transform3D(0.595, 0, 0, 0, 0.595, 0, 0, 0, 0.595, -5.72753, 9.5, -31.0695)
+gi_mode = 0
+modulate = Color(0, 0, 0, 1)
+sprite_frames = SubResource("SpriteFrames_0et4k")
+frame = 1
+
+[node name="Fabian" type="Sprite3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Puerta/CréditosTrabajo"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.45159, 7.9813, -30.0603)
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("80_05pji")
+
+[node name="Felipe" type="Sprite3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Puerta/CréditosTrabajo"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -9.20769, 7.92426, -30.2026)
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("81_1pogm")
+
+[node name="Emiliano" type="Sprite3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Puerta/CréditosTrabajo"]
+transform = Transform3D(0.21, 0, 0, 0, 0.21, 0, 0, 0, 0.21, -5.64214, 8.8353, -30.9997)
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("82_wsaor")
 
 [node name="PlayerSpawn" type="Marker3D" parent="NavigationRegion3D/Geometría/Caja_Habitación"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.08868, 8.61526, -15.0779)
