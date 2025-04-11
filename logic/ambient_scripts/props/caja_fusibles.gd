@@ -76,13 +76,22 @@ func player_fixes_cables() -> void:
 #region Outline
 
 func enter_player_focus() -> void:
-	if is_active and ref_cables.material_overlay == null:
-		ref_cables.material_overlay = blue_outline
+	if is_active:
+		if ref_cables.material_overlay == null:
+			ref_cables.material_overlay = blue_outline
+		if not $Tooltip.visible:
+			$Tooltip.visible = true
 	#pass
 
 func exit_player_focus() -> void:
 	ref_cables.material_overlay = null
+	$Tooltip.visible = false
 	
+func define_appropiate_gamepad_tooltip(control : bool) -> void:
+	if control:
+		$"ControlTip".texture = load("res://modelos/textures/sprites/xbox_rt.png")
+	else:
+		$"ControlTip".texture = load("res://modelos/textures/sprites/left-click.png")
 #endregion
 
 func start_buzzing_sfx() -> void:

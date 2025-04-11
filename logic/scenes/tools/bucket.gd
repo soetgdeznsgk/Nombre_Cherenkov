@@ -209,7 +209,7 @@ func confirm_placeability() -> bool: # no es infalible, pero requiere dedicació
 #endregion
 
 #region Sonido
-func wheels_moving_sound() -> void:
+func wheels_moving_sound() -> void:		# TODO arreglar éste sonido asqueroso
 	if not $SFX/Ruedas.playing and position_delta.length_squared() > 0.1:
 		$SFX/Ruedas.play()
 	elif $SFX/Ruedas.playing and engine_force < 1.5:

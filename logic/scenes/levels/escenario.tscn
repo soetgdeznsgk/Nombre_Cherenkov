@@ -836,7 +836,7 @@ libraries = {
 }
 
 [node name="bucket" parent="." instance=ExtResource("5_ahg2q")]
-transform = Transform3D(0.0410563, 0, -0.999157, 0, 1, 0, 0.999157, 0, 0.0410563, 19.4576, 0.610428, -26.3748)
+transform = Transform3D(0.0410563, 0, -0.999157, 0, 1, 0, 0.999157, 0, 0.0410563, 7.1346, 0.610428, -8.62221)
 mass = 50.0
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
@@ -1111,7 +1111,7 @@ material = SubResource("StandardMaterial3D_ku5x2")
 [node name="Panel_Control" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control" instance=ExtResource("13_jkktu")]
 transform = Transform3D(-9.96959e-08, 0, -1.20595, 0, 1, 0, 2.28078, 0, -5.27136e-08, 0, -1.82592, 0)
 
-[node name="Sprite3D" type="Sprite3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control"]
+[node name="FCFPoster" type="Sprite3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control"]
 transform = Transform3D(0.179955, -0.00401462, 0, 0.00401462, 0.179955, 0, 0, 0, 0.18, -3.97277, -7.41664, 5.78753)
 texture = ExtResource("24_g6r08")
 
@@ -1152,11 +1152,15 @@ libraries = {
 }
 
 [node name="LuzPuerta" type="SpotLight3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Puerta/Model"]
-transform = Transform3D(0.445119, 0.140214, -0.884426, 0.0811198, 0.97729, 0.195763, 0.891789, -0.158882, 0.423637, -8.96738, 10.1037, -20.1974)
+transform = Transform3D(-0.00773094, 0.216164, -0.976327, 0.444484, 0.875343, 0.190286, 0.895753, -0.432491, -0.102849, -9.58993, 9.3858, -20.0509)
 top_level = true
 light_energy = 0.0
 light_size = 1.0
-spot_range = 54.5045
+shadow_enabled = true
+spot_range = 4096.0
+spot_attenuation = 0.22
+spot_angle = 30.0
+spot_angle_attenuation = 2.46229
 
 [node name="Area3D" type="Area3D" parent="NavigationRegion3D/Geometría/Caja_Habitación/Habitacion_Control/Puerta"]
 
@@ -1221,6 +1225,9 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 22.248
 [node name="CajaFusibles3" parent="NavigationRegion3D" instance=ExtResource("14_6egyr")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.1897, 0.740109, -2.2572)
 
+[node name="CajaFusibles4" parent="NavigationRegion3D" instance=ExtResource("14_6egyr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.2835, 0.721564, -27.9533)
+
 [node name="FuentesDeLuz" type="Node" parent="NavigationRegion3D"]
 
 [node name="BombilloReactor" type="OmniLight3D" parent="NavigationRegion3D/FuentesDeLuz" groups=["BombillasApagables"]]
@@ -1258,7 +1265,7 @@ wait_time = 3.0
 autostart = true
 
 [node name="BombilloLockers2" type="OmniLight3D" parent="NavigationRegion3D/FuentesDeLuz" groups=["BombillasApagables"]]
-transform = Transform3D(-0.919678, -8.04008e-08, 0.392674, 8.74228e-08, -1, -4.9738e-14, 0.392674, 3.43286e-08, 0.919678, -0.581296, 2.6266, -6.20096)
+transform = Transform3D(-0.919678, -8.04008e-08, 0.392674, 8.74228e-08, -1, -4.9738e-14, 0.392674, 3.43286e-08, 0.919678, -1.25124, 3.1365, -6.12614)
 light_indirect_energy = 0.3
 shadow_enabled = true
 omni_range = 13.037

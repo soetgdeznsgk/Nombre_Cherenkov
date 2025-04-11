@@ -5,7 +5,7 @@ class_name Splot
 var overlapping_splots : Array[Splot]
 
 @export var maxHuecos := 10
-@export var hueco_cooldown := 0.15
+@export var hueco_cooldown := 0.10
 
 var navigation_id : int
 

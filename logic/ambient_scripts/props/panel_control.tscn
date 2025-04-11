@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://btpu3eyttcmkr"]
+[gd_scene load_steps=16 format=3 uid="uid://btpu3eyttcmkr"]
 
 [ext_resource type="PackedScene" uid="uid://dow5ivvg1vhra" path="res://modelos/button_-_from_portal_2_original/scene.gltf" id="1_c0lom"]
 [ext_resource type="Texture2D" uid="uid://cbkgv4jvt85xd" path="res://modelos/button_-_from_portal_2_original/textures/portal_button_switch_baseColor.jpeg" id="2_ki8hd"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://d2g0udfppb40" path="res://modelos/textures/sprites/left-click.png" id="5_gukdn"]
 [ext_resource type="PackedScene" uid="uid://cve4e3lmdeq5d" path="res://logic/ambient_scripts/props/pruebasreloj/reloj.tscn" id="5_phnoe"]
 [ext_resource type="AudioStream" uid="uid://c5jqh1ny4vyyy" path="res://audio/Botones/Projector Button Push - Sound Effect.mp3" id="6_lgjef"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1lm04"]
+albedo_color = Color(0.446777, 0.446777, 0.446777, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qk04c"]
 cull_mode = 2
@@ -100,6 +103,8 @@ _data = {
 
 [node name="Panel_Control" type="CSGPolygon3D"]
 transform = Transform3D(-9.96959e-08, 0, -1.20595, 0, 1, 0, 2.28078, 0, -5.27136e-08, 0, 0, 0)
+layers = 1023
+material_override = SubResource("StandardMaterial3D_1lm04")
 operation = 2
 polygon = PackedVector2Array(1.43174, -0.223885, 0.0200481, 0.469478, 1.80631, 0.985589)
 mode = 1
@@ -116,7 +121,7 @@ spin_sides = 8
 material = SubResource("StandardMaterial3D_qk04c")
 
 [node name="Botón_Rojo" parent="." instance=ExtResource("1_c0lom")]
-transform = Transform3D(-1.48909e-08, 3.51017e-09, 0.185, 0.0803033, 0.340663, -1.08621e-15, -0.340663, 0.0803033, -8.08661e-09, 0, 0.807, -1.158)
+transform = Transform3D(-1.47628e-08, 3.98778e-09, 0.185, 0.100968, 0.33512, 2.32846e-10, -0.33512, 0.100968, -8.07949e-09, -2.906e-09, 0.873144, -1.28373)
 
 [node name="Skeleton3D" parent="Botón_Rojo/Sketchfab_model/22651b82dee743ada4984ec97caf27be_fbx/RootNode/portal_button_reduced/Object_6" index="0"]
 bones/4/position = Vector3(0, 13.6402, 0)

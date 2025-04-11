@@ -749,6 +749,7 @@ bones/9/rotation = Quaternion(6.33921e-08, 9.13616e-11, -3.13916e-07, 1)
 bones/9/scale = Vector3(1, 1, 1)
 
 [node name="Círculo_002" type="MeshInstance3D" parent="trapspffas/Esqueleto_001/Skeleton3D"]
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_5nwpj")
 skin = SubResource("Skin_ycv5j")
 surface_material_override/2 = SubResource("StandardMaterial3D_kgfim")
