@@ -1,22 +1,23 @@
-[gd_scene load_steps=9 format=3 uid="uid://cu30dahipapwi"]
+[gd_scene load_steps=10 format=3 uid="uid://cu30dahipapwi"]
 
 [ext_resource type="Script" path="res://logic/UI/control.gd" id="1_yfp7f"]
 [ext_resource type="StyleBox" uid="uid://crbcaxlixf3yw" path="res://logic/UI/styleboxes/blue_stylebox.tres" id="2_u2acb"]
 [ext_resource type="AudioStream" uid="uid://xf8bqhyw1kmt" path="res://audio/OST/Cherenkov Main Theme w_o Alarm.wav" id="3_a3mpb"]
 [ext_resource type="AudioStream" uid="uid://cpmm5uxak044c" path="res://audio/Cuarto/World-Trade-Center-Collapse-original-sound-_1_.wav" id="4_vaaqk"]
-
-[sub_resource type="Theme" id="Theme_u7d16"]
-default_font_size = 30
-RichTextLabel/colors/default_color = Color(1, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_3d7co"]
-font_size = 10
+[ext_resource type="PackedScene" uid="uid://cd14iuuu7fjel" path="res://logic/UI/pause/pause_filter.tscn" id="5_twl4t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_w2kkn"]
 font_size = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_25vka"]
 font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_3d7co"]
+font_size = 10
+
+[sub_resource type="Theme" id="Theme_u7d16"]
+default_font_size = 30
+RichTextLabel/colors/default_color = Color(1, 0, 0, 1)
 
 [node name="UI" type="CanvasLayer"]
 
@@ -90,46 +91,23 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "CONTAMINACIÓN"
 
-[node name="Aviso_Atrapado" type="Label" parent="Control"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -89.5
-offset_top = -21.5
-offset_right = 89.5
-offset_bottom = 21.5
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_u7d16")
-text = "¡ATRAPADX!"
-
-[node name="aviso_objetivo" type="Label" parent="Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.761
-anchor_right = 1.0
-anchor_bottom = 0.199
-offset_left = -4.56006
-offset_bottom = 6.53999
-grow_horizontal = 0
-text = "hola caracola
-"
-label_settings = SubResource("LabelSettings_3d7co")
-
 [node name="OST" type="AudioStreamPlayer" parent="Control"]
 stream = ExtResource("3_a3mpb")
 
 [node name="GameOverSFX" type="AudioStreamPlayer" parent="Control"]
 stream = ExtResource("4_vaaqk")
 
+[node name="FiltroPausa" parent="Control" instance=ExtResource("5_twl4t")]
+visible = false
+layout_mode = 0
+offset_top = 2.0
+
 [node name="aviso_pausar" type="Label" parent="."]
+visible = false
 offset_right = 470.0
 offset_bottom = 150.0
-text = "ESC para pausar
+text = "
+
 "
 label_settings = SubResource("LabelSettings_w2kkn")
 
@@ -144,3 +122,31 @@ text = "ESC para reanudar
 "
 label_settings = SubResource("LabelSettings_25vka")
 metadata/_edit_use_anchors_ = true
+
+[node name="aviso_objetivo" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.761
+anchor_right = 1.0
+anchor_bottom = 0.199
+offset_left = -4.56006
+offset_bottom = 6.53999
+grow_horizontal = 0
+text = "hola caracola
+"
+label_settings = SubResource("LabelSettings_3d7co")
+
+[node name="Aviso_Atrapado" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.5
+offset_top = -21.5
+offset_right = 89.5
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_u7d16")
+text = "¡ATRAPADX!"

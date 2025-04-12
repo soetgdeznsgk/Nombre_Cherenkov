@@ -2,9 +2,10 @@ extends Control
 class_name UI
 
 @onready var mop_saturation_bar := $SaturationBar
-@onready var aviso_atrapamiento := $Aviso_Atrapado
+@onready var aviso_atrapamiento := $"../Aviso_Atrapado"
 @onready var contamination_bar := $GlobalContaminationBar
 @onready var ost_player_ref : AudioStreamPlayer = $OST
+static var filtro_pausa : ColorRect
 static var aviso_pausa : Label 
 static var aviso_despausa : Label 
 static var objetivo_actual : Label
@@ -12,6 +13,11 @@ static var objetivo_actual : Label
 # Objetivos:
 static var listaObjetivos : Array = ["Presiona el botón rojo", "Agarra el trapero", "Sobrevive hasta las 6 am!", "Exprime el trapero", "Sal del edificio!"]
 static var punteroObjetivo : int = 0
+
+# State:
+static var paused : bool = false
+
+signal just_paused()
 
 #region Styleboxes
 @onready var style_blue : StyleBoxFlat = preload("res://logic/UI/styleboxes/blue_stylebox.tres")
@@ -21,9 +27,10 @@ static var punteroObjetivo : int = 0
 
 func _ready() -> void:
 	#mop_saturation_bar.modulate(Color.AQUA)
-	aviso_pausa = $"../aviso_pausar"
+	#aviso_pausa = $"../aviso_pausar"
 	aviso_despausa = $"../aviso_despausar"
-	objetivo_actual = $aviso_objetivo
+	filtro_pausa = $"FiltroPausa"
+	objetivo_actual = $"../aviso_objetivo"
 	objetivo_actual.text = listaObjetivos[punteroObjetivo]
 	
 	await get_tree().process_frame
@@ -65,8 +72,10 @@ func show_entrapment_inflicted_sign() -> void:
 	aviso_atrapamiento.visible = true
 	
 static func alternate_esc_enter() -> void: # PAUSA PARA LA BUILD DE ITCH
-	aviso_pausa.visible = not aviso_pausa.visible
+	#aviso_pausa.visible = not aviso_pausa.visible
+	filtro_pausa.visible = not filtro_pausa.visible
 	aviso_despausa.visible = not aviso_despausa.visible
+	paused = aviso_despausa.visible
 	#print(aviso_pausa.visible, " y ", aviso_despausa.visible)
 	
 static func trigger_next_order() -> void:

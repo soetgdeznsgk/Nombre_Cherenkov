@@ -9,6 +9,8 @@ static var mop_saturation : float = 0:
 			mop_saturation = 1
 			if not particles_ref.emitting:
 				particles_ref.emitting = true
+				dripping_sfx_ref.play()
+				
 			if not debug_bool2:
 				UI.trigger_next_order()
 				debug_bool2 = true
@@ -17,6 +19,7 @@ static var mop_saturation : float = 0:
 		elif value == 0:
 			UI.clean_mop_order_completed()
 			particles_ref.emitting = false
+			dripping_sfx_ref.playing = false
 			debug_bool2 = false
 			mop_saturation = value
 		else:
@@ -30,6 +33,7 @@ static var mop_saturation_pace := 0.01
 @onready var mesh_ref : MeshInstance3D = $"trapspffas/Esqueleto_001/Skeleton3D/Círculo_002"
 @onready var esqueleto_ref : Skeleton3D = $trapspffas/Esqueleto_001/Skeleton3D
 static var particles_ref : GPUParticles3D
+static var dripping_sfx_ref : SpatialAudioPlayer3D
 
 # animationtree
 @onready var anim_tree : AnimationTree = $AnimationTree
@@ -70,6 +74,7 @@ func _ready() -> void:
 	remote_transform_ref = GlobalInfo.refCamara.mop_remote_transform
 	origin_point_in_HUD = remote_transform_ref.position
 	particles_ref = $GPUParticles3D
+	dripping_sfx_ref = $Goteo
 	
 	await get_tree().process_frame
 	

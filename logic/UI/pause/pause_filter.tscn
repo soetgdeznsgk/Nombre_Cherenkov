@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cd14iuuu7fjel"]
+
+[ext_resource type="Shader" path="res://logic/UI/pause/cromatic_aberration.gdshader" id="1_46mre"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_onofp"]
+shader = ExtResource("1_46mre")
+shader_parameter/ca_strength = 20.0
+
+[node name="FiltroPausa" type="ColorRect"]
+material = SubResource("ShaderMaterial_onofp")
+offset_right = 958.0
+offset_bottom = 538.0

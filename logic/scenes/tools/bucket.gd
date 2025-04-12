@@ -142,6 +142,7 @@ func player_interaction() -> void: #ésta función estará en TODOS los objetos 
 
 func palanca_activada() -> void:
 	mop_reference.exprimir()
+	$SFX/TraperoLimpiado.play()
 #endregion
 
 #region in/out trapero

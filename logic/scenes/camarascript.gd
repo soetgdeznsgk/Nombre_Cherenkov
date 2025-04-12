@@ -52,6 +52,8 @@ func apply_controller_rotation() -> void:
 	rotation.x = clamp(rotation.x, deg_to_rad(-75), deg_to_rad(75))
 
 func _physics_process(delta):
+	if UI.paused:
+		return
 	if locked:
 		time_locked += delta
 		get_parent().look_at((global_position - pre_grab_camera_direction).lerp(focus_point, time_locked))

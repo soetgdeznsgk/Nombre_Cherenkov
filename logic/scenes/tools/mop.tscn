@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://cju206cf1ni5m"]
+[gd_scene load_steps=41 format=4 uid="uid://cju206cf1ni5m"]
 
 [ext_resource type="Script" path="res://logic/scenes/tools/mop.gd" id="1_qd35y"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/broom_glow.gd" id="2_0paim"]
@@ -6,6 +6,8 @@
 [ext_resource type="Resource" uid="uid://b535ha84kyfb6" path="res://logic/scenes/tools/mop_head_wiggle_material.tres" id="4_402ax"]
 [ext_resource type="Texture2D" uid="uid://d2g0udfppb40" path="res://modelos/textures/sprites/left-click.png" id="5_ytbbx"]
 [ext_resource type="Texture2D" uid="uid://dv6fhgsrr6nra" path="res://modelos/electrical_box/icons8-dot-30.png" id="6_ug8d5"]
+[ext_resource type="PackedScene" uid="uid://ms3fbucvi732" path="res://logic/ambient_scripts/spatial_sfx/SpatialAudioPlayer3D.tscn" id="7_kaflo"]
+[ext_resource type="AudioStream" uid="uid://idew61mpcxfu" path="res://audio/Trapero/waterdrip2.wav" id="8_euyuo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0f5uk"]
 size = Vector3(0.456604, 2.21809, 0.184814)
@@ -661,7 +663,7 @@ billboard_mode = 1
 
 [sub_resource type="QuadMesh" id="QuadMesh_np2m6"]
 material = SubResource("StandardMaterial3D_s3ee7")
-size = Vector2(0.03, 0.05)
+size = Vector2(0.08, 0.12)
 
 [node name="mop" type="Area3D" groups=["HasUserTooltip", "Trapero"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0105525, 0.741355, 0)
@@ -900,9 +902,10 @@ parameters/CleaningBlendSpace2D/blend_position = Vector2(0.893445, 0.0584071)
 parameters/IdleBlendSpace2D/blend_position = Vector2(0, 0)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.139916, 0)
 emitting = false
 amount = 50
-lifetime = 5.0
+lifetime = 3.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_k3emg")
 draw_pass_1 = SubResource("QuadMesh_np2m6")
@@ -913,6 +916,10 @@ visible = false
 billboard = 1
 no_depth_test = true
 texture = ExtResource("5_ytbbx")
+
+[node name="Goteo" parent="." instance=ExtResource("7_kaflo")]
+stream = ExtResource("8_euyuo")
+volume_db = 10.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

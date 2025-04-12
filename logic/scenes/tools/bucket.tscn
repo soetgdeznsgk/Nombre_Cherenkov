@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://di6fatgsdf124"]
+[gd_scene load_steps=25 format=4 uid="uid://di6fatgsdf124"]
 
 [ext_resource type="Script" path="res://logic/scenes/tools/bucket.gd" id="1_owtkk"]
 [ext_resource type="Script" path="res://logic/scenes/tools/bucket_lever.gd" id="2_1sgoo"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://dexckhu1sd6dw" path="res://audio/Carrito/Squeaking Metal Wheels Sound Effect  Metal Rolling Cart.mp3" id="2_kkrxi"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/postprocessing_items/outline_on_selection.gd" id="3_c0ipn"]
 [ext_resource type="Material" uid="uid://kf8cd7ahl5n7" path="res://logic/ambient_scripts/postprocessing_items/bucket_lever_material.tres" id="3_qgo5h"]
+[ext_resource type="AudioStream" uid="uid://b52wd2ffge4rw" path="res://audio/Carrito/bucket_actioned.wav" id="4_17w5l"]
 [ext_resource type="Material" uid="uid://cb1yquyn7im4w" path="res://logic/ambient_scripts/postprocessing_items/outline_material_bucket.tres" id="4_o6cvj"]
 [ext_resource type="Texture2D" uid="uid://d2g0udfppb40" path="res://modelos/textures/sprites/left-click.png" id="5_b663r"]
 [ext_resource type="Texture2D" uid="uid://cunou4gmeyndt" path="res://modelos/textures/sprites/middle-click.png" id="7_cigtn"]
@@ -257,6 +258,11 @@ script = ExtResource("1_owtkk")
 
 [node name="Ruedas" parent="SFX" instance=ExtResource("2_6r4sr")]
 stream = ExtResource("2_kkrxi")
+
+[node name="TraperoLimpiado" parent="SFX" instance=ExtResource("2_6r4sr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12347, -0.547769)
+stream = ExtResource("4_17w5l")
+max_reverb_wetness = 0.0
 
 [node name="Area3D Palanca" type="Area3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.187816, 1.49125, -0.7542)
