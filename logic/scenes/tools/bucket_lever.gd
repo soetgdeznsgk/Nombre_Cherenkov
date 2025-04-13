@@ -68,7 +68,7 @@ func action_lerp():
 	
 func reset_lerp(delta : float):
 	var n_z : float = lerp(rotation_degrees.z, 0.0, delta)
-	
+	$"../SFX/TraperoApretado".stop()
 	rotation_degrees.z = n_z
 	position = origin_local
 	skeleton_ref.set_bone_pose_rotation(lever_bone_idx, Quaternion(Vector3.FORWARD, -n_z * PI/180 * 0.5))
@@ -83,4 +83,7 @@ func player_interaction() -> void:
 	if not winding:
 		time_total += delta_time
 		action_lerp()
+		if not $"../SFX/TraperoApretado".playing:
+			$"../SFX/TraperoApretado".play()
+		
 	

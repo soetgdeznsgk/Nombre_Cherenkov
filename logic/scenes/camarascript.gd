@@ -85,7 +85,7 @@ func _physics_process(delta):
 	
 	#region Código de interacción con objetos
 	if Input.is_action_pressed("PrimaryInteraction") and interaction_raycast.is_colliding(): 
-		if last_collision != null:
+		if last_collision != null: #and last_collision.name != "ColisiónJugador": TODO hacer algo pa que no se pueda quedar unx atascado por un pulpo dentro de la piscina 
 			if mop_reference != null and not last_collision.is_in_group("Trapero") and GlobalInfo.timerInteractionBuffer.is_stopped():
 				mop_reference.trapeo_lerp_to(interaction_raycast.get_collision_point(), 0)
 				#print(last_collision)

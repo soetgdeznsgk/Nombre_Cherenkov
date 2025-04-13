@@ -49,9 +49,11 @@ func _input(_event: InputEvent) -> void:
 		if not debug_bool:
 			#get_tree().get_first_node_in_group("WinStateTriggerables").play("Door_Open")	# añadir un efecto de luz para que door_open se note más
 			#get_tree().get_first_node_in_group("CajasFusibles").squid_interaction(Pulpo.new())
-			trigger_win_state()
+			#trigger_win_state()
+			mute_alarm_sound()
 		else:
-			get_tree().get_first_node_in_group("WinStateTriggerables").play("Door_Close")
+			unmute_alarm_sound()
+			#get_tree().get_first_node_in_group("WinStateTriggerables").play("Door_Close")
 			#get_tree().get_first_node_in_group("CajasFusibles").player_interaction()
 			
 		debug_bool = not debug_bool
@@ -130,6 +132,7 @@ func reset_lights() -> void:
 
 #region ENDINGS
 func trigger_loss_state() -> void:
+	return
 	if winning_secuence:
 		return
 	for node in get_tree().get_nodes_in_group("GameOverTriggerables"):

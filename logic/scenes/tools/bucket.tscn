@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://di6fatgsdf124"]
+[gd_scene load_steps=28 format=4 uid="uid://di6fatgsdf124"]
 
 [ext_resource type="Script" path="res://logic/scenes/tools/bucket.gd" id="1_owtkk"]
 [ext_resource type="Script" path="res://logic/scenes/tools/bucket_lever.gd" id="2_1sgoo"]
@@ -12,6 +12,7 @@
 [ext_resource type="Material" uid="uid://cb1yquyn7im4w" path="res://logic/ambient_scripts/postprocessing_items/outline_material_bucket.tres" id="4_o6cvj"]
 [ext_resource type="Texture2D" uid="uid://d2g0udfppb40" path="res://modelos/textures/sprites/left-click.png" id="5_b663r"]
 [ext_resource type="Texture2D" uid="uid://cunou4gmeyndt" path="res://modelos/textures/sprites/middle-click.png" id="7_cigtn"]
+[ext_resource type="AudioStream" uid="uid://dyqf86ds6myrv" path="res://audio/Carrito/mop_crushed5.wav" id="7_tbedy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dewda"]
 size = Vector3(0.248413, 0.778442, 0.253662)
@@ -266,7 +267,6 @@ max_reverb_wetness = 1.0
 [node name="TraperoLimpiado" parent="SFX" instance=ExtResource("2_6r4sr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12347, -0.547769)
 stream = ExtResource("4_17w5l")
-max_reverb_wetness = 0.0
 
 [node name="JiggleSFX" type="Node3D" parent="SFX" node_paths=PackedStringArray("balde")]
 script = ExtResource("2_peiql")
@@ -276,6 +276,9 @@ balde = NodePath("../..")
 stream = ExtResource("3_p7wgh")
 volume_db = -80.0
 autoplay = true
+
+[node name="TraperoApretado" parent="SFX" instance=ExtResource("2_6r4sr")]
+stream = ExtResource("7_tbedy")
 
 [node name="Area3D Palanca" type="Area3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.187816, 1.49125, -0.7542)

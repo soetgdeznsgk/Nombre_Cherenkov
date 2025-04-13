@@ -54,7 +54,7 @@ func light_flicker_coroutine(p) -> void:
 	GlobalInfo.force_lights_flickering()
 	if p is Pulpo:
 		await p.tearing_shit_state_exited
-		GlobalInfo.mute_alarm_sound()
+		GlobalInfo.mute_alarm_sound(5)
 		$Zumbido.stop()
 		$ShutDownSFX.play()
 		GlobalInfo.shut_down_lights()
@@ -106,6 +106,6 @@ func start_buzzing_sfx() -> void:
 	#await get_tree().process_frame
 	#start_buzzing_sfx()
 
-func _process(delta: float) -> void:
-	if is_active:
-		print($Zumbido.volume_db)
+#func _process(delta: float) -> void:
+	#if is_active:
+		#print($Zumbido.volume_db)
