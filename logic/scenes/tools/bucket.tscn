@@ -1,10 +1,12 @@
-[gd_scene load_steps=25 format=4 uid="uid://di6fatgsdf124"]
+[gd_scene load_steps=27 format=4 uid="uid://di6fatgsdf124"]
 
 [ext_resource type="Script" path="res://logic/scenes/tools/bucket.gd" id="1_owtkk"]
 [ext_resource type="Script" path="res://logic/scenes/tools/bucket_lever.gd" id="2_1sgoo"]
 [ext_resource type="PackedScene" uid="uid://ms3fbucvi732" path="res://logic/ambient_scripts/spatial_sfx/SpatialAudioPlayer3D.tscn" id="2_6r4sr"]
-[ext_resource type="AudioStream" uid="uid://dexckhu1sd6dw" path="res://audio/Carrito/Squeaking Metal Wheels Sound Effect  Metal Rolling Cart.mp3" id="2_kkrxi"]
+[ext_resource type="Script" path="res://logic/scenes/tools/bucket_jiggle_sfx_manager.gd" id="2_peiql"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/postprocessing_items/outline_on_selection.gd" id="3_c0ipn"]
+[ext_resource type="AudioStream" uid="uid://c78ebnvsgjpeu" path="res://audio/Carrito/bucket_fall.wav" id="3_ch6mu"]
+[ext_resource type="AudioStream" uid="uid://cwjo5dda52lxb" path="res://audio/Carrito/squeak2.wav" id="3_p7wgh"]
 [ext_resource type="Material" uid="uid://kf8cd7ahl5n7" path="res://logic/ambient_scripts/postprocessing_items/bucket_lever_material.tres" id="3_qgo5h"]
 [ext_resource type="AudioStream" uid="uid://b52wd2ffge4rw" path="res://audio/Carrito/bucket_actioned.wav" id="4_17w5l"]
 [ext_resource type="Material" uid="uid://cb1yquyn7im4w" path="res://logic/ambient_scripts/postprocessing_items/outline_material_bucket.tres" id="4_o6cvj"]
@@ -256,13 +258,24 @@ script = ExtResource("1_owtkk")
 
 [node name="SFX" type="Node3D" parent="."]
 
-[node name="Ruedas" parent="SFX" instance=ExtResource("2_6r4sr")]
-stream = ExtResource("2_kkrxi")
+[node name="CaidaBalde" parent="SFX" instance=ExtResource("2_6r4sr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54939, 0.039884)
+stream = ExtResource("3_ch6mu")
+max_reverb_wetness = 1.0
 
 [node name="TraperoLimpiado" parent="SFX" instance=ExtResource("2_6r4sr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12347, -0.547769)
 stream = ExtResource("4_17w5l")
 max_reverb_wetness = 0.0
+
+[node name="JiggleSFX" type="Node3D" parent="SFX" node_paths=PackedStringArray("balde")]
+script = ExtResource("2_peiql")
+balde = NodePath("../..")
+
+[node name="Ruedas" parent="SFX/JiggleSFX" instance=ExtResource("2_6r4sr")]
+stream = ExtResource("3_p7wgh")
+volume_db = -80.0
+autoplay = true
 
 [node name="Area3D Palanca" type="Area3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.187816, 1.49125, -0.7542)
@@ -408,4 +421,5 @@ texture = ExtResource("7_cigtn")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0408936, 0.790588, -0.514551)
 size = Vector3(0.670654, 0.418823, 0.654297)
 
+[connection signal="bucket_equipped" from="." to="SFX/JiggleSFX" method="_on_bucket_equipped"]
 [connection signal="lever_activated" from="Area3D Palanca" to="." method="palanca_activada"]

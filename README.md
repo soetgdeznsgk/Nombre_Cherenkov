@@ -60,4 +60,6 @@ SFX:
     Nuclear Alarm Siren by Prestigigator, under special permission
     Power Down by freesound_community from Pixabay under CC (?)
     Water Drops by Sound FX Lab via Youtube under CC
-    Sound FX - Mop and Bucket by Sound on Sound FX via Youtube under TODO CLEAR LICENSE
+    Sound FX - Mop and Bucket by "Sound on Sound FX" via Youtube under special permission
+    Plastic Thud Impacts by Everyday Cinematic Sounds via Youtube under CC
+    Squeaking Metal Wheels SFX by Global Sound Archive via Youtube

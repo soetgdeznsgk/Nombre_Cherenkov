@@ -836,7 +836,7 @@ libraries = {
 }
 
 [node name="bucket" parent="." instance=ExtResource("5_ahg2q")]
-transform = Transform3D(0.0410563, 0, -0.999157, 0, 1, 0, 0.999157, 0, 0.0410563, 7.1346, 0.610428, -8.62221)
+transform = Transform3D(0.0410563, 0, -0.999157, 0, 1, 0, 0.999157, 0, 0.0410563, 7.1346, 0.0886005, -8.62221)
 mass = 50.0
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]

@@ -18,7 +18,7 @@ const NO_INTERACTION_TIME := 0.3
 @onready var refCamara : InteraccionesJugador
 @onready var refTrapero : Mop = get_tree().get_nodes_in_group("Trapero").front()
 
-@onready var refBalde : Balde = get_tree().get_first_node_in_group("Baldes")
+@onready var refBalde : Balde = get_tree().get_first_node_in_group("Baldes")	
 
 # info UI
 @onready var refUI : UI = get_tree().get_first_node_in_group("UI")

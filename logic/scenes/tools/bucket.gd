@@ -32,6 +32,10 @@ func _ready() -> void:
 	if LevelBuilder.controller_connected:
 		$ControlTipRT.texture = load("res://modelos/textures/sprites/xbox_rt.png")
 		$ControlTipLT.texture = load("res://modelos/textures/sprites/xbox_lt.png")
+	
+	linear_velocity = Vector3.ZERO
+	angular_velocity = Vector3.ZERO
+	#engine_force = 0
 	#steering = 0 #trailer
 
 func _physics_process(_delta: float) -> void:
@@ -41,9 +45,7 @@ func _physics_process(_delta: float) -> void:
 			
 		if engine_force > 1: # solución barata, funciona para frenar entonces lo considero terminado
 			engine_force /= 1.05
-		else:
-			wheels_moving_sound()
-					
+			
 		if Input.is_action_pressed("SecondaryInteraction") and $grab_buffer.is_stopped() and player_on_range: 
 			alternate_on_player_hud()
 				
@@ -54,7 +56,6 @@ func _physics_process(_delta: float) -> void:
 		position_delta = GeometricToolbox.y_offset_vector_to_0(remote_transform_ref.global_position - global_position)
 		global_position.x = remote_transform_ref.global_position.x
 		global_position.z = remote_transform_ref.global_position.z
-		wheels_moving_sound()
 		
 func _input(event: InputEvent) -> void:
 	if in_hud:
@@ -96,11 +97,11 @@ func alternate_on_player_hud() -> void:
 func adjust_forces(horizontal_cam_delta : float) -> void: # mi obra maestra
 		var inercia = position_delta.rotated(Vector3.UP, -rotation.y) * Engine.max_fps * 30 / abs(horizontal_cam_delta)
 		var centrifuga = Vector3.BACK * abs(horizontal_cam_delta) # TODO esto será afectado por si el balde tiene agua o no
-		#TODO arreglar bug donde no se actualiza automáticamente sino tras 1 segundo
+
 		steering = Vector3.BACK.signed_angle_to(inercia + centrifuga, Vector3.UP)
 		if abs(horizontal_cam_delta) + (inercia.length()) > 15:
 			engine_force = ( abs(horizontal_cam_delta * 7) + (inercia.length())  )
-			#print(engine_force, " = ", abs(horizontal_cam_delta * 5), " + ", inercia.length())
+			
 
 func enter_player_focus() -> void:
 	#print("entra a la vision ", Time.get_time_string_from_system())
@@ -169,6 +170,7 @@ func check_bucket_orientation() -> void:
 	if transform.basis.y.dot(Vector3.UP) < tumbled_over_trigger:
 		if not bucket_ko:
 			print("caido")
+			$SFX/CaidaBalde.play()
 			#spawnear un charco justo donde cae 
 			GlobalInfo.on_aterrizaje_rana(global_position + basis.y)
 			bucket_ko = true
@@ -207,12 +209,4 @@ func confirm_placeability() -> bool: # no es infalible, pero requiere dedicació
 
 #endregion
 
-#endregion
-
-#region Sonido
-func wheels_moving_sound() -> void:		# TODO arreglar éste sonido asqueroso
-	if not $SFX/Ruedas.playing and position_delta.length_squared() > 0.1:
-		$SFX/Ruedas.play()
-	elif $SFX/Ruedas.playing and engine_force < 1.5:
-		$SFX/Ruedas.stop()
 #endregion

@@ -8,6 +8,6 @@ void fragment() {
 	float red = texture(SCREEN_TEXTURE, SCREEN_UV - ca_offset).r;
 	float green = texture(SCREEN_TEXTURE, SCREEN_UV).g;
 	float blue = texture(SCREEN_TEXTURE, SCREEN_UV + ca_offset).b;
-	
+
 	COLOR = vec4(red, green, blue, 1.0);
 	}
