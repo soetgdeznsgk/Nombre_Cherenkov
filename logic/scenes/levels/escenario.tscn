@@ -862,7 +862,6 @@ smooth_faces = false
 script = ExtResource("4_s5yiq")
 first_frog_target = NodePath("../../../../RanaManager/NodosDeNavegacionRana/nodo4")
 MAX_FROG_AMOUNT = 3
-MAX_SQUID_AMOUNT = 2
 
 [node name="RanaSpawnerTimer" type="Timer" parent="NavigationRegion3D/Geometría/Piso/PiscinaD"]
 wait_time = 30.0

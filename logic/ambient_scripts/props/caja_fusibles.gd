@@ -36,7 +36,7 @@ func deactivate_fusebox() -> void:
 	#GlobalInfo.reset_lights()
 	
 func squid_interaction(p : Pulpo) -> bool:
-	if is_active:
+	if GlobalInfo.power_outage or p.health == 0:
 		return false
 	
 	$Zumbido.play()
@@ -58,6 +58,7 @@ func light_flicker_coroutine(p) -> void:
 		$Zumbido.stop()
 		$ShutDownSFX.play()
 		GlobalInfo.shut_down_lights()
+		GlobalInfo.power_outage = true
 	else:										# es llamada por jugador
 		# dar más "juice"
 		await player_fixed_cables

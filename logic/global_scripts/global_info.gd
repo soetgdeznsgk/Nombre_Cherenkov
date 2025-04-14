@@ -7,6 +7,7 @@ var splot_count := 0
 @export var lightbulb_max_energy : int = 1
 var meltdown_triggered : bool = false
 var winning_secuence :bool = false
+var power_outage : bool = false
 
 # info jugador
 static var playerPosition : Vector3
@@ -50,11 +51,14 @@ func _input(_event: InputEvent) -> void:
 			#get_tree().get_first_node_in_group("WinStateTriggerables").play("Door_Open")	# añadir un efecto de luz para que door_open se note más
 			#get_tree().get_first_node_in_group("CajasFusibles").squid_interaction(Pulpo.new())
 			#trigger_win_state()
-			mute_alarm_sound()
+			#mute_alarm_sound()
+			refPiscina._on_pulpo_spawner_timer_timeout()
 		else:
-			unmute_alarm_sound()
+			#unmute_alarm_sound()
 			#get_tree().get_first_node_in_group("WinStateTriggerables").play("Door_Close")
 			#get_tree().get_first_node_in_group("CajasFusibles").player_interaction()
+			for node in get_tree().root.get_child(4).get_child(5).get_children():
+				node.health = 0
 			
 		debug_bool = not debug_bool
 			

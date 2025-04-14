@@ -149,4 +149,5 @@ offset_bottom = 21.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_u7d16")
-text = "¡ATRAPADX!"
+text = "¡Golpea!"
+horizontal_alignment = 1

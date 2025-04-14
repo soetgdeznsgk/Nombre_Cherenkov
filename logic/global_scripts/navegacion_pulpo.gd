@@ -40,7 +40,9 @@ func get_escape_path(pulpo_ref : Pulpo) -> PackedVector3Array:
 	if pulpo_ref.position.distance_squared_to(pulpo_ref.origin) < 0.6:
 		pulpo_ref.pop_squid()
 	var start_ref : int = pathfinding_map.get_closest_point(pulpo_ref.position)
-	var end_ref : int = pathfinding_map.get_closest_point(pulpo_ref.origin)
+	var end_ref : int = Splot.origin_splot.navigation_id#pathfinding_map.get_closest_point(pulpo_ref.origin)
+	
+	#print(end_ref, " y la primera es: ", Splot.origin_splot.navigation_id)
 	
 	var t : int = pathfinding_map.get_point_weight_scale(Splot.origin_splot.navigation_id)			# Guardar el INF del origen pa que no se pierda
 	pathfinding_map.set_point_weight_scale(Splot.origin_splot.navigation_id, 0)

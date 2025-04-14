@@ -58,7 +58,10 @@ signal tearing_shit_state_exited
 
 
 func _ready() -> void:
-	choose_target(targets.FuseBox)#.values().pick_random())
+	if not GlobalInfo.power_outage:
+		choose_target(targets.FuseBox)#.values().pick_random())
+	else:
+		choose_target(targets.Player)
 	origin = Splot.origin_splot.global_position
 	enter_reaching_state()
 	escaping = false
@@ -161,6 +164,7 @@ func enter_tearing_shit_state() -> void:
 	#GlobalInfo.shut_down_lights()
 	choose_target(targets.Player)
 	tearing_shit_state_exited.emit()
+	$TEMPORALNoAttackTimer.stop()
 	enter_pursuing_state()
 #endregion
 
@@ -187,7 +191,7 @@ func _on_body_exited(body: Node3D) -> void: # DEBUG
 
 
 func _on_arm_span_body_entered(body: Node3D) -> void:
-	if body.is_in_group("Jugador"):
+	if body.is_in_group("Jugador") and $TEMPORALNoAttackTimer.is_stopped() and health > 0:
 		force_stop_state_timers()
 		enter_grabbing_state()
 		GlobalInfo.squid_hugs_player(position)
@@ -202,10 +206,9 @@ func _on_arm_span_body_exited(body: Node3D) -> void:
 		pass
 
 func player_interaction() -> void:
-	if GlobalInfo.timerInteractionBuffer.is_stopped() and GlobalInfo.refTrapero.anim_state != GlobalInfo.refTrapero.states.Stowed:
+	if GlobalInfo.timerInteractionBuffer.is_stopped() and GlobalInfo.refTrapero.anim_state != Mop.states.Stowed:
 		#print("squid lee interaction")
 		health -= 1
-
 #endregion
 
 func assign_path(Origen : Callable) -> void: # estar seguro de que SIEMPRE haya por lo menos un charco 
