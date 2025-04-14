@@ -46,6 +46,7 @@ func _process(_delta: float) -> void:
 	playerPosition = refPlayer.position
 
 func _input(_event: InputEvent) -> void:
+	return
 	if Input.is_action_just_pressed("Debug_Exec"):
 		if not debug_bool:
 			#get_tree().get_first_node_in_group("WinStateTriggerables").play("Door_Open")	# añadir un efecto de luz para que door_open se note más
@@ -136,7 +137,6 @@ func reset_lights() -> void:
 
 #region ENDINGS
 func trigger_loss_state() -> void:
-	return
 	if winning_secuence:
 		return
 	for node in get_tree().get_nodes_in_group("GameOverTriggerables"):

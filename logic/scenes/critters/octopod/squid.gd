@@ -147,6 +147,7 @@ func enter_idle_state() -> void:
 	$"Idle State Timer".start()
 	current_state = states.Idle
 	# anim
+	await get_tree().create_timer(1).timeout	# para que no salte tras matar a un pulpo
 	GlobalInfo.squid_leaves_player()
 	
 # TEARING SHIT APART
@@ -206,7 +207,7 @@ func _on_arm_span_body_exited(body: Node3D) -> void:
 		pass
 
 func player_interaction() -> void:
-	if GlobalInfo.timerInteractionBuffer.is_stopped() and GlobalInfo.refTrapero.anim_state != Mop.states.Stowed:
+	if GlobalInfo.timerInteractionBuffer.is_stopped(): #and GlobalInfo.refTrapero.anim_state != Mop.states.Stowed:
 		#print("squid lee interaction")
 		health -= 1
 #endregion
