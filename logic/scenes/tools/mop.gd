@@ -12,7 +12,8 @@ static var mop_saturation : float = 0:
 				dripping_sfx_ref.play()
 				
 			if not debug_bool2:
-				UI.trigger_next_order()
+				#UI.trigger_next_order()
+				GlobalInfo.refBalde.show_location_tooltip()
 				debug_bool2 = true
 			return
 		
@@ -77,7 +78,7 @@ func _ready() -> void:
 	dripping_sfx_ref = $Goteo
 	
 	await get_tree().process_frame
-	
+	$TutorialTooltip/AnimationPlayer.play("TutoTooltipUpAndDown")
 	#state_stowed = false # DEBUG hasta que se haga para poderse "recoger" en el inicio
 	
 static func increase_saturation(_o : float) -> void:
@@ -132,8 +133,9 @@ static func exprimir() -> void:
 func reparent_action(nodo : Node):
 	
 	if not debug_bool1:
-		UI.trigger_next_order()
+		#UI.trigger_next_order()
 		debug_bool1 = true
+		$TutorialTooltip.queue_free()
 	
 	if LevelBuilder.controller_connected:
 		Input.start_joy_vibration(0, 0.5, 0, 0.1)
@@ -173,3 +175,4 @@ func player_interaction() -> void: # metodo "interfaz"
 	if GlobalInfo.timerInteractionBuffer.is_stopped() and anim_state == states.Stowed:#states_stowed: OK
 		reparent_action(get_tree().get_first_node_in_group("Jugador"))
 		
+#func trigger_tooltip() -> void

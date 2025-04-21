@@ -80,8 +80,9 @@ static func alternate_esc_enter() -> void: # PAUSA PARA LA BUILD DE ITCH
 	#print(aviso_pausa.visible, " y ", aviso_despausa.visible)
 	
 static func trigger_next_order() -> void:
-	punteroObjetivo += 1
-	objetivo_actual.text = listaObjetivos[punteroObjetivo]
+	return
+	#punteroObjetivo += 1
+	#objetivo_actual.text = listaObjetivos[punteroObjetivo]
 	
 static func clean_mop_order_completed() -> void:
 	punteroObjetivo = 2

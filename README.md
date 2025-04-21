@@ -40,6 +40,7 @@ Texturas:
     Click free icon by Flaticon, retrieve from https://www.flaticon.com/free-icon/click_3646205?term=mouse+wheel&page=1&position=3&origin=search&related_id=3646205, licensed for personal and commercial use under attribution.
     Xbox RT icon by icons8
     Xbox LT icon by icons8
+    Arrow Icons by EncoderXSolutions via pngtree.com
 
 Modelos:
     This work is based on "First Motor Siren" (https://sketchfab.com/3d-models/first-motor-siren-55070fbdcc754a08aa270acea7d89e6c) by Signalrenders (https://sketchfab.com/Signalrenders) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

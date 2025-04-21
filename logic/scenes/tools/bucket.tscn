@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://di6fatgsdf124"]
+[gd_scene load_steps=32 format=4 uid="uid://di6fatgsdf124"]
 
 [ext_resource type="Script" path="res://logic/scenes/tools/bucket.gd" id="1_owtkk"]
 [ext_resource type="Script" path="res://logic/scenes/tools/bucket_lever.gd" id="2_1sgoo"]
@@ -13,6 +13,34 @@
 [ext_resource type="Texture2D" uid="uid://d2g0udfppb40" path="res://modelos/textures/sprites/left-click.png" id="5_b663r"]
 [ext_resource type="Texture2D" uid="uid://cunou4gmeyndt" path="res://modelos/textures/sprites/middle-click.png" id="7_cigtn"]
 [ext_resource type="AudioStream" uid="uid://dyqf86ds6myrv" path="res://audio/Carrito/mop_crushed5.wav" id="7_tbedy"]
+[ext_resource type="Texture2D" uid="uid://3uemlrrm7qsk" path="res://modelos/textures/sprites/vector.png" id="12_o6h6q"]
+
+[sub_resource type="Animation" id="Animation_csoho"]
+resource_name = "new_animation"
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.238405, 3.15592, -0.772609, 0.5, 1, 0.238405, 2.65966, -0.772609, 0.966667, 1, 0.238405, 3.15592, -0.772609)
+
+[sub_resource type="Animation" id="Animation_5uuyh"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 2.59878, 0.0409986)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hngmy"]
+_data = {
+"RESET": SubResource("Animation_5uuyh"),
+"new_animation": SubResource("Animation_csoho")
+}
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dewda"]
 size = Vector3(0.248413, 0.778442, 0.253662)
@@ -279,6 +307,17 @@ autoplay = true
 
 [node name="TraperoApretado" parent="SFX" instance=ExtResource("2_6r4sr")]
 stream = ExtResource("7_tbedy")
+
+[node name="TutoToolTip" type="Sprite3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 2.59878, 0.0409986)
+visible = false
+billboard = 2
+texture = ExtResource("12_o6h6q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TutoToolTip"]
+libraries = {
+"": SubResource("AnimationLibrary_hngmy")
+}
 
 [node name="Area3D Palanca" type="Area3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.187816, 1.49125, -0.7542)

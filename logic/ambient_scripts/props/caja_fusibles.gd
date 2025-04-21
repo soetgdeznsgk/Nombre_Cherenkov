@@ -18,12 +18,14 @@ extends StaticBody3D
 		else:
 			#print("se desactiva ", name)
 			deactivate_fusebox()
-			
+		
 		is_active = v
+		$TutoTooltip.visible = v
 
 signal player_fixed_cables
 
 func _ready() -> void:
+	$TutoTooltip/AnimationPlayer.play("new_animation")
 	is_active = false
 
 func activate_fusebox()-> void:

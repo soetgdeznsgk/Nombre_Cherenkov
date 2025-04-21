@@ -27,6 +27,7 @@ func _ready() -> void:
 	bucket_equipped.connect(GlobalInfo.bucket_just_equipped)
 	bucket_unequipped.connect(GlobalInfo.bucket_just_unequipped)
 	remote_transform_ref = GlobalInfo.refPlayer.camara_ref.bucket_remote_transform
+	$"TutoToolTip/AnimationPlayer".play("new_animation")
 	
 	await get_tree().process_frame
 	if LevelBuilder.controller_connected:
@@ -138,12 +139,20 @@ func player_interaction() -> void: #ésta función estará en TODOS los objetos 
 			else:
 				place_mop_on_bucket()
 				#mop_reference.exprimir() # TEMPORAL
-				
+
+func show_location_tooltip() -> void:
+	if get_node_or_null("TutoToolTip") == null:
+		return
+	$TutoToolTip.visible = true
+		
+
 #region palanca
 
 func palanca_activada() -> void:
 	mop_reference.exprimir()
 	$SFX/TraperoLimpiado.play()
+	if get_node_or_null("TutoToolTip") != null:
+		$"TutoToolTip".queue_free()
 #endregion
 
 #region in/out trapero

@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=4 uid="uid://cjx61d8bebjjq"]
+[gd_scene load_steps=62 format=4 uid="uid://cjx61d8bebjjq"]
 
 [ext_resource type="Script" path="res://logic/ambient_scripts/props/caja_fusibles.gd" id="1_3b1md"]
 [ext_resource type="Texture2D" uid="uid://cilth080hdd3u" path="res://modelos/electrical_box/textures/material_baseColor.png" id="1_b62go"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://dxybjnksjvoa1" path="res://audio/CajaFusibles/ELECTRIC-BUZZ-SOUND-EFFECT-FREE (cortado).wav" id="6_t3nq4"]
 [ext_resource type="AudioStream" uid="uid://ccd4jpd6hr1lb" path="res://audio/CajaFusibles/power-down-45784.mp3" id="8_v2ipm"]
 [ext_resource type="Texture2D" uid="uid://d2g0udfppb40" path="res://modelos/textures/sprites/left-click.png" id="9_if4nl"]
+[ext_resource type="Texture2D" uid="uid://3uemlrrm7qsk" path="res://modelos/textures/sprites/vector.png" id="10_auvqm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_owh2i"]
 resource_name = "material"
@@ -723,6 +724,33 @@ size = Vector3(1.80162, 2.85303, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_j0cqc"]
 size = Vector3(1.49155, 2.98315, 0.236572)
 
+[sub_resource type="Animation" id="Animation_tw15c"]
+resource_name = "new_animation"
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.355387, 4.68511, -1.03166, 0.5, 1, -0.355387, 3.72871, -1.03166, 1, 1, -0.355387, 4.68511, -1.03166)
+
+[sub_resource type="Animation" id="Animation_hvmcx"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.355387, 4.68511, -1.03166)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_72lny"]
+_data = {
+"RESET": SubResource("Animation_hvmcx"),
+"new_animation": SubResource("Animation_tw15c")
+}
+
 [node name="CajaFusibles" type="StaticBody3D" node_paths=PackedStringArray("ref_cables", "emisor_chispas_constantes", "emisor_chispoteo") groups=["CajasFusibles", "HasUserTooltip"]]
 script = ExtResource("1_3b1md")
 ref_cables = NodePath("Sketchfab_Scene/Sketchfab_model/a26a87c956d74689b89b62f245ba1286_fbx/RootNode/Cables/����������������������������������_����������������_0")
@@ -924,5 +952,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.46021, 0.869265, -0.494583
 visible = false
 billboard = 1
 texture = ExtResource("9_if4nl")
+
+[node name="TutoTooltip" type="Sprite3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.355387, 4.68511, -1.03166)
+visible = false
+billboard = 2
+no_depth_test = true
+texture = ExtResource("10_auvqm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TutoTooltip"]
+libraries = {
+"": SubResource("AnimationLibrary_72lny")
+}
 
 [connection signal="finished" from="Zumbido" to="." method="start_buzzing_sfx"]

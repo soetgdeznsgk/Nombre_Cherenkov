@@ -50,7 +50,7 @@ func _input(_event: InputEvent) -> void:
 		if not debug_bool:
 			pass
 			#get_tree().get_first_node_in_group("WinStateTriggerables").play("Door_Open")	# añadir un efecto de luz para que door_open se note más
-			#get_tree().get_first_node_in_group("CajasFusibles").squid_interaction(Pulpo.new())
+			get_tree().get_first_node_in_group("CajasFusibles").squid_interaction(Pulpo.new())
 			#trigger_win_state()
 			#get_tree().change_scene_to_file("res://logic/scenes/levels/load_screen.tscn")
 			#mute_alarm_sound()
@@ -59,7 +59,7 @@ func _input(_event: InputEvent) -> void:
 			pass
 			#unmute_alarm_sound()
 			#get_tree().get_first_node_in_group("WinStateTriggerables").play("Door_Close")
-			#get_tree().get_first_node_in_group("CajasFusibles").player_interaction()
+			get_tree().get_first_node_in_group("CajasFusibles").player_interaction()
 			#for node in get_tree().root.get_child(4).get_child(5).get_children():
 				#node.health = 0
 			
