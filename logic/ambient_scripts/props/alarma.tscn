@@ -2,12 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://dutmanhfhbij4" path="res://modelos/first_motor_siren/scene.gltf" id="1_flrcg"]
 [ext_resource type="PackedScene" uid="uid://ms3fbucvi732" path="res://logic/ambient_scripts/spatial_sfx/SpatialAudioPlayer3D.tscn" id="2_j376r"]
-[ext_resource type="AudioStream" uid="uid://c52shjqacfoke" path="res://audio/Alarma/Nuclear Alarm Siren Loop.wav" id="3_kf2d3"]
+[ext_resource type="AudioStream" uid="uid://dd3qscjsm588v" path="res://audio/Alarma/Nuclear-Alarm-Siren-Loop.ogg" id="3_2mhht"]
 
 [sub_resource type="GDScript" id="GDScript_qjf21"]
 script/source = "extends Node3D
 
-@export var ALARM_VOLUME : int = 10
+@export var ALARM_VOLUME : int = 0
 
 func _ready() -> void: 
 	process_mode = PROCESS_MODE_DISABLED
@@ -15,6 +15,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	$SpotLight3D.rotate(basis.x, PI * delta)
+	#$SpatialAudioPlayer3D._target_volume_db = 0
+	#print(name, \" vol \", $SpatialAudioPlayer3D._target_volume_db)
 
 func start() -> void: # parte del grupo de nodos \"alarmables
 	process_mode = PROCESS_MODE_INHERIT
@@ -22,7 +24,7 @@ func start() -> void: # parte del grupo de nodos \"alarmables
 	$SpatialAudioPlayer3D.play()
 
 func mute_sound(speed : float = 1) -> void:		
-	if $SpatialAudioPlayer3D.volume_db <= -80:
+	if $SpatialAudioPlayer3D._target_volume_db <= -80:
 		return
 		
 	$SpatialAudioPlayer3D._target_volume_db -= 1 * speed
@@ -30,7 +32,7 @@ func mute_sound(speed : float = 1) -> void:
 	mute_sound()
 	
 func unmute_sound() -> void:	
-	if $SpatialAudioPlayer3D.volume_db >= ALARM_VOLUME:
+	if $SpatialAudioPlayer3D._target_volume_db >= ALARM_VOLUME:
 		return
 		
 	$SpatialAudioPlayer3D._target_volume_db += 1
@@ -40,6 +42,7 @@ func unmute_sound() -> void:
 
 [node name="Alarma" type="Node3D" groups=["Alarmables"]]
 script = SubResource("GDScript_qjf21")
+ALARM_VOLUME = -5
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223813, 0.365388, -0.597655)
@@ -57,5 +60,6 @@ spot_angle = 72.36
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="SpatialAudioPlayer3D" parent="." instance=ExtResource("2_j376r")]
-stream = ExtResource("3_kf2d3")
+stream = ExtResource("3_2mhht")
+volume_db = -5.0
 max_reverb_wetness = 1.5

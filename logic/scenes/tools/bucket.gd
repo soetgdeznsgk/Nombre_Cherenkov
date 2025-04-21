@@ -196,8 +196,8 @@ func fall_coroutine(punto_colision : Vector3, eje : Vector3, t : float) -> void:
 	if t > 0.3: 
 		return
 	rotate(eje, lerpf(0, 0.4, t))
-	position.y += 2*get_physics_process_delta_time()
-	position -= (punto_colision-global_position)*get_physics_process_delta_time()		# se ve como una solución enredad
+	position.y += 2 * get_physics_process_delta_time()
+	position -= (punto_colision-global_position) * get_physics_process_delta_time()		# se ve como una solución enredad
 	await get_tree().process_frame														# pero no debería traer problemas
 	fall_coroutine(punto_colision, eje, t + get_physics_process_delta_time())
 	

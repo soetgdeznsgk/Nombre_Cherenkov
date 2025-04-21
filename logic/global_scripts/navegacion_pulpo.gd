@@ -44,13 +44,13 @@ func get_escape_path(pulpo_ref : Pulpo) -> PackedVector3Array:
 	
 	#print(end_ref, " y la primera es: ", Splot.origin_splot.navigation_id)
 	
-	var t : int = pathfinding_map.get_point_weight_scale(Splot.origin_splot.navigation_id)			# Guardar el INF del origen pa que no se pierda
+	#var t : int = pathfinding_map.get_point_weight_scale(Splot.origin_splot.navigation_id)			# Guardar el INF del origen pa que no se pierda
 	pathfinding_map.set_point_weight_scale(Splot.origin_splot.navigation_id, 0)
 	
 	if start_ref != -1 and end_ref != -1:
 		var m : PackedVector3Array = pathfinding_map.get_point_path(start_ref, end_ref, false)
-		pathfinding_map.set_point_weight_scale(Splot.origin_splot.navigation_id, t)					# Reestablecer el INF
+		pathfinding_map.set_point_weight_scale(Splot.origin_splot.navigation_id, INF)					# Reestablecer el INF
 		return m
 		
-	pathfinding_map.set_point_weight_scale(Splot.origin_splot.navigation_id, t)						# Reestablecer el INF
+	pathfinding_map.set_point_weight_scale(Splot.origin_splot.navigation_id, INF)						# Reestablecer el INF
 	return PackedVector3Array()

@@ -23,7 +23,7 @@ func _ready() -> void:
 	actualizar_reloj()
 
 func start() -> void:
-	escala_de_tiempo = 60
+	escala_de_tiempo = 100
 
 func actualizar_reloj() -> void:	
 	var tiempo_transcurrido_en_segundos = int(tiempo_simulado)

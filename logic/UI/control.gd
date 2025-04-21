@@ -5,6 +5,7 @@ class_name UI
 @onready var aviso_atrapamiento := $"../Aviso_Atrapado"
 @onready var contamination_bar := $GlobalContaminationBar
 @onready var ost_player_ref : AudioStreamPlayer = $OST
+@onready var win_state_music : AudioStreamPlayer = $WinStateST
 static var filtro_pausa : ColorRect
 static var aviso_pausa : Label 
 static var aviso_despausa : Label 
@@ -89,6 +90,7 @@ static func clean_mop_order_completed() -> void:
 func win_state_sequence() -> void:
 	# TODO hacer un fade in y out más bonito
 	ost_player_ref.playing = false
+	win_state_music.play()
 	objetivo_actual.text = listaObjetivos[4]
 
 func game_over_sequence() -> void:

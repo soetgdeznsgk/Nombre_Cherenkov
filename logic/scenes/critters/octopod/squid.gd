@@ -232,7 +232,8 @@ func change_arm_monitoring_state(b : bool) -> void:
 	arm_span.disabled = b
 	
 func tumble_bucket(balde: Balde) -> void:
-	balde.fall_from_collision_in(global_position)
+	if not balde.bucket_ko:
+		balde.fall_from_collision_in(global_position)
 
 func pop_squid() -> void:
 	queue_free()
