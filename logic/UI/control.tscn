@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cu30dahipapwi"]
+[gd_scene load_steps=11 format=3 uid="uid://cu30dahipapwi"]
 
 [ext_resource type="Script" path="res://logic/UI/control.gd" id="1_yfp7f"]
 [ext_resource type="StyleBox" uid="uid://crbcaxlixf3yw" path="res://logic/UI/styleboxes/blue_stylebox.tres" id="2_u2acb"]
+[ext_resource type="AudioStream" uid="uid://boib3oxu31sag" path="res://audio/OST/lobby-pre-alarm.ogg" id="3_3a3fp"]
 [ext_resource type="AudioStream" uid="uid://xf8bqhyw1kmt" path="res://audio/OST/Cherenkov Main Theme w_o Alarm.wav" id="3_a3mpb"]
 [ext_resource type="AudioStream" uid="uid://cyyaqg05fufv7" path="res://audio/OST/calm-morning-125568.ogg" id="4_f0gyt"]
 [ext_resource type="AudioStream" uid="uid://bpi534v8o0rod" path="res://audio/Cuarto/World-Trade-Center-Collapse-original-sound-_1_.ogg" id="5_7hcnw"]
@@ -27,6 +28,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yfp7f")
+MainOST = ExtResource("3_a3mpb")
+LobbyOST = ExtResource("3_3a3fp")
 
 [node name="SaturationBar" type="ProgressBar" parent="Control"]
 visible = false
@@ -90,7 +93,8 @@ grow_vertical = 2
 text = "CONTAMINACIÓN"
 
 [node name="OST" type="AudioStreamPlayer" parent="Control"]
-stream = ExtResource("3_a3mpb")
+stream = ExtResource("3_3a3fp")
+autoplay = true
 
 [node name="WinStateST" type="AudioStreamPlayer" parent="Control"]
 stream = ExtResource("4_f0gyt")

@@ -26,6 +26,9 @@ signal just_paused()
 @onready var style_yellow : StyleBoxFlat = preload("res://logic/UI/styleboxes/yellow_stylebox.tres")
 #endregion
 
+@export var MainOST : AudioStream
+@export var LobbyOST : AudioStream
+
 func _ready() -> void:
 	#mop_saturation_bar.modulate(Color.AQUA)
 	#aviso_pausa = $"../aviso_pausar"
@@ -37,6 +40,7 @@ func _ready() -> void:
 	await get_tree().process_frame
 	
 func start() -> void:
+	ost_player_ref.stream = MainOST
 	ost_player_ref.play()
 
 func define_appropiate_gamepad_tooltip(control : bool) -> void:

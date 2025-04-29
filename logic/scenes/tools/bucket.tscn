@@ -15,6 +15,16 @@
 [ext_resource type="AudioStream" uid="uid://dyqf86ds6myrv" path="res://audio/Carrito/mop_crushed5.wav" id="7_tbedy"]
 [ext_resource type="Texture2D" uid="uid://3uemlrrm7qsk" path="res://modelos/textures/sprites/vector.png" id="12_o6h6q"]
 
+[sub_resource type="Animation" id="Animation_5uuyh"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 2.59878, 0.0409986)
+
 [sub_resource type="Animation" id="Animation_csoho"]
 resource_name = "new_animation"
 loop_mode = 1
@@ -25,16 +35,6 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0.238405, 3.15592, -0.772609, 0.5, 1, 0.238405, 2.65966, -0.772609, 0.966667, 1, 0.238405, 3.15592, -0.772609)
-
-[sub_resource type="Animation" id="Animation_5uuyh"]
-length = 0.001
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 2.59878, 0.0409986)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hngmy"]
 _data = {
