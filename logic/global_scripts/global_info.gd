@@ -15,17 +15,15 @@ static var playerPosition : Vector3
 const NO_INTERACTION_TIME := 0.3
 
 # referencias jugador
-@onready var refPlayer : CharacterBody3D = get_tree().get_nodes_in_group("Jugador").front()
-@onready var refCamara : InteraccionesJugador
-@onready var refTrapero : Mop = get_tree().get_nodes_in_group("Trapero").front()
-
-@onready var refBalde : Balde = get_tree().get_first_node_in_group("Baldes")	
+var refPlayer : CharacterBody3D 
+var refCamara : InteraccionesJugador
+var refTrapero : Mop 
+var refBalde : Balde 
 
 # info UI
-@onready var refUI : UI = get_tree().get_first_node_in_group("UI")
-@onready var refContBar : Contamination_Ingame_Bar = get_tree().get_first_node_in_group("ContaminationBar")
-
-@onready var refPiscina : Pool = get_tree().get_first_node_in_group("Piscinas")
+var refUI : UI 
+var refContBar : Contamination_Ingame_Bar 
+var refPiscina : Pool 
 
 signal rana_impacta # emitido desde on_aterrizaje_rana
 signal jugador_trapea # utilizada para la señal visual del trapero
@@ -37,24 +35,40 @@ var cantidad_pulpos : int
 var debug_bool : bool = false
 
 func _ready() -> void:
+	process_mode = PROCESS_MODE_DISABLED
+	await LevelBuilder.level_built 
+	set_references()
+	process_mode = PROCESS_MODE_INHERIT
 	add_child(timerInteractionBuffer)
 	timerInteractionBuffer.one_shot = true
+	
+func set_references() -> void:
+	refPlayer = get_tree().get_first_node_in_group("Jugador")
+	refTrapero = get_tree().get_first_node_in_group("Trapero")
+	refBalde = get_tree().get_first_node_in_group("Baldes")
+
+	refUI = get_tree().get_first_node_in_group("UI")
+	refContBar = get_tree().get_first_node_in_group("ContaminationBar")
+	refPiscina = get_tree().get_first_node_in_group("Piscinas")
 	await refPlayer.ready
 	refCamara = refPlayer.get_camera_ref()
 
 func _process(_delta: float) -> void:
+	#return
 	playerPosition = refPlayer.position
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Debug_Exec"):
 		if not debug_bool:
-			pass
+			
 			#get_tree().get_first_node_in_group("WinStateTriggerables").play("Door_Open")	# añadir un efecto de luz para que door_open se note más
-			get_tree().get_first_node_in_group("CajasFusibles").squid_interaction(Pulpo.new())
+			#get_tree().get_first_node_in_group("CajasFusibles").squid_interaction(Pulpo.new())
 			#trigger_win_state()
 			#get_tree().change_scene_to_file("res://logic/scenes/levels/load_screen.tscn")
 			#mute_alarm_sound()
 			#refPiscina._on_pulpo_spawner_timer_timeout()
+			#print(get_tree_string_pretty())
+			print(get_parent().get_tree_string_pretty())
 		else:
 			pass
 			#unmute_alarm_sound()

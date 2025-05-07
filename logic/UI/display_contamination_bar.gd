@@ -10,6 +10,9 @@ class_name Contamination_Ingame_Bar
 #endregion
 var tmp : ORMMaterial3D
 
+func _enter_tree() -> void:
+	LevelBuilder.level_built.emit() ### RADIOACTIVO, DEPENDE DE QUE EL NODO SEA EL ÚLTIMO EN LA JERARQUÍA
+
 func update_contamination_bar(delta: float) -> void:
 	contamination_bar.value += delta
 	if contamination_bar.value < 30 and delta < 0:

@@ -9,6 +9,8 @@ signal splot_map_updated # para que los pulpos esperen a que hayan charcos para 
 func set_custom_splot_weight(index : int, v : float) -> void:		# BUG, a veces cuando spawnea el pulpo se queda trabado en el primer charco?
 	pathfinding_map.set_point_weight_scale(index, v)
 
+
+
 func add_splot_to_registry(s : Splot) -> void: # se añaden desde splot.gd
 	var astar_index := randi_range(0, GlobalDB.splot_limit)					# revisar si ésto se bugea cuando hay más charcos que el límite
 	s.set_navigation_id(astar_index)
@@ -22,12 +24,16 @@ func add_splot_to_registry(s : Splot) -> void: # se añaden desde splot.gd
 		.distance_squared_to(pathfinding_map.get_point_position(point_id)) < 100 and point_id != astar_index:
 			pathfinding_map.connect_points(astar_index, point_id)
 	splot_map_updated.emit()
-	
+
+
+
 func rmv_splot_from_registry(s : Splot) -> void: # se borran desde splot.gd
 	if pathfinding_map.has_point(s.navigation_id):
 		pathfinding_map.remove_point(s.navigation_id)
 	splot_map_updated.emit()
-	
+
+
+
 func get_pulpo_path_from_point(pulpo : Pulpo, objetivo : Node3D) -> PackedVector3Array:
 	var start_ref : int = pathfinding_map.get_closest_point(pulpo.global_position)
 	var end_ref : int = pathfinding_map.get_closest_point(objetivo.global_position)
@@ -35,7 +41,9 @@ func get_pulpo_path_from_point(pulpo : Pulpo, objetivo : Node3D) -> PackedVector
 	if start_ref != -1 and end_ref != -1:
 		return pathfinding_map.get_point_path(start_ref, end_ref, false)
 	return PackedVector3Array()
-	
+
+
+
 func get_escape_path(pulpo_ref : Pulpo) -> PackedVector3Array:
 	if pulpo_ref.position.distance_squared_to(pulpo_ref.origin) < 0.6:
 		pulpo_ref.pop_squid()
