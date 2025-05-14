@@ -52,6 +52,7 @@ Modelos:
     Low poly door #02 by sergeilihandristov is licensed under Creative Commons Attribution
 
 SFX:
+    Splat Wet Towel 1 by Sound Effects via Youtube is licensed under CC-A
     ELECTRIC BUZZ SOUND EFFECT FREE by Sound FX is licensed under CC0
     Projector Button Push - Sound Effect by RazendeGijs TODO CLEAR LICENSE
     Opening Metal Door by freesound_community from Pixabay under CC0 (?)

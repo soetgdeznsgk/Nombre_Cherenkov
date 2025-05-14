@@ -51,6 +51,8 @@ var anim_state : int = 0:
 				wiggle_resource.gravity = Vector3(0, -9.81, 0)
 				wiggle_resource.linear_scale = 500
 			states.Cleaning:
+				if has_overlapping_bodies():
+					$Azote.play()
 				wiggle_resource.gravity = Vector3.ZERO
 				wiggle_resource.linear_scale = 1500
 				#anim_tree["parameters/conditions/is_cleaning"] = true

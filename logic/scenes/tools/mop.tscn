@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://cju206cf1ni5m"]
+[gd_scene load_steps=46 format=4 uid="uid://cju206cf1ni5m"]
 
 [ext_resource type="Script" path="res://logic/scenes/tools/mop.gd" id="1_qd35y"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/broom_glow.gd" id="2_0paim"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dv6fhgsrr6nra" path="res://modelos/electrical_box/icons8-dot-30.png" id="6_ug8d5"]
 [ext_resource type="PackedScene" uid="uid://ms3fbucvi732" path="res://logic/ambient_scripts/spatial_sfx/SpatialAudioPlayer3D.tscn" id="7_kaflo"]
 [ext_resource type="AudioStream" uid="uid://idew61mpcxfu" path="res://audio/Trapero/waterdrip2.wav" id="8_euyuo"]
+[ext_resource type="AudioStream" uid="uid://d2lgs55uwwvtl" path="res://audio/Trapero/mopsplat.wav" id="8_w52it"]
 [ext_resource type="Texture2D" uid="uid://3uemlrrm7qsk" path="res://modelos/textures/sprites/vector.png" id="9_3nvvt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0f5uk"]
@@ -945,6 +946,9 @@ billboard = 1
 no_depth_test = true
 texture = ExtResource("5_ytbbx")
 
+[node name="Azote" parent="." instance=ExtResource("7_kaflo")]
+stream = ExtResource("8_w52it")
+
 [node name="Goteo" parent="." instance=ExtResource("7_kaflo")]
 stream = ExtResource("8_euyuo")
 volume_db = 10.0
@@ -960,4 +964,3 @@ libraries = {
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
