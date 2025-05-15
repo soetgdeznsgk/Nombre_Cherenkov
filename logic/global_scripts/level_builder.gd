@@ -1,12 +1,13 @@
 extends Node
 class_name Level_Builder
 
-@onready var refUI : UI = get_tree().get_first_node_in_group("UI")
 var paused : bool = false
 var boot := true
 static var controller_connected : bool 				# falso si teclado, verdadero si hay control
 static var controller_sensitivity : float = 5
 var pauseBuffer : Timer
+
+signal level_built
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -34,7 +35,7 @@ func _on_gamepad_connection_status_changed(device_id, connected : bool) -> void:
 		node.define_appropiate_gamepad_tooltip(connected)
 
 func change_paused_state() -> void:
-	refUI.alternate_esc_enter()
+	GlobalInfo.refUI.alternate_esc_enter()
 	paused = not paused
 	if paused:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

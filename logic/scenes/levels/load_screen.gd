@@ -12,4 +12,5 @@ func _process(delta: float) -> void:
 	scene_load_status = ResourceLoader.load_threaded_get_status(scene_name, progress)
 	if scene_load_status == ResourceLoader.THREAD_LOAD_LOADED:
 		var new_scene = ResourceLoader.load_threaded_get(scene_name)
+		#await get_tree().create_timer(1).timeout
 		get_tree().change_scene_to_packed(new_scene)
