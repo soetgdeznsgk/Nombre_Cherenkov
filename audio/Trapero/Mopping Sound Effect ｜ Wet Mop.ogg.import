@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://sycr3bwylalr"
+path="res://.godot/imported/Mopping Sound Effect ｜ Wet Mop.ogg-59b9b7549612dd7aae62531ba5cf072f.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Trapero/Mopping Sound Effect ｜ Wet Mop.ogg"
+dest_files=["res://.godot/imported/Mopping Sound Effect ｜ Wet Mop.ogg-59b9b7549612dd7aae62531ba5cf072f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

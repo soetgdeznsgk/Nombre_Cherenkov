@@ -1,6 +1,8 @@
 extends Area3D
 class_name Mop
 
+var prev_frame_position : Vector3
+
 static var debug_bool1 : bool = false
 static var debug_bool2 : bool = false
 static var mop_saturation : float = 0:
@@ -87,9 +89,20 @@ static func increase_saturation(_o : float) -> void:
 	mop_saturation += mop_saturation_pace
 	
 func _physics_process(_delta: float) -> void:
+	var position_delta : Vector3 = global_position - prev_frame_position
 	if is_overlapping_with_splots:
 		if mop_saturation < 1:
 			paint_holes_in_splots()
+			
+	if anim_state == states.Cleaning and has_overlapping_bodies() and not $Barrido.playing:
+		$Barrido.pitch_scale = randf_range(0.5, 1.5)
+		$Barrido.play()
+		
+	elif $Barrido.playing:
+		$Barrido.volume_db = linear_to_db(position_delta.length_squared() * 16)
+	
+	prev_frame_position = global_position
+	
 			
 func paint_holes_in_splots() -> void:
 	for area in get_overlapping_areas():
@@ -113,6 +126,7 @@ func trapeo_lerp_to(p : Vector3, _t : float) -> void:
 	remote_transform_ref.global_position = p 
 	
 func trapeo_lerp_back(_t : float) -> void:
+	$Barrido.stop()
 	remote_transform_ref.position = origin_point_in_HUD
 	if anim_state == states.Cleaning:
 		anim_state = states.Idle

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://cju206cf1ni5m"]
+[gd_scene load_steps=47 format=4 uid="uid://cju206cf1ni5m"]
 
 [ext_resource type="Script" path="res://logic/scenes/tools/mop.gd" id="1_qd35y"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/broom_glow.gd" id="2_0paim"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://idew61mpcxfu" path="res://audio/Trapero/waterdrip2.wav" id="8_euyuo"]
 [ext_resource type="AudioStream" uid="uid://d2lgs55uwwvtl" path="res://audio/Trapero/mopsplat.wav" id="8_w52it"]
 [ext_resource type="Texture2D" uid="uid://3uemlrrm7qsk" path="res://modelos/textures/sprites/vector.png" id="9_3nvvt"]
+[ext_resource type="AudioStream" uid="uid://sycr3bwylalr" path="res://audio/Trapero/Mopping Sound Effect ｜ Wet Mop.ogg" id="9_kgysy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0f5uk"]
 size = Vector3(0.456604, 2.21809, 0.184814)
@@ -948,6 +949,10 @@ texture = ExtResource("5_ytbbx")
 
 [node name="Azote" parent="." instance=ExtResource("7_kaflo")]
 stream = ExtResource("8_w52it")
+
+[node name="Barrido" parent="." instance=ExtResource("7_kaflo")]
+stream = ExtResource("9_kgysy")
+volume_db = 10.0
 
 [node name="Goteo" parent="." instance=ExtResource("7_kaflo")]
 stream = ExtResource("8_euyuo")
