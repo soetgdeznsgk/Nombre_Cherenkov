@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cbkgv4jvt85xd" path="res://modelos/button_-_from_portal_2_original/textures/portal_button_switch_baseColor.jpeg" id="2_ki8hd"]
 [ext_resource type="Script" path="res://logic/ambient_scripts/postprocessing_items/outline_on_selection.gd" id="3_e7dye"]
 [ext_resource type="Material" uid="uid://cnqwt7axy0vyl" path="res://logic/ambient_scripts/postprocessing_items/outline_material_mop.tres" id="4_gn8tt"]
-[ext_resource type="Texture2D" uid="uid://d2g0udfppb40" path="res://modelos/textures/sprites/left-click.png" id="5_gukdn"]
+[ext_resource type="Texture2D" uid="uid://bphksspc51ync" path="res://modelos/textures/sprites/left-click.png" id="5_gukdn"]
 [ext_resource type="PackedScene" uid="uid://cve4e3lmdeq5d" path="res://logic/ambient_scripts/props/pruebasreloj/reloj.tscn" id="5_phnoe"]
 [ext_resource type="AudioStream" uid="uid://c5jqh1ny4vyyy" path="res://audio/Botones/Projector Button Push - Sound Effect.mp3" id="6_lgjef"]
 [ext_resource type="Texture2D" uid="uid://3uemlrrm7qsk" path="res://modelos/textures/sprites/vector.png" id="8_c8bnu"]
@@ -172,6 +172,7 @@ transform = Transform3D(2.38893, 0.200981, 1.37342e-07, 1.78814e-07, 2.83355, -3
 visible = false
 billboard = 1
 no_depth_test = true
+texture_filter = 2
 texture = ExtResource("5_gukdn")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Botón_Rojo"]

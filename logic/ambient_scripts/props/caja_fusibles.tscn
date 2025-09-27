@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ms3fbucvi732" path="res://logic/ambient_scripts/spatial_sfx/SpatialAudioPlayer3D.tscn" id="6_nxxdk"]
 [ext_resource type="AudioStream" uid="uid://dxybjnksjvoa1" path="res://audio/CajaFusibles/ELECTRIC-BUZZ-SOUND-EFFECT-FREE (cortado).wav" id="6_t3nq4"]
 [ext_resource type="AudioStream" uid="uid://ccd4jpd6hr1lb" path="res://audio/CajaFusibles/power-down-45784.mp3" id="8_v2ipm"]
-[ext_resource type="Texture2D" uid="uid://d2g0udfppb40" path="res://modelos/textures/sprites/left-click.png" id="9_if4nl"]
+[ext_resource type="Texture2D" uid="uid://bphksspc51ync" path="res://modelos/textures/sprites/left-click.png" id="9_if4nl"]
 [ext_resource type="Texture2D" uid="uid://3uemlrrm7qsk" path="res://modelos/textures/sprites/vector.png" id="10_auvqm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_owh2i"]
@@ -951,6 +951,7 @@ unit_size = 100.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.46021, 0.869265, -0.494583)
 visible = false
 billboard = 1
+texture_filter = 2
 texture = ExtResource("9_if4nl")
 
 [node name="TutoTooltip" type="Sprite3D" parent="."]
