@@ -10,7 +10,7 @@
 [ext_resource type="Material" uid="uid://kf8cd7ahl5n7" path="res://logic/ambient_scripts/postprocessing_items/bucket_lever_material.tres" id="3_qgo5h"]
 [ext_resource type="AudioStream" uid="uid://b52wd2ffge4rw" path="res://audio/Carrito/bucket_actioned.wav" id="4_17w5l"]
 [ext_resource type="Material" uid="uid://cb1yquyn7im4w" path="res://logic/ambient_scripts/postprocessing_items/outline_material_bucket.tres" id="4_o6cvj"]
-[ext_resource type="Texture2D" uid="uid://d2g0udfppb40" path="res://modelos/textures/sprites/left-click.png" id="5_b663r"]
+[ext_resource type="Texture2D" uid="uid://bphksspc51ync" path="res://modelos/textures/sprites/left-click.png" id="5_b663r"]
 [ext_resource type="Texture2D" uid="uid://cunou4gmeyndt" path="res://modelos/textures/sprites/middle-click.png" id="7_cigtn"]
 [ext_resource type="AudioStream" uid="uid://dyqf86ds6myrv" path="res://audio/Carrito/mop_crushed5.wav" id="7_tbedy"]
 [ext_resource type="Texture2D" uid="uid://3uemlrrm7qsk" path="res://modelos/textures/sprites/vector.png" id="12_o6h6q"]
@@ -450,6 +450,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 visible = false
 billboard = 1
 no_depth_test = true
+texture_filter = 2
 texture = ExtResource("5_b663r")
 
 [node name="ControlTipLT" type="Sprite3D" parent="."]
@@ -457,6 +458,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0.464)
 visible = false
 billboard = 1
 no_depth_test = true
+texture_filter = 2
 texture = ExtResource("7_cigtn")
 
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
