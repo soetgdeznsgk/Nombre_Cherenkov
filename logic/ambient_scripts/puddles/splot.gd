@@ -25,6 +25,7 @@ func _ready() -> void:
 	if Floor.splot_count == 0:
 		origin_splot = self
 		NavegacionPulpo.set_custom_splot_weight(navigation_id, INF)
+		self.name = "Origin Splot"
 		#print(global_position.y)
 
 func spawn_hole(v: Vector3, size:Vector3) -> void:

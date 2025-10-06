@@ -19,7 +19,7 @@ func _ready() -> void:
 	Engine.max_fps = 60
 	Input.joy_connection_changed.connect(_on_gamepad_connection_status_changed)
 	#print(Input.get_connected_joypads())
-	setup_user_tooltips()
+	#setup_user_tooltips()
 	
 
 
@@ -33,8 +33,8 @@ func _on_gamepad_connection_status_changed(device_id, connected : bool) -> void:
 		
 func setup_user_tooltips() -> void:
 	controller_connected = not Input.get_connected_joypads().is_empty()
-	await get_tree().create_timer(0.5).timeout
-	print(get_tree().get_nodes_in_group("HasUserTooltip"))
+	await get_tree().create_timer(1).timeout
+	#print(get_tree().get_nodes_in_group("HasUserTooltip"))
 	for node in get_tree().get_nodes_in_group("HasUserTooltip"):
 		node.define_appropiate_gamepad_tooltip(controller_connected)
 	 

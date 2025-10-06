@@ -10,7 +10,7 @@ extends StaticBody3D
 @export_category("SFX")
 @export var BUZZING_VOLUME : int = 5
 
-@onready var interaction_prompt : Sprite3D = $ToolTip
+@onready var interaction_prompt : Sprite3D = $Tooltip
 
 @export var is_active : bool: # este setter es para alterarlo desde el editor GRACIAS POR EL COMENTARIO EMILIANO DEL PASADO
 	set(v):
