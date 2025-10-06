@@ -12,7 +12,7 @@ func set_custom_splot_weight(index : int, v : float) -> void:		# BUG, a veces cu
 
 
 func add_splot_to_registry(s : Splot) -> void: # se añaden desde splot.gd
-	var astar_index := randi_range(0, GlobalDB.splot_limit)					# revisar si ésto se bugea cuando hay más charcos que el límite
+	var astar_index : int = randi_range(100000, 999999)
 	s.set_navigation_id(astar_index)
 	pathfinding_map.add_point(astar_index, s.global_position)
 	
