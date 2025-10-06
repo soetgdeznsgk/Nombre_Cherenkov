@@ -10,6 +10,8 @@ extends StaticBody3D
 @export_category("SFX")
 @export var BUZZING_VOLUME : int = 5
 
+@onready var interaction_prompt : Sprite3D = $ToolTip
+
 @export var is_active : bool: # este setter es para alterarlo desde el editor GRACIAS POR EL COMENTARIO EMILIANO DEL PASADO
 	set(v):
 		if v:
@@ -82,19 +84,20 @@ func enter_player_focus() -> void:
 	if is_active:
 		if ref_cables.material_overlay == null:
 			ref_cables.material_overlay = blue_outline
-		if not $Tooltip.visible:
-			$Tooltip.visible = true
+		if not interaction_prompt.visible:
+			interaction_prompt.visible = true
 	#pass
 
 func exit_player_focus() -> void:
 	ref_cables.material_overlay = null
-	$Tooltip.visible = false
+	if interaction_prompt.visible:
+		interaction_prompt.visible = false
 	
 func define_appropiate_gamepad_tooltip(control : bool) -> void:
 	if control:
-		$"ControlTip".texture = load("res://modelos/textures/sprites/xbox_rt.png")
+		interaction_prompt.texture = load("res://modelos/textures/sprites/xbox_rt.png")
 	else:
-		$"ControlTip".texture = load("res://modelos/textures/sprites/left-click.png")
+		interaction_prompt.texture = load("res://modelos/textures/sprites/left-click.png")
 #endregion
 
 func start_buzzing_sfx() -> void:

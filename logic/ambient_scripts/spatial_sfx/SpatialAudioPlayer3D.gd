@@ -93,7 +93,9 @@ func _physics_process(delta):
 	_lerp_parameters(delta)
 		
 func _lerp_parameters(delta):
-	volume_db = lerp(volume_db,_target_volume_db,delta * lerp_speed_modifier)
+	var new_vol : float = lerpf(volume_db,_target_volume_db,delta * lerp_speed_modifier)
+	if not is_nan(new_vol):
+		volume_db =  new_vol
 	_lowpass_filter.cutoff_hz = lerp(_lowpass_filter.cutoff_hz,_target_lowpass_cutoff,delta * 5.0 * lerp_speed_modifier)
 	_reverb_effect.wet = lerp(_reverb_effect.wet,_target_reverb_wetness * max_reverb_wetness,delta * 5.0 * lerp_speed_modifier)
 	_reverb_effect.room_size = lerp(_reverb_effect.room_size,_target_reverb_room_size,delta * 5.0 * lerp_speed_modifier)

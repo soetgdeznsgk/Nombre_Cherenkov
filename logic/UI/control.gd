@@ -45,10 +45,8 @@ func start() -> void:
 
 func define_appropiate_gamepad_tooltip(control : bool) -> void:
 	if control:
-		aviso_pausa.text = "Start para pausar"
 		aviso_despausa.text = "Start para despausar"
 	else:
-		aviso_pausa.text = "ESC para pausar"
 		aviso_despausa.text = "ESC para despausar"
 	
 	

@@ -19,6 +19,7 @@ func _ready() -> void:
 	Engine.max_fps = 60
 	Input.joy_connection_changed.connect(_on_gamepad_connection_status_changed)
 	#print(Input.get_connected_joypads())
+	setup_user_tooltips()
 	
 
 
@@ -26,13 +27,17 @@ func _input(event : InputEvent) -> void:
 	if event is InputEventJoypadButton or event is InputEventKey:
 		if Input.is_action_just_pressed("PauseGame"):
 			change_paused_state()
-			
-	
 
 func _on_gamepad_connection_status_changed(device_id, connected : bool) -> void:
-	controller_connected = connected
+	setup_user_tooltips()
+		
+func setup_user_tooltips() -> void:
+	controller_connected = not Input.get_connected_joypads().is_empty()
+	await get_tree().create_timer(0.5).timeout
+	print(get_tree().get_nodes_in_group("HasUserTooltip"))
 	for node in get_tree().get_nodes_in_group("HasUserTooltip"):
-		node.define_appropiate_gamepad_tooltip(connected)
+		node.define_appropiate_gamepad_tooltip(controller_connected)
+	 
 
 func change_paused_state() -> void:
 	GlobalInfo.refUI.alternate_esc_enter()

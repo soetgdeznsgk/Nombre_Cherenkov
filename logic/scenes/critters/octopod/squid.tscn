@@ -1,7 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://d2hht52rap8m1"]
+[gd_scene load_steps=15 format=3 uid="uid://d2hht52rap8m1"]
 
 [ext_resource type="Script" path="res://logic/scenes/critters/octopod/squid.gd" id="1_eg8wh"]
 [ext_resource type="PackedScene" uid="uid://b170fl7uw3rxy" path="res://modelos/low_poly_squid/pulpoAnimation.glb" id="3_n3bj6"]
+[ext_resource type="AudioStream" uid="uid://c5r1wa1uffcng" path="res://audio/Pulpo/squid_hit1.ogg" id="3_y38ib"]
+[ext_resource type="AudioStream" uid="uid://b7eeyernw3lp1" path="res://audio/Pulpo/squid_hit2.ogg" id="4_c2pyj"]
+[ext_resource type="AudioStream" uid="uid://cbitrm3cglqkl" path="res://audio/Pulpo/squid_hit3.ogg" id="5_ig55f"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_06jv0"]
 radius = 1.29656
@@ -288,6 +291,24 @@ wait_time = 30.0
 one_shot = true
 autostart = true
 
+[node name="EmergencyForceDespawn" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+
+[node name="HitSFX" type="Node" parent="."]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="HitSFX"]
+stream = ExtResource("3_y38ib")
+volume_db = 25.0
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="HitSFX"]
+stream = ExtResource("4_c2pyj")
+volume_db = 25.0
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="HitSFX"]
+stream = ExtResource("5_ig55f")
+volume_db = 25.0
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
@@ -296,5 +317,6 @@ autostart = true
 [connection signal="body_entered" from="arm_span" to="." method="_on_arm_span_body_entered"]
 [connection signal="body_exited" from="arm_span" to="." method="_on_arm_span_body_exited"]
 [connection signal="timeout" from="TEMPORALNoAttackTimer" to="." method="_on_temporal_no_attack_timer_timeout"]
+[connection signal="timeout" from="EmergencyForceDespawn" to="." method="_on_emergency_force_despawn_timeout"]
 
 [editable path="pulpoAnimation"]

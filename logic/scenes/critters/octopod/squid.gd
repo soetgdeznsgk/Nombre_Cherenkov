@@ -41,7 +41,9 @@ var escaping : bool = false
 			target_retriever = NavegacionPulpo.get_escape_path.bind(self)
 			escaping = true
 			health = 0
+			$EmergencyForceDespawn.start()
 		else:
+			play_hit_sfx()
 			health = v
 
 # Variables idle
@@ -52,6 +54,7 @@ signal tearing_shit_state_exited
 
 
 @onready var anim_player : AnimationPlayer = $AnimationPlayer
+@onready var hit_sound_library : Node = $HitSFX
 
 #func set_origin() -> void: # CONSTRUCTOR
 	#origin = position
@@ -236,4 +239,15 @@ func tumble_bucket(balde: Balde) -> void:
 		balde.fall_from_collision_in(global_position)
 
 func pop_squid() -> void:
+	GlobalInfo.cantidad_pulpos -= 1
 	queue_free()
+	
+func play_hit_sfx() -> void:
+	for sfx in hit_sound_library.get_children():
+		sfx.stop()
+	
+	hit_sound_library.get_children().pick_random().play()
+
+
+func _on_emergency_force_despawn_timeout() -> void:
+	pop_squid()
