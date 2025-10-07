@@ -32,7 +32,11 @@ func enter_player_focus() -> void:
 		highlight = true
 		$"../ControlTipRT".visible = true
 		mesh_ref.set_surface_override_material(1, material)
-		
+
+func force_player_focus() -> void:
+	highlight = true
+	mesh_ref.set_surface_override_material(1, material)
+
 func exit_player_focus() -> void:
 	if highlight:
 		highlight = false

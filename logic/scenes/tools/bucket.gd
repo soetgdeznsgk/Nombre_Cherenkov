@@ -2,6 +2,7 @@ extends VehicleBody3D
 class_name Balde
 
 @onready var mesh_reference : MeshInstance3D = $baldeClean/Esqueleto_002/Skeleton3D/Balde
+@onready var lever_tutorial_ref : Node = $"Area3D Palanca/TutoTooltipLever"
 var remote_transform_ref : RemoteTransform3D
 var anim_time : float
 var player_on_range : bool = false
@@ -149,6 +150,8 @@ func show_location_tooltip() -> void:
 #region palanca
 
 func palanca_activada() -> void:
+	if lever_interaction_node.find_child("TutoTooltipLever") != null:
+			$"Area3D Palanca/TutoTooltipLever".stop_blinking()
 	mop_reference.exprimir()
 	$SFX/TraperoLimpiado.play()
 	if get_node_or_null("TutoToolTip") != null:
@@ -165,12 +168,16 @@ func place_mop_on_bucket() -> void:
 	mop_reference.rotate(Vector3.UP, PI/2)
 	exit_player_focus()
 	lever_interaction_node.activate()
+	
+	if lever_interaction_node.find_child("TutoTooltipLever") != null:
+		$"Area3D Palanca/TutoTooltipLever".start_blinking()
 
 func retrieve_mop() -> void:
 	if mop_stored:
 		mop_stored = false
 		mop_reference.exit_player_focus()
 		lever_interaction_node.deactivate()
+		
 #endregion
 
 #region estabilidad

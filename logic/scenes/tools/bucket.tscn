@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://di6fatgsdf124"]
+[gd_scene load_steps=33 format=4 uid="uid://di6fatgsdf124"]
 
 [ext_resource type="Script" path="res://logic/scenes/tools/bucket.gd" id="1_owtkk"]
 [ext_resource type="Script" path="res://logic/scenes/tools/bucket_lever.gd" id="2_1sgoo"]
@@ -44,6 +44,21 @@ _data = {
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dewda"]
 size = Vector3(0.248413, 0.778442, 0.253662)
+
+[sub_resource type="GDScript" id="GDScript_8ppv4"]
+script/source = "extends Node
+
+func start_blinking():
+	while true:
+		get_parent().force_player_focus()
+		await get_tree().create_timer(0.5).timeout
+		get_parent().exit_player_focus()
+		await get_tree().create_timer(0.5).timeout
+
+func stop_blinking():
+	get_parent().exit_player_focus()
+	queue_free()
+"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_32tyu"]
 size = Vector3(1.7281, 1.1854, 0.885254)
@@ -331,6 +346,9 @@ shape = SubResource("BoxShape3D_dewda")
 disabled = true
 
 [node name="TimerUnavailable" type="Timer" parent="Area3D Palanca"]
+
+[node name="TutoTooltipLever" type="Node" parent="Area3D Palanca"]
+script = SubResource("GDScript_8ppv4")
 
 [node name="CollisionShape3D Balde" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0572433, 0.598733, -0.0378418)
