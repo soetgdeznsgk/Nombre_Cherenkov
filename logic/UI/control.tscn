@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cu30dahipapwi"]
+[gd_scene load_steps=12 format=3 uid="uid://cu30dahipapwi"]
 
 [ext_resource type="Script" path="res://logic/UI/control.gd" id="1_yfp7f"]
 [ext_resource type="StyleBox" uid="uid://crbcaxlixf3yw" path="res://logic/UI/styleboxes/blue_stylebox.tres" id="2_u2acb"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://cyyaqg05fufv7" path="res://audio/OST/calm-morning-125568.ogg" id="4_f0gyt"]
 [ext_resource type="AudioStream" uid="uid://bpi534v8o0rod" path="res://audio/Cuarto/World-Trade-Center-Collapse-original-sound-_1_.ogg" id="5_7hcnw"]
 [ext_resource type="PackedScene" uid="uid://cd14iuuu7fjel" path="res://logic/UI/pause/pause_filter.tscn" id="5_twl4t"]
+[ext_resource type="Texture2D" uid="uid://dv6fhgsrr6nra" path="res://modelos/electrical_box/icons8-dot-30.png" id="8_rfjt1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_25vka"]
 font_size = 10
@@ -25,6 +26,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yfp7f")
@@ -148,3 +153,21 @@ grow_vertical = 2
 theme = SubResource("Theme_u7d16")
 text = "¡Golpea!"
 horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0, 1, 1, 0.0470588)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 38.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_rfjt1")
